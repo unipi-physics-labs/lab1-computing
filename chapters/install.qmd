@@ -1,3 +1,72 @@
 # Che cosa serve per cominciare?
 
-Buona domanda.
+Buona domanda. Avrete bisogno essenzialmente di tre cose:
+
+1. un calcolatore;
+2. una istallazione funzionante di Python (e di parte dell'ecosistema scientifico
+   associato);
+3. un *editor* di testo.
+
+Se non siete sicure di avere tutto, non preoccupatevi: questo primo capitolo è
+pensato proprio per portarvi per mano all'esecuzione del vostro primo, glorioso
+programma di laboratorio. (*Spoiler alert*: faremo un grafico di dispersione.)
+
+
+## Il calcolatore
+
+Prima che ve lo chiediate, possiamo riassumere i nostri requisiti come: va bene
+letteralmente qualsiasi cosa purché abbia una tastiera.
+
+::: {.callout-warning}
+Se volete (o avete necessità di) utilizzare un tablet per il corso di laboratorio,
+qui non troverete istruzioni utili, almeno per il momento.
+(Ma se riuscite ad identificare un *setup* funzionante e riproducibile potreste
+rendere il mondo un posto migliore contribuendo voi stesse a queste note.)
+:::
+
+Da un punto di vista *hardware* non abbiamo grosse pretese. Se avete un calcolatore
+che vi permette di navigare su web e guardare film in streaming andrà benissimo anche
+per il corso di laboratorio.
+
+Anche per quel che riguarda il sistema operativo va bene più o meno tutto. Gli strumenti
+che utilizzeremo sono tutti intrinsecamente multi-piattaforma e, a meno che non usiate
+un sistema particolarmente *esotico* è improbabile che non interagisca bene con
+il laboratorio di Fisica. In particolare non dovreste avere particolari problemi (ma,
+come sempre in questi casi il condizionale è d'obbligo) se  utilizzare Windows,
+Mac-OS, o GNU/Linux.
+
+
+## Il linguaggio di programmazione: Python
+
+Il linguaggio di programmazione che abbiamo scelto per il corso si chiama Python.
+Non perché sia, in assoluto, il migliore linguaggio del mondo (qualsiasi cosa questo
+voglia dire), ma perché ha molte caratteristiche che lo rendono adatto ai nostri scopi:
+è software libero, la sua sintassi è progettata esplicitamente per la massima
+espressività e facilità d'uso, ha una vasta libreria standard ed un enorme ecosistema
+associato di estensioni attivamente sviluppate, ed è uno dei linguaggi più utilizzati
+per il calcolo scientifico.
+
+La pagina principale di [Python](https://www.python.org/) è il punto di ingresso
+fondamentale per tutte le questioni legate al linguaggio, comprese l’installazione
+e la documentazione. Se non avete particolari esigenze (o, come più probabile, non
+sapete cosa vuol dire avere particolari esigenze) potete prendere l’ultima versione
+stabile (e.g., 3.14.6 a luglio 2026). Il tab *Downloads* in alto nella pagina web
+dovrebbe indirizzarvi di default all’ultima versione stabile per il vostro sistema
+operativo.
+
+
+### Windows
+
+
+### Mac-OS
+
+
+### GNU/Linux
+
+
+
+## Istallazione dei pacchetti aggiuntivi
+
+
+
+## Quale editor di testo?
