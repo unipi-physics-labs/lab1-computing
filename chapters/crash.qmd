@@ -1,0 +1,10 @@
+# Crash course {#sec-crash}
+
+## Una sottosezione
+
+```{python}
+import numpy as np
+
+values = np.array([1.2, 1.5, 1.7, 2.1])
+values
+```

@@ -1,0 +1,53 @@
+project:
+  type: book
+
+lang: it
+
+book:
+  title: "Elementi di computazione"
+  subtitle: "Per il corso di Laboratorio di Fisica"
+  author: "Luca Baldini"
+
+  site-url: https://unipi-physics-labs.github.io/lab1-computing/
+  repo-url: https://github.com/unipi-physics-labs/lab1-computing
+  repo-actions: [edit, issue]
+
+  search: true
+
+  chapters:
+    - index.qmd
+
+    - part: "Computing foundations"
+      chapters:
+        - chapters/install.qmd
+        - chapters/crash.qmd
+        - chapters/syntax.qmd
+        - chapters/flow.qmd
+
+    - part: "Python"
+      chapters:
+        - chapters/hw.qmd
+        - chapters/os.qmd
+        - chapters/memory.qmd
+
+  appendices:
+    - appendices/latex.qmd
+
+bibliography: references.bib
+
+execute:
+  freeze: false
+  echo: true
+  warning: true
+
+format:
+  html:
+    theme:
+      - cosmo
+      - styles/custom.scss
+    code-copy: true
+    code-link: true
+    code-fold: false
+    toc-depth: 3
+
+jupyter: python3
