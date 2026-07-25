@@ -12,19 +12,26 @@ book:
   repo-url: https://github.com/unipi-physics-labs/lab1-computing
   repo-actions: [edit, issue]
 
+  page-footer:
+    left: |
+      © 2026 Luca Baldini.
+      Rilasciato sotto licenza
+      [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.it).
+
   search: true
 
   chapters:
     - index.qmd
+    - copyright.qmd
 
-    - part: "Computing foundations"
+    - part: "Ricette veloci"
       chapters:
         - chapters/install.qmd
         - chapters/crash.qmd
         - chapters/syntax.qmd
         - chapters/flow.qmd
 
-    - part: "Python"
+    - part: "Ripartiamo dai principi"
       chapters:
         - chapters/hw.qmd
         - chapters/os.qmd
