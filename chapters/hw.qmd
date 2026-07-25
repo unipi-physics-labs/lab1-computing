@@ -1,1 +1,32 @@
 # Come è fatto un calcolatore?
+
+
+## Decimal ↔ Binary converter
+
+
+
+```{ojs}
+//| echo: false
+
+viewof decimal = Inputs.text({
+  label: "Decimale",
+  value: "42"
+})
+
+binary = {
+  const text = decimal.trim()
+
+  if (!/^\d+$/.test(text)) {
+    return "Input non valido"
+  }
+
+  return BigInt(text).toString(2)
+}
+
+html`
+<div class="converter-output">
+  <span>→ Binario:</span>
+  <code>${binary}</code>
+</div>
+`
+```
