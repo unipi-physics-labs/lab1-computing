@@ -6,3 +6,70 @@
 /*-- scss:rules --*/
 
 /* Add ordinary CSS/SCSS rules here. */
+
+/*-- scss:rules --*/
+
+.binary-search-widget {
+  margin: 1.5rem 0;
+}
+
+.binary-array {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  align-items: flex-end;
+}
+
+.binary-cell {
+  position: relative;
+  width: 3.2rem;
+  padding: 1rem 0.4rem 0.55rem;
+  border: 2px solid #888;
+  border-radius: 0.4rem;
+  text-align: center;
+  transition:
+    opacity 0.5s ease,
+    transform 0.5s ease,
+    background-color 0.5s ease,
+    border-color 0.5s ease;
+}
+
+.binary-cell.discarded {
+  opacity: 0.2;
+  transform: scale(0.9);
+}
+
+.binary-cell.active {
+  opacity: 1;
+}
+
+.binary-cell.middle {
+  transform: translateY(-0.5rem) scale(1.08);
+  border-width: 3px;
+  background: rgba(255, 193, 7, 0.25);
+}
+
+.binary-cell.found {
+  background: rgba(25, 135, 84, 0.25);
+  border-color: #198754;
+}
+
+.binary-index {
+  position: absolute;
+  top: 0.15rem;
+  left: 0;
+  right: 0;
+  font-size: 0.65rem;
+  color: #666;
+}
+
+.binary-value {
+  font-family: var(--bs-font-monospace);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.binary-message {
+  margin-top: 1rem;
+  font-weight: 500;
+}

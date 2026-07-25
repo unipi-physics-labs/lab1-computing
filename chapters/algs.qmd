@@ -1,0 +1,97 @@
+
+# Algoritmi
+
+
+## Ricerca binaria
+
+```{ojs}
+//| echo: false
+
+data = [3, 8, 12, 17, 23, 31, 42, 56, 68, 74, 89]
+target = 42
+
+steps = {
+  const result = []
+  let left = 0
+  let right = data.length - 1
+
+  while (left <= right) {
+    const mid = Math.floor((left + right) / 2)
+
+    result.push({
+      left,
+      right,
+      mid,
+      value: data[mid]
+    })
+
+    if (data[mid] === target) break
+
+    if (data[mid] < target) {
+      left = mid + 1
+    } else {
+      right = mid - 1
+    }
+  }
+
+  return result
+}
+
+viewof step = Inputs.range(
+  [0, steps.length - 1],
+  {
+    value: 0,
+    step: 1,
+    label: "Passo"
+  }
+)
+
+state = steps[step]
+
+message = {
+  if (state.value === target) {
+    return `${state.value} è il valore cercato.`
+  }
+
+  if (state.value < target) {
+    return `${target} è maggiore di ${state.value}: scartiamo la metà sinistra.`
+  }
+
+  return `${target} è minore di ${state.value}: scartiamo la metà destra.`
+}
+
+html`
+<div class="binary-search-widget">
+  <div class="binary-array">
+    ${data.map((value, index) => {
+      let className = "binary-cell"
+
+      if (index < state.left || index > state.right) {
+        className += " discarded"
+      } else {
+        className += " active"
+      }
+
+      if (index === state.mid) {
+        className += " middle"
+      }
+
+      if (value === target && state.value === target) {
+        className += " found"
+      }
+
+      return html`
+        <div class="${className}">
+          <span class="binary-index">${index}</span>
+          <span class="binary-value">${value}</span>
+        </div>
+      `
+    })}
+  </div>
+
+  <p class="binary-message">
+    ${message}
+  </p>
+</div>
+`
+```

@@ -36,6 +36,7 @@ book:
         - chapters/hw.qmd
         - chapters/os.qmd
         - chapters/memory.qmd
+        - chapters/algs.qmd
 
   appendices:
     - appendices/latex.qmd
