@@ -3,6 +3,9 @@ project:
 
 lang: it
 
+resources:
+  - widgets/**
+
 book:
   title: "Elementi di computazione"
   subtitle: "Per il corso di Laboratorio di Fisica"

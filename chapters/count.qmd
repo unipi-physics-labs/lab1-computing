@@ -99,71 +99,36 @@ Per vostra comodità, i due elementi grafici che seguono permettono di passare i
 interattivo dalla rappresentazione binaria a quella decimale e viceversa. Prendetevi
 qualche minuto per convincervi di dominare il processo di conversione.
 
-```{ojs}
-//| echo: false
 
-baseConverter = ({
-  inputLabel,
-  outputLabel,
-  initialValue,
-  placeholder,
-  convert
-}) => {
-  const input = document.createElement("input")
-  input.type = "text"
-  input.value = initialValue
-  input.placeholder = placeholder
-  input.className = "base-converter__input"
-  input.spellcheck = false
-  input.autocomplete = "off"
+<div id="dec2bin"></div>
+<script type="module">
 
-  const output = html`<code class="base-converter__output"></code>`
+import { BaseConverter } from "/widgets/base_converter.js";
 
-  const update = () => {
-    const result = convert(input.value.trim())
-
-    output.textContent = result.value
-    output.classList.toggle("invalid", !result.valid)
-  }
-
-  input.addEventListener("input", update)
-  update()
-
-  return html`
-    <div class="base-converter">
-      <span class="base-converter__label">${inputLabel}</span>
-      ${input}
-      <span class="base-converter__arrow">→</span>
-      <span class="base-converter__label">${outputLabel}</span>
-      ${output}
-    </div>
-  `
-}
-```
-
-```{ojs}
-//| echo: false
-
-decimalToBinary = baseConverter({
-  inputLabel: "Decimale",
-  outputLabel: "Binario",
-  initialValue: "42",
-  placeholder: "es. 42",
-
-  convert: text => {
-    if (!/^[+-]?\d+$/.test(text)) {
-      return {
-        valid: false,
-        value: "Input non valido"
-      }
+new BaseConverter(
+    document.getElementById("dec2bin"),
+    {
+        fromBase : 10,
+        toBase   : 2,
+        fromLabel : "Decimale",
+        toLabel   : "Binario"
     }
+);
+</script>
 
-    return {
-      valid: true,
-      value: BigInt(text).toString(2)
+
+<div id="bin2dec"></div>
+<script type="module">
+
+import { BaseConverter } from "/widgets/base_converter.js";
+
+new BaseConverter(
+    document.getElementById("bin2dec"),
+    {
+        fromBase : 2,
+        toBase   : 10,
+        fromLabel : "Binario",
+        toLabel   : "Decimale"
     }
-  }
-})
-
-decimalToBinary
-```
+);
+</script>
