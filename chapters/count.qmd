@@ -108,10 +108,9 @@ import { BaseConverter } from "/widgets/base_converter.js";
 new BaseConverter(
     document.getElementById("dec2bin"),
     {
-        fromBase : 10,
-        toBase   : 2,
-        fromLabel : "Decimale",
-        toLabel   : "Binario"
+        inputBase : 10,
+        outputBase : 2,
+        initialValue : "313"
     }
 );
 </script>
@@ -125,10 +124,37 @@ import { BaseConverter } from "/widgets/base_converter.js";
 new BaseConverter(
     document.getElementById("bin2dec"),
     {
-        fromBase : 2,
-        toBase   : 10,
-        fromLabel : "Binario",
-        toLabel   : "Decimale"
+        inputBase : 2,
+        outputBase : 10,
+        initialValue : "111110001"
     }
 );
 </script>
+
+Non vi servirà molto tempo (e probabilmente la cosa non è sorprendente) per rendervi
+conto che servono molte più cifre per rappresentare un numero in base 2 rispetto a
+quelle che servono in base 10. Per il numero $497$, e.g., sono sufficienti tre cifre
+decimali, mentre ne servono ben nove in base $2$.
+
+Se ci pensate un attimo il numero $n_2$ ($n_{10}$) di cifre che servono per
+rappresentare un generico in numero $m$ in base $2$ ($10$) è approssimativamente
+$$
+  n_2 \approx \log_2(m) \quad\text{e}\quad n_{10} \approx \log_{10}(m)
+$$
+per cui asintoticamente abbiamo
+$$
+  \frac{n_2}{n_{10}} \approx \frac{\log_2(m)}{\log_{10}(m)} =
+  \frac{1}{\log_{10} (2)} \approx 3.32
+$$
+(Nel passaggio intermedio abbiamo sfruttato la formula per il cambiamento di base
+nei logaritmi.) In altre parole: per rappresentare un numero *servono mediamente più
+di tra cifre binarie per ogni cifra decimale*. Non che sia una limitazione fondamentale,
+ma non è difficile immaginare che scrivere numeri relativamente grandi in base $2$
+possa diventare una scocciatura molto velocemente. E, se avete la pazienza di passare
+alla sezione successiva, è qui che ci viene in aiuto la base $16$.
+
+
+## Il sistema di numerazione esadecimale
+
+Se scegliamo come base $b = 16$ lavoriamo per definizione in quello che si chiama
+sistema *esadecimale*.
