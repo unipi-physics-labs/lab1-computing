@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "*.qmd": "quarto"
+    },
+    "cSpell.language": "it,it-IT",
+    "ltex.language": "it-IT",
+    "editor.wordWrap": "on",
+    "editor.rulers": [88]
+}
