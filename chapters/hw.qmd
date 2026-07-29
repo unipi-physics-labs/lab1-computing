@@ -1,32 +1,40 @@
 # Come è fatto un calcolatore?
 
 
-## Decimal ↔ Binary converter
+## Il flip-flop come base della logica sequenziale
 
+Noi tutti, da Fisici, siamo educati---e per buoni motivi---ad apprezzare l'importanza
+del principio di sovrapposizione caratteristico dei sistemi lineari: la forza totale
+agente su un punto materiale è la somma (vettoriale) delle forze agenti, ed il
+campo elettrico creato da un sistema di cariche è la somma (vettoriale) dei campi
+generati dalle singole cariche. L'elettronica digitale alla base del funzionamento
+di un calcolatore è un esempio archetipico di un tipo di sistema il cui funzionamento
+è dovuto alle caratteristiche intrinsecamente non lineari dei componenti---diodi
+triodi e transistor sono gli elementi circuitali che rendono possibile la computazione
+come lo conosciamo, e non andremmo molto lontano sfruttando solo la legge di Ohm
+che regola le reti lineari di resistenze.
 
+Sotto molti punti di vista il mattone costitutivo fondamentale dei moderni calcolatori
+elettronici è il *flip-flop*, un elemento circuitale con due stati stabili
+(e.g., due livelli distinti di tensione in uscita) che si mantengono indefinitamente
+nel tempo se non si interviene sul dispositivo, e con la possibilità di
+cambiare lo stato attraverso uno o più opportuni segnali di controllo, tipicamente
+in modo sincronizzato con un segnale di *clock* esterno.
 
-```{ojs}
-//| echo: false
-
-viewof decimal = Inputs.text({
-  label: "Decimale",
-  value: "42"
-})
-
-binary = {
-  const text = decimal.trim()
-
-  if (!/^\d+$/.test(text)) {
-    return "Input non valido"
-  }
-
-  return BigInt(text).toString(2)
-}
-
-html`
-<div class="converter-output">
-  <span>→ Binario:</span>
-  <code>${binary}</code>
-</div>
-`
-```
+Ora: che un oggetto con due stati si presti ad essere usato come una sorta di alfabeto
+di due lettere per implementare una memoria digitale è abbastanza intuitivo;
+che i cambiamenti di stato si possano controllare dall'esterno è essenziale per
+poter fare operazioni sui dati in memoria; ed il fatto che il tutto sia controllato
+da una sorta di *orologio* esterno (il clock) lascia intravedere la possibilità
+che un numero arbitrario di flip-flop possano lavorare insieme, sincronizzati, per
+implementare operazioni complesse. Ma qual è il motivo per cui le architetture
+basate su flip-flop hanno resistito al test del tempo e non sono state soppiantate
+da approcci più complessi, basati su elementi circuitali a più stati---ad esempio
+un ipotetico *flip-flop-flap* a $3$ stati? La risposta, in una parola, è la semplicità
+di realizzazione. Ideato negli anni '$10$ del 900 come sistema composto da due valvole,
+il flip-flop è evoluto dopo l'invenzione del transistor in uno degli elementi circuitali
+con la più alta impacchettabilità in chip. Una conseguenza fondamentale, ed il
+motivo per cui abbiamo cominciato la nostra discussione da questo aspetto apparentemente
+mondano dell'hardware, è il fatto che *la totalità dei calcolatori moderni
+lavora in logica binaria, sia per quanto riguarda la rappresentazione dei dati che
+nella manipolazione dei dati stessi*.

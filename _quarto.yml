@@ -33,6 +33,7 @@ book:
 
     - part: "Ripartiamo dai principi"
       chapters:
+        - chapters/count.qmd
         - chapters/hw.qmd
         - chapters/os.qmd
         - chapters/memory.qmd

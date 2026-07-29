@@ -1,0 +1,169 @@
+# Preludio: contare in base 2
+
+Anche se in linea di principio questo non è l'unico approccio possibile, in pratica
+tutti i calcolatori moderni funzionano in logica binaria---cioè manipolano e conservano
+i dati al loro interno sotto forma di *bit*, o celle elementari di memoria
+che possono assumere uno due valori possibili (convenzionalmente $0$ o $1$). Questo
+deriva essenzialmente dal fatto che i dispositivi di memorizzazione più diffusi si
+basano, a livello elementare, sul *flip-flop*, che è un circuito elettronico a due stati.
+La prima cosa che ci serve per andare un po' più a fondo nella comprensione di come
+funziona un computer, allora, è imparare a contare in base $2$.
+
+
+## La notazione posizionale
+
+Quando scriviamo il numero $127$ (nella consueta notazione posizionale in base
+$10$) quello che in effetti intendiamo è:
+$$
+  (127)_{10} = 1 \times 10^2 + 2 \times 10^1 + 7 \times 10^0.
+$$
+(Notate che in questo caso particolare abbiamo indicato esplicitamente la base per
+evitare ambiguità, ma ove essa dovesse essere omessa assumeremo sempre che il numero
+sia scritto in base $10$).
+
+Più in generale possiamo *contare* in una base arbitraria $b$, con il comune
+intendimento che
+$$
+  (c_m\ldots c_2c_1c_0)_b = c_m \times b^m + \cdots + c_2 \times b^2 +
+  c_1 \times b + c_0.
+$$ {#eq-notazione_posizionale}
+Tipicamente $b$ è un numero intero più grande di $1$, ma in generale questa
+restrizione non è necessaria---e i sistemi di numerazione in base negativa, o
+addirittura immaginaria o complessa, possono avere proprietà interessanti.
+Per $b = 2$, $8$, $16$ e $60$ si hanno i sistemi di numerazione binario, ottale,
+esadecimale e sessagesimale, che sono largamente usati in alcuni contesti.
+
+È facile convincersi che con $m$ cifre (in base $b$) si possono esprimere
+$b^m$ numeri interi diversi---ad esempio tutti quelli compresi tra $0$ e $b^m - 1$.
+Così con $3$ cifre decimali si possono esprimere i $1000$ numeri tra $0$ e
+$999$, mentre con $8$ cifre binarie si possono esprimere solamente i $2^8 = 256$
+numeri tra $0$ e $255$.
+
+::: {.callout-important}
+Non fate mai confusione tra un numero e la sua rappresentazione. Senza addentrarci
+troppo nella semantica della cosa, i numeri sono un concetto astratto che indica una
+quantità, ed esistono prima della loro rappresentazione---le scritture
+$$
+    (11)_{10} = (14)_7 = (102)_{3} = \text{XI}
+$$
+corrispondono tutte allo stesso numero---quello che comunemente scriviamo
+semplicemente come $11$. Rappresentare un numero con una particolare notazione,
+posizionale o no, è questione di convenienza e dipende dal contesto.
+:::
+
+
+## Il sistema di numerazione binario
+
+Il sistema di numerazione binario è quello in cui si usa come base $b = 2$ e, come
+abbiamo detto in avvio di sezione, il sistema binario riveste un ruolo peculiare
+perché è il *linguaggio* parlato dai calcolatori. Possiamo scrivere, ad esempio,
+$$
+  (1101)_2 \triangleq 0b1101 =
+  1 \times 2^3 + 1 \times 2^2 + 1 \times 1 = 13.
+$$
+(Ricordate le nostre convenzioni: quando scriviamo $13$ senza indicare la base
+intendiamo $(13)_{10}$. Abbiamo anche introdotto il prefisso $0b$, che troverete
+usato in letteratura per indicare un numero nella sua rappresentazione in base 2.)
+
+Convertire un numero intero dal sistema decimale a quello binario (e viceversa) è
+banale, seguendo l'@{eq-notazione_posizionale}. Qualsiasi linguaggio di programmazione
+degno di questo nome, inoltre, fornisce funzioni di conversione nei due sensi, e.g.,
+
+```{python}
+# Decimal to binary...
+print(bin(11))
+print(bin(999))
+# ...and binary to decimal.
+print(0b1)
+print(0b11111111)
+```
+
+::: {.callout-note}
+Ricordatevi cosa abbiamo detto a proposito della differenza tra numeri e loro
+rappresentazione, e non lasciatevi confondere dalle apparenze.
+[bin()](https://docs.python.org/3/library/functions.html#bin) è una funzione
+built-in di Python che restituisce la rappresentazione binaria di un numero intero
+nella forma di una stringa preceduta da `0b`; `0b11111111`, d'altra parte, non è
+nient'altro che un modo diverso, ma perfettamente equivalente, di scrivere il numero
+intero $255$. L'interprete Python non fa nessuna differenza tra `0b11111111` e `255`.
+```{python}
+print(0b11111111 == 255)
+print(bin(255) == 0b11111111)
+print(bin(255) == "0b11111111")
+```
+Non andate avanti fino a che non avete capito la sottile differenza tra le tre
+espressioni 🙂
+:::
+
+Per vostra comodità, i due elementi grafici che seguono permettono di passare in modo
+interattivo dalla rappresentazione binaria a quella decimale e viceversa. Prendetevi
+qualche minuto per convincervi di dominare il processo di conversione.
+
+```{ojs}
+//| echo: false
+
+baseConverter = ({
+  inputLabel,
+  outputLabel,
+  initialValue,
+  placeholder,
+  convert
+}) => {
+  const input = document.createElement("input")
+  input.type = "text"
+  input.value = initialValue
+  input.placeholder = placeholder
+  input.className = "base-converter__input"
+  input.spellcheck = false
+  input.autocomplete = "off"
+
+  const output = html`<code class="base-converter__output"></code>`
+
+  const update = () => {
+    const result = convert(input.value.trim())
+
+    output.textContent = result.value
+    output.classList.toggle("invalid", !result.valid)
+  }
+
+  input.addEventListener("input", update)
+  update()
+
+  return html`
+    <div class="base-converter">
+      <span class="base-converter__label">${inputLabel}</span>
+      ${input}
+      <span class="base-converter__arrow">→</span>
+      <span class="base-converter__label">${outputLabel}</span>
+      ${output}
+    </div>
+  `
+}
+```
+
+```{ojs}
+//| echo: false
+
+decimalToBinary = baseConverter({
+  inputLabel: "Decimale",
+  outputLabel: "Binario",
+  initialValue: "42",
+  placeholder: "es. 42",
+
+  convert: text => {
+    if (!/^[+-]?\d+$/.test(text)) {
+      return {
+        valid: false,
+        value: "Input non valido"
+      }
+    }
+
+    return {
+      valid: true,
+      value: BigInt(text).toString(2)
+    }
+  }
+})
+
+decimalToBinary
+```

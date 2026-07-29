@@ -1,3 +1,27 @@
 # Prefazione {.unnumbered}
 
-Due parole sul libro.
+Diversi tipi di computer che vanno dai microcontrollori che gestiscono i piccoli
+elettrodomestici di casa, fino ai grandi mainframe specializzati, passando per smartphone, tablet, laptop e workstation---incluse le reti di computer nei grandi
+data center che costituisce l'ossatura dell'ecosistema del web. A seconda della
+particolare applicazione, l'enfasi è posta su un aspetto particolare, e.g.,
+l'affidabilità nel pilota automatico di un aereo o nel sistema elettronico di
+controllo di un'autovettura.
+
+Non è un manuale di Python, ma un breve glossario, non esaustivo e non particolarmente
+profondo, che utilizza la sintassi di Python per illustrare alcuni concetti fondamentali
+che è necessario saper maneggiare per poter affrontare in modo consapevole l'analisi
+dei dati. Non metteremo le cose in prospettiva storica.
+
+Eseguire un programma significa calcolare un risultato a partire da un insieme
+dato di dati in ingresso, seguendo un algoritmo preciso. Per fare questo abbiamo
+bisogno di un calcolatore, per cui alla fine si tratta di un interplay tra
+hardware e software. Nel seguito utilizzeremo l'analogia con la cucina
+in cui, a partire dagli ingredienti (dati in ingresso) seguiamo una ricetta (programma)
+per ottenere la pietanza desiderata, pronta per essere consumata. Per fare questo
+abbiamo bisogno di hardware (e.g., pentole e fornelli). Non si tratta di un'analogia
+veramente stringente---e cercheremo di mettere via via in evidenza i punti in cui
+la corrispondenza letterale viene meno---ma è tuttavia utile per comprendere
+alcuni concetti non banali in un ambito che tutti conosciamo.
+
+L'inglese è la lingua universale dell'informatica per cui eviteremo di scrivere in
+corsivo i termini non italiani.

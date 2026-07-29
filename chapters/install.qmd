@@ -64,6 +64,8 @@ operativo.
 ### GNU/Linux
 
 
+## Il terminale
+
 
 ## Istallazione dei pacchetti aggiuntivi
 
