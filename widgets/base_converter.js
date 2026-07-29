@@ -82,6 +82,9 @@ export class BaseConverter {
             if (this.outputBase == 2) {
                 this.setOutput(`0b${value.toString(2)}`, true);
             }
+            else if (this.outputBase == 16) {
+                this.setOutput(`0x${value.toString(16)}`, true);
+            }
             else {
                 this.setOutput(value.toString(this.outputBase), true);
             }

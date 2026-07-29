@@ -99,7 +99,6 @@ Per vostra comodità, i due elementi grafici che seguono permettono di passare i
 interattivo dalla rappresentazione binaria a quella decimale e viceversa. Prendetevi
 qualche minuto per convincervi di dominare il processo di conversione.
 
-
 <div id="dec2bin"></div>
 <script type="module">
 
@@ -114,7 +113,6 @@ new BaseConverter(
     }
 );
 </script>
-
 
 <div id="bin2dec"></div>
 <script type="module">
@@ -157,4 +155,90 @@ alla sezione successiva, è qui che ci viene in aiuto la base $16$.
 ## Il sistema di numerazione esadecimale
 
 Se scegliamo come base $b = 16$ lavoriamo per definizione in quello che si chiama
-sistema *esadecimale*.
+sistema *esadecimale*. Inutile dirlo, tutto quello che abbiamo detto per il sistema
+binario, *mutatis mutandis*, vale per quello esadecimale, e.g.,
+$$
+  (24)_{16} \triangleq 0x24 = 2 \times 16 + 4 = 36.
+$$
+(Notiamo per inciso, il prefisso $0x$, che svolge esattamente la stessa funzione che
+$0b$ svolge per il sistema binario. Tenetelo a mente, perché si tratta di una ù
+convenzione molto utilizzata in letteratura e nella documentazione tecnica.)
+
+L'unico dettaglio da mettere a fuoco è che adesso ci servono $16$ cifre, e non più
+$10$ (i.e., $0$--$9$) come nel sistema decimale. La convenzione standard è di aggiungere
+$a$, $b$, $c$, $d$, $e$ ed $f$ (maiuscole o minuscole, non fa differenza) dopo il $9$,
+per indicare i *numeri* $11 \ldots 15$. Con questo abbiamo una prescrizione completa, e
+analogamente a prima
+
+```{python}
+# Decimal to hexadecimal...
+print(hex(11))
+print(hex(999))
+# ...and hexadecimal to decimal.
+print(0x15)
+print(0x124)
+```
+
+E, esattamente come prima, ecco dei semplici widget per esercitarvi nella conversione.
+Ancora una volta, assicuratevi di aver capito prima di andare avanti.
+
+<div id="dec2hex"></div>
+<script type="module">
+
+import { BaseConverter } from "/widgets/base_converter.js";
+
+new BaseConverter(
+    document.getElementById("dec2hex"),
+    {
+        inputBase : 10,
+        outputBase : 16,
+        initialValue : "313"
+    }
+);
+</script>
+
+<div id="hex2dec"></div>
+<script type="module">
+
+import { BaseConverter } from "/widgets/base_converter.js";
+
+new BaseConverter(
+    document.getElementById("hex2dec"),
+    {
+        inputBase : 16,
+        outputBase : 10,
+        initialValue : "fe56"
+    }
+);
+</script>
+
+A questo punto probabilmente vi state chiedendo: ok, ma perché tutta questa enfasi
+sul sistema esadecimale? Non abbiamo detto che i computer contano i binario?
+
+Beh, per prima cosa, come si vede dagli esempi, il sistema esadecimale richiede
+mediamente un numero di cifre leggermente più basso di quello decimale.
+Ormai abbiamo capito come stimare il rapporto
+$$
+  \frac{n_{16}}{n_{10}} \approx \frac{1}{\log_{10} (16)} \approx 0.83
+$$
+Un effetto collaterale curioso legato a questa proprietà, e dovuto in parte al fatto
+che il sistema esadecimale condivide con quello decimale dieci delle due sedici cifre,
+è che nella rappresentazione esadecimale i numeri tendono ad apparire più piccoli che
+in quella decimale. Il numero $50$, ad esempio, si scrive nel sistema esadecimale come
+$0x32$---la cosa adesso vi lascia largamente indifferenti, ma quando arriverete a
+50 anni di età vi assicuro che comincerete a rivalutare la questione 🙂
+
+Scherzi a parte, la chiave di questa discussione è che $16$ è una potenza di $2$---per
+la precisione $16 = 2^4$. Se ci pensate un attimo, questo significa che passare da
+sistema binario ad esadecimale (o viceversa) è particolarmente semplice: si raggruppano
+le cifre binarie $4$ a $4$ iniziando da quella più a sinistra (eventualmente
+aggiungendo uno o più zeri a sinistra dell'ultimo gruppo fino ad arrivare a $4$), e si
+converte da binario ad esadecimale ciascun gruppo
+$$
+  99 = 0b\overbrace{0110}^6\overbrace{0011}^3 = 0x63.
+$$
+In altre parole: il sistema esadecimale è una sorta di versione *compatta* del
+sistema binario, che permette di sfruttare tutti i vantaggi di quest'ultimo, e di
+evitare allo stesso tempo stringhe interminabili di zeri e uni. Non dovrebbe sorprendere,
+allora, che il sistema esadecimale sia quello più utilizzato nella programmazione vicina
+all'hardware, e.g., per indirizzare registri di dispositivi elettronici.
