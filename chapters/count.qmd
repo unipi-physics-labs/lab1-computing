@@ -280,6 +280,24 @@ evitare allo stesso tempo stringhe interminabili di zeri e uni. Non dovrebbe sor
 allora, che il sistema esadecimale sia quello più utilizzato nella programmazione vicina
 all'hardware, e.g., per indirizzare registri di dispositivi elettronici.
 
+La @{tbl-bases} contiene la rappresentazione di primi $16$ interi positivi nelle
+tre basi che ci interessano ($10$, $2$ e $16$) e dovrebbe essere tutto quello che vi
+serve per convertire da base $2$ a base $16$ e viceversa.
+
+```{python}
+#| echo: false
+#| tbl-cap: rappresentazione dei primi $16$ interi positivi in base $10$, $2$ e $16$.
+#| label: tbl-bases
+
+import pandas as pd
+
+df = pd.DataFrame({
+    "Decimale": range(16),
+    "Binario": [f"{n:04b}" for n in range(16)],
+    "Esadecimale": [f"{n:x}" for n in range(16)],
+})
+df.style.hide(axis="index")
+```
 
 ## Tutto qua?
 
