@@ -7,42 +7,7 @@
 % Moore's law (wikipedia)
 % Free software
 
-\subsection{Bit e bytes}
 
-Ad un livello microscopico, l'informazione dentro un computer \`e immagazzinata in
-una serie di \emph{bit} (b). Per usare un'analogia con la meccanica quantistica, il bit
-\`e il \emph{quanto} di memoria, e ad ogni istante si trova in uno di due stati
-possibili: $0$ o $1$\footnote{Strettamente parlando, non c'\`e niente di speciale nella
-scelta di utilizzare $0$ e $1$ come denominazione per i due possibili valori del contenuto
-di un bit---potremmo anche utilizzare vero e falso, bianco e nero, testa e croce---ma
-al solito non c'\`e ragione di non uniformarsi all'uso comune, che per di pi\`u, in
-questo caso, si sposa naturalmente con l'aritmetica in base $2$.}. All'interno di un
-calcolatore qualsiasi cosa \`e una serie di $0$ ed $1$. Programmi, dati, numeri,
-testo, immagini, video sono rappresentati internamente con l'opportuna alternanza di
-zero ed uno, come vedremo pi\`u in dettaglio nel seguito in alcuni casi rilevanti.
-
-Ora, come abbiamo detto un bit ha due soli stati, e non c'\`e molto di utile che\
-si possa fare con cos\`i poco. Le cose cambiano per\`o drasticamente quando mettiamo
-insieme pi\`u bit---con $2$ bit, ad esempio, possiamo comporre esattamente $4$
-\emph{bit pattern}
-\begin{align*}
-  \byte{00} \quad \byte{01} \quad \byte{10} \quad \byte{11}.
-\end{align*}
-La cosa \`e sostanzialmente identica al modo in cui, quando parliamo o scriviamo,
-componiamo le parole con le lettere dell'alfabeto. Non \`e difficile convincersi che,
-utilizzando $n$ bit, il numero di \emph{bit pattern} distinti che si possono rappresentare
-\`e $2^n$. Con $8$ bit, allora, possiamo rappresentare esattamente $2^8 = 256$ confgurazioni
-distinte---ad esempio i numeri interi da $0$ a $255$. Questo comincia ad essere un
-numero potenzialmente interessante: \`e pi\`u grande, ad esempio del numero di tasti
-di un pianoforte standard ($88$), e del numero di tasti di una moderna tastiera
-da calcolatore ($104$ o $105$), e non \`e un caso che il protocollo MIDI e la codifica
-\texttt{ASCII} utilizzino entrambi $8$ bit. I personal computer con processori a $8$
-bit sono stati estremamente popolari negli anni '80, ed l'architettura a $8$ si trova
-ancora usata in alcuni micro-controllori disponibili sul mercato. Un gruppo di 8
-bit \`e un concetto cos\`i importante in informatica da meritare un nome dedicato:
-il \emph{byte} (B). Se \`e vero che il bit \`e il quanto di memoria, in pratica il
-byte \`e l'unit\`a di misura della capacit\`a dei dispositivi di memorizzazione sul
-mercato.
 
 Per inciso, gli informatici amano a tal punto le potenze di $2$ che, sfruttando la coincidenza
 notevole che
@@ -96,11 +61,6 @@ ci dice allo stesso tempo che una simulazione microscopica che dovesse seguire, 
 per molecola, una mole di gas (ovvero $20$~miseri litri) sarebbe completamente
 fouri questione---oltre che inutile, come la meccanica statistica ci ha insegnato
 molto prima che esistessero i computer.
-
-
-\subsection{Operazioni logiche}
-
-Chiara dice di evitare.
 
 
 

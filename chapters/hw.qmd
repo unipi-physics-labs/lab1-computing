@@ -1,9 +1,6 @@
 # Come è fatto un calcolatore?
 
-
-## Il flip-flop come base della logica sequenziale
-
-Noi tutti, da Fisici, siamo educati---e per buoni motivi---ad apprezzare l'importanza
+Noi tutte, da Fisiche, siamo educate---e per buoni motivi---ad apprezzare l'importanza
 del principio di sovrapposizione caratteristico dei sistemi lineari: la forza totale
 agente su un punto materiale è la somma (vettoriale) delle forze agenti, ed il
 campo elettrico creato da un sistema di cariche è la somma (vettoriale) dei campi
@@ -13,6 +10,8 @@ di un calcolatore è un esempio archetipico di un tipo di sistema il cui funzion
 triodi e transistor sono gli elementi circuitali che rendono possibile la computazione
 come lo conosciamo, e non andremmo molto lontano sfruttando solo la legge di Ohm
 che regola le reti lineari di resistenze.
+
+## Il flip-flop come base della logica sequenziale
 
 Sotto molti punti di vista il mattone costitutivo fondamentale dei moderni calcolatori
 elettronici è il *flip-flop*, un elemento circuitale con due stati stabili
@@ -38,3 +37,41 @@ motivo per cui abbiamo cominciato la nostra discussione da questo aspetto appare
 mondano dell'hardware, è il fatto che *la totalità dei calcolatori moderni
 lavora in logica binaria, sia per quanto riguarda la rappresentazione dei dati che
 nella manipolazione dei dati stessi*.
+
+
+## Bit e bytes
+
+Ad un livello microscopico, l'informazione dentro un computer è immagazzinata in
+una serie di *bit* (b). Per usare un'analogia con la meccanica quantistica, il bit
+è il *quanto* di memoria, e ad ogni istante si trova in uno di due stati
+possibili: $0$ o $1$. (Strettamente parlando, non c'è niente di speciale nella
+scelta di utilizzare $0$ e $1$ come denominazione per i due possibili valori del contenuto
+di un bit---potremmo anche utilizzare vero e falso, bianco e nero, testa e croce---ma
+al solito non c'è ragione di non uniformarsi all'uso comune, che per di più, in
+questo caso, si sposa naturalmente con l'aritmetica in base $2$.) All'interno di un
+calcolatore qualsiasi cosa è una serie di $0$ ed $1$. Programmi, dati, numeri,
+testo, immagini, video sono rappresentati internamente con l'opportuna alternanza di
+zero ed uno, come vedremo più in dettaglio nel seguito in alcuni casi rilevanti.
+
+Ora, come abbiamo detto un bit ha due soli stati, e non c'è molto di utile che
+si possa fare con così poco. Le cose cambiano però drasticamente quando mettiamo
+insieme più bit---con $2$ bit, ad esempio, possiamo comporre esattamente $4$
+*bit pattern*
+$$
+  \texttt{00} \quad \texttt{01} \quad \texttt{10} \quad \texttt{11}.
+$$
+La cosa è sostanzialmente identica al modo in cui, quando parliamo o scriviamo,
+componiamo le parole con le lettere dell'alfabeto. Non è difficile convincersi che,
+utilizzando $n$ bit, il numero di bit pattern distinti che si possono rappresentare
+è $2^n$. Con $8$ bit, allora, possiamo rappresentare esattamente $2^8 = 256$ configurazioni
+distinte---ad esempio i numeri interi da $0$ a $255$. Questo comincia ad essere un
+numero potenzialmente interessante: è più grande, ad esempio del numero di tasti
+di un pianoforte standard ($88$), e del numero di tasti di una moderna tastiera
+da calcolatore ($104$ o $105$), e non è un caso che il protocollo MIDI e la codifica
+ASCII utilizzino entrambi $8$ bit. I personal computer con processori a $8$
+bit sono stati estremamente popolari negli anni '80, ed l'architettura a $8$ bit si
+trova ancora usata in alcuni micro-controllori disponibili sul mercato. Un gruppo di $8$
+bit è un concetto così importante in informatica da meritare un nome dedicato:
+il *byte* (B). Se è vero che il bit è il quanto di memoria, in pratica il
+byte è l'unità di misura della capacità dei dispositivi di memorizzazione sul
+mercato.
