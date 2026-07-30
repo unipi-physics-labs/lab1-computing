@@ -26,15 +26,16 @@ book:
   chapters:
     - index.qmd
     - copyright.qmd
+    - gender.qmd
 
-    - part: "Ricette veloci"
+    - part: "Parte prima: dal problema alla soluzione"
       chapters:
         - chapters/install.qmd
         - chapters/crash.qmd
         - chapters/syntax.qmd
         - chapters/flow.qmd
 
-    - part: "Ripartiamo dai principi"
+    - part: "Parte seconda: ripartiamo dai principi"
       chapters:
         - chapters/count.qmd
         - chapters/hw.qmd

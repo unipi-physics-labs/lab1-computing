@@ -1,23 +1,33 @@
 # Licenza {.unnumbered}
 
+Il testo di queste note è distribuito con licenza
+*Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).*
+
 [![](figures/static/by-sa.svg)](https://creativecommons.org/licenses/by-sa/4.0/deed.it)
 
 © 2026 Luca Baldini
 
-Il testo di queste note è distribuito con licenza
-*Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).*
 
-Sei libera/o di:
+Sei libera[^1] di:
 
 - *Condividere* — copiare e ridistribuire il materiale con qualsiasi mezzo e formato.
 - *Modificare* — remixare, trasformare e sviluppare il materiale, anche per scopi commerciali.
 
 Alle seguenti condizioni:
 
-- *Attribuzione* — devi riconoscere un'adeguata paternità (o maternità, se preferisci)
-  dell'opera, fornire un collegamento alla licenza e indicare se sono state effettuate modifiche.
-- *Condividi allo stesso modo* — se remixi, trasformi o sviluppi il materiale, devi distribuire i tuoi contributi con la stessa licenza dell'originale.
+- *Attribuzione* — devi riconoscere un'adeguata maternità dell'opera, fornire un
+collegamento alla licenza e indicare se sono state effettuate modifiche.
+- *Condividi allo stesso modo* — se remixi, trasformi o sviluppi il materiale, devi distribuire i tuoi contributi con la stessa licenza dell'originale.[^2]
 
-Il testo completo (in italiano) della licenza è disponibile all'indirizzo:
+Il testo completo (in italiano) della licenza è disponibile
+[qui](https://creativecommons.org/licenses/by-sa/4.0/deed.it).
 
-<https://creativecommons.org/licenses/by-sa/4.0/deed.it>
+
+[^1]: Se sei sorpresa dal femminile leggi [qui](#sec-gender).
+
+[^2]: Il qualificatore "SA" (*share alike*) è molto importante perché è quello che fa
+sì che il materiale di queste note, che è rilasciato *liberamente*, rimanga libero anche
+nelle sue possibili incarnazioni successive. In questo modo la libertà diventa
+virale per costruzione. Parafrasando l'illustre Prof.ssa Maria Chiara Pievatolo
+potremmo dire: *queste dispense si riproducono per talea*.
+
