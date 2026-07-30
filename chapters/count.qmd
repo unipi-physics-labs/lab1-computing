@@ -25,7 +25,7 @@ Più in generale possiamo *contare* in una base arbitraria $b$, con il comune
 intendimento che
 $$
   (c_m\ldots c_2c_1c_0)_b = c_m \times b^m + \cdots + c_2 \times b^2 +
-  c_1 \times b + c_0.
+  c_1 \times b + c_0 \quad\text{con}\quad c_0 \ldots c_m < b.
 $$ {#eq-notazione_posizionale}
 Tipicamente $b$ è un numero intero più grande di $1$, ma in generale questa
 restrizione non è necessaria---e i sistemi di numerazione in base negativa, o
@@ -70,10 +70,10 @@ banale, seguendo l'@{eq-notazione_posizionale}. Qualsiasi linguaggio di programm
 degno di questo nome, inoltre, fornisce funzioni di conversione nei due sensi, e.g.,
 
 ```{python}
-# Decimal to binary...
+# Binary representation of a decimal number...
 print(bin(11))
 print(bin(999))
-# ...and binary to decimal.
+# ...expressing a number in binary representation
 print(0b1)
 print(0b11111111)
 ```
@@ -152,6 +152,39 @@ possa diventare una scocciatura molto velocemente. E, se avete la pazienza di pa
 alla sezione successiva, è qui che ci viene in aiuto la base $16$.
 
 
+### Moltiplicazione e divisione in base $2$
+
+Se ci pensate un attimo, nella normale rappresentazione dei numeri in base $10$ è
+banale moltiplicare o dividere per $10$---basta aggiungere o togliere uno zero a
+destra (o, eventualmente, spostare il separatore decimale, i.e., la *virgola* se
+usciamo dal campo degli interi). Possiamo generalizzare banalmente dicendo che in base
+$b$ è banale moltiplicare (o dividere) per $b$, o una qualsiasi potenza di $b$,
+aggiungendo (o togliendo) l'opportuno numero di zeri a sinistra.
+
+Ora, in base $10$ questo significa che è facile dividere e moltiplicare per $10$,
+$100$, $1000$ e così via. Si tratta di una cosa utile che impariamo da piccole
+quando studiamo le equivalenze. Ma allora in base $2$ è facile moltiplicare e dividere
+per un sacco di numeri: $2$, $4$, $8$, $16$ e così via. Wow! Potremmo quasi dire che
+una delle caratteristiche della rappresentazione in base $2$ degli interi è la
+semplicità con cui essa permette di moltiplicare.
+
+Questo è tanto vero che Python (come molti linguaggi di programmazione, del resto)
+offre due operatori binari dedicati per eseguire *bit shift* nelle due direzioni
+$$
+  \texttt{n << m} \quad\text{e}\quad \texttt{n >> m}
+$$
+che corrispondono, rispettivamente, alla moltiplicazione per $2^m$ ed alla divisione
+(intera) per $2^m$. Così
+
+```{python}
+n = 7
+print(n << 1) # Multiply by 2
+print(n << 2) # Multiply by 4
+print(n << 3) # Multiply by 8
+```
+
+
+
 ## Il sistema di numerazione esadecimale
 
 Se scegliamo come base $b = 16$ lavoriamo per definizione in quello che si chiama
@@ -171,10 +204,10 @@ per indicare i *numeri* $11 \ldots 15$. Con questo abbiamo una prescrizione comp
 analogamente a prima
 
 ```{python}
-# Decimal to hexadecimal...
+# Hexadecimal representation of a decimal nmber...
 print(hex(11))
 print(hex(999))
-# ...and hexadecimal to decimal.
+# ...expressing a number in hexadecimal representation
 print(0x15)
 print(0x124)
 ```
@@ -221,17 +254,21 @@ Ormai abbiamo capito come stimare il rapporto
 $$
   \frac{n_{16}}{n_{10}} \approx \frac{1}{\log_{10} (16)} \approx 0.83
 $$
+In altre parole: la rappresentazione esadecimale ci fa risparmiare quasi il 20% di
+cifre rispetto a quella decimale. Non male---la compattezza è sempre utile.
+
 Un effetto collaterale curioso legato a questa proprietà, e dovuto in parte al fatto
 che il sistema esadecimale condivide con quello decimale dieci delle due sedici cifre,
 è che nella rappresentazione esadecimale i numeri tendono ad apparire più piccoli che
 in quella decimale. Il numero $50$, ad esempio, si scrive nel sistema esadecimale come
 $0x32$---la cosa adesso vi lascia largamente indifferenti, ma quando arriverete a
-50 anni di età vi assicuro che comincerete a rivalutare la questione 🙂
+50 anni di età vi assicuro che comincerete a rivalutare la questione, e 32 anni
+esadecimali suoneranno meglio di 50 anni normali 🙂
 
 Scherzi a parte, la chiave di questa discussione è che $16$ è una potenza di $2$---per
 la precisione $16 = 2^4$. Se ci pensate un attimo, questo significa che passare da
 sistema binario ad esadecimale (o viceversa) è particolarmente semplice: si raggruppano
-le cifre binarie $4$ a $4$ iniziando da quella più a sinistra (eventualmente
+le cifre binarie $4$ a $4$ iniziando da quella più a destra (eventualmente
 aggiungendo uno o più zeri a sinistra dell'ultimo gruppo fino ad arrivare a $4$), e si
 converte da binario ad esadecimale ciascun gruppo
 $$
@@ -242,3 +279,15 @@ sistema binario, che permette di sfruttare tutti i vantaggi di quest'ultimo, e d
 evitare allo stesso tempo stringhe interminabili di zeri e uni. Non dovrebbe sorprendere,
 allora, che il sistema esadecimale sia quello più utilizzato nella programmazione vicina
 all'hardware, e.g., per indirizzare registri di dispositivi elettronici.
+
+
+## Tutto qua?
+
+Si e no. Adesso sappiamo rappresentare e manipolare numeri interi in basi diverse da
+$10$, ed abbiamo una certa dimestichezza con le basi $2$ e $16$. Questo ci basta per
+andare avanti e descrivere un pochino più in dettaglio il funzionamento interno di
+un calcolatore, ma abbiamo lasciato fuori una cosa importante: non abbiamo detto cosa
+succede quando passiamo dai numeri interi ai numeri *in virgola mobile*.
+Ci torneremo nel capitolo dedicato, appunto, all'aritmetica in virgola mobile---che,
+anticipiamo, sarà denso di sorprese. Ma se siete curiose e non volete perdere il filo
+della questione potete saltare direttamente a @{sec-virgola-mobile}.
