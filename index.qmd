@@ -1,27 +1,41 @@
 # Prefazione {.unnumbered}
 
-Diversi tipi di computer che vanno dai microcontrollori che gestiscono i piccoli
-elettrodomestici di casa, fino ai grandi mainframe specializzati, passando per smartphone, tablet, laptop e workstation---incluse le reti di computer nei grandi
-data center che costituisce l'ossatura dell'ecosistema del web. A seconda della
-particolare applicazione, l'enfasi è posta su un aspetto particolare, e.g.,
-l'affidabilità nel pilota automatico di un aereo o nel sistema elettronico di
-controllo di un'autovettura.
+I calcolatori sono letteralmente onnipresenti nella nostra vita quotidiana, nelle
+forme più disparate---dai microcontrollori che gestiscono i piccoli elettrodomestici di
+casa, fino ai grandi mainframe specializzati, passando per smartphone, tablet, laptop e workstation. Ormai anche le automobili, non più di pochi decenni fa orgoglio
+dell'ingegneria meccanica, assomigliano a grandi tablet più di ogni altra cosa.
 
-Non è un manuale di Python, ma un breve glossario, non esaustivo e non particolarmente
-profondo, che utilizza la sintassi di Python per illustrare alcuni concetti fondamentali
-che è necessario saper maneggiare per poter affrontare in modo consapevole l'analisi
-dei dati. Non metteremo le cose in prospettiva storica.
+Queste note sono da intendere come una brevissima introduzione all'uso del calcolatore
+nel contesto del laboratorio di Fisica del primo anno, con enfasi sull'analisi dei dati.
+Seguiremo un percorso non standard chiaramente suddiviso in due parti distinte.
+Nella prima partiremo da alcuni problemi tipici che si incontrano in laboratorio per
+elaborare, in modo largamente induttivo, soluzioni pratiche; questo ci metterà in
+condizione di andare fisicamente in laboratorio e di applicare le nozioni di probabilità
+e statistica introdotte nel modulo principale del corso ad alcune tipiche misure di
+meccanica e termologia. Nella seconda ripartiremo sostanzialmente dall'inizio e
+cercheremo di riesaminare in modo più critico (e deduttivo) alcune delle ricette che
+abbiamo introdotto senza giustificazioni rigorose.
 
-Eseguire un programma significa calcolare un risultato a partire da un insieme
-dato di dati in ingresso, seguendo un algoritmo preciso. Per fare questo abbiamo
-bisogno di un calcolatore, per cui alla fine si tratta di un interplay tra
-hardware e software. Nel seguito utilizzeremo l'analogia con la cucina
-in cui, a partire dagli ingredienti (dati in ingresso) seguiamo una ricetta (programma)
-per ottenere la pietanza desiderata, pronta per essere consumata. Per fare questo
-abbiamo bisogno di hardware (e.g., pentole e fornelli). Non si tratta di un'analogia
-veramente stringente---e cercheremo di mettere via via in evidenza i punti in cui
-la corrispondenza letterale viene meno---ma è tuttavia utile per comprendere
-alcuni concetti non banali in un ambito che tutti conosciamo.
+Il termine *ricetta* non è casuale, qui, e ricorrerà spesso nel corso delle note.
+Vedremo che eseguire un programma al calcolatore, per molti aspetti, non è molto
+diverso da cucinare: a partire dagli ingredienti (dati in ingresso) seguiamo una
+ricetta (programma) per ottenere la pietanza desiderata (il risultato dell'analisi),
+pronta per essere consumata. Per fare tutto questo abbiamo bisogno di hardware
+(pentole e fornelli) che dobbiamo conoscere e capire, almeno ad un livello superficiale.
+Non si tratta, ovvio, di un'analogia veramente stringente---e cercheremo di mettere
+via via in evidenza i punti in cui la corrispondenza letterale viene meno---ma è
+tuttavia utile per comprendere alcuni concetti non banali in un ambito che
+tutti conosciamo.
 
-L'inglese è la lingua universale dell'informatica per cui eviteremo di scrivere in
-corsivo i termini non italiani.
+Faremo tutto questo non in astratto, ma utilizzano un linguaggio di programmazione
+concreto: Python. Queste note però, è importante sottolinearlo, non sono un manuale
+di programmazione in Python---per questo ci sono infinite risorse in rete, e non
+si sente sicuramente il bisogno di aggiungerne altre. Il tentativo, piuttosto, è quello
+utilizzare la sintassi di Python per illustrare alcuni concetti fondamentali
+(variabili, funzioni, controllo del flusso del programma, algoritmi) che è necessario
+saper maneggiare per poter affrontare in modo consapevole l'analisi dei dati. Lo
+faremo senza alcuna pretesa di organicità o di prospettiva storica.
+
+Ah: l'inglese è la lingua universale dell'informatica, per cui eviteremo di scrivere in
+corsivo i termini non italiani nel testo, e scriveremo direttamente in inglese tutti i
+frammenti di codice.
