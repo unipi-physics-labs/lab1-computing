@@ -5,9 +5,70 @@
 
 /*-- scss:rules --*/
 
-/* Add ordinary CSS/SCSS rules here. */
+.algorithm-list ol {
+  list-style: none;
+  counter-reset: algorithm;
+  padding-left: 0;
+}
 
-/*-- scss:rules --*/
+.algorithm-list li {
+  counter-increment: algorithm;
+  position: relative;
+  padding-left: 2.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.algorithm-list li::before {
+  content: "A" counter(algorithm) ".";
+  position: absolute;
+  left: 0;
+  font-weight: 700;
+  color: var(--bs-primary);
+}
+
+.pitfall {
+
+  margin: 1.5rem 0;
+  padding: 1rem 1.25rem;
+
+  background: #fff8e8;
+  border: 1px solid #f0c36d;
+  border-left: 6px solid #e69f00;
+
+  border-radius: .5rem;
+
+  box-shadow: 0 1px 4px rgb(0 0 0 / 6%);
+}
+
+.pitfall > :first-child {
+  margin-top: 0;
+}
+
+.pitfall > :last-child {
+  margin-bottom: 0;
+}
+
+.pitfall h3 {
+
+  margin-bottom: .7rem;
+
+  color: #8b5a00;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.pitfall::before {
+  content: "⚠ Errore comune";
+  display: block;
+
+  margin-bottom: .8rem;
+
+  color: #8b5a00;
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+
 
 /* Text boxes for converters. */
 

@@ -75,3 +75,146 @@ bit è un concetto così importante in informatica da meritare un nome dedicato:
 il *byte* (B). Se è vero che il bit è il quanto di memoria, in pratica il
 byte è l'unità di misura della capacità dei dispositivi di memorizzazione sul
 mercato.
+
+Per inciso, gli informatici amano a tal punto le potenze di $2$ che, sfruttando la
+coincidenza notevole che
+$$
+  2^{10} = 1024 \approx 1000 = 10^2
+$$
+hanno fornito una loro re-interpretazione in chiave binaria dei prefissi del sistema
+metrico internazionale. Così, tradizionalmente, l'unità kB è comunemente usata per
+indicare $1024$ B (anziché $1000$ B), il termine MB per indicare $10124^2 = 1,048,576$ B,
+e così via. (La cosa non è bislacca come potrebbe sembrare: lo schema di indirizzamento
+tipico della memoria ad accesso casuale fa sì che, in pratica, la capacità di
+quest'ultima espressa in B sia per definizione pari ad una potenza di $2$.
+L'interpretazione binaria dei prefissi del sistema metrico è stata, storicamente,
+sorgente di ambiguità, ma insistere oltre sulla questione va al di là dei nostri
+scopi.)
+
+| Elemento | Capacità |
+|:---------|---------:|
+| La *Divina Commedia* in formato testo | $\sim 500~\mathrm{kB} \approx 5\times10^5~\mathrm{B}$ |
+| Una canzone pop in formato MP3 | $\sim 1~\mathrm{MB} \approx 10^6~\mathrm{B}$ |
+| Memoria cache tipica di una CPU | $\sim 1~\mathrm{MB} \approx 10^6~\mathrm{B}$ |
+| Compact Disc (CD) | $\sim 1~\mathrm{GB} \approx 10^9~\mathrm{B}$ |
+| RAM tipica di un PC | $\sim 10~\mathrm{GB} \approx 10^{10}~\mathrm{B}$ |
+| Disco rigido tipico di un PC | $\sim 1~\mathrm{TB} \approx 10^{12}~\mathrm{B}$ |
+| Dati di LHC immagazzinati al CERN nel 2024 | $\sim 1~\mathrm{EB} \approx 10^{18}~\mathrm{B}$ |
+| Dati nel World Wide Web nel 2021 | $\sim 100~\mathrm{ZB} \approx 10^{23}~\mathrm{B}$ |
+
+: Alcuni esempi di capacità di memorizzazione. {#tbl-storage}
+
+Giusto per avere in mente gli ordini di grandezza, la @{tbl-storage} illustra le
+capacità tipiche di alcuni elementi di memorizzazione rilevanti per la nostra
+discussione. Non preoccupatevi se non avete mai sentito parlare di *compact disk*
+(lo studierete nel corso di archeologia) o se non sapete ancora cosa è la memoria
+*cache* di un processore (lo vedremo brevemente tra un attimo) e ricordatevi che si
+tratta di ordini di grandezza e non di numeri accurati al $10$\%; il messaggio
+fondamentale è: *quando lavorate con un calcolatore digitale la memoria che avete a
+disposizione non è infinita!*
+Il fatto che il web abbia una capacità di immagazzinamento globale dell'ordine di un
+numero di Avogadro di byte ci sorprende da una parte per la grandezza del numero stesso,
+ma ci dice allo stesso tempo che una simulazione microscopica che dovesse seguire,
+molecola per molecola, una mole di gas (ovvero $20$ miseri litri) sarebbe completamente
+fuori questione---oltre che inutile, come la meccanica statistica ci ha insegnato
+molto prima che esistessero i computer.
+
+
+## Struttura di massima di un calcolatore
+
+Se aprite la pagina web del vostro sito di e-commerce preferito in cerca di un
+laptop, oppure andate in un negozio di elettronica, nella scheda tecnica del prodotto
+troverete invariabilmente una serie di parole chiave: processore (o CPU), cache,
+RAM, disco rigido, complementate da una serie di caratteristiche (e.g., la frequenza
+di clock) ed eventualmente da riferimenti alle tecnologie costruttive (e.g., DDR e SSD).
+Supponiamo di essere interessati all'acquisto di un laptop con queste
+ipotetiche caratteristiche
+
+- Processore ACME X5-8400 (8 core, 2.6 GHz, 8 MB L1 cache)
+- 16 GB DDR5 RAM (5600 MT/s)
+- 1 TB NVMe SSD
+
+Proviamo a cercare di orientarci in questa selva di cifre e numeri.
+
+
+<!--
+### L'architettura di Von Neumann
+
+Sebbene siano sempre pi\`u comuni architetture diverse (e.g., GPU) o eterogenee,
+l'architettura di Von Neumann continua ad essere rilevante, e costituisce ancora
+un \emph{framework} utile in cui discutere le cose che ci interessano.
+-->
+
+## La CPU
+
+Partiamo dalla CPU. Il processore di un computer è, in molti sensi, il *cervello*
+del calcolatore, ed è il responsabile dell'esecuzione dei programmi. Si tratta di un
+microprocessore, fisicamente realizzato nella forma di un sottile blocco di silicio
+di qualche cm$^2$ di area, che coordina il flusso dei dai da e verso la memoria e le
+periferiche, e fornisce un insieme di istruzioni per eseguire operazioni aritmetiche
+e logiche su questi dati.
+
+Il progresso delle prestazioni dei microprocessori, dalla loro introduzione all'inizio
+degli anni '70 del 900 è stato niente meno che spettacolare.
+La @{fig-microprocessor_transistors} mostra il numero di transistor impacchettati nei
+più diffusi microprocessori in funzione dell'anno di rilascio: l'andamento è
+approssimativamente esponenziale con un tempo caratteristico di duplicazione di circa
+tre anni---questa semplice osservazione va generalmente sotto il nome di legge di Moore.
+(Assicuratevi di capire cosa vuol dire in pratica: il numero di transistor
+in un tipico microprocessore è raddoppiato ogni 3 anni, senza sosta, per gli ultimi
+50 anni. Impressionante, no?)
+
+![Numero di transistor integrati nei più diffusi microprocessori commerciali in funzione dell'anno di commercializzazione. L'andamento è approssimativamente esponenziale con un tempo caratteristico di raddoppio di circa $3$ anni. (Adattato da [Karl Rupp](https://github.com/karlrupp/microprocessor-trend-data).)](../figures/generated/microprocessor_transistors.svg){#fig-microprocessor_transistors}
+
+Così, se lo Zilog Z80 (che all'inizio degli anni '80 del 900 equipaggiava alcuni tra
+i più diffusi micro-computer in commercio, come lo ZX Spectrum e la famiglia MSX)
+integrava circa $8500$ transistor, le CPU di ultima generazione (nel 2026) viaggiano
+intorno alla fantasmagorica cifra di $10^{11}$.
+Da fisiche quali siamo tutte, fermiamoci per un attimo a pensare cosa voglia dire
+integrare 100 miliardi di transistor su un'area di 1 cm$^2$: la superficie
+occupata dal singolo dispositivo è dell'ordine di $10^{-11}$ cm$^2$, in che significa
+una dimensione lineare caratteristica di $3 \times 10^{-6}$ cm, o 30 nm. (Avete capito
+bene, 30 nanometri.) Dato che le dimensioni atomiche tipiche sono dell'ordine di 0.1 nm,
+questo significa che *un transistor di una moderna CPU è grande appena qualche centinaio
+di atomi*. Se è vero che in cinquant'anni le dimensioni tipiche dei processi di
+integrazione si sono ridotte di un fattore $10^4$, è altrettanto chiaro che il processo
+non può continuare imperturbato per molto.
+
+
+### Frequenza di clock
+
+![Frequenza di clock nominale.](../figures/generated/microprocessor_clock_frequency.svg){#fig-microprocessor_clock_frequency}
+
+
+<!--
+Mettere il plot del numero di transistor nelle CPU in funzione del tempo, da
+\url{https://github.com/karlrupp/microprocessor-trend-data}, con un tempo di duplicazione
+di circa 2~anni. Siamo a circa $10^{11}$ transistor impacchettati in una CPU di
+$\sim 1$~cm$^2$, ovverosia un transistor ha un footprint planare di $10^{-11}$~cm$^2$,
+corrispondenti ad un quadrato di $30$~nm di lato. Se il trend prosegue tra
+$10$--$15$~anni avremo abbattuto le dimensioni lineari di un fattore $10$, ed aumentato
+la densit\`a di transistor di un fattore $100$.
+
+% Mettere un riferimento ai processi, e.g., https://en.wikipedia.org/wiki/2_nm_process
+
+% altezza $\sim 500$~$\mu$m
+
+
+Notare come, mentre in numero di transistor continua a crescere esponenzialmente,
+la frequenza di clock \`e stabile attorno a $\sim 5$~GHz, a causa dei problemi di
+dissipazione termica.
+
+% https://en.wikipedia.org/wiki/ENIAC
+Definizione del FLOP. ENIAC, tradizionalmente considerato il primo computer digitale
+moderno, ed entrato in funzione nel~1945, operava a circa $500$~FLOP. $100$~GFLOP
+($10^{11}$~FLOP) \`e un numero non irragionevole per un processore moderno.
+-->
+
+## La memoria
+
+<!--
+Ci sono diversi tipi di memoria, con diverse capacit\`a e velocit\`a: RAM, cache,
+disco.
+
+La memoria non \`e infinita. Esempio di allocazione di una lista lunghissima.
+-->
