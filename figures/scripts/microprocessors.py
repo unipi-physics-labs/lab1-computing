@@ -62,9 +62,23 @@ def plot_clock_frequency():
     plt.savefig(OUTPUT_DIR / "microprocessor_clock_frequency.svg")
 
 
+def plot_num_cores():
+    """Plot the number of cores in microprocessors over time.
+    """
+    input_file_path = DATA_DIR / "karlrupp_microp_50y_cores.dat"
+    year, num_cores = np.loadtxt(input_file_path, unpack=True)
+    plt.figure()
+    plt.plot(year, num_cores, "o")
+    setup_gca(logy=True, xlabel="Anno di commercializzazione",
+              ylabel="Numbero di core")
+    plt.gca().grid(True, linestyle="--", linewidth=0.6)
+    plt.savefig(OUTPUT_DIR / "microprocessor_num_cores.svg")
+
+
 def run():
     plot_transistors()
     plot_clock_frequency()
+    plot_num_cores()
 
 
 if __name__ == "__main__":

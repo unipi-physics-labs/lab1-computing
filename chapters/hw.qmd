@@ -198,7 +198,7 @@ viaggia più velocemente della luce (e la maggior parte delle cose, compresi i s
 elettrici, viaggiano ad una velocità significativamente inferiore) il problema di
 mantenere la sincronia durante la propagazione dei segnali sia tutt'altro che banale.
 
-![Frequenza di clock dei più diffusi microprocessori commerciali in funzione dell'anno di commercializzazione. L'andamento è approssimativamente esponenziale con un tempo caratteristico di raddoppio di circa $3$ anni. (Adattato da [Karl Rupp](https://github.com/karlrupp/microprocessor-trend-data).)](../figures/generated/microprocessor_clock_frequency.svg){#fig-microprocessor_clock_frequency}
+![Frequenza di clock dei più diffusi microprocessori commerciali in funzione dell'anno di commercializzazione. (Adattato da [Karl Rupp](https://github.com/karlrupp/microprocessor-trend-data).)](../figures/generated/microprocessor_clock_frequency.svg){#fig-microprocessor_clock_frequency}
 
 La @{fig-microprocessor_clock_frequency} mostra l'andamento nel tempo delle frequenze
 di clock nominali dei più diffusi microprocessori. Basta un'occhiata veloce per capire
@@ -227,14 +227,28 @@ i laptop di oggi siano più *potenti* di quelli di 20 anni fa. Dove sta il trucc
 
 ### Architettura della CPU
 
+Come abbiamo detto, la frequenza di clock non è l'unico elemento che determina
+quanto velocemente una CPU può eseguire un'operazione---come potete immaginare
+l'architettura stessa della CPU riveste un ruolo fondamentale, e differenti
+architetture hanno differenti performance a parità di clock. (In altre parole: non
+potete giudicare un laptop da un solo numero.)
+
+Per prima cosa, non è detto che serva esattamente un ciclo di clock per eseguire
+un'istruzione. (Esiste anche un nome per identificare la metrica di performance
+corrispondente: le *istructions per cycle*, o IPC.) Così, se i vecchi microprocessori
+come lo Z80 avevano un IPC di $0.1$--$0.3$---il che vuol dire che servivano diversi
+cicli di clock per eseguire una singola istruzione---le CPU moderne, esattamente al
+contrario, sono in grado di eseguire diverse istruzioni per ciclo di clock.
+Questo è uno dei meccanismi con cui le prestazioni complessive sono aumentate negli
+ultimi 20 anni anche se la frequenza di clock tipica è rimasta invariata.
+
+![Numero di core nei più diffusi microprocessori commerciali in funzione dell'anno di commercializzazione. (Adattato da [Karl Rupp](https://github.com/karlrupp/microprocessor-trend-data).)](../figures/generated/microprocessor_num_cores.svg){#fig-microprocessor_num_cores}
+
+Ma forse l'aspetto architetturale che più è cambiato negli ultimi due decenni è
+quello del parallelismo.
+
 
 <!--
-% Mettere un riferimento ai processi, e.g., https://en.wikipedia.org/wiki/2_nm_process
-
-Notare come, mentre in numero di transistor continua a crescere esponenzialmente,
-la frequenza di clock \`e stabile attorno a $\sim 5$~GHz, a causa dei problemi di
-dissipazione termica.
-
 % https://en.wikipedia.org/wiki/ENIAC
 Definizione del FLOP. ENIAC, tradizionalmente considerato il primo computer digitale
 moderno, ed entrato in funzione nel~1945, operava a circa $500$~FLOP. $100$~GFLOP
