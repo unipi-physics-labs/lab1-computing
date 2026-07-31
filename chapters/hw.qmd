@@ -1,4 +1,4 @@
-# Come è fatto un calcolatore?
+# Cosa c'è dentro un calcolatore?
 
 Noi tutte, da Fisiche, siamo educate---e per buoni motivi---ad apprezzare l'importanza
 del principio di sovrapposizione caratteristico dei sistemi lineari: la forza totale
@@ -10,6 +10,7 @@ di un calcolatore è un esempio archetipico di un tipo di sistema il cui funzion
 triodi e transistor sono gli elementi circuitali che rendono possibile la computazione
 come lo conosciamo, e non andremmo molto lontano sfruttando solo la legge di Ohm
 che regola le reti lineari di resistenze.
+
 
 ## Il flip-flop come base della logica sequenziale
 
@@ -130,20 +131,12 @@ di clock) ed eventualmente da riferimenti alle tecnologie costruttive (e.g., DDR
 Supponiamo di essere interessati all'acquisto di un laptop con queste
 ipotetiche caratteristiche
 
-- Processore ACME X5-8400 (8 core, 2.6 GHz, 8 MB L1 cache)
+- Processore ACME X5-8400 (2.6 GHz, 8 core, 8 MB L1 cache)
 - 16 GB DDR5 RAM (5600 MT/s)
 - 1 TB NVMe SSD
 
 Proviamo a cercare di orientarci in questa selva di cifre e numeri.
 
-
-<!--
-### L'architettura di Von Neumann
-
-Sebbene siano sempre pi\`u comuni architetture diverse (e.g., GPU) o eterogenee,
-l'architettura di Von Neumann continua ad essere rilevante, e costituisce ancora
-un \emph{framework} utile in cui discutere le cose che ci interessano.
--->
 
 ## La CPU
 
@@ -178,27 +171,65 @@ bene, 30 nanometri.) Dato che le dimensioni atomiche tipiche sono dell'ordine di
 questo significa che *un transistor di una moderna CPU è grande appena qualche centinaio
 di atomi*. Se è vero che in cinquant'anni le dimensioni tipiche dei processi di
 integrazione si sono ridotte di un fattore $10^4$, è altrettanto chiaro che il processo
-non può continuare imperturbato per molto.
+di scala non può continuare per molto a meno che non immaginiamo tecniche di produzione
+radicalmente diverse.
 
 
 ### Frequenza di clock
 
-![Frequenza di clock nominale.](../figures/generated/microprocessor_clock_frequency.svg){#fig-microprocessor_clock_frequency}
+Il numero di transistor in una CPU ci dà un'idea della complessità della circuiteria
+elettronica, ma non si traduce direttamente in un insieme di metriche che misurino
+la performance complessivo del dispositivo in termini pratici. Torniamo allora
+all'etichetta illustrativa con cui abbiamo aperto questo capitolo.
+
+*ACME X5-8400* è il nome fittizio che abbiamo dato al nostro processore, e non è molto
+interessante. Il primo numero (2.6 GHz), invece, in indica la *frequenza di clock*,
+ed è una metrica importante---anche se, da sola, non determina univocamente la
+velocità con cui la CPU può portare a termine un compito. Nel nostro quadretto naive,
+in cui sostanzialmente abbiamo descritto la CPU come un'immensa *orchestra* di flip-flop
+che si muovono in modo coordinato per eseguire task complessi, la frequenza di clock
+rappresenta sostanzialmente il tempo che la direttrice d'orchestra dà alle orchestrali
+con la bacchetta. E 2.6 GHz significa 2.6 milioni di battiti al secondo, ovvero sia
+un battito ogni 0.4 ns circa. Ora, non è facile capire cosa voglia dire veramente questo
+numero, ma è interessante notare che in 0.4 ns la luce (nel vuoto) percorre appena una
+decina di cm. La cosa non è da poco, perché si tratta dello stesso ordine di grandezza
+delle dimensioni tipiche di una CPU, per cui potete immaginare che, visto che niente
+viaggia più velocemente della luce (e la maggior parte delle cose, compresi i segnali
+elettrici, viaggiano ad una velocità significativamente inferiore) il problema di
+mantenere la sincronia durante la propagazione dei segnali sia tutt'altro che banale.
+
+![Frequenza di clock dei più diffusi microprocessori commerciali in funzione dell'anno di commercializzazione. L'andamento è approssimativamente esponenziale con un tempo caratteristico di raddoppio di circa $3$ anni. (Adattato da [Karl Rupp](https://github.com/karlrupp/microprocessor-trend-data).)](../figures/generated/microprocessor_clock_frequency.svg){#fig-microprocessor_clock_frequency}
+
+La @{fig-microprocessor_clock_frequency} mostra l'andamento nel tempo delle frequenze
+di clock nominali dei più diffusi microprocessori. Basta un'occhiata veloce per capire
+che qui la situazione è completamente diversa rispetto a prima. Se il nostro buon
+vecchio Zilog Z80 operava ad *appena* qualche MHz, le tipiche frequenze di clock
+non sono sostanzialmente aumentate negli ultimi 20, assestandosi intorno a $2$--$5$ GHz.
+Certo il progresso è stato sostanziale---un fattore $1000$---ma la domanda sorge
+spontanea: qual'è il motivo per cui si è arrestato all'inizio del ventunesimo secolo,
+nonostante siamo diventate sempre più brave ad impacchettare transistor nei chip?
+
+Trascurando i fattori sottodominanti, la risposta è semplice, e si tratta di una
+questione di termodinamica elementare: oltre una certa velocità diventa impossibile
+dissipare in modo efficace il calore generato dalla CPU. Se è vero che nei chip a
+tecnologia CMOS che sono onnipresenti nei nostri dispositivi elettronici la potenza
+consumata $P$ è proporzionale alla frequenza di clock $f$, è anche vero che in pratica
+aumentare la frequenza di clock di un microprocessore richiede tipicamente di aumentare
+la tensione di alimentazione, e, senza entrare nei dettagli, lo scaling completo della
+potenza è dato da
+$$
+  P \propto V^2 f.
+$$
+In altre parole, oltre qualche GHz la tecnologia corrente si scontra contro un vero e
+proprio muro che rende praticamente impossibile andare oltre. Eppure non vi è dubbio che
+i laptop di oggi siano più *potenti* di quelli di 20 anni fa. Dove sta il trucco?
+
+
+### Architettura della CPU
 
 
 <!--
-Mettere il plot del numero di transistor nelle CPU in funzione del tempo, da
-\url{https://github.com/karlrupp/microprocessor-trend-data}, con un tempo di duplicazione
-di circa 2~anni. Siamo a circa $10^{11}$ transistor impacchettati in una CPU di
-$\sim 1$~cm$^2$, ovverosia un transistor ha un footprint planare di $10^{-11}$~cm$^2$,
-corrispondenti ad un quadrato di $30$~nm di lato. Se il trend prosegue tra
-$10$--$15$~anni avremo abbattuto le dimensioni lineari di un fattore $10$, ed aumentato
-la densit\`a di transistor di un fattore $100$.
-
 % Mettere un riferimento ai processi, e.g., https://en.wikipedia.org/wiki/2_nm_process
-
-% altezza $\sim 500$~$\mu$m
-
 
 Notare come, mentre in numero di transistor continua a crescere esponenzialmente,
 la frequenza di clock \`e stabile attorno a $\sim 5$~GHz, a causa dei problemi di
