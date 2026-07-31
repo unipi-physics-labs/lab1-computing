@@ -245,17 +245,49 @@ ultimi 20 anni anche se la frequenza di clock tipica è rimasta invariata.
 ![Numero di core nei più diffusi microprocessori commerciali in funzione dell'anno di commercializzazione. (Adattato da [Karl Rupp](https://github.com/karlrupp/microprocessor-trend-data).)](../figures/generated/microprocessor_num_cores.svg){#fig-microprocessor_num_cores}
 
 Ma forse l'aspetto architetturale che più è cambiato negli ultimi due decenni è
-quello del parallelismo.
+quello del parallelismo: la progressiva miniaturizzazione dei processi produttivi ha
+permesso di integrare su un singolo chip di silicio non più una, ma molte CPU.
+Se all'inizio degni anni 2000 sostanzialmente tutti i processori erano single core,
+adesso 8 o 16 core sono la norma anche per un laptop di classe media, mentre i
+processori più avanzati per server possono integrare più di 200 core.
+(Chiaramente come usare in modo efficiente un gran numero di core è un argomento che
+meriterebbe un corso a se stante, e va decisamente oltre lo scopo di questa breve
+introduzione.) E con questo abbiamo abbiamo, sia pur sommariamente, chiarito un altro
+dei numerini da cui siamo partiti. Non sappiamo ancora il significato di questa strana
+parola "cache", ma rimandiamo per un attimo la discussione alla prossima sezione.
 
+Prima di andare avanti, però, è utile notare che abbiamo messo insieme tutti gli
+ingredienti per definire il FLOP (floating point operations per second), che è una
+metrica di performance tipica per le applicazioni che richiedono la manipolazione
+di numeri in virgola mobile. (Si, siamo tutti chiamati in causa.) Se chiamiamo con
+$n_c$ il numero di core nel nostro processore, il numero teorico di operazioni in
+virgola mobile al secondo può essere calcolato semplicemente come
+$$
+  \text{FLOPs} = n_c \times f \times \frac{\text{FLOPs}}{\text{cycle}}.
+$$
+Il nostro ipotetico computer di cui valutiamo l'acquisto, con una frequenza di clock di
+2.6 GHz e 8 core, assumendo 10 operazioni in virgola mobile per ciclo di clock,
+si assesterebbe alla ragguardevole cifra di quasi $2 \times 10^{11}$ FLOPs, o
+200 GFLOPs. Per confronto, ENIAC, tradizionalmente considerato il primo computer digitale
+moderno, ed entrato in funzione nel~1945, operava a circa $500$~FLOP. I più grandi
+supercomputer raggiungono ormai gli EFLOPs (esa-FLOPs, o $10^{18}$ FLOPs).
+Come abbiamo detto, con $f$ più o meno costante, il progresso degli ultimi 20 anni è
+venuto sostanzialmente dagli altri due fattori della nostra espressione---l'aumento
+del numero di core e la maggior efficienza delle nuove architetture in termini di
+istruzioni per ciclo.
 
-<!--
-% https://en.wikipedia.org/wiki/ENIAC
-Definizione del FLOP. ENIAC, tradizionalmente considerato il primo computer digitale
-moderno, ed entrato in funzione nel~1945, operava a circa $500$~FLOP. $100$~GFLOP
-($10^{11}$~FLOP) \`e un numero non irragionevole per un processore moderno.
--->
 
 ## La memoria
+
+
+### La RAM
+
+
+### Il disco rigido
+
+
+### La cache
+
 
 <!--
 Ci sono diversi tipi di memoria, con diverse capacit\`a e velocit\`a: RAM, cache,
