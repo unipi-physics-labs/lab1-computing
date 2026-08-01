@@ -99,7 +99,9 @@ scopi.)
 | Memoria cache tipica di una CPU | $\sim 1~\mathrm{MB} \approx 10^6~\mathrm{B}$ |
 | Compact Disc (CD) | $\sim 1~\mathrm{GB} \approx 10^9~\mathrm{B}$ |
 | RAM tipica di un PC | $\sim 10~\mathrm{GB} \approx 10^{10}~\mathrm{B}$ |
+| Contenuto della biblioteca di Alessandria | $\sim 10~\mathrm{GB} \approx 5 \times 10^{10}~\mathrm{B}$ |
 | Disco rigido tipico di un PC | $\sim 1~\mathrm{TB} \approx 10^{12}~\mathrm{B}$ |
+| Contenuto di wikipedia (solo testo) | $\sim 500~\mathrm{GB} \approx 5 \times 10^{11}~\mathrm{B}$ |
 | Dati di LHC immagazzinati al CERN nel 2024 | $\sim 1~\mathrm{EB} \approx 10^{18}~\mathrm{B}$ |
 | Dati nel World Wide Web nel 2021 | $\sim 100~\mathrm{ZB} \approx 10^{23}~\mathrm{B}$ |
 
@@ -279,8 +281,95 @@ istruzioni per ciclo.
 
 ## La memoria
 
+La CPU è un oggetto utile solo nel limite in cui ha un continuo flusso di dati su cui
+operare e fare cose interessanti. E questi dati devono essere *in memoria* in qualche
+forma.
+
+Per tornare alla nostra metafora della cucina, se la CPU rappresenta le pentole ed i
+fornelli, la memoria non è altro che tutto quello spazio fisico in cui conserviamo gli
+ingredienti necessari per il nostro piatto---il bancone, i pensili, il frigorifero,
+la cantina (se l'avete), il negozio sotto casa ed il supermercato. Per quanto
+spericolata, questa analogia ci fa capire in modo immediato un certo numero di cose.
+Ad esempio che ci sono diversi tipi di memoria con caratteristiche diverse. La prima
+cosa che facciamo quando ci accingiamo a cucinare è fare la spesa---spostiamo degli
+ingredienti dal supermercato, dove sono disponibili in abbondanza, alla nostra cucina,
+un posto in cui abbiamo molto meno spazio, ma possiamo accedere facilmente a tutto
+quello che c'è in pochi secondi. E anche all'interno della cucina, non tutto è
+raggiungibile allo stesso modo. Tornati a casa, e messa a posto la spesa, probabilmente,
+prima di cominciare a sporcarci le mani, spostiamo il libro delle ricette, le pentole,
+e gli ingredienti principali sul bancone, da cui sono accessibili letteralmente in un
+attimo.
+
 
 ### La RAM
+
+Cerchiamo di capire se e come tutto questo sia rilevante per noi partendo, al solito,
+dalla nostra etichetta illustrativa iniziale: *16 GB DDR5 RAM (5600 MT/s)*.
+La densità di acronimi è tale da intimorire le deboli di cuore.
+
+Le prima quattro lettere sono la parte facile: 16 GB, come ormai sappiamo bene,
+indicano $1.6 \times 10^{10}$ B di memoria, ovverosia abbastanza per contenere 32,000
+libri della lunghezza della divina commedia. Detto così, forse, non è molto
+impressionante, ma è interessante notare come, per una curiosa coincidenza, questo
+numero sia dello stesso ordine di grandezza del contenuto di informazione della
+Biblioteca di Alessandria---la più grande ed importante biblioteca dell'antichità, che
+al picco del suo splendore ospitava probabilmente svariate centinaia di migliaia di
+rotoli. Fermatevi per un attimo a pensare: tutto il contenuto del centro più importante
+della cultura ellenistica, disponibile in pochi mm$^3$ di silicio, con un tempo di
+accesso che, come vedremo, è così piccolo da essere difficile da immaginare sulle scale
+umane.
+
+Ma andiamo avanti. Se mettiamo per un attimo da parte l'acronimo DDR5 (ci torneremo
+tra un attimo) arriviamo a RAM che, come forse saprete, sta per *random access memory*.
+La traduzione italiana del termine (*memoria ad accesso casuale*), diciamolo, non è
+molto espressiva, perché ad una prima lettura "accesso casuale" assomiglia
+pericolosamente ad "accesso a casaccio", che chiaramente non è quello che ci interessa.
+In questo contesto "accesso casuale" significa invece che *il tempo di accesso ad
+una qualsiasi cella di memoria è indipendente da dove fisicamente si trova la cella in
+questione*. Tenetelo a mente perché si tratta di un concetto fondamentale che è
+rilevante anche in altri contesti, e.g., gli algoritmi e le strutture di dati.
+
+Cosa vuol dire in pratica? Potete essere creative a piacere sul tema (guardate la
+@{fig-plates}, as esempio), ma il dispenser delle spezie che qualcuna di voi avrà in
+cucina è un esempio di memoria ad accesso casuale---una decina di bellissimi barattolini
+messi in fila, con le etichette (magari ordinate alfabeticamente) in bella vista, ed il
+gioco è fatto: non importa se vi serve il curry o la curcuma, perché il tempo che occorre
+per allungare il braccio e prendere il barattolino è esattamente lo stesso.
+La cosa è interessante, perché la maggior parte dello storage che avete in cucina,
+purtroppo, *non* è ad accesso casuale; recuperare le cose che abbiamo messo in fondo al
+frigorifero o al pensile è più laborioso che recuperare le cose che stanno davanti---e,
+potenzialmente, *molto* più laborioso se dobbiamo cominciare a tirare fuori e rimettere
+a posto un sacco di cose. E come mai la tipica cucina non è tutta ad accesso casuale?
+Semplice, perché per mettere tutto il contenuto tenendo gli oggetti uno accanto
+all'altro in modo che siano tutti sempre a portata di mano servirebbe una cucina
+enorme. (Fermatevi un attimo a pensare; potete anche provare a casa.)
+
+![Differenza tra memoria ad accesso casuale (ripiano inferiore) e memoria ad accesso sequenziale (ripiano superiore). Nel ripiano inferiore il tempo necessario per prendere un piatto qualsiasi non dipende dalla sua posizione nello scaffale, mentre nei due ripiani superiori questo chiaramente non è vero. (Pensate un attimo che noia tirare fuori proprio il piatto alla base della pila.) Provate a contare i piatti in ciascun ripiano: quale delle due strategie è più efficiente in termini di capacità?](../figures/static/plates.jpg){#fig-plates width=70%}
+
+Bene, cominciamo ad inquadrare le caratteristiche fondamentali della RAM. La prima cosa
+è che l'accesso è veloce, e non dipende dalla particolare posizione in memoria.
+Chiaramente questa bellissima proprietà ha un prezzo: non è banale scalare la capacità
+oltre un certo limite. E, già che ci siamo: la RAM è tipicamente volatile, cioè
+l'informazione non è conservata quando spegniamo il calcolatore. Per uno storage
+*persistente*, come vedremo, serve una tecnologia diversa.
+
+Una tipica memoria RAM moderna garantisce tranquillamente diversi miliardi di
+trasverimenti al secondo o, esprimendo la cosa in modo leggermente più barocco, migliaia
+di MT/s (mega transfers per second). Oh: ecco spiegato quel criptico *5600 MT/s*: sono
+semplicemente 5.6 miliardi di trasferimenti al secondo, che corrispondono a circa
+0.17 ns per il singolo trasferimento. (Cosa significa un *trasferimento* in termini di
+byte? Dipende dalle dimensioni del bus, ma per una tipica architettura moderna sono
+64 bit, ovvero 8 Byte---quindi 5600 MT/s corrispondono a $44.8$ GB/s. Non male:
+possiamo trasverire l'equivalente dell'intera biblioteca di Alessandria in qualche
+decimo di secondo.)
+
+Esattamente come nella CPU, la sincronizzazione delle operazione sulla memoria è
+garantita da un clock. Perché allora in questo contesto parliamo di MT/s e non, come
+prima di frequenza di clock in MHz? Semplice, perché la moderna RAM DDR
+(*double data rate*) trasferisce dati due volte per ciclo di clock---specificamente,
+sul fronte di salita e sul fronte di discesa. E, con questo, abbiamo capito anche cosa
+vuol dire la parte "DDR" di "DDR5". Per completezza, il 5 indica semplicemente la
+quinta generazione.
 
 
 ### Il disco rigido
@@ -292,6 +381,10 @@ istruzioni per ciclo.
 <!--
 Ci sono diversi tipi di memoria, con diverse capacit\`a e velocit\`a: RAM, cache,
 disco.
+
+L'infrastruttura IT all'interno della quale ormai tutte viviamo è progettata
+esplicitamente per rendere sfumati i confini delle cose che memorizziamo in forma
+digitale, dandoci l'illusione di avere a disposizione una memoria infinita.
 
 La memoria non \`e infinita. Esempio di allocazione di una lista lunghissima.
 -->
