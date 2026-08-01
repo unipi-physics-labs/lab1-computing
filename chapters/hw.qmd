@@ -1,4 +1,4 @@
-# Cosa c'è dentro un calcolatore?
+# Dentro il calcolatore
 
 Noi tutte, da Fisiche, siamo educate---e per buoni motivi---ad apprezzare l'importanza
 del principio di sovrapposizione caratteristico dei sistemi lineari: la forza totale
@@ -135,7 +135,7 @@ ipotetiche caratteristiche
 
 - Processore ACME X5-8400 (2.6 GHz, 8 core, 8 MB L1 cache)
 - 16 GB DDR5 RAM (5600 MT/s)
-- 1 TB NVMe SSD
+- 1 TB SSD
 
 Proviamo a cercare di orientarci in questa selva di cifre e numeri.
 
@@ -371,16 +371,88 @@ sul fronte di salita e sul fronte di discesa. E, con questo, abbiamo capito anch
 vuol dire la parte "DDR" di "DDR5". Per completezza, il 5 indica semplicemente la
 quinta generazione.
 
+::: {.callout-note}
+Non entreremo nemmeno superficialmente nella descrizione di come le memorie (più o meno)
+moderne sono fisicamente implementate da un punto di vista elettronico---per questo
+dovete aspettare il laboratorio del terzo anno. Le più attente tra voi avranno notato,
+però, che quando misuriamo la capacità di un banco di RAM, e.g., in GB, il valore
+numerico è quasi invariabilmente una potenza di $2$. Questo deriva dal modo in cui
+la memoria è indirizzata, ovvero attraverso *multiplexing* e *demultiplexing*. In
+pratica una memoria RAM ha $n$ linee di indirizzamento, e ad ogni combinazione di
+segnali di queste linee corrisponde una specifica locazione di memoria. Allora è chiaro
+che anche qui valgono tutte le regole che abbiamo detto a proposito di bit e byte, e
+con $n$ segnali di controllo possiamo indirizzare $2^n$ elementi distinti---avere un
+numero di celle elementari che non fosse una potenza di due sarebbe uno spreco!
+:::
 
-### Il disco rigido
+
+### La memoria di massa
+
+Quali sono le differenze tra la memoria RAM e la memoria di massa? Abbiamo parzialmente
+rovinato la sorpresa all'inizio del capitolo, ma, ad altissimo livello, sono
+essenzialmente tre: la capacità del disco rigido è tipicamente più grande di quella
+della RAM, la velcità di accesso (e la banda di trasferimento) più piccola, e la memoria
+è di tipo *persistente*---ovverosia, i vostri dati su disco, grazie al cielo, non
+scompaio quando spegnete il computer.
+
+Da un punto di vista microscopico queste differenze derivano dalle tecnologie
+costruttive. Voi siete troppo giovani per ricordare i tempi (erano gli anni '80 del
+secolo scorso) in cui la musica non si ascoltava in streaming, ma con delle cassette a
+nastro magnetico. (Se avete mezz'ora da buttare e vi sentite ben disposte ad un momento
+di archeologia, provate a cercare su wikipedia due parole: walkman e VHS.)
+
+Per molti anni l'archiviazione di massa nei calcolatori digitali è avvenuta
+esclusivamente attraverso l'uso di HDD (*hard disk drive*), dispositivi elettromeccanici
+contententi uno o più dischi magnetici su cui è possibile leggere e scrivere attraverso
+una apposita testina. Gli HDD hanno alcune buone proprità: permettono di salvare i dati
+in modo persistente (i.e., i dati sono preservati anche quando il disco non è
+alimentato), in grande quantità e ad un prezzo relativamente contenuto. Come la RAM, ed
+al contrario delle musicassette, forniscono un accesso casuale al contenuto, nel senso
+che si può indirizzare una locazione arbitraria di memoria ma (e qui arriva il punto
+importante) *questo accesso non è diretto*---il tempo necessario per arrivare ai dati
+cercati dipende dalla posizione fisica di questi dati. La cosa non è sorprendente,
+perché, al contrario della RAM, l'accesso non avviene puramente attraverso segnali
+elettrici, ma richiede il movimento meccanico della testina. Se per un attimo ci
+rimettiamo il nostro cappellino da fisiche capiamo immediatamente che la differenza è
+dirimente, perché ci spostiamo da un regime in cui il limite ultimo è la velocità della
+luce ad uno, molto più mondano, in cui le velocità sono quelle con cui possiamo spostare
+oggetti macroscopici senza danneggairli. Allora se vogliamo spostarci da una particolare
+locazione di memoria ad un'altra, il tempo necessario dipende da quanto fisicamente
+queste due locazioni sono distanti tra loro sul disco, perché la testina deve muoversi
+longo questa distanza.
+
+Come per tutte le cose, la tecnologia per lo storage di massa è migliorate
+ininterrottamente con il tempo, e lo sviluppo di *solid state drive* (SSD),
+dispositivi puramente elettronici di archiviazione, ha parzialmente colmato il gap
+tra la RAM e gli hard disk tradizionali. Le unità di memoria a stato solido non hanno
+parti in movimento, e garantiscono un tempo di accesso ed una banda di trasverimento
+dati significativamente migliori rispetto alla loro controparte tradizionale.
+Nonostante questo sono ancora almeno un ordine di grandezza più lenti della RAM.
+La @{tbl-memory-comparison} riassume in modo compatto i numeri fondamentali (al
+solito, vanno presi come puramente rappresentativi.)
+
+| Characteristic | RAM | SSD / HDD |
+|:---------------|:----|:----------------|
+| Persistenza | Volatile | Non volatile |
+| Capacità tipica | 16 GB | 1 TB |
+| Tempo di accesso tipico | 100 ns | 50 μs / 10 ms |
+| Banda di trasferimento | 50 GB/s | 5 GB/s / 100 MB/s |
+| Accesso casuale | diretto | attraverso un controller |
+
+: Confronto tra le caratteristiche principali della memoria RAM e del disco rigido. {#tbl-memory-comparison}
+
+Abbiamo più o meno tutti gli ingredienti per capire il punto da cui siamo partiti:
+*1 TB SSD*, no?
 
 
 ### La cache
 
+Se rileggiamo attentamente il contenuto di questa sezione, c'è un
+
+
+## E quindi?
 
 <!--
-Ci sono diversi tipi di memoria, con diverse capacit\`a e velocit\`a: RAM, cache,
-disco.
 
 L'infrastruttura IT all'interno della quale ormai tutte viviamo è progettata
 esplicitamente per rendere sfumati i confini delle cose che memorizziamo in forma

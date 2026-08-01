@@ -1,4 +1,4 @@
-# Preludio: contare in base 2
+# Contare in base 2
 
 Anche se in linea di principio questo non è l'unico approccio possibile, in pratica
 tutti i calcolatori moderni funzionano in logica binaria---cioè manipolano e conservano
