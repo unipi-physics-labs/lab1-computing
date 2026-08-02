@@ -36,6 +36,19 @@ utilizzare la sintassi di Python per illustrare alcuni concetti fondamentali
 saper maneggiare per poter affrontare in modo consapevole l'analisi dei dati. Lo
 faremo senza alcuna pretesa di organicità o di prospettiva storica.
 
+Nel corso di queste note vedrete un certo numero di frammenti di codice come quello che
+segue.
+
+```{python}
+print("Hello world!")
+```
+
+Virtualmente in ogni caso sono pensati perché possiate copiarli (con l'apposita iconcina
+sulla destra), incollarli nel vostro editor di testo preferito, ed eseguirli,
+eventualmente modificandoli. Per vostra convenienza, quando rilevante, l'output del
+frammento è inserito automaticamente subito sotto il frammento stesso, in modo che
+possiate esaminarlo anche senza un interprete Python sotto mano.
+
 Ah: l'inglese è la lingua universale dell'informatica, per cui eviteremo di scrivere in
 corsivo i termini non italiani nel testo, e scriveremo direttamente in inglese tutti i
 frammenti di codice.

@@ -64,11 +64,58 @@ operativo.
 ### GNU/Linux
 
 
-## Il terminale
+## Tre modi di utilizzare Python
+
+Se digitate `python` nel vostro terminale, e assumendo che tutto sia istallato
+correttamente, vi trovate immediatamente catapultati nell'interprete, e dovreste
+vedere qualcosa di vagamente rassomigliante a
+
+```{bash}
+lbaldini@nblbaldini:~$ python
+Python 3.13.13 (main, Apr  8 2026, 00:00:00) [GCC 15.2.1 20260123 (Red Hat 15.2.1-7)] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+
+I tre simboli `>>>` nell'ultima riga stanno ad indicare che l'interprete è pronto ad
+accettare comandi: potete cominciare a scrivere, e l'interprete vi *risponderà*
+con il valore dell'ultima espressione ogni volta che premete invio, in quello che
+in gergo tecnico prende il nome di REPL (Read-Eval-Print Loop). Questo modo di
+utilizzare l'interprete si dice *interattivo*; è utile se volte usare Python
+come una sorta di calcolatore tascabile, se volete provare velocemente un costrutto o,
+più in generale, se quello che dovete fare è molto semplice.
+
+```{bash}
+>>> 3 + 17
+20
+>>>
+```
+
+Non passerà molto tempo prima che vi rendiate conto che l'uso interattivo di Python
+è molto limitante. Quando uscite dall'interprete ripetere una serie di operazioni
+una seconda volta richiede banalmente di dover digitare tutto da capo, che diventa
+estremamente tedioso molto velocemente. Per tutti i task di complessità non nulla
+è molto più conveniente scrivere tutti i comandi, uno dopo l'altro, in un file
+di testo (convenzionalmente con estensione `.py`), ed invocare l'interprete
+passando il percorso al file come argomento. Questo richiede un minimo di padronanza
+della shell e del filesystem, ma dopo il primo successo avete ufficialmente aggiunto
+un nuovo strumento (ed uno molto potente) alla vostra scatola degli attrezzi: avete
+appena scritto il vostro primo *programma*.
+
+::: {.callout-tip}
+Può darsi che nel capoverso precedente si siano alcune parole (e.g., percorso,
+filesystem, file di testo) di cui ignorate il significato. Nel parleremo più
+diffusamente nel @{sec-os}, e potete fare un veloce salto in avanti se ne avete bisogno.
+Ma non lasciatevi tentare dall'utilizzare Python in modo interattivo nemmeno se
+incontrate qualche problema a questo stadio, perché vi assicuro che non è quello il modo
+in cui volete lavorare. Chiedete aiuto immediatamente se ne avete bisogno!
+:::
+
+Esistono infine sul mercato vari Intregrated Development Environment (IDE) che uniscono
+in un'unica interfaccia grafica l'editor di testo, l'interprete Python e tutta una
+serie di altre cose (e.g., un browser del filesystem), e che sono la scelta tipica
+per chi programma professionalmente. (O almeno lo erano fino all'avvento degli agenti
+AI.)
 
 
 ## Istallazione dei pacchetti aggiuntivi
-
-
-
-## Quale editor di testo?

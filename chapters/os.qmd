@@ -1,4 +1,4 @@
-# Il sistema operativo
+# Il sistema operativo {#sec-os}
 
 Prima di andare oltre nella descrizione di cosa è e come si scrive un programma
 è utile spendere qualche parola sul *sistema operativo* (o OS, per operating system)

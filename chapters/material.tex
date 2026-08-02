@@ -1,25 +1,4 @@
-% MISC
-
-% AT 18-08-23
-% Linear functions are not good for taking action (?)
-% -> Non linear devices
 % www.electronics-tutorials.ws cute, AND and OR
-% Moore's law (wikipedia)
-% Free software
-
-
-
-
-
-
-
-
-
-
-
-\subsection{Linguaggi di programmazione}
-
-
 
 \subsection{\python\ come linguaggio interpretato}
 
@@ -60,51 +39,6 @@ in molti casi queste non sono limitazioni rilevanti, ed \`e spesso vantaggioso r
 le cose pi\`u facili per la persona che sviluppa il codice piuttosto che per il
 computer che lo esegue. Ma \`e bene avere chiaro fin da subito che vi sono innumerevoli
 situazioni in cui questo trade-off si inverte, ed allora \`e necessario fare compromessi.
-
-
-
-
-
-
-
-
-\subsection{Tre modi di utilizzare \python}
-\label{sec:python_usage}
-
-Se digitate \code{python} nel vostro teminale, e assumendo che tutto sia istallato
-correttamente, vi trovate immediatamente catapultati nell'interprete, e dovreste
-vedere qualcosa di vagamente rassomigliante a
-\begin{verbatim}
-[lbaldini@pclbaldini latex]$ python
-Python 3.10.11 (main, Apr  5 2023, 00:00:00) [GCC 12.2.1 20221121 (Red Hat 12.2.1-4)] on linux
-Type "help", "copyright", "credits" or "license" for more information.
->>>
-\end{verbatim}
-I tre simboli \cchar{>>>} nell'ultima riga stanno ad indicare che l'interprete \`e
-pronto ad accettare comandi: potete cominciare a scrivere, e l'inteprete vi \emph{risponder\`a}
-con il valore dell'ultima espressione ogni volta che premete invio, in quello che
-in gergo tecnico prende il nome di REPL (Read-Eval-Print Loop). Questo modo di
-utilizzare l'inteprete si dice \emph{interattivo}; \`e utile se volte usare \python\
-come una sorta di calcolatore tascabile, se volete provare velocemente un costrutto o,
-pi\`u in generale, se quello che dovete fare \`e molto semplice.
-
-Non passer\`a molto tempo prima che vi rendiate conto che l'uso interattivo di \python\
-\`e limitante. Quando uscite dall'interprete ripetere una serie di operazioni
-una seconda volta richiede banalmente di dover digitare tutto da capo, che diventa
-estremamente tedioso molto velocemente. Per tutti i task di complessit\`a non nulla
-\`e molto pi\`u conveniente scrivere tutti i comandi, uno dopo l'altro, in un file
-di testo (convenzionalmente con estensione \cchar{.py}), ed invocare l'interprete
-passando il percorso al file come argomento. Questo richiede un minimo di padronanza
-della shell e del filesystem, ma dopo il primo successo avete ufficialmente aggiunto
-un nuovo strumento (ed uno molto potente) alla vostra scatola degli attrezzi: avete
-appena scritto il vostro primo \emph{programma}.
-
-Esistono infine sul mercato vari Intregrated Development Environment (IDE) che uniscono
-in un'unica interfaccia grafica l'editor di testo, l'inteprete \python\ e tutta una
-serie di altre cose (e.g., un browser del filesystem), e che sono una scelta praticabile,
-specialmente all'inizio. Vale la pena di prendere nota, ma con ogni probabilit\`a
-se dovrete mai fare qualcosa di mediamente strutturato, la combinazione della shell
-con un buon editor di testo \`e la via maestra.
 
 
 \subsection{Assegnazione: variabili e tipi}
