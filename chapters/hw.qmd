@@ -94,12 +94,14 @@ scopi.)
 
 | Elemento | Capacità |
 |:---------|---------:|
+| *Soldati* di Giuseppe Ungaretti | $44~\mathrm{B}$ |
 | La *Divina Commedia* in formato testo | $\sim 500~\mathrm{kB} \approx 5\times10^5~\mathrm{B}$ |
 | Una canzone pop in formato MP3 | $\sim 1~\mathrm{MB} \approx 10^6~\mathrm{B}$ |
 | Memoria cache tipica di una CPU | $\sim 1~\mathrm{MB} \approx 10^6~\mathrm{B}$ |
 | Compact Disc (CD) | $\sim 1~\mathrm{GB} \approx 10^9~\mathrm{B}$ |
 | RAM tipica di un PC | $\sim 10~\mathrm{GB} \approx 10^{10}~\mathrm{B}$ |
-| Contenuto della biblioteca di Alessandria | $\sim 10~\mathrm{GB} \approx 5 \times 10^{10}~\mathrm{B}$ |
+| Film in streaming (full HD) | $\sim 10~\mathrm{GB} \approx 10^{10}~\mathrm{B}$ |
+| Contenuto della biblioteca di Alessandria | $\sim 50~\mathrm{GB} \approx 5 \times 10^{10}~\mathrm{B}$ |
 | Disco rigido tipico di un PC | $\sim 1~\mathrm{TB} \approx 10^{12}~\mathrm{B}$ |
 | Contenuto di wikipedia (solo testo) | $\sim 500~\mathrm{GB} \approx 5 \times 10^{11}~\mathrm{B}$ |
 | Dati di LHC immagazzinati al CERN nel 2024 | $\sim 1~\mathrm{EB} \approx 10^{18}~\mathrm{B}$ |
@@ -133,7 +135,7 @@ di clock) ed eventualmente da riferimenti alle tecnologie costruttive (e.g., DDR
 Supponiamo di essere interessati all'acquisto di un laptop con queste
 ipotetiche caratteristiche
 
-- Processore ACME X5-8400 (2.6 GHz, 8 core, 8 MB L1 cache)
+- Processore ACME X5-8400 (2.6 GHz, 8 core, 1 MB L1 cache)
 - 16 GB DDR5 RAM (5600 MT/s)
 - 1 TB SSD
 
@@ -290,15 +292,10 @@ fornelli, la memoria non è altro che tutto quello spazio fisico in cui conservi
 ingredienti necessari per il nostro piatto---il bancone, i pensili, il frigorifero,
 la cantina (se l'avete), il negozio sotto casa ed il supermercato. Per quanto
 spericolata, questa analogia ci fa capire in modo immediato un certo numero di cose.
-Ad esempio che ci sono diversi tipi di memoria con caratteristiche diverse. La prima
-cosa che facciamo quando ci accingiamo a cucinare è fare la spesa---spostiamo degli
-ingredienti dal supermercato, dove sono disponibili in abbondanza, alla nostra cucina,
-un posto in cui abbiamo molto meno spazio, ma possiamo accedere facilmente a tutto
-quello che c'è in pochi secondi. E anche all'interno della cucina, non tutto è
-raggiungibile allo stesso modo. Tornati a casa, e messa a posto la spesa, probabilmente,
-prima di cominciare a sporcarci le mani, spostiamo il libro delle ricette, le pentole,
-e gli ingredienti principali sul bancone, da cui sono accessibili letteralmente in un
-attimo.
+Ad esempio che ci sono diversi tipi di memoria con caratteristiche diverse---se ad un
+certo punto ci accorgiamo che ci manca un ingrediente, un conto è se lo abbiamo in
+figorifero, tutt'altro paio di maniche se dobbiamo lasciare tutto per andare al
+supermercato!
 
 
 ### La RAM
@@ -326,7 +323,11 @@ molto espressiva, perché ad una prima lettura "accesso casuale" assomiglia
 pericolosamente ad "accesso a casaccio", che chiaramente non è quello che ci interessa.
 In questo contesto "accesso casuale" significa invece che *il tempo di accesso ad
 una qualsiasi cella di memoria è indipendente da dove fisicamente si trova la cella in
-questione*. Tenetelo a mente perché si tratta di un concetto fondamentale che è
+questione*. L'accesso casuale, inteso in questo senso, è detto a volte, e forse in modo
+più espressivo, anche *accesso diretto*, ed è spesso contrapposto all'accesso
+*sequenziale*, tipico di quei dispositivi in cui i dati debbono essere estratti
+nell'ordine in cui sono stati inseriti, come avviene con un nastro magnetico.
+Tenetelo a mente perché si tratta di un concetto fondamentale che è
 rilevante anche in altri contesti, e.g., gli algoritmi e le strutture di dati.
 
 Cosa vuol dire in pratica? Potete essere creative a piacere sul tema (guardate la
@@ -406,20 +407,18 @@ esclusivamente attraverso l'uso di HDD (*hard disk drive*), dispositivi elettrom
 contententi uno o più dischi magnetici su cui è possibile leggere e scrivere attraverso
 una apposita testina. Gli HDD hanno alcune buone proprità: permettono di salvare i dati
 in modo persistente (i.e., i dati sono preservati anche quando il disco non è
-alimentato), in grande quantità e ad un prezzo relativamente contenuto. Come la RAM, ed
-al contrario delle musicassette, forniscono un accesso casuale al contenuto, nel senso
-che si può indirizzare una locazione arbitraria di memoria ma (e qui arriva il punto
-importante) *questo accesso non è diretto*---il tempo necessario per arrivare ai dati
-cercati dipende dalla posizione fisica di questi dati. La cosa non è sorprendente,
-perché, al contrario della RAM, l'accesso non avviene puramente attraverso segnali
-elettrici, ma richiede il movimento meccanico della testina. Se per un attimo ci
-rimettiamo il nostro cappellino da fisiche capiamo immediatamente che la differenza è
-dirimente, perché ci spostiamo da un regime in cui il limite ultimo è la velocità della
-luce ad uno, molto più mondano, in cui le velocità sono quelle con cui possiamo spostare
-oggetti macroscopici senza danneggairli. Allora se vogliamo spostarci da una particolare
-locazione di memoria ad un'altra, il tempo necessario dipende da quanto fisicamente
-queste due locazioni sono distanti tra loro sul disco, perché la testina deve muoversi
-longo questa distanza.
+alimentato), in grande quantità e ad un prezzo relativamente contenuto. Ma il modo in
+cui permettono l'accesso ai dati non è diretto come ne caso della RAM---il tempo
+necessario per arrivare ad una specifica cella di memoria dipende dalla posizione fisica
+di questa cella. La cosa non è sorprendente, perché, al contrario della RAM, l'accesso
+non avviene puramente attraverso segnali elettrici, ma richiede il movimento meccanico
+della testina. Se per un attimo ci rimettiamo il nostro cappellino da fisiche capiamo
+immediatamente che la differenza è fondamentale, perché ci spostiamo da un regime in cui
+il limite ultimo è la velocità della luce ad uno, molto più mondano, in cui le velocità
+tipiche sono quelle con cui possiamo spostare oggetti macroscopici senza danneggairli.
+Allora se vogliamo spostarci da una particolare locazione di memoria ad un'altra, il
+tempo necessario dipende da quanto fisicamente queste due locazioni sono distanti tra
+loro sul disco, perché la testina deve muoversi lungo questa distanza.
 
 Come per tutte le cose, la tecnologia per lo storage di massa è migliorate
 ininterrottamente con il tempo, e lo sviluppo di *solid state drive* (SSD),
@@ -427,7 +426,8 @@ dispositivi puramente elettronici di archiviazione, ha parzialmente colmato il g
 tra la RAM e gli hard disk tradizionali. Le unità di memoria a stato solido non hanno
 parti in movimento, e garantiscono un tempo di accesso ed una banda di trasverimento
 dati significativamente migliori rispetto alla loro controparte tradizionale.
-Nonostante questo sono ancora almeno un ordine di grandezza più lenti della RAM.
+Nonostante questo sono ancora almeno un ordine di grandezza più lenti della RAM,
+perché l'accesso ai dati non è veramente diretto.
 La @{tbl-memory-comparison} riassume in modo compatto i numeri fondamentali (al
 solito, vanno presi come puramente rappresentativi.)
 
@@ -447,16 +447,142 @@ Abbiamo più o meno tutti gli ingredienti per capire il punto da cui siamo parti
 
 ### La cache
 
-Se rileggiamo attentamente il contenuto di questa sezione, c'è un
+Siamo arrivati quasi alla fine di questa brevissima carrellata. Se torniamo alle
+nostre specifiche di partenza, l'unica porzione che non abbiamo ancora sviscerato è
+quel criptico *1 MB L1 cache*, e adesso siamo pronti ad affrontare quest'ultima
+questione.
+
+Quando eseguiamo un programma la prima cosa che il calcolatore fa è prendere
+fisicamente il contenuto del file eseguibile dal disco e copiarlo nella RAM. Il motivo,
+a questo punto, dovrebbe essere ovvio: se la CPU dovesse recuperare ogni singola
+istruzione dal disco, una alla volta, durante l'esecuzione, vivremmo in un mondo in
+cui i computer sarebbero infinitamente più lenti. Molto meglio copiare tutto all'inizio,
+e andarsi a prendere le istruzioni dalla RAM, che garantisce un accesso estremamente
+veloce.
+
+L'analogia con la cucina, ancora una volta, ci viene in aiuto: quando vogliamo preparare
+il nostro piatto preferito, la prima cosa che facciamo è fare la spesa, cioè spostiamo
+gli ingredienti dal supermercato alla cucina. (Ricordate, in questa analogia il
+supermercato è la nostra memoria di massa---ha un sacco di spazio, ma la velocità di
+accesso non è gran ché---mentre la cucina è la RAM---piccola, ma con tutto a portata
+di mano). Pensandoci meglio, forse il lavoro di preparazione è un pochino più granulare:
+gli ingredienti che sappiamo ci serviranno nel momento *clou* della nostra creazione,
+oppure, più semplicemente, ci serviranno spesso (il sale? il pepe?) li spostiamo
+direttamente sul bancone in modo da averli a disposizione alla bisogna in un batter
+d'occhio.
+
+E allora non sarebbe bello se la CPU avesse il suo piccolo spazio di memoria, magari
+piccolo, direttamente su chip, con un tempo di accesso tipico di 1 ns anziché i
+100 ns della RAM? Ebbene, questo piccolo spazio di memoria esiste, e si chiama
+*cache*. (Anzi, nei moderni processori esistono tipicamente 2 o 3 livelli di chache
+che coprono il gap di accesso alla RAM in modo gerarchico, ma questo va oltre i nostri
+scopi). Che cos'è fisicamente la chache? Facile: una memoria ad accesso casuale, i.e.,
+una RAM. E se è una RAM, cosa c'è di magico che rende l'accesso così veloce?
+Due cose: (i) la tecnologia costruttiva è tipicamente diversa (SRAM anziché DRAM, ma
+questo è un dettaglio tecnico in cui non abbiamo il tempo di addentrarci) e (ii)
+la cache è fisicamente più vicina alla CPU---anzi, essendo sullo stesso chip di
+silicio, potremmo dire che più vicina di così non potrebbe essere.
 
 
 ## E quindi?
 
-<!--
+Giunte a questo punto, qualche commento finale è d'obbligo. Perché tutto questo dovrebbe
+essere importante per una fisica? E lo è ancora nel 2026? Perché, se è così impotrante,
+non me ne sono mai accorta?
 
-L'infrastruttura IT all'interno della quale ormai tutte viviamo è progettata
+L'infrastruttura tecnologica all'interno della quale ormai tutte viviamo è progettata
 esplicitamente per rendere sfumati i confini delle cose che memorizziamo in forma
-digitale, dandoci l'illusione di avere a disposizione una memoria infinita.
+digitale, dandoci l'illusione di avere a disposizione risorse infinite. I computer con
+cui interagiamo più frequentemente (smartphone e tablet) sono fatti in modo da rendere
+difficile persino capire dove siano fisicamente gli oggetti---quando fate vedere i video
+dell'ultima vacanza alla vostra migliore amica, dove sono fisicamente i file? Sul
+telefonino? Sul cloud? In entrambi i posti, perché lo smartphone fa automaticamente
+una copia per voi? (Ci torneremo diffusamente nella prossima sezione.)
+E quando l'interazione con il dispositivo smette di essere fluida, è più probabile
+che cambiamo telefonino piuttosto che chiederci se effettivamente le 24 fotografie
+al risotto agli asparagi che abbiamo mangiato la sera prima valevano effettivamente
+lo spazio su disco.
 
-La memoria non \`e infinita. Esempio di allocazione di una lista lunghissima.
--->
+Ebbene, fare un esperimento di fisica di frontiera è una cosa concettualmente diversa
+dall'archiviare le foto delle vacanze. A seconda della situazione, nella vostra vita
+professionale potreste trovarvi di fronte a sfide che definire impegnative è dir poco.
+Gli esperimenti del Large Hadron Collider (LHC) producono all'origine una mole di dati
+che si misura in decine di TB/s. Pensateci un attimo: si tratta di un numero così
+formidabile, che basta una rapida occhiata ai numeri che abbiamo discusso in questa
+sezione per capire che, nell'inviluppo della tecnologia attuale non c'è nessuna speranza
+di scrivere tutto su disco---non abbiamo né spazio, né banda. Qual è la soluzione?
+Ovvio, buttare via quasi tutto e scrivere solo la piccola parte di cose che
+potenzialmente ci interessa (facile a dirsi e difficile a farsi, perché capire cose ci
+interessa in tempo reale è un'altra sfida non da poco). E anche immaginando di scrivere
+su disco lo 0.1% di quello che produciamo, qualche GB/s, secondo dopo secondo, diventano
+1 PB in una giornata. Cioè, centinaia di PB in un anno. È chiaro che qui la risposta al
+problema non può essere solo l'equivalente di "cambio il telefonino", e.g. "compro più
+hard disk, e più veloci".
+
+Giusto per essere chiare: arrivate alla fine di questo capitolo non siete ancora pronte
+per progettare un esperimento di Fisica delle particelle, ed è estremamente improbabile
+che qualcuno ve lo chieda a breve. Ma se volete fare Fisica professionalmente
+dovrete imparate ad interagire con i calcolatori in modo diverso che con il telefonino.
+La memoria non è infinita. La velocità non è infinita. La banda non è infinita.
+Anche in un mondo che cambia velocemente come il nostro, non ci sono segni all'orizzonte
+che le cose che abbiamo detto smettano di essere rilevanti in futuro.
+
+
+### Esercizio finale
+
+Esaminate attentamente le due righe di Python che seguono, descrivete le differenze
+e provate a capire le implicazioni nel limite in cui il numero di iterazioni nel ciclo
+`for` passa da $100$ ad un numero molto grande, e.g., $100,000,000$.
+
+::: {.callout-important}
+Non guardate a soluzione prima di averci pensato almeno un po' in modo indipendente.
+E, cosa ancora più importante, non esegute $100$ milioni di iterazioni sul vostro
+portatile prima di aver letto la soluzione.
+:::
+
+
+```{python}
+#| output: false
+
+for i in range(100): print(i)
+for i in list(range(100)): print(i)
+```
+
+<details>
+<summary><strong>Soluzione</strong></summary>
+
+L'unica differenza tra le due righe è la creazione esplicita di una lista
+nel secondo caso. Ma andiamo per ordine.
+
+Se vogliamo iterare sui numeri interi (o su un loro sottoinsieme), da un punto di vista
+prettamente algoritmico non c'è nessun bisogno di precompilare una lista. Possiamo
+procedere per induzione, tenendo traccia del numero a cui siamo arrivati ed aggiungendo
+$1$ ogni volta. Il nostro piccolo programma si può riscrivere senza usare nessun
+built-in di Python nella forma equivalente
+
+```{python}
+#| output: false
+
+i = 0
+while i < 100:
+    i += 1
+    print(i)
+```
+
+in cui è chiaro che l'unica memoria che stiamo utilizzando è quella necessaria per
+il singolo intero `i`.
+
+Torniamo al programma originale. Contrariamente a quanto potreste pensare, il built-in
+`range(100)` *non* produce una lista dei primi $100$ numeri interi. Tecnicamente
+produce un *iterabile* sul quale il ciclo `for` può agire esattamente come descritto
+nella versione alternativa del programma che utilizza il `while`. Non c'è nessuno spreco
+di memoria.
+
+Quando invece scriviamo
+```{python}
+#| output: false
+
+list(range(100))
+```
+
+</details>
