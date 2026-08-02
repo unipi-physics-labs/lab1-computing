@@ -5,25 +5,25 @@
 
 /*-- scss:rules --*/
 
-.cell-output {
-  margin-top: 0.5rem;
-  margin-bottom: 0.5rem;
-  padding: 0.5rem 0.5rem;
-  //border-left: 4px solid var(--bs-primary);
-  border-radius: 0.4rem;
-  background: var(--bs-secondary-bg);
-}
+// .cell-output {
+//   margin-top: 0.5rem;
+//   margin-bottom: 0.5rem;
+//   padding: 0.5rem 0.5rem;
+//   //border-left: 4px solid var(--bs-primary);
+//   border-radius: 0.4rem;
+//   background: var(--bs-secondary-bg);
+// }
 
-.cell-output::before {
-  content: "Output";
-  display: block;
-  margin-bottom: 0.25rem;
-  padding-left: 0.25rem;
-  font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--bs-primary);
-  text-transform: uppercase;
-}
+// .cell-output::before {
+//   content: "Output";
+//   display: block;
+//   margin-bottom: 0.25rem;
+//   padding-left: 0.25rem;
+//   font-weight: 700;
+//   font-size: 0.9rem;
+//   color: var(--bs-primary);
+//   text-transform: uppercase;
+// }
 
 .algorithm-list ol {
   list-style: none;
