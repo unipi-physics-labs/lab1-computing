@@ -1,6 +1,6 @@
-# Che cosa serve per cominciare?
+# Cominciamo?
 
-Buona domanda. Avrete bisogno essenzialmente di tre cose:
+Che cosa serve per cominciare? Buona domanda. Avrete bisogno essenzialmente di tre cose:
 
 1. un calcolatore;
 2. una istallazione funzionante di Python (e di parte dell'ecosistema scientifico

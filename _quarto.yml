@@ -27,6 +27,7 @@ book:
     - index.qmd
     - copyright.qmd
     - gender.qmd
+    - foss.qmd
 
     - part: "Parte prima: dal problema alla soluzione"
       chapters:
@@ -41,6 +42,7 @@ book:
         - chapters/hw.qmd
         - chapters/os.qmd
         - chapters/memory.qmd
+        - chapters/float.qmd
         - chapters/algs.qmd
 
   appendices:
