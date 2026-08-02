@@ -528,15 +528,15 @@ Anche in un mondo che cambia velocemente come il nostro, non ci sono segni all'o
 che le cose che abbiamo detto smettano di essere rilevanti in futuro.
 
 
-### Esercizio finale
+### Una piccola provocazione
 
 Esaminate attentamente le due righe di Python che seguono, descrivete le differenze
 e provate a capire le implicazioni nel limite in cui il numero di iterazioni nel ciclo
-`for` passa da $100$ ad un numero molto grande, e.g., $100,000,000$.
+`for` passa da $100$ ad un numero molto grande, e.g., $1,000,000,000$ (un miliardo).
 
 ::: {.callout-important}
-Non guardate a soluzione prima di averci pensato almeno un po' in modo indipendente.
-E, cosa ancora più importante, non esegute $100$ milioni di iterazioni sul vostro
+Non guardate la soluzione prima di averci pensato almeno un po' in modo indipendente.
+E, cosa ancora più importante, non esegute un miliardo di iterazioni sul vostro
 portatile prima di aver letto la soluzione.
 :::
 
@@ -584,5 +584,34 @@ Quando invece scriviamo
 
 list(range(100))
 ```
+le cose cambiano sostanzialmente: qui stiamo effettivamente allocando tutta la lista in
+memoria. Qual è il costo dell'operazione? Dobbiamo chiederci quanto occupa in memoria
+un intero
+```{python}
+import sys
+print(sys.getsizeof(1))
+```
+e moltiplicare per la lunghezza della lista. (La cosa è leggermente più complicata di
+così, ma questo è irrilevante per i nostri scopi.) Con $100$ numeri sono circa $3$ kB,
+i.e., niente di cui preoccuparsi. Ma con una lista di un miliardo di numeri la memoria
+necessaria diventa dell'ordine di $30$ GB, che con ogni probabilità è abbastanza per
+esaurire la memoria RAM che avete a disposizione.
+
+Cosa succede a questo punto? Dipende dal vostro setup. Se siete abbastanza fortunati
+il sistema operativo uccide indipendentemente il processo prima ancora che il ciclo
+`for` inizi e, a parte un messaggio di errore, non succede niente di grave. Ma
+in generale non provate nemmeno a fare l'esercizio in pratica se non siete
+disposti a riavviare il computer, perché la cosa è nel novero delle possibilità.
 
 </details>
+
+Cosa ci abbiamo imparato, e perché questo dovrebbe essere rilevante per la discussione?
+Beh, anche in un linguaggio di altissimo livello come Python, in cui non abbiamo
+un vero controllo sull'allocazione di memoria, è possibile ridurre in lacrime un
+calcolatore con una sola riga di codice.
+
+Allora se a un certo punto della vostra vita doveste analizzare anche una piccolissima
+parte delle centinaia di PB di dati di LHC di cui dicutevamo prima---diciamo
+$1$ TB---sarà bene che prima vi sediate un attimo per capire come leggerli, perché
+abbiamo capito che tutto in una volta non è possibile. In quel momento queste paginette
+vi saranno utili 😉
