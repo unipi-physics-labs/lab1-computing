@@ -1,2 +1,156 @@
-# Il primo programma {#sec-crash}
+# Il nostro primo programma {#sec-crash}
 
+Siamo pronti per partire con il nostro primo grafico. Leggete attentamente il
+frammento di codice che segue. (Notate che abbiamo aggiunto i numeri di  linea
+all'inizio per poter commentare puntualmente, ma ovviamente questi non fanno parte
+del programma.)
+
+```{python}
+#| code-line-numbers: true
+
+from matplotlib import pyplot as plt
+
+# Define the input data.
+x = [1, 2, 3, 4, 5]
+y = [1, 4, 9, 16, 25]
+dy = [1, 1, 1, 1, 1]
+
+# Create a figure and make a plot with error bars.
+plt.figure("scatter plot")
+plt.errorbar(x, y, dy, fmt="o")
+
+# Show the plot on the screen.
+plt.show()
+```
+
+Operativamente: copiate il testo del codice utilizzando la piccola icona in altro a
+destra, incollatelo nel vostro editor di testo (o IDE) preferito, ed eseguitelo.
+Dovreste vedere apparire sullo schermo qualcosa di simile alla figura qui sopra.
+
+Se è così, congratulazioni! Avete appena eseguito il vostro primo programma degno di
+questo nome. In caso contrario, non perdetevi d'animo, ma cercate aiuto e non andate
+avanti fino a quando non avete superato questo piccolo ostacolo, perché questo è senza
+dubbio il gradino più alto di tutto il percorso. Forza!
+
+
+## Esegesi del primo programma
+
+Se siete arrivate a questo punto, abbiamo a nostra disposizione un programma di $13$
+righe ($10$, se non contiamo gli spazi bianchi) ed un grafico. Giusto per esercitare fin
+dall'inizio la nostra analogia tra programmazione e cucina, il programma è una sorta di
+*ricetta* che la nostra cuoca (il computer) utilizza per cucinare la *portata* finale
+pronta per il consumo---in questo caso, il grafico. Il primo obiettivo che ci poniamo,
+allora, è quello di capire per filo e per segno come si scrive una semplice ricetta.
+
+Procederemo riga per riga, senza nessun particolare ordine logico se non quello con cui
+abbiamo scritto il programma, e nel processo introdurremo un certo numero di concetti
+fondamentali che riprenderemo più in profondità nel seguito. Prestate attenzione, perché
+alla fine di questa sezione vi sarete guadagnate la cintura bianca nella disciplina, e
+da lì in poi la strada è in discesa.
+
+
+### Importare moduli aggiuntivi
+
+Cosa diavolo significa la linea 1?
+
+```{python}
+#| output: false
+from matplotlib import pyplot as plt
+```
+
+Quando lanciate l'interprete Python in modalità interattiva, l'insieme di cose che avete
+a disposizione è estremamente limitata---essenzialmente la sintassi del linguaggio ed
+un numero limitato di
+[funzioni built-in](https://docs.python.org/3/library/functions.html).
+(Prendetevi un secondo per seguire il link e dare un'occhiata sommaria alla pagine, in
+modo da avere un'idea grossolana di cosa stiamo parlando---sono un centinaio di funzioni
+con nomi che vi sembreranno, per la maggio parte esotici.)
+
+Se volete arrotondare un numero reale all'intero più vicino, ad esempio, non vi serve altro che
+il built-in `round()`:
+```{python}
+print(round(2.25))
+print(round(2.75))
+```
+
+Oltre alle funzioni built-in, Python fornisce una
+[libreria standard](https://docs.python.org/3/library/index.html)
+onnicomprensiva che, con ogni probabilità, copre una buona parte delle esigenze che
+avrete mai nella vostra carriera di fisiche.
+(Anche qui: prendetevi un attimo per seguire il link e dare una rapida occhiata alla
+documentazione della libreria standard: si tratta letteralmente di centinaia di moduli,
+ciascuno dei quali offre un numero variabile---spesso molte decine---di funzioni e
+strutture dati.)
+
+Avete bisogno di funzioni trigonometriche, logaritmi ed esponenziali? Non ci sono
+problemi:
+```{python}
+import math
+
+print(math.log(10))
+print(math.log10(10))
+print(math.exp(2))
+print(math.cos(0))
+```
+Equivalentemente (lo troverete spesso in giro, per cui tanto vale ingoiare subito la
+pillola) potete arrivare allo stesso risultato per una strada leggermente diversa
+```{python}
+from math import log, log10, exp, cos
+
+print(log(10))
+print(log10(10))
+print(exp(2))
+print(cos(0))
+```
+La cosa fondamentale è che, in un caso o nell'altro, dovete *importare* la libreria
+`math`, o le funzioni al suo interno che volete utilizzare.
+
+La parola speciale `import` di Python è quella che vi permette di importare moduli
+(o parti di moduli) che non sono disponibili all'avvio.
+Il sistema di import di Python è estremamente flessibile, e non è questo il momento di
+addentrarci nei meandri del suo funzionamento. Quando ne avrete bisogno, la
+[documentazione](https://docs.python.org/3/reference/import.html) è il posto giusto
+in cui guardare.
+
+Se vi state chiedendo il perché di questa necessità apparentemente bizantina di
+importare le cose prima di poterle utilizzare (ma non avrebbe senso avere tutto a
+disposizione sin dall'inizio?), la risposta è semplice: importare un modulo costa tempo
+e, soprattutto, memoria. Sarebbe semplicemente folle importare l'intera libreria
+standard all'avvio di ogni sessione di Python, per poi lasciare inutilizzata la quasi
+totalità del suo contenuto---molto meglio un approccio di tipo *opt in*. D'altra parte
+in cucina non avete in ogni momento tutti gli ingredienti per tutte le ricette del
+mondo no? Magari avete sempre sale, pepe, farina, latte (i vostri built-in, in un certo
+senso), ma per tutto il resto lo prendete al supermercato all'occorrenza.
+
+Arrivate a questo punto potreste avere l'impressione (sbagliata) che `matplotlib` sia
+parte delle libreria standard di Python---mentre invece si tratta di un pacchetto
+separato che è disponibile, insieme a quasi un milione di altri pacchetti, sul
+[Python package index](https://pypi.org/). Qual è la differenza? Semplice: la libreria
+standard viene istallata automaticamente quando istallate Python. Tutto il resto va
+istallato a mano, ad esempio con `pip`. (Ma se siete arrivate a questo punto dovreste
+esserci già passate.) Da questo punto in poi, non ci sono altre differenze---i moduli
+si importano esattamente allo stesso modo.
+
+
+### I commenti
+
+Tempo di andare avanti. La linea 2 è stata lanciata intenzionalmente vuota, e non c'è
+molto da dire a proposito, a parte il fatto che potete lasciare tutte le linee vuote che
+volete. Sono semplicemente ignorate dall'interprete e non hanno nessun effetto, se non
+quello di aumentare la leggibilità del programma, se utilizzate opportunamente.
+Potete usarle, ad esempio, per separare tra loro sezioni di codice che sono logicamente
+distinte.
+
+Siamo arrivati alla linea 3.
+```{python}
+#| output: false
+# Define the input data.
+```
+
+
+
+
+### Definire le variabili
+
+
+### Chiamare funzioni
