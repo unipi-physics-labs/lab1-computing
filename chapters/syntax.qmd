@@ -1,1 +1,1 @@
-# Sintassi di base
+# Variabili e tipi
