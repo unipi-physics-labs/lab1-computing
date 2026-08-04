@@ -1,4 +1,4 @@
-# Il nostro primo programma {#sec-crash}
+# Il primo programma {#sec-crash}
 
 Siamo pronti per partire con il nostro primo grafico. Leggete attentamente il
 frammento di codice che segue. (Notate che abbiamo aggiunto i numeri di  linea

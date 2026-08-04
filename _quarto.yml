@@ -33,7 +33,8 @@ book:
       chapters:
         - chapters/install.qmd
         - chapters/crash.qmd
-        - chapters/syntax.qmd
+        - chapters/types.qmd
+        - chapters/functions.qmd
         - chapters/flow.qmd
 
     - part: "Parte seconda: ripartiamo dai principi"

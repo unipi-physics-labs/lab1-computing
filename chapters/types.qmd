@@ -1,0 +1,323 @@
+# Variabili e tipi {#sec-types}
+
+Passata l'euforia per il successo con il nostro primo programma, in questa sezioni
+cercheremo, in un certo senso, di ripartire da zero e riflettere più in profondità
+su un certo numero di cose che abbiamo lasciato in sospeso.
+
+
+## Assegnamento e confronto
+
+Come abbiamo detto, le variabili in Python si creano con l'operatore di assegnamento
+`=`, ed alle variabili ci si può comodamente riferire per tutto il loro ciclo di vita
+con il nome che abbiamo usato  al momento dell'assegnamento, e.g.
+```{python}
+x = 3
+print(x)
+```
+
+Quando si parla di variabili, una delle prime cose che è utile realizzare è che
+l'oggetto a cui fa riferimento il nome, che con un leggero abuso di terminologia potremmo chiamare il *valore della variabile*, può cambiare durante l'esecuzione del
+programma
+```{python}
+x = 3
+print(x)
+x = 11
+print(x)
+```
+(Se ci pensate è banale. Programmare non sarebbe molto interessante se non potessimo
+cambiare i valori delle variabili.) La cosa non è da poco, perché significa che, quando
+calcoliamo un espressione che coinvolga una variabile, dobbiamo fare attenzione a
+*quando* esattamente andiamo a valutare la variabile stessa.
+
+Da questo punto di vista le regole dell'assegnazione sono semplicissime:
+
+1. *prima* valutiamo l'espressione che sta a destra dell'operatore `=`;
+2. *dopo* assegniamo al risultato dell'espressione il *nome* che sta a destra.
+
+Detta così, la cosa non pare particolarmente problematica. Ad un'analisi appena più
+approfondita, però, ci accorgiamo subito di alcune cosa interessanti, la prima delle
+quali è che *la nostra variabile può stare contemporaneamente a sinistra e a destra
+dell'operatore di assegnamento!* Prendete ad esempio
+```{python}
+#| code-line-numbers: true
+
+x = 3
+print(x)
+x = 2 * x - 4
+print(x)
+```
+Sorprese? Non dovreste, perché tutto a perfettamente senso, secondo le regole che
+abbiamo detto. Passo per passo:
+
+* alla linea 1 diciamo che `x` vale 3;
+* quando arriviamo alla linea 3, la prima cosa che facciamo è valutare l'espressione a
+destra---cioè moltiplichiamo per $2$ e sottraiamo $4$, ottenendo $2$;
+* solo a questo punto facciamo il binding del nome `x` al valore 2---da questo
+punto in poi `x` non vale più $3$, ma $2$!
+
+La cosa è talmente utile ed utilizzata, che la maggior parte dei linguaggi di
+programmazione (Python incluso) prevedono specifiche scorciatoie per eseguire
+operazioni aritmetiche *sul posto*
+
+```{python}
+x = 2
+x += 10
+print(x)
+x *= 7
+print(x)
+```
+
+L'altra cosa da tenere sempre a mente è che, se a destra dell'operatore di assegnamento
+c'è un'espressione, *a sinistra c'è sempre un nome*, per cui l'interprete, giustamente,
+si lamenta se provate a scrivere
+```{python}
+#| error: true
+
+2 * x = 2
+```
+
+
+### L'uguaglianza in aritmetica
+
+Questo è un buon momento per fermarsi un secondo a riflettere sulle differenze tra
+l'operatore di assegnamento che abbiamo appena visto e l'operatore di uguaglianza a cui
+siamo abituati dall'aritmetica elementare. Guardiamo per un attimo le due espressioni
+$$
+x = 2x - 4 \quad\text{e}\quad 2x = 2
+$$
+Formalmente sono identiche a quello che abbiamo scritto nei due frammenti di codice
+sopra, ma questa volta le interpretiamo come semplici equazioni di primo grado le cui
+soluzioni sono $x = 4$ e $x = 1$, rispettivamente. In entrambi casi la conclusione è
+completamente diversa.
+
+La differenza fondamentale è che il segno di uguaglianza in aritmetica si mette tra
+due espressioni, non tra un nome ed un espressione. Non è cosa da poco, ed è
+potenzialmente contro-intuitivo per chi si avvicina alla programmazione con
+un'educazione pregressa di tipo matematico (in pratica tutti).
+
+::: {.callout-note}
+La maggior parte dei linguaggi di programmazione moderni usa il simbolo `=` per
+denotare l'operatore di assegnazione. Questa sintassi ha il vantaggio di essere
+succinta, a scapito, però, di un costo cognitivo non nullo dovuto alla potenziale
+confusione con l'uguaglianza dell'aritmetica. Storicamente, le alternative al simbolo
+`=` che sono state utilizzate includono `:=` (Pascal, Ada, Go) e `<-` (F#, R), che
+sono forse, in molti sensi, più espressive. Lascio a voi decidere se evitare una
+possibile, piccola confusione iniziale valga la pena di infliggere una sintassi verbosa
+su tutte le programmatrici per tutto il tempo a venire...
+:::
+
+
+### Operatore di confronto
+
+A questo punto potreste chiedervi se Python offra qualcosa, in termini di operatori
+binari, che assomigli all'uguaglianza in aritmetica? La risposta è sì: si chiama
+*operatore di confronto* e in Python si scrive come `==`. (Si, avete capito bene:
+due segni di uguale giustapposti).
+
+L'operatore di confronto accetta *espressioni* da entrambi i suoi lati, e restituisce
+*vero* o *falso* a seconda che le espressioni diano lo stesso risultato oppure no.
+```{python}
+print(3 == 3)
+print(3 == 4)
+```
+(Se siete curiose esiste anche il complementare logico dell'operatore `==`, che si
+indica con `!=`.)
+```{python}
+print(3 != 3)
+print(3 != 4)
+```
+
+Questo vuol dire che abbiamo trovato l'equivalente perfetto dell'uguaglianza aritmetica
+in Python? Non proprio, perché mentre si possono usare espressioni arbitrariamente
+complesse, con variabili al loro interno
+```{python}
+x = 4
+print(2 * x == 2)
+```
+è anche vero che tutte le variabili debbono essere definite nel momento in cui facciamo
+il confronto. Ricordatevi che in aritmetica
+$$
+2x = 2 \implies x = 1
+$$
+mentre la stessa cosa in Python, se non definiamo prima la variabile $x$, fallisce
+miseramente, e per un motivo diverso da prima:
+```{python}
+#| echo: false
+del x
+```
+```{python}
+#| error: true
+2 * x == 2
+```
+
+In altre parole, non potete usare l'interprete di Python per risolvere equazioni di
+primo grado---o per lo meno non così semplicemente.
+
+
+## Tipi
+
+Anche se non doveste aver prestato particolare attenzioni, vi sarete accorte che
+abbiamo già incontrato diversi *tipi* di variabili. Quando scriviamo
+```{python}
+n = 11
+x = [1, 2, 3]
+title = "scatter plot"
+```
+è chiaro che il valore di `n` è un numero (intero, per la precisione), quello di
+`x` è una *lista*, mentre quello di `title` è una stringa di testo.
+
+::: {.callout-note}
+Alcuni linguaggi richiedono di *dichiarare* il tipo di variabile all'inizio, e non
+permettono di cambiare il tipo durante l'esecuzione del programma. In C o C++, ad
+esempio, vedreste scritto
+```cpp
+int n = 11;
+```
+L'interprete Python inferisce il tipo di una variabile automaticamente al momento
+dell'assegnamento sulla base del risultato dell'espressione a destra dell'operatore
+`=`, e permette di cambiare il tipo in qualsiasi momento. Questa flessibilità, va da
+sé, viene ad un costo, sia in termini di velocità, che in termini di strumenti per
+verificare la correttezza formale del programma.
+:::
+
+Ogni variabile nel nostro programma, ad ogni istante, è di un tipo ben preciso. Come
+faccio a sapere qual è? Semplice: con il built-in
+[type](https://docs.python.org/3/library/functions.html#type)
+```{python}
+n = 11
+x = [1, 2, 3]
+title = "scatter plot"
+print(type(n))
+print(type(x))
+print(type(title))
+```
+Se lasciate perdere per un attimo la parola *class*, che non avremo tempo di affrontare,
+nemmeno superficialmente, direi che più o meno è tutto in linea con le nostre
+aspettative, no?
+
+
+### Tipi ed operazioni
+
+Perché dovrebbe interessarvi di che tipo è una variabile? Per molti motivi, ma il
+principale è che *il tipo di una variabile determina univocamente le operazioni che
+si possono fare sulla variabile stessa*.
+
+Se ho due numeri, ad esempio, mi aspetto di poter fare su di loro le ordinarie
+operazioni aritmetiche, ed in effetti è proprio così
+```{python}
+i = 4
+j = 8
+print(i + j)
+print(i * j)
+```
+mentre non è immediatamente ovvio cosa potrebbe voler dire sommare un numero ad una
+stringa di testo, ed in effetti se proviamo a farlo, l'interprete Python ci segnala
+un errore
+```{python}
+#| error: true
+n = 3
+title = "scatter plot"
+print(n + title)
+```
+
+::: {.callout-note}
+In alcuni casi la semantica delle operazioni che potremmo aspettarci da uno specifico
+tipo di variabile non è ovvia. A seconda delle inclinazioni personali, potreste (o no)
+essere sorprese dal fatto che Python supporta la somma (nel senso di concatenazione)
+tra stringhe e il prodotto (nel senso di ripetizione) di una stringa per un numero
+intero.
+```{python}
+print("Hello " + "World")
+print("Eh" * 10)
+```
+:::
+
+L'ultimo esempio ci dà lo spunto per sottolineare, se ce ne fosse bisogno, l'importanza
+di capire il sistema dei tipi. Che differenza c'è tra `3` (il numero intero 3)
+e `"3"` (una stringa di testo contenente il singolo carattere numerico "3")? In nessun
+momento dobbiamo confondere i due, perché i risultati sono potenzialmente disastrosi
+```{python}
+print(3 == "3")
+print(3 * 3)
+print(3 * "3")
+```
+
+
+## I tipi nativi di Python
+
+In analogia con le funzioni built-in che abbiamo già visto, Python fornisce un insieme
+completo di [tipi built-in](https://docs.python.org/3/library/stdtypes.html),
+che a volte chiameremo anche tipi *nativi*. Non vi sorprenderà, i tipi nativi (i più
+importanti sono circa una decina) sono disponibili nell'interprete Python senza
+bisogno di importare alcun modulo.
+
+::: {.callout-note}
+In aggiunta, la libreria standard di Python fornisce letteralmente migliaia di
+tipi aggiuntivi, ed ancora di più sono quelli potenzialmente raggiungibili attraverso
+i pacchetti su [PyPI](https://pypi.org/). Gli *array* di
+[numpy](https://numpy.org/) sono un esempio con cui lavoreremo estensivamente.
+:::
+
+
+### Stringhe
+
+Una stringa è essenzialmente una sequenza di caratteri che utilizziamo per
+rappresentare del testo, e può contenere lettere, numeri, punteggiatura,
+spazi---in realtà qualsiasi cosa sia supportata dallo standard
+[unicode](https://home.unicode.org/). Tecnicamente Python tratta come stringa
+tutte le sequenze di caratteri racchiuse da due apici---non importa se singoli
+o doppi
+```{python}
+print(type("Hello!"))
+print(type('Hello!'))
+print("Hello!" == 'Hello!')
+```
+Al solito, la sorgente di informazione più autorevole sulla questione è la
+[documentazione](https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str).
+
+Ci siamo già imbattuti nelle stringhe per la questione mondana del titolo della nostra
+figura di matplotlib, e per mettere nomi agli assi dei grafici. Ma forse la cosa
+più importante è imparare a capire come *formattare opportunamente* il testo quando
+vogliamo farci stampare qualcosa su terminale o su file.
+
+Nel 2026, il meccanismo principale per la formattazione di testo è quello
+delle [f-string](https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals), che illustriamo sommariamente con un piccolo esempio.
+Supponiamo di voler stampare il valore centrale e l'incertezza di un fit con una
+costante, che abbiamo a disposizione in due variabili separate. Possiamo stamparle
+direttamente sullo schermo così come sono, oppure formattarle opportunamente.
+Guardate la differenza e giudicate voi stesse:
+```{python}
+m_hat = 0.32467
+sigma_m = 0.03
+
+# The lazy way...
+print(m_hat, sigma_m)
+
+# ...and the fancy way
+print(f"m = {m_hat:.2f} ± {sigma_m:.2f} cm")
+```
+
+Non abbiamo il tempo e lo spazio per riassumere qui il complesso funzionamento delle
+f-string, ma le regole di base sono semplici:
+
+* mettete una "f" immediatamente prima dell'apice di apertura;
+* all'interno della stringa avete accesso a tutte le variabili definite nel vostro
+programma, e potete accedere ai rispettivi valori racchiudendo le variabili stesse tra
+parentesi graffe;
+* avete l'ulteriore libertà di specificare una stringa di formato, separata dal nome
+della variabile da un carattere `:`, il che è utile, e.g., per esprimere correttamente
+le cifre significative.
+
+(Per completezza: `.2f` significa: *notazione decimale con due cifre dopo la virgola*.)
+
+
+### Numeri
+
+
+### Sequenze
+
+
+### Variabili booleane
+
+
+## Gli array di numpy

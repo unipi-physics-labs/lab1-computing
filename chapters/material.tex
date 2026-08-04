@@ -43,60 +43,6 @@ situazioni in cui questo trade-off si inverte, ed allora \`e necessario fare com
 
 \subsection{Assegnazione: variabili e tipi}
 
-Partiamo dunque dalle prime due righe del frammento~\ref{snip:euclid_algorithm}:
-il simbolo \cchar{=} in \python\ (e nella maggior parte dei linguaggi di programmazione)
-costituisce l'operatore di assegnazione---ovverosia assegna il valore della porzione a
-destra dell'espressione all'operando che sta a sinistra.
-
-\snip{variables}{
-  Caption.
-}
-
-Guardiamo per un attimo il frammento~\ref{snip:variables}: senza addentrarci troppo
-nella semantica, illustra efficacemente, oltre all'operatore di assegnazione, due
-cose fondamentale che vanno ben al di l\`a di un breve corso introduttivo di \python:
-\begin{itemize}
-  \item ad ogni istante di tempo ogni variabile ha un tipo ben preciso, che si pu\`o
-    verificare in \python\ utilizzando la funzione built-in \pybuiltin{type};
-  \item ad ogni istante di tempo ogni variabile ha un indirizzo in memoria, a cui
-    si risale con la funzione built-in \pybuiltin{id}. (Se i numeri enormi vi stupiscono,
-    non dimenticate che ormai la maggior parte dei computer lavorano con uno spazio
-    di indirizzi a $64$~bit, con cui si possono indirizzare $2^{64} \approx 1.85 \times 10^{19}$
-    celle distinte.)
-\end{itemize}
-Cos\`i la variabile \cchar{n}, nel nostro esempio, \`e un numero intero, \cchar{x}
-\`e un numero in virgola mobile, e \cchar{t} \`e una stringa di testo. Al momento
-dell'assegnazione \python\ alloca automaticamente in memoria un oggetto del tipo
-opportuno (a seconda del valore a cui inizializziamo la variabile), e l'operando
-a sinistra dell'operatore di assegnazione costituisce una \emph{referenza} all'oggetto
-stesso.
-
-Una caratteristica interessante dell'operatore di assegnazione, che peraltro \`e
-comune a moltissimi linguaggi di programmazione, \`e l'ordine in cui le operazioni
-sono eseguite, ed \`e importante sottolineare la cosa fin dall'inizio, perch\'e
-si tratta di un tratto potenzialmente controintuitivo per chi ha gi\`a un'educazione
-di tipo matematico. Quando in un libro di aritmetica vediamo scritto
-\begin{align*}
-  x = x + 1
-\end{align*}
-interpretiamo questa scrittura come un'equazione di primo grado che non ha soluzione.
-\snip{assignment}{
-  Notare anche la forma \code{x += 1}, del tutto equivalente a \code{x = x + 1}.
-}
-La differenza \`e notevole con il frammento~\ref{snip:assignment}, in cui viceversa
-la linea~$2$ ha perfettamente senso: prima si calcola il valore sulla destra dell'operatore
-di assegnamento, assumendo i valori che tutte le variabili rilevanti hanno fino a
-quel momento, e poi si assegna il risultato alla variabile opportuna, che \`e in
-effetti sovrascritta.
-
-
-\snip{integer_string}{
-  Caption.
-}
-
-Il fatto che in una stringa di testo si possano inserire cifre numeriche \`e a
-volta sorgente di confusione, ma non dobbiamo mai dimenticare che una stringa
-numerica non \`e un numero!
 
 
 \subsection{Aritmetica: \python\ come calcolatore tascabile}
