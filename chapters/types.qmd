@@ -107,7 +107,7 @@ su tutte le programmatrici per tutto il tempo a venire...
 :::
 
 
-### Operatore di confronto
+### L'operatore di confronto
 
 A questo punto potreste chiedervi se Python offra qualcosa, in termini di operatori
 binari, che assomigli all'uguaglianza in aritmetica? La risposta è sì: si chiama
@@ -313,11 +313,134 @@ le cifre significative.
 
 ### Numeri
 
+Come potete immaginare, i numeri saranno per molti versi il nostro focus primario.
+Fino a questo momento abbiamo (deliberatamente) incontrato quasi esclusivamente numeri
+interi, ed è arrivato il momento di colmare questa lacuna.
 
-### Sequenze
+Python fornisce tre tipi numerici built in:
+
+* numeri interi;
+* numeri *in virgola mobile* (in inglese *floating point*);
+* numeri complessi (li includiamo per completezza ma non ci torneremo sopra).
+
+Vediamoli in opera:
+```{python}
+n = 17
+x = 0.26
+z = 1.4 + 2.3j
+print(type(n))
+print(type(x))
+print(type(z))
+```
+
+La differenza fondamentale tra numeri interi e numeri in virgola mobile è che,
+mentre l'aritmetica intera è *esatta*, quella in virgola mobile è intrinsecamente
+*inesatta*. Ci torneremo in dettaglio nel @{sec-floating}, ma anticipiamo che
+l'importanza di questo elemento non può essere enfatizzata abbastanza. Tenetelo in mente.
+
+Da un punto di vista logistico, quello che distingue un numero intero da uno in
+virgola mobile, nella fase di assegnamento, è la presenza del *separatore decimale*
+`.` (che nei paesi anglosassoni è il punto e non la virgola). Se il separatore decimale
+non ha cifre alla sua destra, è come se ci fosse uno zero---in altre parole
+`2.` e `2.0` sono esattamente la stessa cosa. (Numericamente anche l'intero `2`
+rappresenta lo stesso valore, ma dal punto di vista dei tipi sono due cose diverse.)
 
 
-### Variabili booleane
+| Operatore | Nome | Esempio |
+|:---------:|:-----|:---------|
+| `+` | Addizione | `3 + 4` → `7` |
+| `-` | Sottrazione | `4 - 3` → `1` |
+| `*` | Moltiplicazione | `2 * 3` → `6` |
+| `/` | Divisione | `3 / 2` → `1.5` |
+| `%` | Modulo | `7 % 3` → `1` |
+| `**` | Elevamento a potenza | `2 ** 8` → `256` |
+| `//` | Divisione intera | `3 // 2` → `1` |
+
+: Operatori aritmetici di base in Python. {#tbl-arithmetics}
 
 
-## Gli array di numpy
+::: {.callout-note}
+L'aritmetica di Python ha alcune peculiarità che la distinguono dalla maggior parte
+dei linguaggi di programmazione. Le due più importante sono
+
+* i numeri interi hanno precisione arbitraria---potete scrivere numeri grandi a piacere
+e, a patto di non esaurire la memoria, Python utilizza lo spazio necessario in modo
+trasparente;
+* il risultato della divisione tra due numeri interi è un numero in virgola mobile,
+anche se la divisione è esatta. (La cosa non è irragionevole, perché gli interi non
+sono un campo rispetto all'operazione divisione.)
+
+Ora, nessuna di queste cose è, di per sé, pericolosa---semmai è il contrario. Python
+si comporta come la tipica non-programmatrice si aspetterebbe. Ma se imparate Python
+come primo linguaggio e doveste passare a qualcos'altro, tenete a mente la cosa, perché
+potreste rimanere sorprese.
+:::
+
+
+### Contenitori
+
+I numeri che abbiamo appena visto (siano essi interi o in virgola mobile) sono esempi
+di variabili *scalari*, nel senso che sono oggetti privi di una struttura interna
+modificabile direttamente. Python, come la maggior parte dei linguaggi di programmazione,
+fornisce nativamente tipi che fungono da *collezioni*, o *contenitori* di altri oggetti.
+Ne abbiamo visto un esempio che le liste che abbiamo usato per fare il nostro
+primo grafico nel @{sec-crash}.
+
+Breve elenco dei principali container built-in di Python:
+
+* `list`: sequenza *mutabile* di elementi arbitrari (si assegna con le parentesi quadre);
+* `tuple`: sequenza *immutabile* di elementi arbitrari (si assegna con le parentesi
+tonde);
+* `set`: sequenza senza duplicati (si assegna con le parentesi graffe);
+* `dict`: mapping di tipo chiave-valore.
+
+E la stessa lista, vista in azione:
+```{python}
+l = [1, 2, 3]
+t = (1, 2, 3)
+s = {1, 2, 3}
+d = {"Giulia": 30, "Luca": 18}
+print(l, type(l))
+print(t, type(t))
+print(s, type(s))
+print(d, type(d))
+```
+
+Ok, dire che siamo andati veloci sui container è un eufemismo. Ci torneremo sopra
+nel capitolo @{sec-flow}, quando parleremo del controllo del flusso del programma,
+ma i tipi non scalari di Python non sono esattamente il primo attrezzo nella nostra
+cassetta quando si tratta di processare numeri.
+Nella @{sec-array}, invece, vedremo un altro tipo di container utilissimo per il calcolo
+scientifico: gli array di numpy, che nella maggior parte delle situazioni saranno la
+nostra scelta di default.
+
+
+### Altre cose?
+
+Ci sono almeno altre due cose che dobbiamo menzionare prima di chiudere la nostra
+carrellata sui tipi nativi di Python.
+
+Abbiamo già visto che quando testiamo l'uguaglianza di due oggetti con l'operatore
+`==` il risultato può essere vero o falso. Tecnicamente una variabile che ha solo due
+valori possibili (convenzionalmente vero o falso) si chiama variabile *booleana*.
+In Python il risultato del confronto tra due oggetti è una variabile booleana.
+```{python}
+print(3 == 3, type(3 == 3))
+print(3 == 4, type(3 == 4))
+```
+
+L'ultima cosa è l'oggetto speciale `None`, che non fa niente, non è uguale a nient'altro
+se non se stesso e non supporta nessuna operazione specifica.
+```{python}
+print(None, type(None))
+print(None == "None")
+print(None == False)
+print(None == 0)
+```
+Tenetelo a mente, perché lo incontreremo nel @{sec-functions} quando parleremo di
+funzioni. (E se cominciate a guardare programmi in Python su web vi accorgerete che
+è praticamente dappertutto.)
+
+
+## Gli array di numpy {#sec-array}
+

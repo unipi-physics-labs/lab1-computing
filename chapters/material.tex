@@ -41,64 +41,6 @@ computer che lo esegue. Ma \`e bene avere chiaro fin da subito che vi sono innum
 situazioni in cui questo trade-off si inverte, ed allora \`e necessario fare compromessi.
 
 
-\subsection{Assegnazione: variabili e tipi}
-
-
-
-\subsection{Aritmetica: \python\ come calcolatore tascabile}
-
-La nostra implementazione dell'algoritmo di Euclide fa uso dell'aritmetica intera,
-e la tabella~\ref{tab:arithmetics} elenca tutti gli operatori che \python\
-fornisce per l'aritmetica tra tipi numerici.
-
-\begin{table}[!htbp]
-  \tablehstack{
-  \begin{tabular}{lll}
-    \hline
-    Operatore & Nome & Esempio\\
-    \hline
-    \hline
-    \texttt{+} & Addizione &	\texttt{3 + 4 = 7}\\
-    \texttt{-} & Sottrazione & \texttt{4 - 3 = 1}\\
-    \texttt{*} & Moltiplicazione & \texttt{2 * 3 = 6}\\
-    \texttt{/} & Divisione & \texttt{3 / 2 = 1.5}\\
-    \texttt{\%} & Modulo & \texttt{7 \% 3 = 1}\\
-    \texttt{**} & Elevamento a potenza & \texttt{2 ** 8 = 256}\\
-    \texttt{//} & Divisione intera & \texttt{3 // 2 = 1}\\
-    \hline
-  \end{tabular}
-  }{
-  \caption{Caption.}
-  \label{tab:arithmetics}
-  }
-\end{table}
-
-
-
-\subsection{Contenitori}
-
-Tutte le variabili che abbiamo utilizzato nella nostra prima implementazione dell'algoritmo
-di Euclide~\ref{snip:euclid_algorithm} sono numeri interi, cos\`i come due delle
-tre variabili nel frammento~\ref{snip:variables}---un numero intero ed un numero
-in virgola mobile. Tutti questi sono esempi di oggetti privi di una struttura interna
-modificabile direttamente che, con una parola che dovrebbe essere suggestiva per un Fisico,
-sono anche detti tipi \emph{scalari}.
-
-\snip{containers}{
-  Caption.
-}
-
-La maggior parte dei linguaggi di programmazione, e \python\ non fa eccezione, fornisce
-anche tipi che agiscono da collezioni, sequenze, o contenitori (container), di oggetti pi\`u
-semplici. Ne vediamo sommariamente due---liste e dizionari. (Per completezza, in
-\python\ una stringa \`e una sequenza immutabile, anche quando \`e composta da un solo
-carattere, ma su questo non andremo oltre.)
-
-Nella sezione~\ref{sec:numpy} vedremo un altro tipo di container utilissimo per il
-calcolo scientifico (gli array di \numpy) e discuteremo brevemente le differenze
-rispetto alle liste.
-
-
 \subsection{Controllo del flusso}
 
 "Ripetete il tutto per altre tre volte."; "lasciate cuocere fino a che le patate
