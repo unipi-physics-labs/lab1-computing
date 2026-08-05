@@ -501,6 +501,64 @@ possiamo fare su di essi.
 
 ### Operazioni su array e liste
 
+Abbiamo già visto che le liste supportano alcune operazioni aritmetiche---la somma,
+che in questo contesto intendiamo come concatenazione, ed il prodotto per un numero
+intero, intesa come ripetizione.
+```{python}
+l1 = [1, 2, 3]
+l2 = [4, 5, 6]
+
+print(l1 + l2)
+print(l1 * 2)
+```
+Questo è più o meno tutto. Se provate a moltiplicare due liste tra di loro, o sottrarre
+(o dividere) due liste, o moltiplicare una lista per un numero in virgola mobile,
+vedrete che la cosa fallisce miseramente. (E per ottimi motivi, diremmo, perché non è
+per niente ovvio cosa dovremmo aspettarci da una divisione tra liste.)
+
+E gli array? Qui la cosa è completamente diversa, perché gli array di numpy
+*supportano estensivamente le operazioni aritmetiche elementari, intese però come
+operazioni elemento per elemento*. Ne segue, banalmente, che là dove c'è sovrapposizione
+con le operazioni supportate dalle liste, il comportamento dei due oggetti è
+completamente diverso!
+```{python}
+import numpy as np
+
+a1 = np.array([1, 2, 3])
+a2 = np.array([4, 5, 6])
+
+print(a1 + a2)
+print(a1 * 2)
+print(a1 / a2)
+```
+
+Quale delle due cose vi pare più utile per noi? Beh, dovrebbe essere più o meno ovvio
+che se la nostra attività principale è manipolare numeri, allora gli array sono quello
+che fa per noi.
+
+Volete un esempio? Torniamo per un secondo al nostro glorioso, primo grafico che
+abbiamo visto nel @{sec-crash}, ed in particolare a come abbiamo definito i valori
+centrali e le incertezze sulla variabile indipendente
+
+```{python}
+y = [1, 4, 9, 16, 25]
+dy = [1, 1, 1, 1, 1]
+
+print(y)
+print(dy)
+```
+
+Pensate un attimo: non sarebbe più semplice scrivere
+```{python}
+import numpy as np
+
+y = np.array([1, 4, 9, 16, 25])
+dy = np.full(y.shape, 1)
+
+print(y)
+print(dy)
+```
+
 
 ### Indirizzamento degli elementi
 
