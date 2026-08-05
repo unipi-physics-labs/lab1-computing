@@ -444,3 +444,65 @@ funzioni. (E se cominciate a guardare programmi in Python su web vi accorgerete 
 
 ## Gli array di numpy {#sec-array}
 
+[numpy](https://numpy.org/) è la libreria alla base dell'ecosistema scientifico di
+Python. Se dovessimo riassumere in una frase quel che offre numpy, diremmo: un nuovo
+tipo di *array* multidimensionali, ed una collezione estensiva di funzioni matematiche
+capaci di inter-operare con esso in modo trasparente. In questa breve sezione ci
+prenderemo il tempo per capire cosa significa attraverso alcuni esempi.
+
+
+Un array di numpy è, superficialmente, non troppo dissimile da una lista---tanto che
+il modo più immediato di creare un array è proprio partendo da una lista.
+```{python}
+import numpy as np
+
+l = [1, 2, 3, 4]
+a = np.array([1, 2, 3, 4])
+print(l)
+print(a)
+```
+(Le più attente tra voi avranno notato la sottile differenza con cui i due oggetti
+vengono rappresentati attraverso il built-in `print`; non è una cosa fondamentale, ma
+tenetela in mente perché potrebbe tornarvi utile quando dovete distinguere tra cosa
+diverse.)
+
+Ci sono altri modi di creare array? Moltissimi, e offriamo qui una breve selezione
+senza particolari spiegazioni---ove i nomi non fossero completamente auto-esplicativi
+il consiglio è sempre lo stesso: la
+[documentazione](https://numpy.org/doc/stable/user/absolute_beginners.html).
+
+```{python}
+import numpy as np
+
+print(np.zeros(8))
+print(np.ones(8))
+print(np.full(8, 2.))
+print(np.linspace(1, 8, 8))
+print(np.geomspace(1, 8, 8))
+```
+
+Le affinità tra liste ed array si esauriscono sostanzialmente nel fatto che entrambe
+sono sequenze---ovvero sia particolari tipi di contenitori. Da qui in poi le
+differenze sono molte:
+
+* le liste sono contenitori di tipo general purpose, mentre gli array sono altamente
+ottimizzati per lavorare con numeri;
+* le liste sono contenitori *eterogenei* (i.e., potete mischiare al loro interno numeri,
+stringhe e letteralmente qualsiasi cosa, comprese altre liste) mentre gli array sono
+*omogenei*: possono contenere numeri interi, o numeri in virgola mobile, ma non un mix
+dei due.
+* il contenuto di un array è fisicamente conservato in una regione contigua di memoria,
+il che rende questi oggetti non particolarmente adatti ad essere estesi o ridotti, una
+volta che siano stati creati con una certa dimensione iniziale.
+
+Ma la cosa in cui i due tipi differiscono più profondamente sono le operazioni che
+possiamo fare su di essi.
+
+
+### Operazioni su array e liste
+
+
+### Indirizzamento degli elementi
+
+
+### Operazioni matematiche
