@@ -345,7 +345,6 @@ non ha cifre alla sua destra, è come se ci fosse uno zero---in altre parole
 `2.` e `2.0` sono esattamente la stessa cosa. (Numericamente anche l'intero `2`
 rappresenta lo stesso valore, ma dal punto di vista dei tipi sono due cose diverse.)
 
-
 | Operatore | Nome | Esempio |
 |:---------:|:-----|:---------|
 | `+` | Addizione | `3 + 4` → `7` |
@@ -375,6 +374,17 @@ si comporta come la tipica non-programmatrice si aspetterebbe. Ma se imparate Py
 come primo linguaggio e doveste passare a qualcos'altro, tenete a mente la cosa, perché
 potreste rimanere sorprese.
 :::
+
+::: {.callout-tip}
+Piccolo consiglio non richiesto. Adesso che avete chiara la differenza tra numeri interi
+e numeri in virgola mobile (e anche se l'aritmetica di Python è implementata in modo
+da fare quasi sempre la cosa giusta in modo trasparente) cercate proattivamente di usare
+i tipi numerici in modo appropriato secondo il contesto. In particolare: quando scrivete
+il valore di una misura è buona pratica usare numeri in virgola mobile---se misurate
+$23$ cm, privilegiate `23.0` o `23.` (floating point) a `23` (intero). Se mai doveste
+cambiare linguaggio di programmazione mi ringrazierete!
+:::
+
 
 
 ### Contenitori
@@ -456,8 +466,8 @@ il modo più immediato di creare un array è proprio partendo da una lista.
 ```{python}
 import numpy as np
 
-l = [1, 2, 3, 4]
-a = np.array([1, 2, 3, 4])
+l = [1., 2., 3., 4.]
+a = np.array([1., 2., 3., 4.])
 print(l)
 print(a)
 ```
@@ -477,8 +487,8 @@ import numpy as np
 print(np.zeros(8))
 print(np.ones(8))
 print(np.full(8, 2.))
-print(np.linspace(1, 8, 8))
-print(np.geomspace(1, 8, 8))
+print(np.linspace(1., 8., 8))
+print(np.geomspace(1., 8., 8))
 ```
 
 Le affinità tra liste ed array si esauriscono sostanzialmente nel fatto che entrambe
@@ -499,14 +509,14 @@ Ma la cosa in cui i due tipi differiscono più profondamente sono le operazioni 
 possiamo fare su di essi.
 
 
-### Operazioni su array e liste
+### Aritmetica degli array
 
 Abbiamo già visto che le liste supportano alcune operazioni aritmetiche---la somma,
 che in questo contesto intendiamo come concatenazione, ed il prodotto per un numero
 intero, intesa come ripetizione.
 ```{python}
-l1 = [1, 2, 3]
-l2 = [4, 5, 6]
+l1 = [1., 2., 3.]
+l2 = [4., 5., 6.]
 
 print(l1 + l2)
 print(l1 * 2)
@@ -524,12 +534,15 @@ completamente diverso!
 ```{python}
 import numpy as np
 
-a1 = np.array([1, 2, 3])
-a2 = np.array([4, 5, 6])
+a1 = np.array([1., 2., 3.])
+a2 = np.array([4., 5., 6.])
 
 print(a1 + a2)
+print(a2 + a1)
 print(a1 * 2)
 print(a1 / a2)
+print(20. * a1)
+print(a1**2.)
 ```
 
 Quale delle due cose vi pare più utile per noi? Beh, dovrebbe essere più o meno ovvio
@@ -541,19 +554,35 @@ abbiamo visto nel @{sec-crash}, ed in particolare a come abbiamo definito i valo
 centrali e le incertezze sulla variabile indipendente
 
 ```{python}
-y = [1, 4, 9, 16, 25]
-dy = [1, 1, 1, 1, 1]
+y = [1., 4., 9., 16., 25.]
+dy = [1., 1., 1., 1., 1.]
 
 print(y)
 print(dy)
 ```
+(Notate: adesso che sappiamo la differenza tra numeri interi e numeri in virgola mobile
+dobbiamo cercare di usare consistentemente questi ultimi per scrivere le misure.)
 
 Pensate un attimo: non sarebbe più semplice scrivere
 ```{python}
 import numpy as np
 
-y = np.array([1, 4, 9, 16, 25])
-dy = np.full(y.shape, 1)
+y = np.array([1., 4., 9., 16., 25.])
+dy = np.full(y.shape, 1.)
+
+print(y)
+print(dy)
+```
+Così facendo, se ad un certo punto decidessimo che il valore più appropriato per
+l'incertezza `dy` è $1.2$ anziché $1.$, dovremmo cambiare solo un numero e non 5!
+E ancora, con questa aggiunta alla nostra cassetta degli attrezzi è facile esprimere
+un errore relativo costante
+```{python}
+import numpy as np
+
+y = np.array([1., 4., 9., 16., 25.])
+# 5% relative error.
+dy = 0.05 * y
 
 print(y)
 print(dy)
@@ -562,5 +591,69 @@ print(dy)
 
 ### Indirizzamento degli elementi
 
+C'è una cosa importante che abbiamo omesso di dire quando abbiamo introdotto le
+sequenze: come faccio ad indirizzare un elemento specifico (*indexing*) o un sottoinsieme di elementi (*slicing*) all'interno della sequenza? In fondo le
+operazioni elemento-a-elemento non sono l'unica cosa che potrei voler fare con un
+array...
+
+Trovate i dettagli più importanti [qui](https://numpy.org/doc/stable/user/absolute_beginners.html#indexing-and-slicing) ma la risposta breve è che
+gli array (e le liste) si indirizzano con una sintassi dedicata che fa uso delle
+parentesi quadre.
+
+```{python}
+import numpy as np
+
+x = np.linspace(1., 10., 10)
+print(x)
+
+# Indexing: access the i-th element
+print(x[3])
+
+# Slicing: access all the elements between the i-th and the j-th
+# Indexing: access the i-th element
+print(x[3:7])
+```
+
+::: {.callout-tip}
+Per evitare confusioni: in Python tutte le sequenze (incluse liste ed array) sono
+indicizzate a partire da zero. Questo vuol dire che il primo elemento di un array
+ha l'indice $0$, il secondo ha l'indice $1$, e così via.
+Quando facciamo lo slicing con la sintassi `[i:j]` si intende che l'indice iniziale
+`i` è incluso e quello finale `j` è escluso. Riguardate l'esempio sopra ed assicuratevi
+di aver capito.
+:::
+
 
 ### Operazioni matematiche
+
+Siamo arrivati al piatto forte: la lista sterminata di  [funzioni matematiche](https://numpy.org/doc/stable/reference/routines.math.html) supportata da numpy. Se queste
+non bastassero, il modulo [scipy.special](https://docs.scipy.org/doc/scipy/reference/special.html#module-scipy.special) ne aggiunge molte altre decine.
+Ce n'è letteralmente per tutti i gusti, e non solo le solite sospette (funzioni
+trigonometriche, esponenziali, logaritmi), ma veramente tutte quelle che potete
+verosimilmente immaginare. Seguite i link e date un'occhiata voi stesse.
+
+Ma la cosa più importante non è la lunghezza della lista di funzioni supportate---è il
+fatto che tutte queste funzioni, esattamente come abbiamo visto per l'aritmetica,
+operano sugli array *elemento per elemento*!
+```{python}
+import numpy as np
+x = np.array([1., 2., 3., 4., 5.])
+
+print(np.sin(x))
+print(np.exp(x))
+print(np.log(x))
+```
+
+Volete fare il grafico di una funzione trigonometrica? Niente di più semplice.
+```{python}
+import numpy as np
+from matplotlib import pyplot as plt
+
+x = np.linspace(0., 2. * np.pi, 100)
+y = np.sin(x)
+plt.plot(x, y)
+plt.show()
+```
+
+Nel prossimo capitolo cercheremo di mettere a frutto quello che abbiamo imparato su
+numpy per migliorare il grafico da cui abbiamo iniziato nel @{sec-crash}.

@@ -1,1 +1,96 @@
 # Funzioni  {#sec-functions}
+
+Abbiamo incontrato i nostri primi esempi di *funzioni* (`plt.figure`, `plt.errorbar` e
+`plt.show`) nel capitolo @{sec-crash}. In quel contesto ce la siamo cavata senza
+entrare troppo nei dettagli, ma adesso è arrivato il momento di tornare sull'argomento
+ed affrontarlo di petto.
+
+Supponiamo di voler scrivere un libro di cucina dedicato ai dolci, e di avere 8 ricette
+che fanno uso della crema pasticcera. Siamo di fronte ad un'importante scelta editoriale:
+possiamo scrivere la ricetta della crema una volta sola (magari all'inizio) e poi
+rimandare alla pagina opportuna ogni volta che serve; oppure copiare la ricetta della
+crema *verbatim* per 8 volte. Quali sono i pro e i contro delle due possibilità?
+
+Se scegliamo di scrivere la ricetta una volta sola abbiamo due vantaggi distinti:
+
+* il libro ha fisicamente più breve, il che è bene per l'ambiente (meno per noi,
+se veniamo pagate in base al numero di pagine);
+* se per la seconda edizione ci viene in mente un tocco magico per migliorare la
+ricetta non dobbiamo modificare il libro in 8 posti diversi, ma in uno solo.
+
+Ci sono controindicazioni? Beh, forse il leggero fastidio di non avere tutto il flusso
+di informazioni in un posto solo e di dover andare avanti e dietro nel libro.
+Pensateci un attimo: non c'è dubbio che, in questo caso, i pro superino i contro.
+
+Una cosa analoga avviene sistematicamente nei programmi. Una *funzione*, come abbiamo
+già detto sommariamente, è un blocco di istruzioni coerente progettato per svolgere
+un compito specifico. Ogni volta che il nostro programma ha bisogno di svolgere questo
+compito, anziché copiare fisicamente le istruzioni da una parte all'altra, *chiamiamo*
+la funzione. Si tratta di un principio talmente importante che gli informatici gli hanno
+dato anche un nome: DRY (*Do not Repeat Yourself*).
+
+
+## La nostra prima funzione
+
+Non c'è modo migliore per imparare a fare una funzione che scriverne una. E non c'è
+modo migliore che scriverne una che farlo per risolvere un problema concreto. La
+nostra prima funzione, allora, la faremo per *fittare* una serie di dati con una retta.
+
+::: {.callout-note}
+Lo studierete in tutto il dettaglio nella parte di statistica del corso di Laboratorio,
+ma fare un fit ad una serie di dati significa trovare la funzione che più si adatta ai
+dati, all'interno di una famiglia di funzioni dipendente da uno o più parametri
+(il *modello*). Più precisamente: si tratta di trovare i valori dei parametri del
+modello (e le incertezze associate) per cui l'accordo con i dati è, in un qualche senso
+da precisare, massimo. Nel caso del fit con una retta cercheremo il coefficiente angolare
+e l'intercetta della retta nel piano che meglio descrive la nostra serie di punti.
+:::
+
+```{python}
+#| code-line-numbers: true
+
+import numpy as np
+from matplotlib import pyplot as plt
+from scipy.optimize import curve_fit
+
+# Define the input data.
+x = np.array([1., 2., 3., 4., 5.])
+y = np.array([1.2, 2.1, 2.9, 4.3, 4.8])
+dy = np.full(y.shape, 0.25)
+
+# Define the fitting model.
+def line(x, m, q):
+    return m * x + q
+
+# Create a figure and make a plot with error bars.
+plt.figure("linear fit")
+plt.errorbar(x, y, dy, fmt="o")
+plt.xlabel("x [u. a.]")
+plt.ylabel("y [u. a.]")
+
+# Fit the data points.
+popt, pcov = curve_fit(line, x, y, sigma=dy)
+m_hat, q_hat = popt
+sigma_m, sigma_q = np.sqrt(pcov.diagonal())
+print(f"m = {m_hat:.3f} ± {sigma_m:.3f}")
+print(f"q = {q_hat:.2f} ± {sigma_q:.2f}")
+
+plt.plot(x, line(x, m_hat, q_hat))
+
+# Show the plot on the screen.
+plt.show()
+```
+
+Avrete notato che, rispetto al nostro programma iniziale abbiamo applicato molte delle
+cose che abbiamo imparato nel @{sec-types}. Ma la cosa veramente nuova è la *funzione*
+che descrive il nostro modello di fit---una retta.
+
+```{python}
+#| output: false
+def line(x, m, q):
+    return m * x + q
+```
+
+
+
+## Le funzioni in dettaglio
