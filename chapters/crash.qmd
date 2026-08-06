@@ -53,8 +53,7 @@ da lì in poi la strada è in discesa.
 
 Cosa diavolo significa la linea 1?
 
-```{python}
-#| output: false
+```python
 from matplotlib import pyplot as plt
 ```
 
@@ -142,8 +141,7 @@ Potete usarle, ad esempio, per separare tra loro sezioni di codice che sono logi
 distinte.
 
 Siamo arrivati alla linea 3.
-```{python}
-#| output: false
+```python
 # Define the input data.
 ```
 Una linea preceduta da un carattere `#` si chiama *commento* (almeno in Python).
@@ -175,8 +173,7 @@ In LaTeX con `%`. La lista potrebbe essere arbitrariamente lunga...
 
 Con le linee 4, 5 e 6 entriamo nel vivo. Sono tutte simili, per cui è sufficiente
 analizzare la prima
-```{python}
-#| output: false
+```python
 x = [1, 2, 3, 4, 5]
 ```
 Cosa sta succedendo? Due cose distinte, entrambi importanti:
@@ -203,8 +200,7 @@ siete avvertite!
 Siamo quasi alla fine del nostro viaggio inaugurale---ci mancano le linee 9, 10
 e 13, e al solito le esaminiamo una per una.
 
-```{python}
-#| output: false
+```python
 plt.figure("scatter plot")
 ```
 
@@ -260,8 +256,7 @@ disegnando, e minimizzate la possibilità di confusione.
 
 E con questo è arrivato il momento di passare alla riga 10.
 
-```{python}
-#| output: false
+```python
 plt.errorbar(x, y, dy, fmt="o")
 ```
 
@@ -286,8 +281,7 @@ perché ci torneremo tra pochissimo.
 
 Siamo ormai giunti al termine, ma c'è un ultimo elemento di suspence nella storia,
 perché senza la linea 13
-```{python}
-#| output: false
+```python
 plt.show()
 ```
 non succederebbe nulla. `figure` crea una tela su cui disegnare; `errorbar` disegna

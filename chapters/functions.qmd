@@ -85,12 +85,207 @@ Avrete notato che, rispetto al nostro programma iniziale abbiamo applicato molte
 cose che abbiamo imparato nel @{sec-types}. Ma la cosa veramente nuova è la *funzione*
 che descrive il nostro modello di fit---una retta.
 
-```{python}
-#| output: false
+```python
 def line(x, m, q):
     return m * x + q
 ```
 
+Vediamo i punti salienti:
+
+* una nuova funzione si definisce con la parola chiave `def`, seguita dal nome
+che vogliamo dare alla funzione (nel nostro caso `line`);
+* seguono tutti gli *argomenti* della funzione, racchiusi tra parentesi tonde;
+* i due punti `:` delimitano l'inizio del *corpo* della funzione, che generalmente
+è a capo, ed è *indentato* di 4 spazi verso destra;
+* se la funzione *restituisce* un valore, che è un caso tipico, questo si fa
+utilizzando la parola chiave `return`.
+
+Nel nostro caso particolare gli argomenti della funzione sono, in ordine:
+
+* il valore `x` della variabile indipendente, che può essere un numero o un array di
+numpy;
+* il valore `m` del coefficiente angolare della retta;
+* il valore `q` dell'intercetta.
+
+La funzione, come si vede, restituisce il valore che la retta assume sull'asse delle
+ordinate per un particolare insieme di valori delle ascisse, fissati coefficiente
+angolare ed intercetta.
+
+```{python}
+import numpy as np
+
+def line(x, m, q):
+    return m * x + q
+
+x = np.linspace(0., 10., 11)
+m = 2.
+q = 1.
+print(line(x, m , q))
+```
+
+### Funzioni di Python e funzioni matematiche
+
+La nostra prima funzione in Python, per una pura coincidenza, implementa una funzione
+matematica in senso stretto. Basta scrivere
+$$
+f(x; m, q) = mx + q
+$$
+per rendersi conto che l'analogia tra le due cose, qui, è pressoché perfetta.
+
+In effetti, se ci pensiamo bene, non è poi così strano che questo nuovo oggetto che
+stiamo gradualmente introducendo si chiami così. Come una funzione matematica, una
+funzione di Python può accettare argomenti; e come una funzione matematica, una
+funzione di Python può restituire un (o più di un) valore. Eppure le due cose sono
+fondamentalmente diverse.
+
+Una funzione matematica, strettamente parlando, *calcola un valore*. Una funzione in
+un qualsiasi linguaggio di programmazione fa una cosa più generale, ovvero
+*esegue un compito specifico*. A volte questo compito è calcolare un valore, a volte no:
+una funzione potrebbe, ad esempio, scrivere dei dati in un file su disco; aprire una
+finestra grafica sullo schermo; configurare un router---non c'è limite alla fantasia.
+
+Non è nemmeno detto che una funzione in questo nuovo senso debba per forza restituire
+un valore---ci sono funzioni legittime che non restituiscono niente!
+```{python}
+def greet(name):
+    print(f"Hello {name}!")
+
+greet("Giulia")
+```
+
+::: {.callout-note}
+Questo non è del tutto corretto, almeno in Python: una funzione restituisce sempre
+qualcosa, e se non mettiamo un'istruzione `return` nel corpo della funzione, questo
+qualcosa è `None`.
+```{python}
+def greet(name):
+    print(f"Hello {name}!")
+
+print(greet("Giulia"))
+```
+Notiamo, per inciso, che come mostrano questi ultimi due esempi, non siete costrette ad
+intercettare il valore restituito dalla funzione---potete tranquillamente chiamarla
+senza assegnare il risultato ad una variabile.
+:::
+
+Si possono persino fare funzioni che, oltre a non restituire valori, non accettano
+argomenti. E, se ci pensate per un secondo, ne abbiamo già incontrata almeno una
+```python
+plt.show()
+```
+
+Ok, abbiamo già speso troppo tempo sulla questione ed è il momento di procedere, ma
+avete capito il messaggio: in questo contesto una funzione è banalmente una
+funzione matematica, ma una sorta di sua generalizzazione.
 
 
-## Le funzioni in dettaglio
+### Digressione: la funzione `curve_fit`
+
+Prima di andare avanti vale la pena fermarsi per un attimo a discutere il nostro ultimo
+incontro
+```python
+popt, pcov = curve_fit(line, x, y, sigma=dy)
+```
+Si tratta ovviamente di una funzione, e non bisogna andare molto lontano nel nostro
+programma
+```python
+from scipy.optimize import curve_fit
+```
+per capire che si tratta di una funzione contenuta nel modulo `optimize` della libreria
+`scipy`.
+(Link alla [documentazione](https://docs.scipy.org/doc/scipy/reference/optimize.html).)
+
+Che cosa possiamo dire di questa funzione: beh, anche senza guardare la
+[definizione](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html#scipy.optimize.curve_fit)
+completa, possiamo dire che accetta almeno $4$ argomenti;
+
+* il modello, che è anch'esso una funzione (pensateci un attimo: una funzione che
+accetta come argomento un'altra funzione---chi l'avrebbe immaginato?);
+* le coordinate $x$ dei punti da fittare;
+* le coordinate $y$ dei punti da fittare;
+* le incertezze sulla $y$.
+
+Possiamo anche dire con certezza che la funzione `curve_fit` restituisce due oggetti,
+che noi abbiamo assegnato alle variabili `popt` e `pcov`. Cosa sono questi due oggetti?
+
+* `popt` è un array di numpy che contiene i valori ottimali del parametri di fit, in
+questo caso $\hat{m}$ e $\hat{q}$;
+* `pcov` è un array *a due indici* (o, se volete, una matrice, in questo caso
+$2 \times 2$) che va generalmente sotto il nome di *matrice di covarianza dei parametri*.
+
+A questo livello non dovete sapere niente della matrice di covarianza, se no che
+le incertezze sui parametri coincidono con la radice quadrata dei suoi elementi
+diagonali. Esaminate allora con attenzione le righe
+```python
+m_hat, q_hat = popt
+sigma_m, sigma_q = np.sqrt(pcov.diagonal())
+```
+ed assicuratevi di aver capito cosa significano, magari facendovi stampare sul terminale
+i valori intermedi.
+
+
+## Le funzioni più in dettaglio
+
+Se avete prestato attenzione, c'è almeno una cosa che non abbiamo ancora spiegato e che
+potrebbe infastidire le più pignole tra voi. *Come mai chiamiamo alcuni argomenti per
+nome e altri no?* Lo abbiamo visto almeno due volte.
+
+```python
+plt.errorbar(x, y, dy, fmt="o")
+popt, pcov = curve_fit(line, x, y, sigma=dy)
+```
+
+Cosa c'è di particolare negli argomenti `fmt` (di `plt.errorbar`) e `sigma`
+(di `curve_fit`) che fa sì che dobbiamo chiamarli con questa strana sintassi
+`nome_argomento=valore`, mentre in tutti gli altri casi utilizziamo semplicemente il
+nome della variabile rilevante?
+
+Per capire questo dobbiamo guardare più in dettaglio le regole per la definizione di
+funzioni in Python.
+
+
+### Definizione di una funzione: segnatura
+
+Se siete interessate ad un'introduzione sommaria ma tutto sommato completa a questo
+argomento, il posto giusto in cui guardare è la pagina della documentazione di Python
+relativa alla
+[definizione delle funzioni](https://docs.python.org/3/tutorial/controlflow.html#defining-functions). Noi ci limiteremo allo stretto necessario.
+
+Tecnicamente l'informazione che specifica come si chiama una particolare funzione si
+chiama *segnatura*, e comprende il nome della funzione stessa, il nome di tutti gli
+argomenti che la funzione accetta, e l'ordine in cui questi debbono essere forniti.
+Così la nostra funzione
+```python
+def greet(name):
+    print(f"Hello {name}!")
+```
+ha una segnatura semplicissima: si chiama `greet`, ed accetta un solo parametro,
+che si chiama `name`. Possiamo chiamarla in due modi diversi, ma equivalenti:
+```{python}
+def greet(name):
+    print(f"Hello {name}!")
+
+greet("Giulia")
+greet(name="Giulia")
+```
+In questo caso non ha molto senso usare la seconda forma, che è più verbosa. Anche se,
+ad un'occhiata più approfondita, specificare il nome dell'argomento nella chiamata ci
+dà informazione di contesto utile: la stringa `"Giulia"`, che passiamo alla funzione,
+rappresenta il *nome* della persona che vogliamo salutare. Potete immaginare che
+nei casi più complessi, in cui magari abbiamo una dozzina di argomenti, chiamare
+le cose per nome aiuti a non dover ricordare a memoria il loro ordine nella segnatura.
+Ma ci arriveremo per gradi.
+
+Quando definiamo una funzione in Python, possiamo assegnare ad ogni singolo argomento
+un *valore di default* nella forma `nome_argomento=valore_di_default` direttamente nella
+definizione della funzione. Quando un argomento ha un valore di default, possiamo
+omettere di specificarlo nelle chiamate alle funzioni stesse.
+```{python}
+def greet(name="Giulia"):
+    print(f"Hello {name}!")
+
+greet()
+greet("Luca")
+greet("Giulia")
+greet(name="Anna")
+```
