@@ -312,3 +312,127 @@ sommato completa all'argomento, il posto giusto in cui guardare è la pagina del
 documentazione di Python relativa alla
 [definizione delle funzioni](https://docs.python.org/3/tutorial/controlflow.html#defining-functions).
 :::
+
+
+### Un esempio dal mondo reale
+
+Torniamo per un attimo alla funzione
+[errorbar](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.errorbar.html)
+del modulo `pyplot` di `matplotlib` che abbiamo già utilizzato in più di un'occasione.
+La segnatura si leggere direttamente dalla documentazione:
+```python
+matplotlib.pyplot.errorbar(x, y, yerr=None, xerr=None, fmt='', *, ecolor=None,
+elinewidth=None, capsize=None, barsabove=False, lolims=False, uplims=False,
+xlolims=False, xuplims=False, errorevery=1, capthick=None, elinestyle=None,
+data=None, **kwargs)
+```
+Complicato, eh?
+
+::: {.callout-tip}
+La segnatura di una funzione si può ricavare interattivamente usando il built-in
+`help`.
+
+```python
+>>> import matplotlib.pyplot as plt
+>>> help(plt.errorbar)
+Help on function errorbar in module matplotlib.pyplot:
+
+errorbar(
+    x: 'float | ArrayLike',
+    y: 'float | ArrayLike',
+    yerr: 'float | ArrayLike | None' = None,
+    xerr: 'float | ArrayLike | None' = None,
+    fmt: 'str' = '',
+    *,
+    ecolor: 'ColorType | None' = None,
+    elinewidth: 'float | None' = None,
+    capsize: 'float | None' = None,
+    barsabove: 'bool' = False,
+    lolims: 'bool | ArrayLike' = False,
+    uplims: 'bool | ArrayLike' = False,
+    xlolims: 'bool | ArrayLike' = False,
+    xuplims: 'bool | ArrayLike' = False,
+    errorevery: 'int | tuple[int, int]' = 1,
+    capthick: 'float | None' = None,
+    elinestyle: 'LineStyleType | None' = None,
+    data=None,
+    **kwargs
+) -> 'ErrorbarContainer'
+...
+```
+
+Non lasciatevi confondere dalle *annotazioni* in verde che non sono esposte nella
+pagina delle documentazione. Sono un argomento avanzato che non copriremo, ma non
+hanno nessuna influenza sull'esecuzione del programma. (Ma se la cosa vi aiuta,
+sfruttatela pure per ragionare sulle funzioni!)
+
+Quando confrontate la documentazione online con l'output dell'help interattivo del
+vostro interprete di Python, verificate sempre che le versioni dei pacchetti
+siano indentiche, perché la segnatura di una funziona può cambiare da una versione
+all'altra!
+:::
+
+Andiamo per ordine. La funzione ha la bellezza di 18 parametri! Pensate per un attimo
+se Python non offrisse la possibilità di fornire valori di default agli argomenti, e
+ogni volta che vogliamo fare un grafico di dispersione dovessimo passare letteralmente
+18 cose diverse...
+
+I primi due argomenti (`x` e `y`) *non* hanno valori di default, per cui sono
+da considerare obbligatori: ha senso, perché se voglio fare un grafico di dispersione,
+come minimo devo passare le coordinate $x$ e $y$ dei punti. Gli altri 16 parametri
+hanno valori di default, per cui sono opzionali. (Ricordate la regola fondamentale nella
+definizione di una funzione: quanto un argomento ha un valore di default, anche tutti
+quelli che lo seguono devono avere un valore di default.)
+
+Guardiamo con attenzione i primi 4 argomenti:
+```python
+matplotlib.pyplot.errorbar(x, y, yerr=None, xerr=None, ...)
+```
+La funzione è definita in modo che dobbiamo passare in ordine:
+
+* i valori `x` della variabile indipendente;
+* i valori `y` della variabile dipendente;
+* le incertezze `yerr` su `y` (nota bene: non su `x`!);
+* le incertezze `xerr` su `x`.
+
+Vedete qualcosa di strano? Se passiamo `x` prima di `y`, non avrebbe senso
+passare `xerr` prima di `yerr`? Da un punto di vista di mera simmetria può darsi, ma
+da un punto di vista pratico la segnatura della funzione è assolutamnete ragionevole,
+perché *mentre è comune avere un grafico di dispersione con incertezze sulla $y$ ma
+non sulla $x$, il contrario non avviene praticamente mai*! Allora il modo in cui
+gli sviluppatori hanno definito la funzione permette di coprire tutti i casi
+d'uso più frequenti *senza mai chiamare gli argomenti per nome*:
+```python
+errorbar(x, y) # Scatter plot senza incertezze
+errorbar(x, y, dy) # Incertezze sulla y ma non sulla x
+errorbar(x, y, dy, dx) # Incertezze sia sulla x che sulla y
+```
+Certo: se fossimo proprio adamantine nel voler fare uno scatter plot con incertezze
+sulla $x$ ma non sulla $y$, la sintassi sarebbe leggermente più involuta, perché
+siamo limitati alle due possibilità
+```python
+errorbar(x, y, None, dx)
+errorbar(x, y, xerr=dx)
+```
+ma la cosa è irrilevante perché questo, vi assicuro, non succede quasi mai.
+
+E adesso abbiamo tutti gli ingredienti per capire il motivo per cui abbiamo inizialmente
+chiamato la funzione in quel modo apparentemente bizzarro
+```python
+errorbar(x, y, dy, fmt="o")
+```
+La logica è più o meno la seguente: vogliamo passare esplicitamente quattro argomenti
+(`x`, `y`, `yerr` e `fmt`) alla funzione, e nella segnatura questi argomenti sono
+il primo, il secondo, il terzo ed *il quinto*. Non possiamo passarli semplicemente
+per valore, così come sono, perché altrimenti `"o"` sarebbe assegnato a `dx`, non a
+`fmt`. Ci restano due possibilità: passare il valore di defaul per il quarto argomento
+(`xerr`), oppure fare quello che abbiamo fatto.
+```python
+errorbar(x, y, dy, None, "o")
+errorbar(x, y, dy, fmt="o")
+```
+Le due cose sono esattamente equivalenti, ma la seconda è sicuramente più espressiva.
+
+Ci fermiamo qui. Non abbiamo spiegato cosa vuol dire il simbolo `*` dopo il
+quinto argomento, né il `**kwargs` alla fine della definizione della funzioni, ma
+per adesso sappiamo abbastanza.
