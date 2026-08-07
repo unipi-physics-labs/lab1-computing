@@ -64,6 +64,7 @@ format:
     code-copy: true
     code-link: true
     code-fold: false
+    toc: true
     toc-depth: 3
 
 jupyter: python3
