@@ -246,11 +246,6 @@ funzioni in Python.
 
 ### Definizione di una funzione: segnatura
 
-Se siete interessate ad un'introduzione sommaria ma tutto sommato completa a questo
-argomento, il posto giusto in cui guardare è la pagina della documentazione di Python
-relativa alla
-[definizione delle funzioni](https://docs.python.org/3/tutorial/controlflow.html#defining-functions). Noi ci limiteremo allo stretto necessario.
-
 Tecnicamente l'informazione che specifica come si chiama una particolare funzione si
 chiama *segnatura*, e comprende il nome della funzione stessa, il nome di tutti gli
 argomenti che la funzione accetta, e l'ordine in cui questi debbono essere forniti.
@@ -260,7 +255,11 @@ def greet(name):
     print(f"Hello {name}!")
 ```
 ha una segnatura semplicissima: si chiama `greet`, ed accetta un solo parametro,
-che si chiama `name`. Possiamo chiamarla in due modi diversi, ma equivalenti:
+che si chiama `name`. Il modo più semplice per chiamare una funzione è fornire i valori
+di tutti gli argomenti, *nell'ordine in cui sono definiti nella segnatura*, ma
+Python permette anche di fare una cosa diversa: chiamare gli argomenti per nome.
+Così, tornando alla nostra semplice funzione di esempio, abbiamo due possibilità
+distinte, ma equivalenti:
 ```{python}
 def greet(name):
     print(f"Hello {name}!")
@@ -289,3 +288,27 @@ greet("Luca")
 greet("Giulia")
 greet(name="Anna")
 ```
+Implicitamente, la possibilità di definire argomenti di default fa sì che tutti gli
+argomenti che ne sono sprovvisti siano *non opzionali*, o obbligatori: semplicemente
+è impossibile chiamare la funzione senza fornirne i valori.
+
+::: {.callout-warning}
+Quando usiamo uno o più valori di default nella definizione di una funzione, dobbiamo
+ricordare una regola importante: se uno specifico argomento ha assegnato un valore di
+default, allora *anche tutti quelli che seguono devono avere un valore di default.*
+Il motivo di questo vincolo apparentemente restrittivo è di evitare potenziali
+ambiguità nella chiamata, ma a questo livello lo prenderemo come una condizione al
+contorno.
+:::
+
+Bene, abbiamo collezionato abbastanza informazioni e siamo pronti per discutere in
+modo più approfondito la segnatura di una funzione più complessa---ne prenderemo una
+tra quelle che abbiamo già incontrato.
+
+::: {.callout-note}
+La questione della definizione delle funzioni in Python è significativamente più
+complessa e sfaccettata. Se siete interessate ad un'introduzione sommaria ma tutto
+sommato completa all'argomento, il posto giusto in cui guardare è la pagina della
+documentazione di Python relativa alla
+[definizione delle funzioni](https://docs.python.org/3/tutorial/controlflow.html#defining-functions).
+:::
