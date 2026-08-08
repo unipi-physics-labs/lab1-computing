@@ -111,7 +111,7 @@ dalla tabella Unicode nei nomi dei file. Questo, va da sé, non implica che in g
 sia una buona regola essere particolarmente spregiudicati. Lo spazio è un buon
 esempio di carattere che, essendo usato come separatore nei comandi sul terminale,
 sarebbe buona abitudine non utilizzare nei nomi dei file---magari sostituendolo con
-un underscore (\cchar{\_}).
+un underscore (`_`).
 
 
 ### Le variabili d'ambiente

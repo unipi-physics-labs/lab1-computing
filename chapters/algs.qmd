@@ -144,8 +144,8 @@ Oppure possiamo partire da metà dell'elenco e vedere se il nome cercato
 è prima o dopo nella lista: in un passo eliminiamo metà dell'elenco, e
 possiamo ripetere la procedura bisecando ogni volta la parte rimanente, che in
 questo modo si dimezza ad ogni passo. Non è difficile convincersi che il
-processo converge in un numero di passi minore o uguale a $\llog[2] N$.
-(E per $N$ grande, $\llog[2] N$ o $N$ fa un'enorme differenza.) L'algoritmo
+processo converge in un numero di passi minore o uguale a $log_2 N$.
+(E per $N$ grande, $\log_2 N$ o $N$ fa un'enorme differenza.) L'algoritmo
 che abbiamo appena delineato si dice *ricerca binaria* ed è ottimale
 per la ricerca di un elemento in una lista ordinata.
 
@@ -172,7 +172,7 @@ per la ricerca di un elemento in una lista ordinata.
     la differenza non è impressionante, ma con un elenco di $10\,000\,000$
     di persone una ricerca sequenziale richiede al massimo $10\,000\,000$ di
     passi, mentre una ricerca binaria ne richiede al massimo
-    $\llog[2]{10\,000\,000} < 24$.
+    $\log_2{10\,000\,000} < 24$.
   \end{example}
 \end{examplebox}
 -->

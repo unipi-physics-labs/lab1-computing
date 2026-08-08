@@ -74,5 +74,8 @@ format:
 
   pdf:
     default-image-extension: pdf
+    include-in-header:
+      - text: |
+          \providecommand{\textasciicaret}{\textasciicircum}
 
 jupyter: python3
