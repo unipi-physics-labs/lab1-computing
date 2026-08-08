@@ -3,6 +3,9 @@
 preview:
 	quarto preview
 
+pdf:
+	quarto render --to pdf
+
 render:
 	quarto render
 
