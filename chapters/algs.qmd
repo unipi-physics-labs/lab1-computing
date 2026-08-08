@@ -1,4 +1,4 @@
-# Algoritmi e complessità
+# Algoritmi
 
 Non vi è dubbio che la parola *algoritmo* sia salita alla ribalta delle scene
 come una delle parole più (ab)usate del periodo storico in cui viviamo. In questa

@@ -185,7 +185,7 @@ print(n << 3) # Multiply by 8
 
 
 
-## Il sistema di numerazione esadecimale
+## Il sistema di numerazione esadecimale {#sec-hex}
 
 Se scegliamo come base $b = 16$ lavoriamo per definizione in quello che si chiama
 sistema *esadecimale*. Inutile dirlo, tutto quello che abbiamo detto per il sistema

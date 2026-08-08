@@ -45,6 +45,7 @@ book:
         - chapters/memory.qmd
         - chapters/float.qmd
         - chapters/algs.qmd
+        - chapters/vec.qmd
 
   appendices:
     - appendices/latex.qmd

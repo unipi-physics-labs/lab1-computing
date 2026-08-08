@@ -1,1 +1,277 @@
-# Scrivere in memoria
+# Rappresentazione dei dati
+
+Abbiamo detto che all'interno di un calcolatore digitale qualsiasi cosa viene
+rappresentata come una sequenza di $0$ e $1$. Benissimo: quando scriviamo o leggiamo un
+file, come è rappresentata, allora, la lettera `a`? E i numero `7` e `7.0`? E una
+stringa arbitraria di testo? Se non vedete l'ora di saperlo, siete nel posto giusto.
+
+::: {.callout-note}
+Il contenuto di questo capitolo è focalizzato sulla rappresentazione dei dati nella
+memoria persistente, e.g., sul disco. Stringhe e numeri intesi come tipi nativi di
+Python sono oggetti complessi e il loro layout nella memoria volatile durante
+l'esecuzione del programma sono tutt'altra cosa.
+:::
+
+
+## Rappresentazione del testo
+
+Avrete sicuramente tutte presenti la scena del film "The Martian" in cui l'astronauta
+Mark Watney (al secolo Mark Wahlberg), davanti al problema non banale di stabilire un
+canale di comunicazione con il controllo missione a Terra, rispolvera un vecchio
+manuale degli anni '60 recuperato da uno scatolone.
+
+La trascrizione della scena è estremamente istruttiva, per cui la riportiamo verbatim
+qui sotto.
+
+> So, here's the rep. Somehow we have to have complex astrophysical engineering
+> conversations using nothing but a still frame camera from 1996. Luckily, the camera
+> does spin, so I can make an alphabet. I can't be our alphabet: 26 characters plus a
+> question card and the 360 gives us 13 degrees of arc, that's way too narrow, you'd
+> never know what the camera was pointing at...
+>
+> [Pausa di suspence per costruire il climax ascendente.]
+>
+> Hexadecimals! Hexadecimals!
+>
+> I figured one of you guys kept an ASCII table lying around. And I was right!
+
+Wow. Se questo non è ragionare come una fisica, non so cosa potrebbe esserlo. Vediamo
+un attimo.
+
+* Mark è capace di calcolare approssimativamente $360 / 27$ in testa---il
+processo mentale potrebbe essere: $360 / 30 = 12$; $27$ è circa il $10\%$ più piccolo
+di $30$; per cui il risultato sarà il $10\%$ più grande di 12; ovvero circa $13$.
+* Mark ha ben chiaro il concetto di unità di misura, e capisce immediatamente che
+una risoluzione angolare di $13^\circ$ è al limite per il sistema che sta per mettere in
+piedi.
+* Mark conosce la rappresentazione esadecimale dei numeri---un momento: non è quella
+che abbiamo visto nella @{sec-hex}?
+* Ma sopratutto: Mark conosce la tabella ASCII, ed è proprio questo che ci porta
+all'argomento della prima sezione di questo capitolo. (Ci arriviamo tra un secondo.)
+
+In un certo senso potremmo dire che dopo il corso di laboratorio del primo anno
+avreste qualche chance di sopravvivere da sole su Marte, se per caso vi capitasse di
+essere abbandonate là. (La coltivazione delle patate, però, dovete impararla come
+attività extra-curricolare.)
+
+::: {.callout-note}
+Perdonerete la lunghezza di questo siparietto introduttivo, ma ci sono due cose che
+devo dirvi. "Discussioni complicate di ingegneria astrofisica" non vuol dire
+assolutamente niente; se dopo la laurea doveste essere ingaggiate come consulenti per un
+film di fantascienza, resistete, per favore, alla tentazione di mettere assurdità dei
+dialoghi solo perché alcune parole sono accattivanti di altre.
+
+Un'altra cosa: se guardate la [scena](https://www.youtube.com/watch?v=0xkP_FQUsuM)
+su YouTube (un attimo! ho appena nominato la piattaforma di sorveglianza di Google?)
+noterete che (sigh!) "ASCII table" è sottotitolato come "asking table". Vi rendete
+conto? Il concetto fondamentale dell'intera scena letteralmente annientato in
+sei caratteri...
+:::
+
+
+### La tabella ASCII
+
+Se ci pensate un attimo, l'idea di fondo nella scena di "The Martian" è tutto sommato
+semplice. Se vogliamo rappresentare in modo efficiente un insieme arbitrario di
+caratteri, possiamo assegnare univocamente un numero intero a ciascuno di essi ed usare
+questo numero al posto il carattere. La tabella di conversione che ne risulta è quello
+che si chiama generalmente un *encoding*, o *codifica*. (Ed il processo
+inverso---quello, cioè, che fa passare da numero a carattere, si chiama *decoding*, o
+*decodifica*.)
+
+Cosa ci guadagno, vi chiedete? Beh, nella situazione di Mark Watney, questo permette di
+rappresentare *qualsiasi* carattere con 16 cifre, che si traducono in un settore
+circolare sotteso da un arco di $22.5^\circ$. Ma tornando al nostro problema, i numeri
+interi hanno la bella proprietà di poter essere scritti nella loro rappresentazione
+binaria---cioè proprio come una sequenza di $0$ e $1$!
+
+Nei giorni eroici dei primi calcolatori digitali la codifica dei dati era implementata
+in modo custom ed incompatibile da sistema a sistema. Lo standard ASCII (American
+Standard Code for Information Interchange), inizialmente pubblicata nel 1963, è stato
+il primo tentativo organico di mettere ordine nella questione. In linea di principio
+la decisione di come rappresentare i dati è totalmente arbitraria, ma uno standard
+comune è fondamentale per lo scambio di informazioni. (Con le dovute differenze,
+una cosa simile succede anche noi tutti i giorni: la Fisica è indipendente dal
+nome che diamo alle variabili, ma vi è un vantaggio indubbio nell'usare, ove possibile,
+convenzioni comuni, e.g., indicare l'energia con $E$ e la massa con $m$.)
+
+Nel progettare uno standard di codifica, la prima cosa che dobbiamo chiederci è:
+quanti, e quali caratteri vogliamo rappresentare? La codifica ASCII originale prevedeva
+$128$ caratteri (corrispondenti quindi a $7$ bit), cui hanno fatto seguito un certo
+numero di proposte di estensione, parzialmente incompatibili tra loro, a $8$ bit, i.e., $256$ caratteri.
+(La scelta iniziale non è irragionevole, perché $128$ è paragonabile
+al numero di tasti di una tastiera tipica da terminale.) Questi $128$ caratteri includono
+le $26$ lettere (maiuscole e minuscole) dell'alfabeto inglese, le cifre da $0$ a $9$,
+segni di punteggiatura, parentesi ed operatori, più un certo numero di cose più
+esotiche che non abbiamo tempo di analizzare in dettaglio.
+
+```{python}
+#| echo: false
+#| label: tbl-ascii
+#| tbl-cap: "Tabella ASCII a 7 bit."
+
+import pandas as pd
+
+control = {
+    0: "NUL", 1: "SOH", 2: "STX", 3: "ETX",
+    4: "EOT", 5: "ENQ", 6: "ACK", 7: "BEL",
+    8: "BS", 9: "HT", 10: "LF", 11: "VT",
+    12: "FF", 13: "CR", 14: "SO", 15: "SI",
+    16: "DLE", 17: "DC1", 18: "DC2", 19: "DC3",
+    20: "DC4", 21: "NAK", 22: "SYN", 23: "ETB",
+    24: "CAN", 25: "EM", 26: "SUB", 27: "ESC",
+    28: "FS", 29: "GS", 30: "RS", 31: "US",
+    32: "SP", 127: "DEL",
+}
+
+def ascii_char(n):
+    return control.get(n, chr(n))
+
+groups = []
+
+for start in (0, 32, 64, 96):
+    values = range(start, start + 32)
+
+    groups.append(pd.DataFrame({
+        "Dec": values,
+        #"Bin": [f"{n:07b}" for n in values],
+        "Hex": [f"0x{n:02x}" for n in values],
+        "Char": [ascii_char(n) for n in values],
+    }))
+
+df = pd.concat(groups, axis=1)
+df.style.hide(axis="index")
+```
+
+La codifica ASCII, dunque, è essenzialmente una tabella di $128$ righe nella quale, a
+ciascuno dei $128$ caratteri scelti, corrisponde un numero intero da $0$ a $127$, che
+prende il nome di *code point*.
+I primi $32$ code point sono riservati a caratteri di controllo (non stampabili) che,
+senza andare troppo a fondo nella questione, includono tra le altre cose lo spazio e
+l'andata a capo. Ogni carattere è rappresentato in memoria (e, eventualmente, in un
+file) come il suo code point, ed ogni code point può essere convertito nel carattere
+corrispondente una volta che sappiamo l'encoding.
+Tanto per fare un esempio, il code point ASCII del carattere `a` (lettera a minuscola)
+è `97` in decimale, i.e., `0x61` in esadecimale.
+
+```{python}
+print(ord("a"), hex(ord("a")))
+print(chr(97))
+```
+
+Se supponiamo, ad esempio, di avere un file contenente la stringa "Ciao!" (più
+un'andata a capo alla fine della prima linea), ed assumiamo di avere un qualche tipo
+di utility per visualizzato il contenuto su disco del file (ad esempio `xxd` su
+GNU-Linux), il file avrebbe una dimensione di esattamente $6$ byte ed apparirebbe
+come
+$$
+  \overbrace{\texttt{01000011}}^{67~\text{(C)}}\;\;
+  \overbrace{\texttt{01101001}}^{105~\text{(i)}}\;\;
+  \overbrace{\texttt{01100001}}^{97~\text{(a)}}\;\;
+  \overbrace{\texttt{01101111}}^{111~\text{(o)}}\;\;
+  \overbrace{\texttt{00100001}}^{33~\text{(!)}}\;\;
+  \overbrace{\texttt{00001010}}^{10~\text{(Line feed)}}
+$$
+
+
+### Altri encoding
+
+<!-- TODO: write this section -->
+
+Le più attente tra voi avranno notato che la tabella ASCII non comprende, tra le altre
+cose, le lettere accentate---che pure sono, per ovvi motivi, rilevanti per chi parla
+(e scrive in) italiano.
+
+```{python}
+print("\U0001F600")
+```
+
+### Input/output in formato testo
+
+
+## Rappresentazione dei numeri
+
+
+### Numeri interi
+
+Per noi che abbiamo una buona familiarità con i bit e la numerazione in base $2$,
+la rappresentazione dei numeri interi risulta tutto sommato naturale---sicuramente
+più naturale e meno ambigua della rappresentazione di una stringa. Sappiamo già
+che con $n$ bit possiamo rappresentare $2^n$ configurazioni diverse, ad esempio tutti
+i numeri interi positivi tra $0$ e $2^n - 1$, ed in effetti se ci limitiamo agli
+interi positivi (senza segno, o unsigned) questo è proprio ciò che accade.
+Allora con $8$ bit possiamo rappresentare gli interi tra $0$ e $2^8 - 1 = 255$,
+con $16$ bit quelli da $0$ a $2^{16} - 1 = 65536$, e così via; il valore di un
+intero senza segno è semplicemente il valore numerico del pattern binario che lo
+rappresenta in memoria.
+
+Il segno complica leggermente le cose. La generalizzazione più semplice di quanto
+abbiamo appena detto è quella che generalmente va sotto il nome di
+*sign-magnitude representation*: utilizziamo il bit più significativo per
+codificare il segno (con lo $0$ che rappresenta numeri positivi e l'$1$ che rappresenta
+numeri negativi), e gli altri $n - 1$ per rappresentare il valore numerico. Questa
+rappresentazione non è utilizzata in pratica perché ha due limitazioni importanti:
+
+1. ci sono due rappresentazioni possibili dello zero (se volete, $+0$ e $-0$), il che
+è suscettibile a confusione; e, cosa pi\`u importante,
+2. interi positivi ed interi negativi debbono essere processati indipendentemente nelle
+operazioni aritmetiche.
+
+La strategia che invece si utilizza nei calcolatori è la cosiddetta
+*2's complement representation* in cui il bit più significativo rappresenta
+ancora il segno (con la solita convenzione), mentre i restanti $n - 1$ bit rappresentano
+il valore numerico con le seguenti regole:
+
+* per gli interi positivi (ovverosia quando il bit più significativo è $0$)
+il valore assoluto del numero è uguale al valore numerico del pattern binario
+degli $n - 1$ bit meno significativi;
+* per gli interi negativi si prende il complemento (ovvero la negazione bit a bit)
+degli $n - 1$ bit meno significativi, aumentata di $1$.
+Non \`e difficile convincersi che in questo modo si possono rappresentare tutti gli
+interi tra $-2^{n - 1}$ e $2^{n - 1} - 1$, con un'unica rappresentazione (e quindi non
+ambigua) dello zero. Ad esempio con $8$ bit si possono rappresentare tutti i numeri
+da un minimo di $-128$
+$$
+  \texttt{10000000}
+  %\underbrace{1}_\text{segno}\!\!\!\!\!\!\overbrace{0000000}^\text{valore}
+  \rightarrow -(0b1111111 + 0b1) = -0b10000000 = -0x80 = -128
+$$
+ad un massimo di $127$
+$$
+  \texttt{01111111}
+  %\underbrace{0}_\text{segno}\!\!\!\!\!\!\overbrace{1111111}^\text{valore}
+  \rightarrow +0b1111111 = +0x7F = +127,
+$$
+passando per lo zero, che è ovviamente rappresentato dal pattern $\texttt{000000000}$.
+
+La maggior parte dei linguaggi di programmazioni mette a disposizione dell'utente
+tipi distinti per interi unsigned e signed, con diverse profondità---tipicamente
+$8$, $16$, $32$ o $64$ bit, ovverosia $1$, $2$, $3$ o $4$ byte. I corrispondenti
+intervalli utili sono indicato nella @{tbl-integer-ranges}.
+Python fa eccezione: come abbiamo visto gli interi hanno precisione arbitraria, e la
+memoria utilizzata per la rappresentazione è allocata automaticamente
+a seconda del valore che vogliamo rappresentare. Questo non vuol dire che quando
+scriviamo su disco possiamo farlo senza sapere quanto è grande quello che
+scriviamo.
+
+| Tipo | Bit | Valore minimo | Valore massimo |
+|:-----|----:|--------------:|---------------:|
+| signed | 8 | $-2^7 = -128$ | $2^7-1 = 127$ |
+| unsigned | 8 | $0$ | $2^8-1 = 255$ |
+| signed | 16 | $-2^{15} = -32\,768$ | $2^{15}-1 = 32\,767$ |
+| unsigned | 16 | $0$ | $2^{16}-1 = 65\,535$ |
+| signed | 32 | $-2^{31} \approx - 2.15 \times 10^9$ | $2^{31}-1 \approx 2.15 \times 10^9$ |
+| unsigned | 32 | $0$ | $2^{32}-1 \approx 4.29 \times 10^9$ |
+| signed | 64 | $-2^{63} \approx - 9.22 \times 10^{18}$ | $2^{63}-1 \approx 9.22 \times 10^{18}$ |
+| unsigned | 64 | $0$ | $2^{64}-1 \approx 1.85 \times 10^{19}$ |
+
+: Intervalli rappresentabili con interi binari a lunghezza fissa. {#tbl-integer-ranges}
+
+
+<!-- TODO: qui dobbiamo chiarire cosa vuol dire scrivere su disco in Python -->
+
+<!-- TODO: manca anche una sezione sui tipi in numpy -->
+
+
+
+### Numeri in virgola mobile
