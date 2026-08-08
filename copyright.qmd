@@ -3,7 +3,7 @@
 Il testo di queste note è distribuito con licenza
 *Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0).*
 
-[![](figures/static/by-sa.svg)](https://creativecommons.org/licenses/by-sa/4.0/deed.it)
+[![](figures/static/by-sa)](https://creativecommons.org/licenses/by-sa/4.0/deed.it)
 
 © 2026 Luca Baldini
 
