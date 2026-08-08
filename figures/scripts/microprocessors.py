@@ -23,7 +23,7 @@ import numpy as np
 from aptapy.models import Exponential
 from aptapy.plotting import apply_stylesheet, plt, setup_gca
 
-from common import DATA_DIR, OUTPUT_DIR
+from common import DATA_DIR, savefigs
 
 apply_stylesheet("aptapy-xkcd")
 
@@ -46,7 +46,7 @@ def plot_transistors():
     setup_gca(logy=True, xlabel="Anno di commercializzazione",
               ylabel="Numbero di transistor")
     plt.gca().grid(True, linestyle="--", linewidth=0.6)
-    plt.savefig(OUTPUT_DIR / "microprocessor_transistors.svg")
+    savefigs("microprocessor_transistors")
 
 
 def plot_clock_frequency():
@@ -59,7 +59,7 @@ def plot_clock_frequency():
     setup_gca(logy=True, xlabel="Anno di commercializzazione",
               ylabel="Frequenza di clock (MHz)")
     plt.gca().grid(True, linestyle="--", linewidth=0.6)
-    plt.savefig(OUTPUT_DIR / "microprocessor_clock_frequency.svg")
+    savefigs("microprocessor_clock_frequency")
 
 
 def plot_num_cores():
@@ -72,7 +72,7 @@ def plot_num_cores():
     setup_gca(logy=True, xlabel="Anno di commercializzazione",
               ylabel="Numbero di core")
     plt.gca().grid(True, linestyle="--", linewidth=0.6)
-    plt.savefig(OUTPUT_DIR / "microprocessor_num_cores.svg")
+    savefigs("microprocessor_num_cores")
 
 
 def run():

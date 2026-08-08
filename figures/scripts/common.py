@@ -17,7 +17,16 @@
 
 from pathlib import Path
 
+import matplotlib.pyplot as plt
+
 ROOT = Path(__file__).parent.parent
 
 DATA_DIR = ROOT / "data"
 OUTPUT_DIR = ROOT / "generated"
+
+
+def savefigs(file_name: str, formats: tuple[str] = ("svg", "pdf")) -> None:
+    """Save the current figure in the specified formats.
+    """
+    for fmt in formats:
+        plt.savefig(OUTPUT_DIR / f"{file_name}.{fmt}")
