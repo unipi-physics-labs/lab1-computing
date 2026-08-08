@@ -11,6 +11,7 @@ render:
 
 clean:
 	rm -rf _book .quarto
+	rm -rf figures/scripts/__pycache__
 
 test:
 	python -m pytest
