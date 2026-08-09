@@ -1,4 +1,4 @@
-# Rappresentazione dei dati
+# Input/output
 
 Abbiamo detto che all'interno di un calcolatore digitale qualsiasi cosa viene
 rappresentata come una sequenza di $0$ e $1$. Benissimo: quando scriviamo o leggiamo un

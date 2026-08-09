@@ -1,0 +1,131 @@
+# LaTeX {#sec-latex}
+
+LaTeX è un programma estremamente potente per la formattazione di documenti,
+fortemente orientato alla matematica, ed estremamente popolare nella comunità
+scientifica---e tra le fisiche in particolare.
+In questo capitolo il nostro approccio sarà, per molti aspetti, minimale: impareremo
+come si scrive e compila un documento e come si creano liste tabelle, equazioni e
+figure---lo stretto necessario per una relazione di laboratorio. Per tutto il resto
+rimandiamo alla documentazione reperibile in rete e, in particolare, all'ottima
+[The Not So Short Introduction to LaTeX](https://tobi.oetiker.ch/lshort/lshort.pdf).
+
+
+## Scrivere ed impaginare
+
+Se in vita vostra avete usato solo applicazioni di *word processing* (e.g., Microsoft
+Word o [LibreOffice](https://www.libreoffice.org/)) per scrivere documenti, è probabile
+che non vi siate mai interrogate sulla differenza tra la *scrittura* del testo e la sua
+*impaginazione*. All'ordine zero la cosa è semplice:
+
+* la scrittura ha a che vedere con il *contenuto*, ovverosia con il *cosa* scrivete;
+* l'impaginazione ha a che vedere con il *come* questo contenuto appare.
+
+Per la maggior parte della storia della stampa moderna, queste due cose sono state
+rigorosamente separate---per dirlo in modo brutale: la scrittrice scrive, la tipografa
+impagina. Ma l'avvento della stampa digitale ha portato al fiorire di programmi di
+videoscrittura (come Microsoft Word e LibreOffice, appunto) di tipo *WYSISYG*
+(*What You See Is What You Get*, o *quel che vedi è il risultato finale*),
+in cui il confine è andato sfumando.
+
+L'idea di fondo di un programma WYSIWYG è che quello che appare sullo schermo mentre
+scriviamo è sostanzialmente il documento finale, come apparirà dopo la stampa (o la
+pubblicazione su web). In altre parole, la stesura e l'impaginazione avvengono
+contemporaneamente. Fare un documento ben strutturato all'interno di questo paradigma
+non è tecnicamente impossibile, ma non è nemmeno attivamente incoraggiato, per cui
+i risultati (nessuna me ne voglia) sono spesso mediocri.
+
+Da questo punto di vista LaTeX assomiglia più ad un linguaggio di programmazione, in
+cui il codice sorgente è un misto di testo e comandi, questi ultimi con funzione di
+tipo *strutturale* (e.g., "questo è un titolo", "questa è una figura"), ma senza alcuna
+indicazione sull'impaginazione. Quest'ultima avviene in un secondo momento, quando
+il sorgente viene processato un un programma apposito (`pdflatex`, ad esempio,
+produce un file pdf).
+
+
+## Istallare LaTeX?
+
+Oppure no? Fino a una decina di anni fa non ci sarebbe stato nessun dubbio---la risposta
+sarebbe stata affermativa.
+Questo era prima che [Overleaf](https://www.overleaf.com/learn) conquistasse il mondo,
+per cui oggi probabilmente la risposta è: a meno che non vogliate diventare delle
+professioniste di LaTeX, e assumendo che abbiate a disposizione un browser e l'accesso
+alla rete, potete cavarvela senza istallare niente.
+
+::: {.callout-note}
+Se siete studenti dell'Università di Pisa avete accesso con le credenziali di ateneo
+all'istanza di Overleaf che UNIPI mette a disposizione attraverso la
+[pagina di login](https://overleaf.unipi.it/login). Cosa ci guadagnate rispetto
+all'istanza principale di Overleaf: non dovete fare un altro account, potete collaborare
+liberamente con le altre studentesse, e non ricevete solleciti continui per attivare il
+piano a pagamento. Secondo me è un no brainer.
+:::
+
+Scrivere in LaTeX assomiglia per molti versi a programmare in Python (o in un qualsiasi
+altro linguaggio di programmazione). Scrivete il codice sorgente in un editor di testo,
+lo compilate con il comando opportuno, e vi godete il glorioso documento pdf generato.
+Mano a mano che procedete nella scrittura, il ciclo si ripete fino a che non siete
+soddisfatte. Se usate Overleaf, tutto questo avviene comodamente in un browser in cui,
+tra le altre cose, avete l'editor a sinistra e l'anteprima del documento a destra.
+La compilazione è triggerata da un apposito tasto. Niente di più semplice.
+
+Se, andando avanti, doveste sentire l'esigenza di passare ad un workflow *locale*
+(ad esempio se avete bisogno di lavorare su LaTeX in aereo, senza accesso alla rete)
+il modo più semplice di istallare tutto quello che serve è con la distribuzione
+[TeX Live](https://www.tug.org/texlive/).
+
+
+## Il primo documento
+
+Cominciamo con il più semplice documento che si possa immaginare:
+```{.latex .number-lines}
+\documentclass[11pt, a4paper]{article}
+
+\begin{document}
+Il mio primo documento\ldots
+\end{document}
+```
+Copiate e incollate il testo su Overleaf, premete il tasto per compilare, e guardate
+cosa viene fuori---non sarà niente di esaltante, per cui non abbiate aspettative troppo
+alte.
+
+Prima di andare avanti e familiarizzare con funzionalità più potenti ed avanzate,
+cerchiamo di capire il significato di ciascuna delle quattro righe del nostro
+documento. Una per una.
+
+Nella riga 1
+```latex
+\documentclass[11pt, a4paper]{article}
+```
+dichiariamo sostanzialmente il tipo di documento---in questo caso un *articolo*.
+(Esistono molti tipi di documenti predefiniti, e ne potete aggiungere altri.
+La classe `article` va bene per le relazioni di laboratorio, per cui per il momento non
+è strettamente necessario sapere altro.) `11pt` significa che la dimensione dei
+caratteri del testo è 11$ punti; `a4paper` selezione la dimensione di pagina---in questo
+caso un normale foglio A4.
+
+Avrete già capito che i *comandi* LaTeX cominciano con il simbolo `\` (*backslash*).
+In un certo senso potete vedere un comando LaTeX come una funzione in Python, in cui
+gli argomenti sono racchiusi tra parentesi graffa, e le opzioni (ove usate) tra
+parentesi quadre. Ne vedremo molti esempi in questo capitolo, ma la struttura è sempre
+la stessa:
+```latex
+\comando[opzioni]{argomento1}{argomento2}...{argomentoN}
+```
+
+Il contenuto del documento vero e proprio è compreso tra i due comandi alle righe
+3 e 5, in una struttura del tipo
+```latex
+[preambolo]
+\begin{document}
+[corpo]
+\end{document}
+```
+L'inizio del documento separa quello che è chiamato *preambolo* (nel nostro caso è
+sostanzialmente la linea precedente, con l'indicazione del tipo di documento) dal *corpo* vero e proprio. Tutto quello che viene dopo il comando di fine documento è
+semplicemente ignorato.
+
+Noterete che l'unica cosa che appare nel file pdf in uscita è il corpo, ovverosia, nel
+nostro caso
+```latex
+Il mio primo documento\ldots
+```

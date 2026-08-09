@@ -45,13 +45,14 @@ book:
         - chapters/count.qmd
         - chapters/hw.qmd
         - chapters/os.qmd
-        - chapters/memory.qmd
+        - chapters/io.qmd
         - chapters/float.qmd
         - chapters/algs.qmd
         - chapters/vec.qmd
 
   appendices:
-    - appendices/latex.qmd
+    - chapters/latex.qmd
+    - chapters/graphics.qmd
 
 bibliography: references.bib
 
@@ -66,6 +67,7 @@ format:
       - cosmo
       - styles/custom.scss
     default-image-extension: svg
+    fig-format: svg
     code-copy: true
     code-link: true
     code-fold: false
@@ -74,6 +76,7 @@ format:
 
   pdf:
     default-image-extension: pdf
+    fig-format: pdf
     include-in-header:
       - text: |
           \providecommand{\textasciicaret}{\textasciicircum}
