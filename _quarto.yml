@@ -9,6 +9,9 @@ lang: it
 resources:
   - widgets/**
 
+filters:
+  - filters/latex-pair.lua
+
 book:
   title: "Elementi di computazione"
   subtitle: "Per il corso di Laboratorio di Fisica"

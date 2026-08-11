@@ -16,7 +16,7 @@ l'esecuzione del programma sono tutt'altra cosa.
 ## Rappresentazione del testo
 
 Avrete sicuramente tutte presenti la scena del film "The Martian" in cui l'astronauta
-Mark Watney (al secolo Mark Wahlberg), davanti al problema non banale di stabilire un
+Mark Watney (al secolo Matt Damon), davanti al problema non banale di stabilire un
 canale di comunicazione con il controllo missione a Terra, rispolvera un vecchio
 manuale degli anni '60 recuperato da uno scatolone.
 

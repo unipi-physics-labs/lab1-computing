@@ -103,15 +103,6 @@ La classe `article` va bene per le relazioni di laboratorio, per cui per il mome
 caratteri del testo è 11$ punti; `a4paper` selezione la dimensione di pagina---in questo
 caso un normale foglio A4.
 
-Avrete già capito che i *comandi* LaTeX cominciano con il simbolo `\` (*backslash*).
-In un certo senso potete vedere un comando LaTeX come una funzione in Python, in cui
-gli argomenti sono racchiusi tra parentesi graffa, e le opzioni (ove usate) tra
-parentesi quadre. Ne vedremo molti esempi in questo capitolo, ma la struttura è sempre
-la stessa:
-```latex
-\comando[opzioni]{argomento1}{argomento2}...{argomentoN}
-```
-
 Il contenuto del documento vero e proprio è compreso tra i due comandi alle righe
 3 e 5, in una struttura del tipo
 ```latex
@@ -120,12 +111,422 @@ Il contenuto del documento vero e proprio è compreso tra i due comandi alle rig
 [corpo]
 \end{document}
 ```
-L'inizio del documento separa quello che è chiamato *preambolo* (nel nostro caso è
-sostanzialmente la linea precedente, con l'indicazione del tipo di documento) dal *corpo* vero e proprio. Tutto quello che viene dopo il comando di fine documento è
-semplicemente ignorato.
+Il comando `\begin{document}` separa quello che è chiamato *preambolo* (nel nostro caso è
+sostanzialmente l'indicazione del tipo di documento) dal *corpo* vero e proprio, che è
+tutto e solo quello che appare nel documento finale in pdf dopo la compilazione.
+Tutto quello che viene dopo il comando `\end{document}` è semplicemente ignorato.
 
-Noterete che l'unica cosa che appare nel file pdf in uscita è il corpo, ovverosia, nel
-nostro caso
+Notate che tutti i *comandi* LaTeX cominciano con il simbolo `\` (*backslash*).
+In un certo senso potete vedere un comando LaTeX come una funzione in Python, in cui
+gli argomenti sono racchiusi tra parentesi graffe, e le eventuali opzioni tra
+parentesi quadre. Ci torneremo con molti esempi, ma la struttura è sempre
+la stessa:
 ```latex
-Il mio primo documento\ldots
+\comando[opzioni]{argomento1}{argomento2}...{argomentoN}
 ```
+
+
+## Un documento realistico
+
+Passiamo a qualcosa di più interessante---al solito: copiate ed incollate il testo su
+overleaf, premete il tasto per compilate e confrontate attentamente il codice sorgente
+con il risultato della compilazione.
+
+```{.latex .number-lines}
+\documentclass[11pt, a4paper]{article}
+
+\usepackage[italian]{babel}
+
+\title{Il mio primo documento}
+\author{Luca Baldini}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduzione}
+
+Questo vuole essere un esempio di documento realistico, con lo scopo
+di mostrare alcune tra le funzionalià di base di \LaTeX.
+
+\section{Un nuovo capitolo}
+
+Una prima cosa da notare è che, una volta dichiarate le sezioni del
+documento, \LaTeX\ si occupa automaticamente della numerazione. Questo
+è estremamente utile nel caso in cui si voglia aggiungere una nuova
+sezione in mezzo ad un documento in stato avanzato di stesura (non è
+necessario rinumerare ciò che viene dopo---\LaTeX\ fa tutto da sola).
+
+Tra l'altro se lasciate una linea vuota, questo segnala l'inizio di
+un nuovo capoverso. (Cominciate ad usare i capoversi consapevolmente
+per separare blocchi di testo logicamente distinti.)
+
+\subsection{Una sotto-sezione}
+
+Come vedete esistono diversi livelli di sezionamento del documento.
+
+\subsection{Ancora una sottosezione}
+
+Anche a questo livello la numerazione è automatica. Questo consente
+anche, in documenti più complessi, la generazione automatica
+dell'indice.
+
+\subsection{Conclusioni}
+
+Per il momento ci fermiamo qui, abbiamo abbastanza di cui discutere.
+
+\end{document}
+```
+
+Adesso il nostro preambolo è un pochino più lungo---5 righe, ignorando quelle vuote,
+per la precisione. Partiamo dalle righe 5--7, che sono le più semplici, e definiscono
+titolo e autrice (o autore, in questo caso) del documento, e data di compilazione.
+Notate che, di per sé, nessuna di queste righe produce un effetto visibile a meno di
+non fare qualcos'altro (ci torneremo tra un attimo). Ricordate: ciò che appare nel
+documento finale in pdf è tutto e solo quello che è contenuto nel corpo.
+
+Guardiamo invece con attenzione la linea 3.
+```latex
+\usepackage[italian]{babel}
+```
+Il comando `\usepackage` è uno di quelli che troverete di frequente, e permette di
+sfruttare nel vostro documento pacchetti aggiuntivi che non sarebbero altrimenti inclusi
+di default. (Con un leggero abuso di linguaggio possiamo dire che `\usepackage` fa in
+LaTeX quello che `import` fa in Python.) In questo caso il pacchetto aggiuntivo in
+questione è [Babel](https://ctan.org/pkg/babel), che fornisce supporto per la redazione
+di testi in più di 300 linguaggi diversi. Va da sé: l'opzione `italian` ci dice che
+stiamo scrivendo un documento in italiano.
+
+::: {.callout-note}
+Che cosa ha di particolare un documento redatto in italiano, vi state chiedendo?
+Beh, tanto per cominciare se commentate per un attimo la linea 3 (a proposito: in LaTeX
+il carattere per iniziare una linea di commento è `%`) vi accorgerete immediatamente che
+la data appare scritta in inglese anziché in italiano. Ha senso no?
+Ci sono poi le parole generate automaticamente---se generate un indice volete che si
+chiami  *Indice* o *Table of contents*? Volete che le didascalie delle figure comincino
+con *Figura* o *Figure*? E quelle delle tabelle con *Tabella* o *Table*?
+Senza contare cose più sofisticate, come la divisione in sillabe nelle andate a capo,
+le legature e le altre convenzioni tipografiche legate al linguaggio; ma avete colto il
+punto e possiamo andare avanti.
+:::
+
+Passiamo al corpo. La linea 11
+```latex
+\maketitle
+```
+è quella che fa fisicamente apparire nell'output pdf il titolo, il nome dell'autore e
+la data. Provate a commentare la riga e guardate cosa succede.
+
+Andando avanti, confrontando input ed output, noterete che le andate a capo nel pdf non
+corrispondono a quelle nel file sorgente---non dovreste essere sorprese dal fatto che le
+interruzioni di linea del documento LaTeX sono ignorate, perché questo fa parte
+dell'impaginazione, che non è quello su cui dovete concentrarvi quando scrivete.
+Una linea vuota, invece, segnala l'inizio di un nuovo capoverso, che tipicamente
+implica tre cose: (i) un'andata a capo nell'output pdf; (ii) un piccolo spazio
+verticale, e (iii) un rientro all'inizio del capoverso successivo.
+
+
+### Sezionamento
+
+Ma la cosa più importante che impariamo con questo secondo esempio sono i comandi di
+sezionamento. I documenti di tipo *article* ammettono due comandi di questo tipo:
+```latex
+\section{}
+\subsection{}
+```
+che accettano entrambi come (unico) argomento il titolo della sezione o della
+sotto-sezione, rispettivamente.
+
+Come promesso, LaTeX separa chiaramente la stesura dall'impaginazione. Tutto quello che
+la scrittrice deve comunicare è l'intento di cominciare una nuova sezione (o
+sotto-sezione), e ovviamente il titolo di quest'ultima. La tipografa (in questo caso
+`pdflatex`) si occupa poi in fase di compilazione di numerare sezioni e sottosezione,
+e formattare i titoli (e.g., in grassetto, e con un font leggermente più grande del
+testo ordinario.)
+
+
+## LaTeX e la matematica
+
+Se c'è una cosa in cui LaTeX brilla è il supporto alla scrittura di espressioni
+matematiche. (Non per niente [Donald E. Knuth](https://cs.stanford.edu/~knuth/),
+l'autore originale di TeX, il motore tipografico alla base di LaTeX, è proprio un
+matematico.)
+
+Per inserire formule matematiche *inline* (cioè frammiste al testo) basta inserire i
+comandi corrispondenti tra due caratteri `$`. Se scrivete
+`$\sigma_{x} = \sqrt{\sigma_{x}^{2}}$`, il risultato della compilazione sarà
+$\sigma_{x} = \sqrt{\sigma_{x}^{2}}$. Guardate con attenzione, perché senza rendervene
+conto avete imparato come si fanno le lettere greche, apici e pedici, e la radice
+quadrata.
+
+Quando invece dovete scrivere vere e proprie equazioni numerate, fisicamente
+separate dal testo, vi viene in soccorso l'ambiente `equation`
+```latex
+\begin{equation}\label{eq:oscillatore}
+  m \frac{d^{2}x}{dt^{2}} = m \ddot x = -k x
+\end{equation}
+```
+che, dopo la compilazione, produce
+$$
+m \frac{d^{2}x}{dt^{2}} = m \ddot x = -k x
+$${#eq-oscillatore}
+(Nelle pieghe di questo esempio, vale la pena notarlo, abbiamo introdotto tra le altre
+cose la sintassi per le frazioni.)
+
+Probabilmente a questo punto vi starete chiedendo che cosa significa il comando
+```latex
+\label{eq:oscillatore}
+```
+Semplice: serve a mettere un'*etichetta* in corrispondenza dell'equazione (ma come
+vedremo tra un attimo potrebbe essere un qualsiasi oggetto numerato---una figura, una
+tabella, o il titolo di una sezione) in modo tale che nel seguito possiamo riferirci
+ad esso per numero con la sintassi
+```latex
+\ref{eq:oscillatore}
+```
+che produce dopo la compilazione qualcosa di simile a @{eq-oscillatore}. Fermatevi
+un attimo a pensare: non male, eh?
+
+::: {.callout-note}
+Gli spazi all'interno degli ambienti matematici vengono semplicemente ignorati---LaTeX
+ha un suo algoritmo per determinare automaticamente la spaziatura appropriata trai
+vari elementi. E, prima che lo scopriate indipendentemente: non è permesso
+(provare per credere) lasciare linee vuote all'interno dell'ambiente `equation`.
+:::
+
+Chiudiamo la sezione con un'ultima equazione presa dal mondo reale, che mostra un certo
+numero di comandi utili
+```latex
+\begin{equation}
+  \left( \int_{-\infty}^{\infty} e^{-x^{2}} dx \right)^{2} =
+  \sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n + 1} =
+  \prod_{n=1}^{\infty} \left( \frac{n + 1}{n} \right)^{(-1)^{n-1}} =
+  \pi
+\end{equation}
+```
+che dopo la compilazione appare come:
+$$
+\left( \int_{-\infty}^{\infty} e^{-x^{2}} dx \right)^{2} =
+\sum_{n=0}^{\infty}\frac{(-1)^{n}}{2n + 1} =
+\prod_{n=1}^{\infty} \left( \frac{n + 1}{n} \right)^{(-1)^{n-1}} =
+\pi
+$$
+
+Ci fermiamo qui, ma dovreste aver capito che non c'è letteralmente limite alla fantasia!
+
+
+## Ambienti comuni
+
+Molte delle esigenze più avanzate del semplice testo vengono gestite in LaTeX attraverso
+specifici *ambienti* predefiniti. (Ne abbiamo già visto un esempio con l'ambiente
+`equation` nella sezione precedente.) Tecnicamente un ambiente è una porzione di
+documento
+inclusa tra i due comandi
+```latex
+\begin{ambiente}
+[...]
+\end{ambiente}
+```
+ed in questa sezione illustreremo sommariamente alcuni dei più usati.
+
+
+### Elenchi
+
+Esistono ambienti per la creazione di elenchi puntati
+
+::: {.latex-pair}
+
+::: {.source}
+```latex
+\begin{itemize}
+  \item Punto primo.
+  \item Punto secondo.
+\end{itemize}
+```
+:::
+
+::: {.result}
+- Punto primo.
+- Punto secondo.
+:::
+
+:::
+
+e numerati
+
+::: {.latex-pair}
+
+::: {.source}
+```latex
+\begin{enumerate}
+  \item Punto primo.
+  \item Punto secondo.
+\end{enumerate}
+```
+:::
+
+::: {.result}
+1. Punto primo.
+2. Punto secondo.
+:::
+
+:::
+
+
+### Tabelle
+
+La costruzione delle tabelle è un processo più articolato. L'ambiente di riferimento
+è `tabular`, che vediamo subito in azione.
+
+::: {.latex-pair}
+
+::: {.source}
+```latex
+\begin{tabular}{cc}
+\hline
+Colonna 1 & Colonna 2 \\
+\hline
+\hline
+a & b \\
+c & d \\
+\hline
+\end{tabular}
+```
+:::
+
+::: {.result}
+| Colonna 1 | Colonna 2 |
+|:---------:|:---------:|
+| a         | b         |
+| c         | d         |
+:::
+
+:::
+
+Analizziamo in dettaglio poche righe di codice sorgente una alla volta. La prima:
+```latex
+\begin{tabular}{cc}
+```
+è piuttosto densa di significato. Sostanzialmente segna l'inizio dell'ambiente
+`tabular` dichiarando una tabella di due colonne, all'interno delle quali il contenuto
+è centrato. Notiamo esplicitamente che questo è il primo esempio di comando LaTeX con
+due argomenti che incontriamo; il contenuto del secondo argomento determina proprio
+il numero di colonne e l'allineamento orizzontale al loro interno. (Il carattere `c`
+sta per *center*, e non dovrebbe essere difficile indovinare la letterina magica per
+allineare a destra o a sinistra.)
+
+Le linee orizzontali debbono essere esplicitamente inserite dove volete attraverso il
+comando `\hline` ed il contenuto vero e proprio della tabella è strutturato come nella
+riga seguente:
+```latex
+a & b \\
+```
+in cui il carattere `&` serve da separatore tra celle contigue appartenenti alla stessa
+riga, mentre il doppio *backslash* (`\\`) funge da terminatore di riga. Va da sé, il
+numero di celle all'interno di ogni riga della tabella deve essere uguale al numero di
+colonne che avete dichiarato all'apertura dell'ambiente `tabular`.
+(Fate attenzione perché i messaggi di errore di LaTeX non sono esattamente famosi per
+essere semplici da capire.)
+
+Non me ne vogliate per il repentino cambio di direzione, ma nella vita reale non userete
+mai l'ambiente `tabular` direttamente nel corpo del testo come mostrato sopra.
+Più o meno invariabilmente, mettete il contenuto della vostra tabella all'interno
+dell'ambiente `table`.
+```latex
+\begin{table}[htb]
+\begin{center}
+\begin{tabular}{cc}
+\hline
+Colonna 1 & Colonna 2 \\
+\hline
+\hline
+a & b \\
+c & d \\
+\hline
+\end{tabular}
+\caption{Questa è una tabella di esempio.}
+\label{tab:esempio}
+\end{center}
+\end{table}
+```
+
+Un momento: *un ambiente all'interno di un altro ambiente*? Si, non ci sono leggi che lo
+proibiscano e, in effetti, si tratta di una pratica piuttosto comune---nell'esempio qui
+sopra di ambienti annidiati ne abbiamo addirittura tre... E cosa vuol dire
+mettere l'ambiente `tabular` (dentro l'ambiente `center`) dentro l'ambiente `table`?
+Beh, succedono sostanzialmente due cose: la prima è che diventa possibile aggiungere una
+didascalia alla tabella attraverso il comando `\caption` (bonus track: la didascalia
+è un oggetto numerato, per cui adesso possiamo riferirci alla tabella nel testo con lo
+stesso meccanismo di `\label` e `\ref` che abbiamo visto per le equazioni).
+La seconda (e più importante) è che la tabella diventa un oggetto *flottante*---cioè la
+sua posizione all'interno del documento finale per la stampa (dopo la compilazione) non
+è più fissata.
+
+Un attimo. Cosa vuol dire che la posizione di un oggetto non è fissata? Perché dovrei
+rinunciare al controllo del posizionamento della tabella? Chiaro, se pensate un attimo
+alla questione della separazione tra stesura ed impaginazione, che era l'elemento chiave
+da cui siamo partiti in questo capitolo. Mentre scriviamo non abbiamo alcuna idea di
+dove siamo all'interno della pagina finale al momento cui, nel flusso logico delle cose,
+inseriamo la tabella. (Tra l'altro la posizione all'interno della pagina cambia
+continuamente mentre rivediamo il documento.) E se fossimo troppo vicini al margine
+inferiore della pagina e non ci fosse fisicamente spazio per mettere la tabella? Meglio
+lasciare un orrendo spazio vuoto e proseguire con la tabella alla pagina successiva,
+oppure proseguire con il testo che viene *dopo* la tabella, e trattare quest'ultima come
+un oggetto *flottante* che la nostra tipografa (LaTeX)  inserirà nell'impaginazione al
+primo momento opportuno? (La domanda è retorica. Prendete il primo libro mediamente
+complesso che vi capita sotto mano e rispondetevi da sole.)
+
+Nei primi mesi (o, a seconda dei casi, nei primi anni o decenni) di uso di LaTeX sarà
+difficile resistere alla mania di controllo e lasciare al suo motore tipografico fare il
+lavoro sporco. Come spesso accade in questi casi, prima vi arrendete e meglio è.
+Tra l'altro non è nemmeno del tutto vero che non abbiate alcun controllo, perché se
+torniamo indietro alla prima riga del nostro esempio
+```latex
+\begin{table}[htb]
+```
+i tre caratteri dell'argomento opzionale tra parentesi quadre danno proprio indicazioni
+a LaTeX (in ordine di importanza) sul piazzamento da privilegiare per l'oggetto
+
+* `h`: here;
+* `t`: top;
+* `b`: bottom.
+
+(In altre parole stiamo dicendo: cerchiamo di mettere la tabella esattamente nel punto
+in  cui appare nel flusso del testo; se questo non fosse possibile spostiamola in cima
+alla pagina successiva; se anche questo non fosse possibile, spostiamola in fondo ad una
+pagina. Va da sé che questi non sono ordini, ma richieste educate, e LaTeX decide in
+autonomia cosa è meglio per il documento.)
+
+
+### Figure
+
+Siamo giunti all'ultima cosa che, verosimilmente, vi serve per una relazione di
+laboratorio, ovvero le figure.
+
+La prima cosa che dobbiamo fare è includere il pacchetto `graphicx` aggiungendo al preambolo (i.e., prima del comando di inizio del documento) l'apposito comando
+```latex
+\usepackage{graphicx}
+```
+
+Questo pacchetto mette a disposizione l'ambiente `figure` ed il comando `\includegraphics`, che è quello che userete fisicamente per aggiungere le figure
+
+```latex
+\begin{figure}[htb]
+\begin{center}
+\includegraphics[width=0.75\textwisth]{percorso/al/file/grafico}
+\end{center}
+\caption{Questa è una figura di esempio.}
+\label{fig:esempio}
+\end{figure}
+```
+
+Ora che siamo fluenti in tabelle, la maggior parte di questo snippet dovrebbe essere
+auto-esplicativo. L'ambiente `figure` si comporta in modo analogo a `table`, mentre
+il comando vero e proprio della figura
+```latex
+\includegraphics[width=0.75\textwisth]{percorso/al/file/grafico}
+```
+accetta come unico argomento il percorso al file grafico contenente la figura e,
+come opzioni, un certo numero di cose, tra cui la larghezza con cui l'immagine deve
+essere inserita nel documento.
