@@ -1,4 +1,4 @@
-# Contare in base 2
+# Contare in base 2 {#sec-count}
 
 Anche se in linea di principio questo non è l'unico approccio possibile, in pratica
 tutti i calcolatori moderni funzionano in logica binaria---cioè manipolano e conservano
@@ -308,4 +308,4 @@ un calcolatore, ma abbiamo lasciato fuori una cosa importante: non abbiamo detto
 succede quando passiamo dai numeri interi ai numeri *in virgola mobile*.
 Ci torneremo nel capitolo dedicato, appunto, all'aritmetica in virgola mobile---che,
 anticipiamo, sarà denso di sorprese. Ma se siete curiose e non volete perdere il filo
-della questione potete saltare direttamente a @{sec-virgola-mobile}.
+della questione potete saltare direttamente a @{sec-float}.

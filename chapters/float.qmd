@@ -1,1 +1,338 @@
-# L'aritmetica in virgola mobile {#sec-floating}
+# L'aritmetica in virgola mobile {#sec-float}
+
+Cominciamo con una piccola provocazione, nella forma della singola riga di codice
+che segue:
+
+```{python}
+print(0.1 + 0.2 == 0.3)
+```
+Sorprese? Non vi sono dubbi che sul libro di analisi matematica questa eguaglianza
+$$
+\frac{1}{10} + \frac{2}{10} = \frac{3}{10}
+$$
+sarebbe vera. Perché, invece, Python ci dice che è falsa? Si tratta di un bug di uno
+dei più linguaggi di programmazione più diffusi al mondo, oppure la cosa nasconde
+qualcosa di profondo?
+
+L'aritmetica in virgola mobile è sempre una sorgente di sorprese per chi si avvicina per
+la prima volta alla programmazione. In questo capitolo cercheremo di mettere a fuoco
+le questioni principali. Tra le varie risorse sull'argomento presenti su web, segnaliamo
+questo [tutorial](https://docs.python.org/3/tutorial/floatingpoint.html), parte della
+documentazione ufficiale di Python.
+
+
+## Virgola mobile e rappresentazione in base 2
+
+Nel capitolo @{sec-count} abbiamo imparato come si rappresentano in base 2 i numeri
+*interi*. Se ricordate, avevamo lasciato deliberatamente da parte i numeri in virgola
+mobile, e adesso è arrivato il momento di riprendere e sviscerare la questione.
+
+Partiamo da un esempio semplice. Che cosa intendiamo quando scriviamo il numero $2.25$
+(nell'ordinaria rappresentazione in base 10)? Evidentemente
+\begin{align*}
+  2.25 = 2 + 2 \times 10^{-1} + 5 \times 10^{-2},
+\end{align*}
+il che vuol dire che, se non siamo interessati solamente ai numeri interi, dobbiamo
+generalizzare la nostra definizione nell'equazione @{eq-notazione_posizionale} come
+\begin{align}
+  (c_m\ldots c_2c_1c_0.c_{-1}c_{-2}\ldots)_n =
+  c_m \times b^m + \cdots + c_2 \times b^2 +  c_1 \times n + c_0 +
+  c_{-1} b^{-1} +   c_{-2} b^{-2} \ldots
+\end{align}
+In questo schema possiamo scrivere il nostro $2.25$ nella rappresentazione in base 2 come
+\begin{align*}
+  0b10.01 = 1 \times 2 + 0 + 0 \times 2^{-1} + 1 \times 2^{-2} =
+  2 + \frac{1}{4} = 2.25.
+\end{align*}
+
+Fino a qui niente di strano. Ma cosa succede se proviamo a fare la stessa cosa con il
+numero (apparentemente innocuo) $0.1$? Per rispondere possiamo provare ad approssimare
+(da sopra e da sotto) con un numero fissato di cifre binarie dopo il punto fino a che
+non otteniamo il risultato esatto:
+
+```{python}
+#| echo: false
+
+import math
+import pandas as pd
+
+x = 0.1
+rows = []
+
+for n in range(1, 10):
+    scale = 2**n
+
+    lo_num = math.floor(x * scale)
+    hi_num = lo_num + 1
+
+    lo = lo_num / scale
+    hi = hi_num / scale
+
+    lo_bin = f"0b0.{lo_num:0{n}b}"
+    hi_bin = f"0b0.{hi_num:0{n}b}"
+
+    rows.append([
+        f"{lo:g}",
+        f"{lo_num}/{scale}",
+        lo_bin,
+        f"{x:g}",
+        hi_bin,
+        f"{hi_num}/{scale}",
+        f"{hi:g}",
+    ])
+
+df = pd.DataFrame(rows)
+
+df.style.hide(axis="index").hide(axis="columns")
+```
+
+Possiamo andare avanti quanto vogliamo, ma non è difficile convincersi che il numero
+decimale $0.1$ *non ha uno sviluppo finito* nella sua rappresentazione binaria.
+Possiamo approssimare il valore con un numero arbitrario $n$ di cifre (binarie)
+$$
+  \frac{\left\lfloor \frac{2^n}{10} \right\rfloor}{2^n} < 0.1 <
+  \frac{\left\lfloor \frac{2^n}{10} \right\rfloor + 1}{2^n},
+$$
+ma lo sviluppo binario di $0.1$ è periodico:
+$$
+  0.1 = 0b0.00011001100110011001100110011001100110011001100110011
+  \ldots = 0b0.0\overline{0}\overline{0}\overline{1}\overline{1}
+$$
+
+Se ci pensate un attimo, la cosa non è sorprendente, perché anche nell'ordinaria
+rappresentazione decimale, molti numeri razionali non hanno un'espansione finita---ad esempio
+$$
+\frac{1}{3} = 0.\overline{3}
+$$
+(E, in effetti, in un senso che non precisiamo, quai tutti i numeri razionali,
+in una qualsiasi base intera, non hanno una rappresentazione finita.)
+
+::: {.callout-note}
+La condizione necessaria e sufficiente perché un numero
+razionale, espresso nei suoi minimi termini dalla frazione $p/q$, abbia uno sviluppo
+finito in base $b$ è tutti i fattori primi del denominatore $q$ siano anche fattori
+primi di $b$. Così in base $10$ un numero razionale ha uno sviluppo finito se e solo se
+il suo denominatore (dopo la riduzione ai minimi termini) è un prodotto di potenze
+arbitrarie di $2$ e $5$. In base $2$ (e $16$), la condizione è più restrittiva, perché
+l'unico fattore primo della base è, appunto, il $2$.
+
+Notiamo, per completezza, che questo è uno dei motivi per cui, a partire dai Babilonesi
+e fino all'avvento dei calcolatori, la base $60$ (che ha $2$, $5$ *e* $3$ come fattori
+primi) è stata molto utilizzata per i calcoli---molti numeri razionali che non hanno
+rappresentazione finita in base $10$ ce l'hanno in base $60$.
+:::
+
+
+## Di nuovo sulla nostra provocazione iniziale
+
+Abbiamo più o meno tutti i pezzi necessari per sbrogliare l'arcano della provocazione
+con cui abbiamo aperto questo capitolo. E la chiave per la soluzione è fatta da due
+fattori distinti, ugualmente importanti:
+
+1. la maggior parte dei numeri in virgola mobile, come abbiamo detto, non ha una
+rappresentazione finita in nessuna base intera per cui (indipendentemente dalla base
+utilizzata internamente dal calcolatore) è impossibile darne una rappresentazione
+*esatta* a meno di avere memoria infinita---nello stesso modo in cui non possiamo
+scrivere tutta l'espansione decimale della frazione $1/3$;
+2. molti dei numeri in virgola mobile che possiamo rappresentare esattamente in base
+$10$ non hanno uno sviluppo finito in base $2$.
+
+Prese singolarmente, queste due cose sono abbastanza ovvie. Ma quando le mettiamo
+insieme, e realizziamo che i numeri nei nostri programmi sono tipicamente rappresentati
+in base $10$, mentre il computer li immagazzina internamente rappresentandoli in base
+$2$, i risultati sono potenzialmente disastrosi.
+
+In altre parole: quando scriviamo $0.1$, $0.2$ e $0.3$, implicitamente stiamo assumendo
+che questi numeri si possano rappresentare esattamente, perché il loro sviluppo
+*decimale* è finito. Ma per il calcolatore, che lavora in base $2$, nessuna tra le
+frazioni
+$$
+\frac{1}{10},~\frac{1}{5}~\text{e}~\frac{3}{10}
+$$
+può essere rappresentata esattamente, perché entrambe hanno il fattore primo $5$ al
+denominatore. Come abbiamo visto, essenzialmente il computer alloca in memoria solo
+numeri razionali in cui il denominatore è una potenza di $2$, limitata in grandezza
+dal numero di bit che abbiamo a disposizione.
+
+Possiamo rendere la cosa più quantitativa e capire cosa succede fino all'ultimo bit
+usando la funzione `as_integer_ratio()`, che ci dice *esattamente* qual è la frazione
+allocata dal computer
+```{python}
+for x in (0.1, 0.2, 0.3):
+    numerator, denominator = x.as_integer_ratio()
+    print(f"{x} -> {numerator} / {denominator} = {x:.20f}")
+```
+Il che vuol dire che la mappatura tra quello che noi scriviamo nel codice sorgente e
+quello che il computer alloca in memoria è
+$$
+\begin{aligned}
+0.1 \rightarrow \frac{3602879701896397}{36028797018963968} =
+\frac{3602879701896397}{2^{55}} \approx 0.10000000000000000555 \\[5pt]
+0.2 \rightarrow \frac{3602879701896397}{18014398509481984} =
+\frac{3602879701896397}{2^{54}} \approx 0.20000000000000001110 \\[5pt]
+0.3 \rightarrow \frac{5404319552844595}{18014398509481984} =
+\frac{5404319552844595}{2^{54}} \approx 0.29999999999999998890
+\end{aligned}
+$$
+
+Ah, allora abbiamo capito! Quando facciamo la somma dei primi due numeri otteniamo
+$$
+0.1 + 0.2 \rightarrow
+\frac{3602879701896397}{2^{55}} + \frac{3602879701896397}{2^{54}} =
+\frac{10808639105689191}{2^{55}}
+$$
+che, chiaramente, non è proprio uguale alla rappresentazione che conosciamo già
+di $0.3$
+$$
+0.3 \rightarrow \frac{5404319552844595}{2^{54}} = \frac{10808639105689190}{2^{55}}
+$$
+(Notate la differenza sull'ultima cifra.)
+
+Giusto? Non proprio. Quando abbiamo fatto la somma ci siamo dimenticati che la
+precisione con cui possiamo scrivere la mantissa è limitata a $53$ bit, per cui quando
+l'esponente è negativo, il numeratore della frazione ridotta che rappresenta il nostro
+numero in virgola mobile è limitata a $2^{53} - 1 = 9007199254740991$ che,
+chiaramente, noi abbiamo superato. Ma ci siamo quasi. Cosa possiamo fare per riportare
+il numeratore entro l'intervallo permesso? Facile: dividiamo per $2$ numeratore e
+denominatore---se non ché il numeratore è dispari per cui, nel processo di divisione,
+siamo costretti ad arrotondare all'intero (pari) più vicino
+$$
+\frac{10808639105689191}{2^{55}} \rightarrow \frac{5404319552844596}{2^{54}} =
+\frac{1351079888211149}{2^{52}}
+$$
+(Nell'ultimo passaggio abbiamo ridotto la frazione ai minimi termini, perché il
+numeratore era multiplo di $4$). Riprova per le più scettiche
+```{python}
+x = (0.1 + 0.2)
+numerator, denominator = x.as_integer_ratio()
+print(f"(0.1 + 0.2) -> {numerator} / {denominator} = {x:.20f}")
+```
+ovverosia
+$$
+0.1 + 0.2 \rightarrow
+\frac{1351079888211149}{4503599627370496} =
+\frac{1351079888211149}{2^{52}} \approx 0.30000000000000004441
+$$
+
+Adesso possiamo chiudere il cerchio. Il confronto con cui abbiamo aperto questo capitolo
+era falso semplicemente perché
+$$
+(0.1 + 0.2) - 0.3 \rightarrow
+\frac{1351079888211149}{2^{52}} - \frac{5404319552844595}{2^{54}} = \frac{1}{2^{54}}
+$$
+che potete verificare da sole nell'interprete Python
+```{python}
+x = (0.1 + 0.2) - 0.3
+numerator, denominator = x.as_integer_ratio()
+print(f"(0.1 + 0.2) - 0.3 -> {numerator} / {denominator} = {x:.20f}")
+```
+
+Wow---questa è stata una sezione piuttosto densa, e vale la pena fermarsi un attimo per
+distinguere le cose importanti da quelle secondarie. Nella vita reale devo essere capace
+di replicare su carta e penna, bit per bit, quello che succede in ogni operazione tra
+numeri in virgola mobile su un calcolatore digitale? La risposta è: non fa male, ma non
+è strettamente necessario. (Anche se è un argomento interessante che, sotto opportune
+condizioni, può risolvere una conversazione a cena.)
+
+Quello che dovete aver chiaro, invece, è che anche numeri apparentemente innocui come
+$0.1$ sono rappresentati, all'interno del calcolatore, in modo intrinsecamente inesatto.
+E queste inesattezze fanno cose interessanti nelle normali operazioni aritmetiche, per
+cui è necessario fare un po' di attenzione quando interpretiamo il risultato.
+
+
+## Virtù e limiti dell'aritmetica in virgola mobile
+
+A questo punto il fatto che l'aritmetica in virgola mobile su un calcolatore digitale
+sia, per sua natura, inesatta, dovrebbe essere impresso in modo indelebile nella vostra
+testa. In questa sezione cercheremo di esplorare alcune delle implicazioni di questo
+fatto fondamentale---e nel farlo ci concentreremo sullo standard IEEE-754 a doppia
+precisione, che è quello che Python utilizza di default.
+
+
+### Range e risoluzione
+
+Il *range* disponibile per i numeri in virgola è determinato principalmente dal numero
+di bit allocati per l'esponente. Nello standard a doppia precisione
+
+* la mantissa varia tra $1$ e $2$ (escluso);
+* l'esponente varia tra $-1022$ e $1023$
+
+e i numeri normali si estendono da
+$$
+1 \times 2^{-1022} \approx 2.2 \times 10^{-308}
+\quad\text{fino a }\quad
+(2 - 2^{-52}) \times 2^{1023} \approx 2 \times 2^{1023} \approx 1.8 \times 10^{308}
+$$
+
+::: {.callout-note}
+Per completezza: quando l'esponente assume il valore minimo possibile, che
+corrisponderebbe a $-1023$, lo standard prevede di passare alla rappresentazione
+*sub-normale*, in cui l'esponente vale ancora $-1022$, ma il bit più significativo
+della mantissa si assume essere $0$ anziché $1$. Si tratta di un regime completamente
+diverso, in cui la precisione relative cessa di essere costante, ma il range si
+estende verso lo zero fino a
+$$
+2^{-52} \times 2^{-1022} = 2^{-1074} \approx 4.9 \times 10^{-324}
+$$
+:::
+
+Guardiamo le limitazioni sul range in opera:
+```{python}
+print(1.e-324)
+print(5.e-324)
+print(1.5e308)
+print(2.e308)
+```
+
+Come abbiamo capito, l'aritmetica in virgola mobile è progettata per operare a
+*precisione relativa* costante. Quest'ultima è determinata essenzialmente dai bit
+allocati per la mantissa: con $53$ bit effettivi (i $52$ fisici e quello più
+significativo, che si assume essere $1$) abbiamo
+$$
+2^{53} \approx 9 \times 10^{15}
+$$
+valori possibili nell'intervallo $[1, 2[$, per cui *la rappresentazione in doppia
+precisione permette di avere circa $16$ cifre significative*---$2^{-53}$ corrisponde
+all'errore (relativo) di arrotondamento massimo, che a volte viene anche chiamato
+*half spacing*.
+
+Il fatto che la precisione relativa sia costante, implica che la spaziatura fisica
+tra valori consecutivi per i numeri in virgola mobile *non è costante*, ma dipende
+dal valore del numero che vogliamo rappresentare---più specificamente è
+*approssimativamente* proporzionale a quest'ultimo. Così, se per i numeri tra $1$ e $2$
+la spaziatura tra due numeri in virgola mobile consecutivi è $2^{-52}$, tra
+$2$ e $4$ diventa $2^{-51}$ e così via: raddoppia ogni volta che si attraversa una
+potenza di $2$.
+
+Quando si arriva a valori dell'ordine di $2^{52} \approx 4.5 \times 10^{15}$ la
+spaziatura diventa più grande di $1$ e possono succedere cose curiose. Se volessimo
+trattate il numero di Avogadro come un *vero* intero, ad esempio, incapperemmo nella
+situazione sorprendente in cui possiamo aggiungere $1$ senza cambiare niente.
+```{python}
+N = 6.02e23
+
+print(N == N + 1)
+```
+
+
+### Proprietà dell'aritmetica elementare
+
+e non garantisce le proprietà elementari che diamo spesso
+per scontate (e.g., la proprietà associativa della somma o la proprietà
+distributiva della moltiplicazione rispetto alla somma).
+
+
+```{python}
+a = 0.2
+b = 0.1
+c = 0.3
+
+print((a + b) - c == a + (b - c))
+print(a * (b + c) == a * b + a * c)
+```
+
+
+### Confronti tra numeri in virgola mobile
+
+
+### Accumulazione, cancellazione

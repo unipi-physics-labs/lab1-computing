@@ -530,3 +530,12 @@ il comando vero e proprio della figura
 accetta come unico argomento il percorso al file grafico contenente la figura e,
 come opzioni, un certo numero di cose, tra cui la larghezza con cui l'immagine deve
 essere inserita nel documento.
+
+::: {.callout-note}
+Il comando `\includegraphics` supporta tutti i formati grafici più popolari, inclusi
+pdf, png e jpg. Prima decidere in che formato salvare il tuo prossimo grafico,
+dai un'occhiata all'@{sec-graphics}.
+:::
+
+
+
