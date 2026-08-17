@@ -35,7 +35,7 @@ Partiamo da un esempio semplice. Che cosa intendiamo quando scriviamo il numero 
 il che vuol dire che, se non siamo interessati solamente ai numeri interi, dobbiamo
 generalizzare la nostra definizione nell'equazione @{eq-notazione_posizionale} come
 \begin{align}
-  (c_m\ldots c_2c_1c_0.c_{-1}c_{-2}\ldots)_n =
+  (c_m\ldots c_2c_1c_0.c_{-1}c_{-2}\ldots)_b =
   c_m \times b^m + \cdots + c_2 \times b^2 +  c_1 \times n + c_0 +
   c_{-1} b^{-1} +   c_{-2} b^{-2} \ldots
 \end{align}
@@ -296,31 +296,203 @@ precisione permette di avere circa $16$ cifre significative*---$2^{-53}$ corrisp
 all'errore (relativo) di arrotondamento massimo, che a volte viene anche chiamato
 *half spacing*.
 
+::: {.callout-note}
+Fermatevi un attimo a riflettere su quest'ultima cosa. Siccome nella propagazione degli
+errori su moltiplicazioni e divisioni si sommano le incertezze relative, l'aritmetica
+in virgola mobile, by design, permette di moltiplicare o dividere tra loro senza
+problemi numeri che differiscono di molti ordini di grandezza. Ma la storia è
+completamente diversa per la somma e la differenza, come vedremo in dettaglio tra un
+attimo!
+:::
+
 Il fatto che la precisione relativa sia costante, implica che la spaziatura fisica
 tra valori consecutivi per i numeri in virgola mobile *non è costante*, ma dipende
 dal valore del numero che vogliamo rappresentare---più specificamente è
 *approssimativamente* proporzionale a quest'ultimo. Così, se per i numeri tra $1$ e $2$
 la spaziatura tra due numeri in virgola mobile consecutivi è $2^{-52}$, tra
 $2$ e $4$ diventa $2^{-51}$ e così via: raddoppia ogni volta che si attraversa una
-potenza di $2$.
+potenza di $2$. Il modulo `math` della libreria standard di Python fornisce la
+funzione `ulp` (*unit in the last place*) che, per un numero in virgola mobile dato $x$
+restituisce la distanza dal numero immediatamente più alto che si può rappresentare
+
+```{python}
+import math
+
+for x in (1., 1.e10, 1.e20, 1.e50, 1.e100):
+    print(math.ulp(x))
+```
 
 Quando si arriva a valori dell'ordine di $2^{52} \approx 4.5 \times 10^{15}$ la
 spaziatura diventa più grande di $1$ e possono succedere cose curiose. Se volessimo
 trattate il numero di Avogadro come un *vero* intero, ad esempio, incapperemmo nella
-situazione sorprendente in cui possiamo aggiungere $1$ senza cambiare niente.
+situazione paradossale in cui aggiungere una molecola non ha effetto:
 ```{python}
+import math
+
 N = 6.02e23
 
+print(math.ulp(N))
 print(N == N + 1)
 ```
+(Intorno al numero di Avogadro la spaziatura della rappresentazione in virgola mobile, ovvero il nostro quanto di molecole, è di circa $70,000,000$.)
+
+A questo punto possiamo chiederci: come mai chi ha progettato lo standard IEEE 754
+ha deciso di allocare i 64 disponibili proprio in questo modo---1 per il segno, 52
+per la mantissa e 11 per l'esponente? Abbiamo visto che il numero di bit $n_e$ che
+riserviamo per l'esponente determina il *range dinamico* del nostro standard, ovvero
+sia il numero di ordini di grandezza (o *decadi*) tra il minimo ed il massimo numero
+rappresentabile
+$$
+\text{dex}(x_{\text{min}}, x_{\text{max}}) =
+\log_{10} \left( \frac{x_{\text{max}}}{x_{\text{min}}} \right)
+\approx \log_{10} \left( 2^{2^{n_e}}\right) = 2^{n_e} \log_{10} 2
+$$
+Il numero di bit $n_m$ che riserviamo per la mantissa, d'altra parte, determina la
+precisione relativa con cui possiamo rappresentare i numeri, o, equivalentemente, il
+numero di cifre significative nell'ordinaria rappresentazione decimale
+$$
+\log_{10} \left( 2^{n_m + 1} \right) = (n_m + 1) \log_{10} 2
+$$
+
+La tabella che segue mostra il range dinamico ed il numero di cifre significative
+che otterremmo con diverse scelte (per 11 bit di esponente e 52 + 1 di mantissa
+torniamo al nostro range dinamico di circa 616 decadi, con una precisione di circa
+16 cifre significative).
+
+```{python}
+#| label: tbl-floating-point
+#| tbl-cap: "Precisione e intervallo dinamico al variare del numero di bit dell'esponente e della mantissa. Lo standard IEEE 754 utilizza 11 bit per l'esponente e 52 + 1 bit per la mantissa. Notiamo che, mentre il range dinamico cambia in modo piuttosto violento attorno a questi valori, l'effetto sulla precisione è relativamente modesto."
+#| echo: false
+
+import math
+import pandas as pd
+
+rows = []
+
+for e in range(5, 16):
+    m = 63 - e
+
+    rows.append([
+        e,
+        f"{m} + 1",
+        f"{2.**e * math.log10(2.):.1f}",
+        f"{(m + 1) * math.log10(2.):.1f}"
+    ])
+
+df = pd.DataFrame(
+  rows,
+  columns=[
+      "Bit di esponente",
+      "Bit di mantissa",
+      "Range dinamico",
+      "Cifre significative",
+    ]
+  )
+
+df.style.hide(axis="index")#.hide(axis="columns")
+```
+
+Cosa possiamo dire, come fisiche? Beh, se pensiamo alle scale di lunghezza possiamo
+dire che ci sono circa 42 ordini di grandezza tra il raggio del protone ed il raggio
+dell'universo osservabile---61 se partiamo dalla scala di Planck.
+Ci sono circa 90 ordini di grandezza tra la massa del neutrino più pesante (che ancora
+non conosciamo) e la massa che stimiamo comporre l'universo. In altre parole: non è
+facile trovare un range dinamico rilevante in Fisica che ecceda di molto i 100
+ordini di grandezza.
+
+E per la precisione? La misura più recente del momento magnetico dell'elettrone
+[@electron_magnetic_moment], con una precisione di 0.1 ppb (part per billion), ovvero
+con 13 cifre significative, detiene il record della proprietà meglio misurata di una
+particelle. Ovviamente le nostre amiche metrologhe non smettono di fare progressi,
+ed il record più recente di precisione sulla misura di una frequenza [@metrology_record]
+sfiora le 19 cifre significative.
+
+Ma nel complesso possiamo dire che i 64 bit dello standard IEEE sono ben allocati: ci
+permettono di rappresentare comodamente tutti gl intervalli dinamici che potrebbero
+essere rilevanti per la Fisica, con una precisione che supera abbondantemente quella
+delle misure più all'avanguardia, con l'eccezione di alcune applicazioni molto
+specifiche.
+
+
+### Un esempio di accortezza numerica
+
+Quindi siamo salve? Non proprio, perché a queste condizioni la tragedia è potenzialmente
+dietro l'angolo attraverso underflow/overflow nei calcoli intermedi e/o cancellazioni
+catastrofiche non volute. Prendiamo ad esempio la nostra amica distribuzione di Poisson
+$$
+P(k; \mu) = \frac{\mu^k e^{-\mu}}{k!}
+$$
+Da un punto di vista numerico, l'espressione è un coacerbo di tutte le funzioni
+matematiche che sono più prone all'overflow, tanto è vero che non bisogna arrivare a
+numeri stratosferici per far fallire l'implementazione più naive che una potrebbe
+immaginare---provare per credere!
+```{python}
+#| error: true
+import math
+
+def poisson(k, mu):
+    return mu**k * math.exp(-mu) / math.factorial(k)
+
+mu = 10.
+for k in (100, 150, 200):
+    print(f"P({k}, {mu}) = {poisson(k, mu)}")
+```
+(Avete capito bene. Se non ci mettiamo un pizzico di intelligenza, calcolare la
+probabilità che una variabile Poissoniana con media $10$ valga $200$ diventa un
+problema intrattabile.)
+
+L'espediente standard, qui, è passare ai logaritmi, e passare attraverso la funzione
+$\Gamma$ per calcolare il logaritmo del fattoriale
+$$
+\log P(k; \mu) = k \log \mu - \mu - \log k! = k \log \mu - \mu - \log \Gamma(k + 1)
+$$
+Curiosamente, il modulo `math` della libreria standard di Python fornisce proprio una
+funzione che restituisce il logaritmo della funzione $\Gamma$, per cui una possibile
+implementazione di questo approccio potrebbe essere
+```{python}
+import math
+
+def poisson(k, mu):
+    logp = k * math.log(mu) - mu - math.lgamma(k + 1)
+    return math.exp(logp)
+
+mu = 10.
+for k in (100, 150, 200, 400):
+    print(f"P({k}, {mu}) = {poisson(k, mu)}")
+```
+Come vedete, adesso il caso con $k = 200$ è trattato correttamente---il problema non era
+il valore finale, ma i numeri nei calcoli intermedi, che passando ai logaritmi diventano
+molto più piccoli. Ovviamente ad un certo punto ci scontriamo con il fatto che il
+risultato è troppo piccolo per essere rappresentato, ed in quel caso otteniamo
+semplicemente $0$ come risposta, senza alcun overflow.
+
+::: {.callout-note}
+Resistete alla tentazione di re-implementare la Poisson nella vita reale.
+Il modulo [`scipy.stats`](https://docs.scipy.org/doc/scipy/reference/stats.html)
+offre, tra le altre cose, un'implementazione della distribuzione di
+[Poisson](https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html)
+robusta e ben testata (anche se l'implementazione non è molto diversa da quella che
+abbiamo appena visto) e non c'è ragione di re-inventare la ruota!
+```{python}
+from scipy.stats import poisson
+
+mu = 10.
+for k in (100, 150, 200, 400):
+    print(f"P({k}, {mu}) = {poisson(mu).pmf(k)}")
+```
+:::
 
 
 ### Proprietà dell'aritmetica elementare
 
-e non garantisce le proprietà elementari che diamo spesso
-per scontate (e.g., la proprietà associativa della somma o la proprietà
-distributiva della moltiplicazione rispetto alla somma).
-
+Noi tutte diamo per scontato le proprietà dell'aritmetica cha abbiamo studiato alle
+scuole elementari: la proprietà commutativa della somma e del prodotto, la proprietà
+associativa e la proprietà distributiva della moltplicazione rispetto alla somma.
+Ebbene, il carattere intrinsecamente inesatto dell'artitmetica in virgola mobile
+fa sì che queste proprietà, in generale, non possano essere preservate tutte insieme
+in un calcolatore digitale. (Giusto per chiarezza: questo è vero solo in virgola
+mobile---l'aritmetica intera, da questo punto di vista, si comporta come ci
+aspetteremmo.)
 
 ```{python}
 a = 0.2
@@ -331,8 +503,109 @@ print((a + b) - c == a + (b - c))
 print(a * (b + c) == a * b + a * c)
 ```
 
+All'inizio questa realizzazione può apparire sorprendente, ma se ci pensate bene è una
+conseguenza abbastanza diretta di ciò che abbiamo detto fino ad ora. Se ad ogni
+operazione in virgola mobile, potenzialmente, facciamo approssimazioni, allora è chiaro
+che il risultato finale può dipendere dall'ordine in cui facciamo le cose.
+Nell'esempio che abbiamo appena visto il risultato dei due confronti è falso perché le
+due cose che confrontiamo differiscono di una quantità piccola---al limite della
+precisione della macchina---ma a volte la cosa può diventare distrastosa:
+
+```{python}
+a = 1.e16
+b = -1.e16
+c = 1.
+
+print((a + b) + c)
+print(a + (b + c))
+```
+
+Questo è un caso interessante, perché chiaramente la prima risposta è quella che ci
+aspetteremmo ingenuamente, ma a seconda di come mettiamo le parentesi possiamo ottenere
+un nuemero completamente diverso. Il problema, chiaramente, è quello che abbiamo cercato
+di mettere in evidenza con l'esempio del numero di Avogadro nella sezione precedente, e
+la soluzione (se così possiamo dire) è *cercare, ove possibile, di non sommare o
+sottrarre direttamente numeri che differiscono tra loro di molti ordini di grandezza*.
+
 
 ### Confronti tra numeri in virgola mobile
 
+Ormai abbiamo capito che *confrontare* tra loro numeri in virgola mobile è
+potenzialmente pericoloso, eppure vi assicuro che, andando avanti, vi imbatterete
+di frequente in programmi del tipo
+```{python}
+a = 0.1
+b = 0.2
+c = 0.3
 
-### Accumulazione, cancellazione
+if a + b <= c:
+    print("win!")
+else:
+    print("lose...")
+```
+Se ci mettiamo per un attimo in un caso realistico, in cui `a + b` rappresenta una
+generica operazione matematica e `a`, `b` e `c` sono distribuiti in intervalli
+grandi rispetto alla precisione relativa dell'aritmetica, la cosa non è così disastrosa,
+perché il risultato della disuguaglianza sarà quello atteso nella maggior parte dei
+casi. Resta il fatto che, in senso stretto, non possiamo far affidamento sul confronto
+tra numeri in virgola mobile.
+
+La libreria standard, oltre che pacchetti esterni come `numpy`, offrono funzioni
+specifiche per gestire il confronto tra numeri in virgola mobile, che possono essere
+utili in alcune situazioni
+```{python}
+import math
+import numpy as np
+
+a = 0.1
+b = 0.2
+c = 0.3
+
+print(math.isclose(a + b, c))
+print(np.allclose(a + b, c))
+```
+
+Allora l'esempio iniziale di questa sezione si potrebbe scrivere in modo leggermente
+più robusto come
+```{python}
+import math
+
+a = 0.1
+b = 0.2
+c = 0.3
+
+if a + b < c or math.isclose(a + b ,c):
+    print("win!")
+else:
+    print("lose...")
+```
+
+
+## E quindi?
+
+Semplice: l'aritmetica in virgola mobile è intrinsecamente inesatta e dovete sempre
+fare attenzione. Lo standard IEEE 754 è progettato in modo che le cose funzionino in
+modo trasparente nella maggior parte dei casi, ma non è magico, per cui non dovete
+assumere che i numeri in un calcolatore digitale si comportino come quelli sul
+libro di analisi. In particolare dovete fare attenzione a:
+
+* addizioni e sottrazioni di numeri che differiscono tra loro di molti ordini di
+grandezza;
+* sottrazioni di numeri molto vicini tra loro;
+* moltiplicazioni e divisioni in catena in cui i risultati intermedi sono potenzialmente
+soggetti a underflow o overflow;
+* accumulo coerente di piccoli errori dentro loop molto lunghi (se avete ancora tempo
+da dedicare all'argomento e vi suggerisco la lettura di
+[questo report](https://www.gao.gov/assets/imtec-92-26.pdf) su un avvenimento
+drammatico in un teatro di guerra).
+
+A volte ci sono espedienti che permettono di aggirare il problema---ad esempio passare
+ai logaritmi come abbiamo visto nel caso della distribuzione di Poisson. Altre
+volte le potenziali soluzione sono più sottili, come nel caso
+dell'[algoritmo di Welford](https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance)
+per il calcolo della varianza [@Welford]. Ove possibile, usare librerie popolari e
+ben testate come `numpy` e `scipy` è sicuaramente da preferire rispetto al
+reimplementare tutto from scratch.
+
+La lettura di questo capitolo non vi rende esperte di calcolo numerico, ma
+siete state avvertite!
