@@ -1,7 +1,19 @@
 # Controllo del flusso {#sec-flow}
 
+"Ripetete il tutto per altre tre volte."; "lasciate cuocere fino a che le patate
+non saranno dorate"; "se il sugo è troppo secco aggiungere un po' di acqua di
+cottura". Se avete letto anche distrattamente un libro di ricette in vita vostra
+vi sarà capitato di imbattervi in frasi di questo tipo. Per noi le parole chiave
+sono *tre volte*, *fino a che*, e *se*.
+
 
 ## Ripetere
+
+Una delle cose che capita più di frequente quando programmiamo è quella di
+*ripetere*, o *iterare* un'operazione. Sommare i numeri interi da $0$ a
+$100$, per esempio, significa in pratica partire da $0$ e poi sommare ripetutamente
+$1$, $2$\ldots e così via. Python, così come del resto la maggior parte dei
+linguaggi di programmazione offre due costrutti: `for` e `while`.
 
 
 ### I cicli `for`

@@ -275,3 +275,104 @@ scriviamo.
 
 
 ### Numeri in virgola mobile
+
+La rappresentazione dei numeri in virgola mobile nei moderni calcolatori digitali è
+ormai universalmente conforme allo standard IEEE 754 [@ieee_754], nelle due specifiche
+di formato a 32 e 64 bit. Più precisamente, ogni volta che scriviamo un numero in
+virgola mobile, dobbiamo pensare che, all'interno del calcolatore, esso sia
+rappresentato nella forma
+$$
+  x = (-1)^s \times m \times 2^{e - b} \quad \text{dove} \quad 1 \leq m < 2,
+$$
+in cui, spostandosi da sinistra a destra nella rappresentazione---ovverosia dal
+bit più significativo a quello meno significativo:
+
+* $s$ rappresenta il \emph{segno} del numero, e corrisponde al bit
+più significativo ($0$ se il numero è positivo, $1$ se è negativo);
+* $e$ è l'esponente, che ha a disposizione 8 bit in precisione singola
+e 11 bit in precisione doppia; $b$, che prende il nome di *bias*,
+è una costante additiva (positiva) che permette di rappresentare numeri
+$< 1$ senza bisogno di aggiungere un segno all'esponente, e vale $127$ in
+precisione singola e $1023$ in precisione doppia;
+* $m$ prende il nome di *mantissa* e rappresenta (utilizzando 23 bit in
+precisione singola e 52 bit in precisione doppia) la sequenza di cifre dopo
+la virgola, *assumendo che la parte intera sia $1$* (cioè la mantissa
+è convenzionalmente compresa tra $1$ e $2$ ed il bit più significativo,
+che è garantito essere $1$, può essere omesso).
+
+<!-- TODO: vogliamo mettere una figura del layout? -->
+
+Proviamo a scrivere un numero semplice, $x = 2.25$, seguendo queste regole, i.e.,
+come il prodotto di una mantissa compresa tra $1$ e $2$ per una potenza di $2$:
+$$
+x = 2.25 = 1.125 \times 2
+$$
+Nel formato in doppia precisione avremo dunque
+\begin{align*}
+  s & = 0\\
+  e & - b = 1 \implies e = 1024 =  0b10000000000\\
+  m & = 1.125 = 0b(1).0010000000000000000000000000000000000000000000000000
+\end{align*}
+(notate che abbiamo indicato tutti gli 11 bit per l'esponente ed i 52 per la
+mantissa, con il bit più significativo di normalizzazione tra parentesi) e,
+in definitiva
+$$
+  x \rightarrow 0b0\overbrace{0010000000}^{e-b}
+  \overbrace{0010000000000000000000000000000000000000000000000000}^{m~\text{(bit più significativo omesso)}}
+$$
+
+Wow! Abbiamo scritto il nostro primo numero in virgola mobile nella forma in
+cui lo troveremmo nel disco rigido del nostro calcolatore!
+
+
+## Stringhe, numeri e modalità di IO
+
+Arrivati a questo punto, se avete letto con attenzione, non potrete fare a meno di
+chiedervi: se io scrivo su disco un singolo byte, ad esempio `10101001`,
+che cosa ho fatto realmente? Dato che
+$$
+  0b10101001 = 0xa9 = 169
+$$
+abbiamo almento tre risposte potenzialmente corrette a disposizione! Il $169$ è
+al di fuori della tabella ASCII ristretta, ma se lo interpretiamo come code point
+di una tipica estensione ad $8$ bit della codifica ASCII, abbiamo scritto un bel
+simbolo di copyright. Se assumiamo che il nostro byte di storage rappresenti un
+intero unsigned, allora abbiamo scritto $169$. Se invece assumiamo che sia un intero
+con segno, siccome il bit più significativo è $1$, si tratta di un numero negativo,
+e per la precisione $-87$. Complicato?
+
+La risposta corretta è, come spesso accade: dipende. Quando rileggiamo dal disco il
+nostro byte di informazione possiamo intepretarlo come vogliamo. Ed il corollario è
+che sarà bene assicurarci prima dell'intento con cui il file è stato scritto per
+evitare di prendere cantonate. Se il file in questione è un file di testo, allora
+dovremo leggerlo come tale, e con l'encoding corretto (quello con cui è stato scritto).
+Se invece il file è un file binario, allora dovremo leggerlo con la modalità
+opportuna, e dobbiamo sapere esattamente qual è il layout dei dati all'interno
+per poterli spacchettare nel modo opportuno.
+
+
+Abbiamo imparato una lezione fondamentale, ovvero la distinzione tra il contenuto
+di una porzione di memoria (sia essa volatile o su disco) ed il significato che
+noi diamo a quella particolare sequenza di $0$ ed $1$ all'interno del nostro programma.
+Ed abbiamo capito che lo stesso bit pattern in memoria può essere interpretato
+in più modi, che che dobbiamo fare attenzione ad essere consistenti nelle fasi di
+lettura e di scrittura.
+
+Prima di chiudere vale la pena di parlare un attimo della scrittura su disco. Senza
+entrare in discorsi troppo complicati, il caso d'uso tipico per il corso di laboratorio
+è quello in cui scriviamo, manualmente o programmaticamente, un numero (limitato)
+di valori in un file di testo, e poi rileggiamo questi valori con `numpy` per
+analizzarli.
+Questo va benissmo, e funziona come uno si aspetterebbe, ma non dobbiamo dimenticare
+che, mentre un numero in virgola mobile costa su disco $32$ o $64$ bit, un numero
+scritto in un file di testo costa $8$ bit per ciascun carattere---incluse le cifre
+numeriche, il separatore decimale se presenti, e la potenza di $10$ se scriviamo in
+notazione ingegneristica. Tanto per fissare le idee, scrivere `9.1093837139e-31`
+(la massa dell'elettrone in kg) in un file di testo costa esattamente $128$ bit,
+mentre con la metà dello spazio potremmo confortevolmente raggiungere lo stesso
+risultato se scrivessimo un file binario.
+
+
+## Leggere tabelle di numeri
+
+Spiegare numpy.loadtxt.

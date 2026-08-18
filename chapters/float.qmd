@@ -283,6 +283,9 @@ print(5.e-324)
 print(1.5e308)
 print(2.e308)
 ```
+(Occhio alle operazioni matematiche---non servono numeri stratosferici per triggerare
+overflow: $171!$ è troppo grande per essere convertito in virgola mobile, così come
+$144^{144}$, oppure $e^{710}$.)
 
 Come abbiamo capito, l'aritmetica in virgola mobile è progettata per operare a
 *precisione relativa* costante. Quest'ultima è determinata essenzialmente dai bit

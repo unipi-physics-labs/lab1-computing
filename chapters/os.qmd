@@ -114,6 +114,93 @@ sarebbe buona abitudine non utilizzare nei nomi dei file---magari sostituendolo 
 un underscore (`_`).
 
 
+### Imparare ad amare il *backslash*
+
+<!-- https://lerner.co.il/2018/07/24/avoiding-windows-backslash-problems-with-pythons-raw-strings/ -->
+
+Se state cercando di leggere un file sotto Windows (diciamo, per fissare le idee
+`c:\abc\def\ghi.txt`) e Python si ostina a dire che il file non esiste, nonostante voi
+lo vediate con i vostri occhi, non preoccupatevi---non siete sole nella vostra
+confusione.
+
+Guardate queste due linee di codice:
+```{python}
+file_path = "c:\abc\def\ghi.txt"
+print(file_path)
+```
+Mhh... qualcosa chiaramente non va: nella stringa di testo stampata abbiamo una lettara
+`a` ed un *backslash* (lo strano carattere `\`) mancanti all'appello dopo i due punti.
+
+La questione è che il backslash ha un significato particolare in molti linguaggi di
+programmazione, incluso Python: conferisce un significato differente dal solito al
+carattere (o alla serie di caratteri) che lo segue, in quello che tecnicamente si
+chiama una *sequenza di escape*, e che tipicamente si usa per rappresentare
+i caratteri di controllo della tabella ASCII (codici $0$--$31$). L'esempio forse
+più noto è quello dell'andata a capo, o *line feed*, che corrisponde al codice di
+controllo $10$ della tabella ASCII, e che nella quasi totalità dei linguaggi di
+programmazione si rappresenta come `\n`. Python, come il C, riconosce, tra le altre, le
+queste sequenze di escape:
+
+| Sequenza di escape | Significato                | Codice ASCII |
+| :----------------: | -------------------------- | -----------: |
+|        `\\`        | Backslash (`\`)            |           92 |
+|        `\'`        | Single quote (`'`)         |           39 |
+|        `\"`        | Double quote (`"`)         |           34 |
+|        `\a`        | ASCII Bell (BEL)           |            7 |
+|        `\b`        | ASCII Backspace (BS)       |            8 |
+|        `\f`        | ASCII Formfeed (FF)        |           12 |
+|        `\n`        | ASCII Linefeed (LF)        |           10 |
+|        `\r`        | ASCII Carriage Return (CR) |           13 |
+|        `\t`        | ASCII Horizontal Tab (TAB) |            9 |
+|        `\v`        | ASCII Vertical Tab (VT)    |           11 |
+
+: Sequenze di escape riconosciute da Python. {#tbl-sequenze-escape}
+
+Cominciamo capire cosa sta succedendo. Nel frammento sopra i due caratteri `\a`
+sono interpretati (correttamente) come la sequenza di escape corrispondente al codice
+di controllo $7$ nella tabella ASCII, vale a dire `BEL`, ovverosia la campanella del
+terminale---se eseguite il frammento interattivamente nel prompt di Python e non avete
+disabilitato la campanella del terminale, dovreste sentire un suono!
+
+Tornando al problema originale del percorso al nostro file di dati, l'altro aspetto
+rilevante della questione è la scelta degli sviluppatori della versione 2.0 del DOS di
+scegliere il backslash come separatore delle directory nel filesystem, scelta che si è
+propagata a Windows ed è arrivata fino ai nostri giorni.
+
+::: {.callout-note}
+I sistemi Unix e Unix-like, incluso GNU-Linux e Mac-OS, utilizzano uno `/` (slash) come
+carattere per la separazione delle directory nel filesystem, e questo problema, molto semplicemente, non si pone.
+:::
+
+Solo che in una stringa di Python (e, per quel che conta, lo stesso vale per la
+maggior parte dei linguaggi di programmazione e dei terminali) il backslash ha un
+significato speciale, e non è trattato come tutti gli altri caratteri. Allora la
+domanda è: come faccio a scrivere un backslash in una stringa?
+
+Una prima risposta corretta ce la fornisce la prima riga della @{tbl-sequenze-escape}:
+possiamo usare un backslash per fare l'escape di se stesso, il che vuol dire che la
+sequenza di escape `\\` si traduce in un `\` semplice. Questo funziona come una si
+aspetta nella maggior parte delle situazioni.
+
+In alternativa, Python fornisce la possibilità di aggiungere una lettera `r` o `R`
+prima della virgoletta iniziale della stringa: così facendo si crea quella che si chiama
+una stringa grezza (*raw string*), in cui il backslash è trattato alla pari di un
+qualsiasi altro carattere.
+
+```{python}
+file_path = "c:\\abc\\def\\ghi.txt"
+print(file_path)
+file_path = r"c:\abc\def\ghi.txt"
+print(file_path)
+```
+
+::: {.callout-note}
+C'è un ultimo, piccolo colpo di scena nella storia, ovvero il fatto che, come vederemo
+nel @{sec-latex}, il backslash è utilizzato in LaTeX per identificare i comandi
+all'interno di un documento. Un carattere per tutte le stagioni...
+:::
+
+
 ### Le variabili d'ambiente
 
 
