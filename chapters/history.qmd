@@ -1,5 +1,7 @@
 # Cronologia delle versioni {#sec-history}
 
+### Versione 0.3.2 (2026-08-21) {.unnumbered}
+
 * Creazione del pdf compilato temporaneamente disabilitata per cercare di avere
 l'html statico su github pages.
 * Non ci sono cambiamenti al testo delle note.
