@@ -1,5 +1,8 @@
 # Cronologia delle versioni {#sec-history}
 
+* Prima versione pubblicata su github pages.
+
+
 ### Versione 0.2.0 (2026-08-21) {.unnumbered}
 
 * Versione iniziale di un semplice release manager.
