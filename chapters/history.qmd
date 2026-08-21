@@ -1,13 +1,20 @@
 # Cronologia delle versioni {#sec-history}
 
+* Creazione del pdf compilato temporaneamente disabilitata per cercare di avere
+l'html statico su github pages.
+* Non ci sono cambiamenti al testo delle note.
+
+
 ### Versione 0.3.1 (2026-08-21) {.unnumbered}
 
 * Tweak di pyproject.toml per l'istallazione del pacchetto per la pubblicazione.
+* Non ci sono cambiamenti al testo delle note.
 
 
 ### Versione 0.3.0 (2026-08-21) {.unnumbered}
 
 * Prima versione pubblicata su github pages.
+* Non ci sono cambiamenti al testo delle note.
 
 
 ### Versione 0.2.0 (2026-08-21) {.unnumbered}
