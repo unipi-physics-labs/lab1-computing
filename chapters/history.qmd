@@ -1,5 +1,7 @@
 # Cronologia delle versioni {#sec-history}
 
+### Versione 0.2.0 (2026-08-21) {.unnumbered}
+
 * Versione iniziale di un semplice release manager.
 * Non ci sono cambiamenti al testo delle note.
 

@@ -1,2 +1,3 @@
 # lab1-computing
-Materiale didattico a supporto del modulo di computazione
+
+Materiale didattico a supporto del modulo di computazione.
