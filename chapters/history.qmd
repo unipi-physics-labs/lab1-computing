@@ -1,5 +1,9 @@
 # Cronologia delle versioni {#sec-history}
 
+* Piccolo fix.
+* Non ci sono cambiamenti al testo delle note.
+
+
 ### Versione 0.4.1 (2026-08-21) {.unnumbered}
 
 * Percorso al file di metadati corretto.
