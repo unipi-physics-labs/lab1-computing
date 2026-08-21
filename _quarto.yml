@@ -13,7 +13,7 @@ filters:
   - filters/latex-pair.lua
 
 metadata-files:
-  - version.yml
+  - meta.yml
 
 book:
   title: "Elementi di computazione"
