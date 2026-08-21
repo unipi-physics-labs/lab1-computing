@@ -7,48 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-
-  publish-html:
-    name: Publish HTML
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: write
-
-    steps:
-      - name: Check out repository
-        uses: actions/checkout@v4
-
-      - name: Set up Quarto
-        uses: quarto-dev/quarto-actions/setup@v2
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-          cache: pip
-          cache-dependency-path: pyproject.toml
-
-      - name: Install Python dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install jupyter
-          pip install .
-
-      - name: Render HTML
-        run: quarto render --to html
-
-      - name: Publish to GitHub Pages
-        uses: quarto-dev/quarto-actions/publish@v2
-        with:
-          target: gh-pages
-          render: false
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-
-  publish-pdf:
-    name: Build and release PDF
+  publish:
     runs-on: ubuntu-latest
 
     permissions:
@@ -95,11 +54,30 @@ jobs:
         if: startsWith(github.ref, 'refs/tags/')
         run: |
           if [ "v$VERSION" != "${{ github.ref_name }}" ]; then
-              echo "Version mismatch:"
-              echo "  version.yml: $VERSION"
-              echo "  Git tag:     ${{ github.ref_name }}"
-              exit 1
+            echo "Version mismatch:"
+            echo "  version.yml: $VERSION"
+            echo "  Git tag:     ${{ github.ref_name }}"
+            exit 1
           fi
+
+      # -----------------------------------------------------------------------
+      # HTML
+      # -----------------------------------------------------------------------
+
+      - name: Render HTML
+        run: quarto render --to html
+
+      - name: Publish to GitHub Pages
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+          render: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # -----------------------------------------------------------------------
+      # PDF
+      # -----------------------------------------------------------------------
 
       - name: Render PDF
         run: quarto render --to pdf
@@ -110,15 +88,18 @@ jobs:
           PDF=$(find _book -maxdepth 1 -name '*.pdf' -print -quit)
 
           if [ -z "$PDF" ]; then
-              echo "Error: no PDF found in _book"
-              exit 1
+            echo "Error: no PDF found in _book"
+            exit 1
           fi
 
           OUTPUT="elementi-di-computazione-${VERSION}.pdf"
-
           mv "$PDF" "$OUTPUT"
 
           echo "PDF_FILE=$OUTPUT" >> "$GITHUB_ENV"
+
+      # -----------------------------------------------------------------------
+      # GitHub release
+      # -----------------------------------------------------------------------
 
       - name: Create GitHub release
         if: startsWith(github.ref, 'refs/tags/')
