@@ -12,6 +12,9 @@ resources:
 filters:
   - filters/latex-pair.lua
 
+metadata-files:
+  - version.yml
+
 book:
   title: "Elementi di computazione"
   subtitle: "Per il corso di Laboratorio di Fisica"
@@ -56,6 +59,7 @@ book:
   appendices:
     - chapters/latex.qmd
     - chapters/graphics.qmd
+    - chapters/history.qmd
 
 bibliography: references.bib
 

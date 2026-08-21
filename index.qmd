@@ -1,3 +1,6 @@
+
+Versione {{< meta tag >}} ([cronologia](#sec-history))
+
 # Prefazione {.unnumbered}
 
 I calcolatori sono letteralmente onnipresenti nella nostra vita quotidiana, nelle
