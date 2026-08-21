@@ -1,5 +1,7 @@
 # Cronologia delle versioni {#sec-history}
 
+### Versione 0.3.0 (2026-08-21) {.unnumbered}
+
 * Prima versione pubblicata su github pages.
 
 
