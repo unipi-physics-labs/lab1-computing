@@ -1,6 +1,14 @@
 # Cronologia delle versioni {#sec-history}
 
+* Percorso al file di metadati corretto.
+* Non ci sono cambiamenti al testo delle note.
+
+
 ### Versione 0.4.0 (2026-08-21) {.unnumbered}
+
+* Compilazione del pdf statico per la sezione delle release.
+* Non ci sono cambiamenti al testo delle note.
+
 
 ### Versione 0.3.2 (2026-08-21) {.unnumbered}
 

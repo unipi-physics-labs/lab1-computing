@@ -41,7 +41,7 @@ jobs:
           VERSION=$(python - <<'PY'
           import yaml
 
-          with open("version.yml") as f:
+          with open("meta.yml") as f:
               metadata = yaml.safe_load(f)
 
           print(metadata["tag"])
@@ -55,7 +55,7 @@ jobs:
         run: |
           if [ "v$VERSION" != "${{ github.ref_name }}" ]; then
             echo "Version mismatch:"
-            echo "  version.yml: $VERSION"
+            echo "  meta.yml: $VERSION"
             echo "  Git tag:     ${{ github.ref_name }}"
             exit 1
           fi
