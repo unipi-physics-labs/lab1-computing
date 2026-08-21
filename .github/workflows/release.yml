@@ -1,4 +1,4 @@
-name: Release book
+name: Publish Quarto book
 
 on:
   push:
@@ -8,10 +8,8 @@ on:
 
 jobs:
 
-  # ---------------------------------------------------------------------------
-  # Build the HTML book and publish it to GitHub Pages.
-  # ---------------------------------------------------------------------------
   publish-html:
+    name: Publish HTML
     runs-on: ubuntu-latest
 
     permissions:
@@ -49,10 +47,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 
-  # ---------------------------------------------------------------------------
-  # Build the PDF and attach it to a GitHub release.
-  # ---------------------------------------------------------------------------
   publish-pdf:
+    name: Build and release PDF
     runs-on: ubuntu-latest
 
     permissions:
@@ -80,10 +76,7 @@ jobs:
           pip install jupyter
           pip install .
 
-      - name: Render PDF
-        run: quarto render --to pdf
-
-      - name: Read version and rename PDF
+      - name: Read version metadata
         shell: bash
         run: |
           VERSION=$(python - <<'PY'
@@ -96,6 +89,24 @@ jobs:
           PY
           )
 
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+
+      - name: Check version matches Git tag
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          if [ "v$VERSION" != "${{ github.ref_name }}" ]; then
+              echo "Version mismatch:"
+              echo "  version.yml: $VERSION"
+              echo "  Git tag:     ${{ github.ref_name }}"
+              exit 1
+          fi
+
+      - name: Render PDF
+        run: quarto render --to pdf
+
+      - name: Rename PDF
+        shell: bash
+        run: |
           PDF=$(find _book -maxdepth 1 -name '*.pdf' -print -quit)
 
           if [ -z "$PDF" ]; then
@@ -107,10 +118,10 @@ jobs:
 
           mv "$PDF" "$OUTPUT"
 
-          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
           echo "PDF_FILE=$OUTPUT" >> "$GITHUB_ENV"
 
       - name: Create GitHub release
+        if: startsWith(github.ref, 'refs/tags/')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -119,7 +130,8 @@ jobs:
             --title "${{ github.ref_name }}" \
             --generate-notes
 
-      - name: Upload PDF
+      - name: Upload PDF to release
+        if: startsWith(github.ref, 'refs/tags/')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
