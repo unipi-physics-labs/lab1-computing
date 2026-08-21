@@ -2,7 +2,7 @@
 
 Materiale didattico a supporto del modulo di computazione.
 
-La versione corrente delle note è la 0.4.2, che è disponibile:
+La versione corrente delle note è disponibile:
 
 * in formato [html](https://unipi-physics-labs.github.io/lab1-computing/)
 (se avete accesso alla rete questa è la modalità di consultazione consigliata);
