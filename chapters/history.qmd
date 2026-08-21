@@ -1,5 +1,7 @@
 # Cronologia delle versioni {#sec-history}
 
+### Versione 0.3.1 (2026-08-21) {.unnumbered}
+
 * Tweak di pyproject.toml per l'istallazione del pacchetto per la pubblicazione.
 
 
