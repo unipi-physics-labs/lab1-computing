@@ -124,7 +124,6 @@ def release(mode: str) -> None:
     """
     execute_shell_command(['git', 'pull'])
     meta = bump_version(mode)
-    return
     version = meta['tag']
     msg = f'Prepare for tag {version}.'
     execute_shell_command(['git', 'commit', '-a', '-m', msg])
