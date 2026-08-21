@@ -123,11 +123,18 @@ Se state cercando di leggere un file sotto Windows (diciamo, per fissare le idee
 lo vediate con i vostri occhi, non preoccupatevi---non siete sole nella vostra
 confusione.
 
-Guardate queste due linee di codice:
-```{python}
+```python
 file_path = "c:\abc\def\ghi.txt"
 print(file_path)
 ```
+
+```{python}
+#| echo: false
+
+file_path = "c:\abc\def\ghi.txt"
+print(file_path.replace("\a", ""))
+```
+
 Mhh... qualcosa chiaramente non va: nella stringa di testo stampata abbiamo una lettara
 `a` ed un *backslash* (lo strano carattere `\`) mancanti all'appello dopo i due punti.
 
@@ -201,10 +208,11 @@ all'interno di un documento. Un carattere per tutte le stagioni...
 :::
 
 
+<!--
+
 ### Le variabili d'ambiente
 
 
-<!--
 \subsection{Processi e thread}
 
 Necessario oppure no?
