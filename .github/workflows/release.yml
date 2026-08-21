@@ -53,7 +53,7 @@ jobs:
       - name: Check version matches Git tag
         if: startsWith(github.ref, 'refs/tags/')
         run: |
-          if [ "v$VERSION" != "${{ github.ref_name }}" ]; then
+          if [ "$VERSION" != "${{ github.ref_name }}" ]; then
             echo "Version mismatch:"
             echo "  meta.yml: $VERSION"
             echo "  Git tag:     ${{ github.ref_name }}"
