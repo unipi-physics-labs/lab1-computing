@@ -1,0 +1,128 @@
+name: Release book
+
+on:
+  push:
+    tags:
+      - "*"
+  workflow_dispatch:
+
+jobs:
+
+  # ---------------------------------------------------------------------------
+  # Build the HTML book and publish it to GitHub Pages.
+  # ---------------------------------------------------------------------------
+  publish-html:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jupyter
+          pip install .
+
+      - name: Render HTML
+        run: quarto render --to html
+
+      - name: Publish to GitHub Pages
+        uses: quarto-dev/quarto-actions/publish@v2
+        with:
+          target: gh-pages
+          render: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+  # ---------------------------------------------------------------------------
+  # Build the PDF and attach it to a GitHub release.
+  # ---------------------------------------------------------------------------
+  publish-pdf:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto and TinyTeX
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          tinytex: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: pyproject.toml
+
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install jupyter
+          pip install .
+
+      - name: Render PDF
+        run: quarto render --to pdf
+
+      - name: Read version and rename PDF
+        shell: bash
+        run: |
+          VERSION=$(python - <<'PY'
+          import yaml
+
+          with open("version.yml") as f:
+              metadata = yaml.safe_load(f)
+
+          print(metadata["tag"])
+          PY
+          )
+
+          PDF=$(find _book -maxdepth 1 -name '*.pdf' -print -quit)
+
+          if [ -z "$PDF" ]; then
+              echo "Error: no PDF found in _book"
+              exit 1
+          fi
+
+          OUTPUT="elementi-di-computazione-${VERSION}.pdf"
+
+          mv "$PDF" "$OUTPUT"
+
+          echo "VERSION=$VERSION" >> "$GITHUB_ENV"
+          echo "PDF_FILE=$OUTPUT" >> "$GITHUB_ENV"
+
+      - name: Create GitHub release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release view "${{ github.ref_name }}" >/dev/null 2>&1 || \
+          gh release create "${{ github.ref_name }}" \
+            --title "${{ github.ref_name }}" \
+            --generate-notes
+
+      - name: Upload PDF
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release upload "${{ github.ref_name }}" \
+            "$PDF_FILE" \
+            --clobber
