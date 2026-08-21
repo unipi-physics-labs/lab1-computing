@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>4&nbsp; Funzioni – Elementi di computazione</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/flow.html" rel="next">
+<link href="../chapters/types.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-eb1bc3aaadf2658264f2b941ac69fc6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nessun risultato",
+    "search-matching-documents-text": "documenti trovati",
+    "search-copy-link-title": "Copiare il link nella ricerca",
+    "search-hide-matches-text": "Nascondere i risultati aggiuntivi",
+    "search-more-match-text": "ci sono altri risultati in questo documento",
+    "search-more-matches-text": "ulteriori risultati in questo documento",
+    "search-clear-button-title": "Pulire",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancellare",
+    "search-submit-button-title": "Inviare",
+    "search-label": "Ricerca"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/install.html">Parte prima: dal problema alla soluzione</a></li><li class="breadcrumb-item"><a href="../chapters/functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funzioni</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Elementi di computazione</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/unipi-physics-labs/lab1-computing" title="Eseguire il codice" class="quarto-navigation-tool px-1" aria-label="Eseguire il codice"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Ricerca"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefazione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../copyright.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licenza</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../gender.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nota sul linguaggio di genere</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nota sul software libero</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte prima: dal problema alla soluzione</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Cominciamo?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/crash.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo programma</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Variabili e tipi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/functions.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funzioni</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/flow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte seconda: ripartiamo dai principi</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/count.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Contare in base 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/hw.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dentro il calcolatore</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/os.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Il sistema operativo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Input/output</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/float.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’aritmetica in virgola mobile</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/algs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Algoritmi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/vec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Vettorizzazione</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendici</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/latex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">LaTeX</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formati grafici</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice</h2>
+   
+  <ul>
+  <li><a href="#la-nostra-prima-funzione" id="toc-la-nostra-prima-funzione" class="nav-link active" data-scroll-target="#la-nostra-prima-funzione"><span class="header-section-number">4.1</span> La nostra prima funzione</a>
+  <ul class="collapse">
+  <li><a href="#funzioni-di-python-e-funzioni-matematiche" id="toc-funzioni-di-python-e-funzioni-matematiche" class="nav-link" data-scroll-target="#funzioni-di-python-e-funzioni-matematiche"><span class="header-section-number">4.1.1</span> Funzioni di Python e funzioni matematiche</a></li>
+  <li><a href="#digressione-la-funzione-curve_fit" id="toc-digressione-la-funzione-curve_fit" class="nav-link" data-scroll-target="#digressione-la-funzione-curve_fit"><span class="header-section-number">4.1.2</span> Digressione: la funzione <code>curve_fit</code></a></li>
+  </ul></li>
+  <li><a href="#le-funzioni-più-in-dettaglio" id="toc-le-funzioni-più-in-dettaglio" class="nav-link" data-scroll-target="#le-funzioni-più-in-dettaglio"><span class="header-section-number">4.2</span> Le funzioni più in dettaglio</a>
+  <ul class="collapse">
+  <li><a href="#definizione-di-una-funzione-segnatura" id="toc-definizione-di-una-funzione-segnatura" class="nav-link" data-scroll-target="#definizione-di-una-funzione-segnatura"><span class="header-section-number">4.2.1</span> Definizione di una funzione: segnatura</a></li>
+  <li><a href="#un-esempio-dal-mondo-reale" id="toc-un-esempio-dal-mondo-reale" class="nav-link" data-scroll-target="#un-esempio-dal-mondo-reale"><span class="header-section-number">4.2.2</span> Un esempio dal mondo reale</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/functions.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/install.html">Parte prima: dal problema alla soluzione</a></li><li class="breadcrumb-item"><a href="../chapters/functions.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funzioni</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-functions" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funzioni</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">21 agosto 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Abbiamo incontrato i nostri primi esempi di <em>funzioni</em> (<code>plt.figure</code>, <code>plt.errorbar</code> e <code>plt.show</code>) nel capitolo <a href="crash.html" class="quarto-xref"><span>Capitolo 2</span></a>. In quel contesto ce la siamo cavata senza entrare troppo nei dettagli, ma adesso è arrivato il momento di tornare sull’argomento ed affrontarlo di petto.</p>
+<p>Supponiamo di voler scrivere un libro di cucina dedicato ai dolci, e di avere 8 ricette che fanno uso della crema pasticcera. Siamo di fronte ad un’importante scelta editoriale: possiamo scrivere la ricetta della crema una volta sola (magari all’inizio) e poi rimandare alla pagina opportuna ogni volta che serve; oppure copiare la ricetta della crema <em>verbatim</em> per 8 volte. Quali sono i pro e i contro delle due possibilità?</p>
+<p>Se scegliamo di scrivere la ricetta una volta sola abbiamo due vantaggi distinti:</p>
+<ul>
+<li>il libro ha fisicamente più breve, il che è bene per l’ambiente (meno per noi, se veniamo pagate in base al numero di pagine);</li>
+<li>se per la seconda edizione ci viene in mente un tocco magico per migliorare la ricetta non dobbiamo modificare il libro in 8 posti diversi, ma in uno solo.</li>
+</ul>
+<p>Ci sono controindicazioni? Beh, forse il leggero fastidio di non avere tutto il flusso di informazioni in un posto solo e di dover andare avanti e dietro nel libro. Pensateci un attimo: non c’è dubbio che, in questo caso, i pro superino i contro.</p>
+<p>Una cosa analoga avviene sistematicamente nei programmi. Una <em>funzione</em>, come abbiamo già detto sommariamente, è un blocco di istruzioni coerente progettato per svolgere un compito specifico. Ogni volta che il nostro programma ha bisogno di svolgere questo compito, anziché copiare fisicamente le istruzioni da una parte all’altra, <em>chiamiamo</em> la funzione. Si tratta di un principio talmente importante che gli informatici gli hanno dato anche un nome: DRY (<em>Do not Repeat Yourself</em>).</p>
+<section id="la-nostra-prima-funzione" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="la-nostra-prima-funzione"><span class="header-section-number">4.1</span> La nostra prima funzione</h2>
+<p>Non c’è modo migliore per imparare a fare una funzione che scriverne una. E non c’è modo migliore che scriverne una che farlo per risolvere un problema concreto. La nostra prima funzione, allora, la faremo per <em>fittare</em> una serie di dati con una retta.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Lo studierete in tutto il dettaglio nella parte di statistica del corso di Laboratorio, ma fare un fit ad una serie di dati significa trovare la funzione che più si adatta ai dati, all’interno di una famiglia di funzioni dipendente da uno o più parametri (il <em>modello</em>). Più precisamente: si tratta di trovare i valori dei parametri del modello (e le incertezze associate) per cui l’accordo con i dati è, in un qualche senso da precisare, massimo. Nel caso del fit con una retta cercheremo il coefficiente angolare e l’intercetta della retta nel piano che meglio descrive la nostra serie di punti.</p>
+</div>
+</div>
+<div id="39c0b79e" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a><span class="co"># Define the input data.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>x <span class="op">=</span> np.array([<span class="fl">1.</span>, <span class="fl">2.</span>, <span class="fl">3.</span>, <span class="fl">4.</span>, <span class="fl">5.</span>])</span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>y <span class="op">=</span> np.array([<span class="fl">1.2</span>, <span class="fl">2.1</span>, <span class="fl">2.9</span>, <span class="fl">4.3</span>, <span class="fl">4.8</span>])</span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>dy <span class="op">=</span> np.full(y.shape, <span class="fl">0.25</span>)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a><span class="co"># Define the fitting model.</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a><span class="kw">def</span> line(x, m, q):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a>    <span class="cf">return</span> m <span class="op">*</span> x <span class="op">+</span> q</span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a><span class="co"># Create a figure and make a plot with error bars.</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a>plt.figure(<span class="st">"linear fit"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a>plt.errorbar(x, y, dy, fmt<span class="op">=</span><span class="st">"o"</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-label="17"></a>plt.xlabel(<span class="st">"x [u. a.]"</span>)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-label="18"></a>plt.ylabel(<span class="st">"y [u. a.]"</span>)</span>
+<span id="cb1-19"><a href="#cb1-19" aria-label="19"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-label="20"></a><span class="co"># Fit the data points.</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-label="21"></a>popt, pcov <span class="op">=</span> curve_fit(line, x, y, sigma<span class="op">=</span>dy)</span>
+<span id="cb1-22"><a href="#cb1-22" aria-label="22"></a>m_hat, q_hat <span class="op">=</span> popt</span>
+<span id="cb1-23"><a href="#cb1-23" aria-label="23"></a>sigma_m, sigma_q <span class="op">=</span> np.sqrt(pcov.diagonal())</span>
+<span id="cb1-24"><a href="#cb1-24" aria-label="24"></a><span class="bu">print</span>(<span class="ss">f"m = </span><span class="sc">{</span>m_hat<span class="sc">:.3f}</span><span class="ss"> ± </span><span class="sc">{</span>sigma_m<span class="sc">:.3f}</span><span class="ss">"</span>)</span>
+<span id="cb1-25"><a href="#cb1-25" aria-label="25"></a><span class="bu">print</span>(<span class="ss">f"q = </span><span class="sc">{</span>q_hat<span class="sc">:.2f}</span><span class="ss"> ± </span><span class="sc">{</span>sigma_q<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26" aria-label="26"></a></span>
+<span id="cb1-27"><a href="#cb1-27" aria-label="27"></a>plt.plot(x, line(x, m_hat, q_hat))</span>
+<span id="cb1-28"><a href="#cb1-28" aria-label="28"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-label="29"></a><span class="co"># Show the plot on the screen.</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-label="30"></a>plt.show()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>m = 0.940 ± 0.067
+q = 0.24 ± 0.22</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="functions_files/figure-html/cell-2-output-2.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Avrete notato che, rispetto al nostro programma iniziale abbiamo applicato molte delle cose che abbiamo imparato nel <a href="types.html" class="quarto-xref"><span>Capitolo 3</span></a>. Ma la cosa veramente nuova è la <em>funzione</em> che descrive il nostro modello di fit—una retta.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> line(x, m, q):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> m <span class="op">*</span> x <span class="op">+</span> q</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Vediamo i punti salienti:</p>
+<ul>
+<li>una nuova funzione si definisce con la parola chiave <code>def</code>, seguita dal nome che vogliamo dare alla funzione (nel nostro caso <code>line</code>);</li>
+<li>seguono tutti gli <em>argomenti</em> della funzione, racchiusi tra parentesi tonde;</li>
+<li>i due punti <code>:</code> delimitano l’inizio del <em>corpo</em> della funzione, che generalmente è a capo, ed è <em>indentato</em> di 4 spazi verso destra;</li>
+<li>se la funzione <em>restituisce</em> un valore, che è un caso tipico, questo si fa utilizzando la parola chiave <code>return</code>.</li>
+</ul>
+<p>Nel nostro caso particolare gli argomenti della funzione sono, in ordine:</p>
+<ul>
+<li>il valore <code>x</code> della variabile indipendente, che può essere un numero o un array di numpy;</li>
+<li>il valore <code>m</code> del coefficiente angolare della retta;</li>
+<li>il valore <code>q</code> dell’intercetta.</li>
+</ul>
+<p>La funzione, come si vede, restituisce il valore che la retta assume sull’asse delle ordinate per un particolare insieme di valori delle ascisse, fissati coefficiente angolare ed intercetta.</p>
+<div id="6b9a2818" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> line(x, m, q):</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> m <span class="op">*</span> x <span class="op">+</span> q</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="fl">0.</span>, <span class="fl">10.</span>, <span class="dv">11</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="fl">2.</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> <span class="fl">1.</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(line(x, m , q))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[ 1.  3.  5.  7.  9. 11. 13. 15. 17. 19. 21.]</code></pre>
+</div>
+</div>
+<section id="funzioni-di-python-e-funzioni-matematiche" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="funzioni-di-python-e-funzioni-matematiche"><span class="header-section-number">4.1.1</span> Funzioni di Python e funzioni matematiche</h3>
+<p>La nostra prima funzione in Python, per una pura coincidenza, implementa una funzione matematica in senso stretto. Basta scrivere <span class="math display">\[
+f(x; m, q) = mx + q
+\]</span> per rendersi conto che l’analogia tra le due cose, qui, è pressoché perfetta.</p>
+<p>In effetti, se ci pensiamo bene, non è poi così strano che questo nuovo oggetto che stiamo gradualmente introducendo si chiami così. Come una funzione matematica, una funzione di Python può accettare argomenti; e come una funzione matematica, una funzione di Python può restituire un (o più di un) valore. Eppure le due cose sono fondamentalmente diverse.</p>
+<p>Una funzione matematica, strettamente parlando, <em>calcola un valore</em>. Una funzione in un qualsiasi linguaggio di programmazione fa una cosa più generale, ovvero <em>esegue un compito specifico</em>. A volte questo compito è calcolare un valore, a volte no: una funzione potrebbe, ad esempio, scrivere dei dati in un file su disco; aprire una finestra grafica sullo schermo; configurare un router—non c’è limite alla fantasia.</p>
+<p>Non è nemmeno detto che una funzione in questo nuovo senso debba per forza restituire un valore—ci sono funzioni legittime che non restituiscono niente!</p>
+<div id="783c8508" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>greet(<span class="st">"Giulia"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello Giulia!</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Questo non è del tutto corretto, almeno in Python: una funzione restituisce sempre qualcosa, e se non mettiamo un’istruzione <code>return</code> nel corpo della funzione, questo qualcosa è <code>None</code>.</p>
+<div id="909be204" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(greet(<span class="st">"Giulia"</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello Giulia!
+None</code></pre>
+</div>
+</div>
+<p>Notiamo, per inciso, che come mostrano questi ultimi due esempi, non siete costrette ad intercettare il valore restituito dalla funzione—potete tranquillamente chiamarla senza assegnare il risultato ad una variabile.</p>
+</div>
+</div>
+<p>Si possono persino fare funzioni che, oltre a non restituire valori, non accettano argomenti. E, se ci pensate per un secondo, ne abbiamo già incontrata almeno una</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Ok, abbiamo già speso troppo tempo sulla questione ed è il momento di procedere, ma avete capito il messaggio: in questo contesto una funzione è banalmente una funzione matematica, ma una sorta di sua generalizzazione.</p>
+</section>
+<section id="digressione-la-funzione-curve_fit" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="digressione-la-funzione-curve_fit"><span class="header-section-number">4.1.2</span> Digressione: la funzione <code>curve_fit</code></h3>
+<p>Prima di andare avanti vale la pena fermarsi per un attimo a discutere il nostro ultimo incontro</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>popt, pcov <span class="op">=</span> curve_fit(line, x, y, sigma<span class="op">=</span>dy)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Si tratta ovviamente di una funzione, e non bisogna andare molto lontano nel nostro programma</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>per capire che si tratta di una funzione contenuta nel modulo <code>optimize</code> della libreria <code>scipy</code>. (Link alla <a href="https://docs.scipy.org/doc/scipy/reference/optimize.html">documentazione</a>.)</p>
+<p>Che cosa possiamo dire di questa funzione: beh, anche senza guardare la <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.curve_fit.html#scipy.optimize.curve_fit">definizione</a> completa, possiamo dire che accetta almeno <span class="math inline">\(4\)</span> argomenti;</p>
+<ul>
+<li>il modello, che è anch’esso una funzione (pensateci un attimo: una funzione che accetta come argomento un’altra funzione—chi l’avrebbe immaginato?);</li>
+<li>le coordinate <span class="math inline">\(x\)</span> dei punti da fittare;</li>
+<li>le coordinate <span class="math inline">\(y\)</span> dei punti da fittare;</li>
+<li>le incertezze sulla <span class="math inline">\(y\)</span>.</li>
+</ul>
+<p>Possiamo anche dire con certezza che la funzione <code>curve_fit</code> restituisce due oggetti, che noi abbiamo assegnato alle variabili <code>popt</code> e <code>pcov</code>. Cosa sono questi due oggetti?</p>
+<ul>
+<li><code>popt</code> è un array di numpy che contiene i valori ottimali del parametri di fit, in questo caso <span class="math inline">\(\hat{m}\)</span> e <span class="math inline">\(\hat{q}\)</span>;</li>
+<li><code>pcov</code> è un array <em>a due indici</em> (o, se volete, una matrice, in questo caso <span class="math inline">\(2 \times 2\)</span>) che va generalmente sotto il nome di <em>matrice di covarianza dei parametri</em>.</li>
+</ul>
+<p>A questo livello non dovete sapere niente della matrice di covarianza, se no che le incertezze sui parametri coincidono con la radice quadrata dei suoi elementi diagonali. Esaminate allora con attenzione le righe</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>m_hat, q_hat <span class="op">=</span> popt</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sigma_m, sigma_q <span class="op">=</span> np.sqrt(pcov.diagonal())</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>ed assicuratevi di aver capito cosa significano, magari facendovi stampare sul terminale i valori intermedi.</p>
+</section>
+</section>
+<section id="le-funzioni-più-in-dettaglio" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="le-funzioni-più-in-dettaglio"><span class="header-section-number">4.2</span> Le funzioni più in dettaglio</h2>
+<p>Se avete prestato attenzione, c’è almeno una cosa che non abbiamo ancora spiegato e che potrebbe infastidire le più pignole tra voi. <em>Come mai chiamiamo alcuni argomenti per nome e altri no?</em> Lo abbiamo visto almeno due volte.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>plt.errorbar(x, y, dy, fmt<span class="op">=</span><span class="st">"o"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>popt, pcov <span class="op">=</span> curve_fit(line, x, y, sigma<span class="op">=</span>dy)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Cosa c’è di particolare negli argomenti <code>fmt</code> (di <code>plt.errorbar</code>) e <code>sigma</code> (di <code>curve_fit</code>) che fa sì che dobbiamo chiamarli con questa strana sintassi <code>nome_argomento=valore</code>, mentre in tutti gli altri casi utilizziamo semplicemente il nome della variabile rilevante?</p>
+<p>Per capire questo dobbiamo guardare più in dettaglio le regole per la definizione di funzioni in Python.</p>
+<section id="definizione-di-una-funzione-segnatura" class="level3" data-number="4.2.1">
+<h3 data-number="4.2.1" class="anchored" data-anchor-id="definizione-di-una-funzione-segnatura"><span class="header-section-number">4.2.1</span> Definizione di una funzione: segnatura</h3>
+<p>Tecnicamente l’informazione che specifica come si chiama una particolare funzione si chiama <em>segnatura</em>, e comprende il nome della funzione stessa, il nome di tutti gli argomenti che la funzione accetta, e l’ordine in cui questi debbono essere forniti. Così la nostra funzione</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>ha una segnatura semplicissima: si chiama <code>greet</code>, ed accetta un solo parametro, che si chiama <code>name</code>. Il modo più semplice per chiamare una funzione è fornire i valori di tutti gli argomenti, <em>nell’ordine in cui sono definiti nella segnatura</em>, ma Python permette anche di fare una cosa diversa: chiamare gli argomenti per nome. Così, tornando alla nostra semplice funzione di esempio, abbiamo due possibilità distinte, ma equivalenti:</p>
+<div id="9facd251" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>greet(<span class="st">"Giulia"</span>)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>greet(name<span class="op">=</span><span class="st">"Giulia"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello Giulia!
+Hello Giulia!</code></pre>
+</div>
+</div>
+<p>In questo caso non ha molto senso usare la seconda forma, che è più verbosa. Anche se, ad un’occhiata più approfondita, specificare il nome dell’argomento nella chiamata ci dà informazione di contesto utile: la stringa <code>"Giulia"</code>, che passiamo alla funzione, rappresenta il <em>nome</em> della persona che vogliamo salutare. Potete immaginare che nei casi più complessi, in cui magari abbiamo una dozzina di argomenti, chiamare le cose per nome aiuti a non dover ricordare a memoria il loro ordine nella segnatura. Ma ci arriveremo per gradi.</p>
+<p>Quando definiamo una funzione in Python, possiamo assegnare ad ogni singolo argomento un <em>valore di default</em> nella forma <code>nome_argomento=valore_di_default</code> direttamente nella definizione della funzione. Quando un argomento ha un valore di default, possiamo omettere di specificarlo nelle chiamate alle funzioni stesse.</p>
+<div id="d6a33049" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name<span class="op">=</span><span class="st">"Giulia"</span>):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>greet()</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>greet(<span class="st">"Luca"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>greet(<span class="st">"Giulia"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>greet(name<span class="op">=</span><span class="st">"Anna"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello Giulia!
+Hello Luca!
+Hello Giulia!
+Hello Anna!</code></pre>
+</div>
+</div>
+<p>Implicitamente, la possibilità di definire argomenti di default fa sì che tutti gli argomenti che ne sono sprovvisti siano <em>non opzionali</em>, o obbligatori: semplicemente è impossibile chiamare la funzione senza fornirne i valori.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Avviso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Quando usiamo uno o più valori di default nella definizione di una funzione, dobbiamo ricordare una regola importante: se uno specifico argomento ha assegnato un valore di default, allora <em>anche tutti quelli che seguono devono avere un valore di default.</em> Il motivo di questo vincolo apparentemente restrittivo è di evitare potenziali ambiguità nella chiamata, ma a questo livello lo prenderemo come una condizione al contorno.</p>
+</div>
+</div>
+<p>Bene, abbiamo collezionato abbastanza informazioni e siamo pronti per discutere in modo più approfondito la segnatura di una funzione più complessa—ne prenderemo una tra quelle che abbiamo già incontrato.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La questione della definizione delle funzioni in Python è significativamente più complessa e sfaccettata. Se siete interessate ad un’introduzione sommaria ma tutto sommato completa all’argomento, il posto giusto in cui guardare è la pagina della documentazione di Python relativa alla <a href="https://docs.python.org/3/tutorial/controlflow.html#defining-functions">definizione delle funzioni</a>.</p>
+</div>
+</div>
+</section>
+<section id="un-esempio-dal-mondo-reale" class="level3" data-number="4.2.2">
+<h3 data-number="4.2.2" class="anchored" data-anchor-id="un-esempio-dal-mondo-reale"><span class="header-section-number">4.2.2</span> Un esempio dal mondo reale</h3>
+<p>Torniamo per un attimo alla funzione <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.errorbar.html">errorbar</a> del modulo <code>pyplot</code> di <code>matplotlib</code> che abbiamo già utilizzato in più di un’occasione. La segnatura si leggere direttamente dalla documentazione:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.errorbar(x, y, yerr<span class="op">=</span><span class="va">None</span>, xerr<span class="op">=</span><span class="va">None</span>, fmt<span class="op">=</span><span class="st">''</span>, <span class="op">*</span>, ecolor<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>elinewidth<span class="op">=</span><span class="va">None</span>, capsize<span class="op">=</span><span class="va">None</span>, barsabove<span class="op">=</span><span class="va">False</span>, lolims<span class="op">=</span><span class="va">False</span>, uplims<span class="op">=</span><span class="va">False</span>,</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>xlolims<span class="op">=</span><span class="va">False</span>, xuplims<span class="op">=</span><span class="va">False</span>, errorevery<span class="op">=</span><span class="dv">1</span>, capthick<span class="op">=</span><span class="va">None</span>, elinestyle<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>data<span class="op">=</span><span class="va">None</span>, <span class="op">**</span>kwargs)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Complicato, eh?</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Consiglio
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La segnatura di una funzione si può ricavare interattivamente usando il built-in <code>help</code>.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="bu">help</span>(plt.errorbar)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>Help on function errorbar <span class="kw">in</span> module matplotlib.pyplot:</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>errorbar(</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    x: <span class="st">'float | ArrayLike'</span>,</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>    y: <span class="st">'float | ArrayLike'</span>,</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    yerr: <span class="st">'float | ArrayLike | None'</span> <span class="op">=</span> <span class="va">None</span>,</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    xerr: <span class="st">'float | ArrayLike | None'</span> <span class="op">=</span> <span class="va">None</span>,</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>    fmt: <span class="st">'str'</span> <span class="op">=</span> <span class="st">''</span>,</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="op">*</span>,</span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    ecolor: <span class="st">'ColorType | None'</span> <span class="op">=</span> <span class="va">None</span>,</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    elinewidth: <span class="st">'float | None'</span> <span class="op">=</span> <span class="va">None</span>,</span>
+<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    capsize: <span class="st">'float | None'</span> <span class="op">=</span> <span class="va">None</span>,</span>
+<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    barsabove: <span class="st">'bool'</span> <span class="op">=</span> <span class="va">False</span>,</span>
+<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    lolims: <span class="st">'bool | ArrayLike'</span> <span class="op">=</span> <span class="va">False</span>,</span>
+<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a>    uplims: <span class="st">'bool | ArrayLike'</span> <span class="op">=</span> <span class="va">False</span>,</span>
+<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    xlolims: <span class="st">'bool | ArrayLike'</span> <span class="op">=</span> <span class="va">False</span>,</span>
+<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    xuplims: <span class="st">'bool | ArrayLike'</span> <span class="op">=</span> <span class="va">False</span>,</span>
+<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a>    errorevery: <span class="st">'int | tuple[int, int]'</span> <span class="op">=</span> <span class="dv">1</span>,</span>
+<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    capthick: <span class="st">'float | None'</span> <span class="op">=</span> <span class="va">None</span>,</span>
+<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    elinestyle: <span class="st">'LineStyleType | None'</span> <span class="op">=</span> <span class="va">None</span>,</span>
+<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a>    data<span class="op">=</span><span class="va">None</span>,</span>
+<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="op">**</span>kwargs</span>
+<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a>) <span class="op">-&gt;</span> <span class="st">'ErrorbarContainer'</span></span>
+<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>...</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Non lasciatevi confondere dalle <em>annotazioni</em> in verde che non sono esposte nella pagina delle documentazione. Sono un argomento avanzato che non copriremo, ma non hanno nessuna influenza sull’esecuzione del programma. (Ma se la cosa vi aiuta, sfruttatela pure per ragionare sulle funzioni!)</p>
+<p>Quando confrontate la documentazione online con l’output dell’help interattivo del vostro interprete di Python, verificate sempre che le versioni dei pacchetti siano indentiche, perché la segnatura di una funziona può cambiare da una versione all’altra!</p>
+</div>
+</div>
+<p>Andiamo per ordine. La funzione ha la bellezza di 18 parametri! Pensate per un attimo se Python non offrisse la possibilità di fornire valori di default agli argomenti, e ogni volta che vogliamo fare un grafico di dispersione dovessimo passare letteralmente 18 cose diverse…</p>
+<p>I primi due argomenti (<code>x</code> e <code>y</code>) <em>non</em> hanno valori di default, per cui sono da considerare obbligatori: ha senso, perché se voglio fare un grafico di dispersione, come minimo devo passare le coordinate <span class="math inline">\(x\)</span> e <span class="math inline">\(y\)</span> dei punti. Gli altri 16 parametri hanno valori di default, per cui sono opzionali. (Ricordate la regola fondamentale nella definizione di una funzione: quanto un argomento ha un valore di default, anche tutti quelli che lo seguono devono avere un valore di default.)</p>
+<p>Guardiamo con attenzione i primi 4 argomenti:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>matplotlib.pyplot.errorbar(x, y, yerr<span class="op">=</span><span class="va">None</span>, xerr<span class="op">=</span><span class="va">None</span>, ...)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La funzione è definita in modo che dobbiamo passare in ordine:</p>
+<ul>
+<li>i valori <code>x</code> della variabile indipendente;</li>
+<li>i valori <code>y</code> della variabile dipendente;</li>
+<li>le incertezze <code>yerr</code> su <code>y</code> (nota bene: non su <code>x</code>!);</li>
+<li>le incertezze <code>xerr</code> su <code>x</code>.</li>
+</ul>
+<p>Vedete qualcosa di strano? Se passiamo <code>x</code> prima di <code>y</code>, non avrebbe senso passare <code>xerr</code> prima di <code>yerr</code>? Da un punto di vista di mera simmetria può darsi, ma da un punto di vista pratico la segnatura della funzione è assolutamnete ragionevole, perché <em>mentre è comune avere un grafico di dispersione con incertezze sulla <span class="math inline">\(y\)</span> ma non sulla <span class="math inline">\(x\)</span>, il contrario non avviene praticamente mai</em>! Allora il modo in cui gli sviluppatori hanno definito la funzione permette di coprire tutti i casi d’uso più frequenti <em>senza mai chiamare gli argomenti per nome</em>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>errorbar(x, y) <span class="co"># Scatter plot senza incertezze</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>errorbar(x, y, dy) <span class="co"># Incertezze sulla y ma non sulla x</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>errorbar(x, y, dy, dx) <span class="co"># Incertezze sia sulla x che sulla y</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Certo: se fossimo proprio adamantine nel voler fare uno scatter plot con incertezze sulla <span class="math inline">\(x\)</span> ma non sulla <span class="math inline">\(y\)</span>, la sintassi sarebbe leggermente più involuta, perché siamo limitati alle due possibilità</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>errorbar(x, y, <span class="va">None</span>, dx)</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>errorbar(x, y, xerr<span class="op">=</span>dx)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>ma la cosa è irrilevante perché questo, vi assicuro, non succede quasi mai.</p>
+<p>E adesso abbiamo tutti gli ingredienti per capire il motivo per cui abbiamo inizialmente chiamato la funzione in quel modo apparentemente bizzarro</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>errorbar(x, y, dy, fmt<span class="op">=</span><span class="st">"o"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>La logica è più o meno la seguente: vogliamo passare esplicitamente quattro argomenti (<code>x</code>, <code>y</code>, <code>yerr</code> e <code>fmt</code>) alla funzione, e nella segnatura questi argomenti sono il primo, il secondo, il terzo ed <em>il quinto</em>. Non possiamo passarli semplicemente per valore, così come sono, perché altrimenti <code>"o"</code> sarebbe assegnato a <code>dx</code>, non a <code>fmt</code>. Ci restano due possibilità: passare il valore di defaul per il quarto argomento (<code>xerr</code>), oppure fare quello che abbiamo fatto.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>errorbar(x, y, dy, <span class="va">None</span>, <span class="st">"o"</span>)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>errorbar(x, y, dy, fmt<span class="op">=</span><span class="st">"o"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Le due cose sono esattamente equivalenti, ma la seconda è sicuramente più espressiva.</p>
+<p>Ci fermiamo qui. Non abbiamo spiegato cosa vuol dire il simbolo <code>*</code> dopo il quinto argomento, né il <code>**kwargs</code> alla fine della definizione della funzioni, ma per adesso sappiamo abbastanza.</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiato!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiato!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/unipi-physics-labs\.github\.io\/lab1-computing\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/types.html" class="pagination-link" aria-label="Variabili e tipi">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Variabili e tipi</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/flow.html" class="pagination-link" aria-label="Controllo del flusso">
+        <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Luca Baldini. Rilasciato sotto licenza <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.it">CC BY-SA 4.0</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/functions.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

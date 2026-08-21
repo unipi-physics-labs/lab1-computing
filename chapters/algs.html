@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>11&nbsp; Algoritmi – Elementi di computazione</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/vec.html" rel="next">
+<link href="../chapters/float.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-eb1bc3aaadf2658264f2b941ac69fc6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nessun risultato",
+    "search-matching-documents-text": "documenti trovati",
+    "search-copy-link-title": "Copiare il link nella ricerca",
+    "search-hide-matches-text": "Nascondere i risultati aggiuntivi",
+    "search-more-match-text": "ci sono altri risultati in questo documento",
+    "search-more-matches-text": "ulteriori risultati in questo documento",
+    "search-clear-button-title": "Pulire",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancellare",
+    "search-submit-button-title": "Inviare",
+    "search-label": "Ricerca"
+  }
+}</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/count.html">Parte seconda: ripartiamo dai principi</a></li><li class="breadcrumb-item"><a href="../chapters/algs.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Algoritmi</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Elementi di computazione</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/unipi-physics-labs/lab1-computing" title="Eseguire il codice" class="quarto-navigation-tool px-1" aria-label="Eseguire il codice"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Ricerca"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefazione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../copyright.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licenza</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../gender.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nota sul linguaggio di genere</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nota sul software libero</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte prima: dal problema alla soluzione</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Cominciamo?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/crash.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo programma</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Variabili e tipi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funzioni</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/flow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte seconda: ripartiamo dai principi</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/count.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Contare in base 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/hw.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dentro il calcolatore</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/os.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Il sistema operativo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Input/output</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/float.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’aritmetica in virgola mobile</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/algs.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Algoritmi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/vec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Vettorizzazione</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendici</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/latex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">LaTeX</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formati grafici</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice</h2>
+   
+  <ul>
+  <li><a href="#un-esempio-archetipico-lalgoritmo-di-euclide" id="toc-un-esempio-archetipico-lalgoritmo-di-euclide" class="nav-link active" data-scroll-target="#un-esempio-archetipico-lalgoritmo-di-euclide"><span class="header-section-number">11.1</span> Un esempio archetipico: l’algoritmo di Euclide</a></li>
+  <li><a href="#algoritmi-e-complessità" id="toc-algoritmi-e-complessità" class="nav-link" data-scroll-target="#algoritmi-e-complessità"><span class="header-section-number">11.2</span> Algoritmi e complessità</a></li>
+  <li><a href="#la-ricerca-binaria" id="toc-la-ricerca-binaria" class="nav-link" data-scroll-target="#la-ricerca-binaria"><span class="header-section-number">11.3</span> La ricerca binaria</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/algs.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/count.html">Parte seconda: ripartiamo dai principi</a></li><li class="breadcrumb-item"><a href="../chapters/algs.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Algoritmi</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Algoritmi</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">21 agosto 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Non vi è dubbio che la parola <em>algoritmo</em> sia salita alla ribalta delle scene come una delle parole più (ab)usate del periodo storico in cui viviamo. In questa sezione cerchiamo di chiarire il concetto, liberandolo da alcuni miti che lo hanno via via avvolto.</p>
+<p>Un algoritmo è banalmente una procedura per ricavare un risultato (output) a partire da un determinato insieme di dati in ingresso (input) che possegga due proprietà importanti: (i) deve arrivare a conclusione in un numero finito di passi; (ii) ogni passo deve essere completamente specificato, senza che vi siano ambiguità. Senza perdere troppo tempo nella semantica delle parole, diciamo subito che un algoritmo inteso come un metodo generale per risolvere un problema è una cosa concettualmente diversa da un <em>programma</em>, che, come chiariremo meglio, può essere visto semmai come un’implementazione specifica, in un linguaggio di programmazione specifico, di un algoritmo.</p>
+<p>Ogni volta che si parla di algoritmi a livello introduttivo è difficile resistere alla tentazione di fare l’analogia con una ricetta di cucina. Un ricetta sembra avere tutti gli elementi che abbiamo appena elencato: si tratta di una descrizione passo per passo di come ottenere un output (in questo caso il nostro piatto pronto da consumare) a partire da una serie di input (in questo caso gli ingredienti). Ogni libro di ricette che si rispetti indica una stima del tempo necessario per portare a termine una ricetta, che pare sposarsi bene con l’idea che il tempo di esecuzione di un algoritmo debba essere finito. Certo, è indubbio che le ricette contengano spesso elementi di ambiguità (cosa vuol dire esattamente “aggiungere un pizzico di sale”?), che nella vita reale vengono risolti dall’intelligenza (o dal senso comune) di chi cucina. Eppure quella della ricetta è una buona analogia, e ci torneremo in seguito più volte per cercare di chiarire il discorso.</p>
+<section id="un-esempio-archetipico-lalgoritmo-di-euclide" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="un-esempio-archetipico-lalgoritmo-di-euclide"><span class="header-section-number">11.1</span> Un esempio archetipico: l’algoritmo di Euclide</h2>
+<p>Analizziamo in dettaglio quello che probabilmente è il più celebre tra gli algoritmi classici, ovverosia l’algoritmo di Euclide per il calcolo del massimo comun divisore, seguendo fedelmente le presentazione in <span class="citation" data-cites="taocp1">Knuth (<a href="#ref-taocp1" role="doc-biblioref">1997</a>)</span>.</p>
+<p>Dati due numeri interi positivi <span class="math inline">\(m\)</span> ed <span class="math inline">\(n\)</span> il massimo comun divisore (MCD) si pu ò trovare attraverso la seguente procedura:</p>
+<div class="algorithm-list">
+<ol type="1">
+<li>calcoliamo il resto <span class="math inline">\(r\)</span> della divisione tra <span class="math inline">\(m\)</span> ed <span class="math inline">\(n\)</span>, ovverosia <span class="math inline">\(r = m \mod n\)</span>;</li>
+<li>se <span class="math inline">\(r = 0\)</span>, allora il MCD tra i due numeri è <span class="math inline">\(n\)</span>, e l’algoritmo termina;</li>
+<li>poniamo <span class="math inline">\(m \leftarrow n\)</span>, <span class="math inline">\(n \leftarrow r\)</span> e ritorniamo a A1.</li>
+</ol>
+</div>
+<p>Questi tre passi, ripetuti opportunamente, costituiscono una prescrizione non ambigua per il nostro problema, e dovrebbero essere autoesplicativi, modulo l’operatore di assegnazione <span class="math inline">\(m \leftarrow n\)</span> che significa essenzialmente <em>rimpiazziamo il valore di <span class="math inline">\(m\)</span> con il valore corrente di <span class="math inline">\(n\)</span></em>. Rappresentazioni alternative del flusso di un algoritmo sono i diagrammi a blocchi e lo pseudo-codice, ma per i nostri scopi non è necessario andare più a fondo di così.</p>
+<p>Non è difficile convincersi della correttezza della nostra procedura. Dopo il primo passo <span class="math inline">\(m = qn + r\)</span> per qualche valore intero di <span class="math inline">\(q\)</span>, e si danno due casi: se <span class="math inline">\(r = 0\)</span>, allora <span class="math inline">\(m\)</span> è multiplo di <span class="math inline">\(n\)</span>, ed <span class="math inline">\(n\)</span> è proprio il MCD tra i due; in caso contrario, qualsiasi numero che divida sia <span class="math inline">\(m\)</span> che <span class="math inline">\(n\)</span> deve dividere anche <span class="math inline">\(r = m - qn\)</span>, e qualsiasi numero che divida sia <span class="math inline">\(n\)</span> che <span class="math inline">\(r\)</span> deve dividere anche <span class="math inline">\(m = qn + r\)</span>—in altre parole, i divisori comuni di <span class="math inline">\(m\)</span> ed <span class="math inline">\(n\)</span> sono anche i divisori comuni di <span class="math inline">\(n\)</span> ed <span class="math inline">\(r\)</span>, il che ci autorizza a fare la sostituzione descritta in P3 senza cambiare la risposta al quesito originario. Il nocciolo della questione è che ad ogni passo abbiamo coppie di numeri più piccole, ed il processo converge fino a che il resto della divisione non è zero.</p>
+<p>Ora, nella maggior parte delle situazioni che vi troverete ad affrontare nella vita, dimostrare la correttezza formale di un algoritmo pu ò essere significativamente più complicato, e spesso non è semplice capire cosa sta succedendo semplicemente leggendo i passi dal primo all’ultimo. Vedere un algoritmo in opera in un caso concreto, viceversa, è di solito un aiuto enorme alla comprensione, per cui proviamo senz’altro a calcolare il MCD, e.g., tra <span class="math inline">\(49\)</span> e <span class="math inline">\(21\)</span>. (Sappiamo già la risposta: <span class="math inline">\(49 = 7 \times 7\)</span> e <span class="math inline">\(21 = 7 \times 3\)</span>, per cui il MCD è <span class="math inline">\(7\)</span>.) I nostri dati iniziali sono <span class="math inline">\(m = 49\)</span> e <span class="math inline">\(n = 21\)</span>; dopo A1 si ha <span class="math inline">\(r = 49 \mod 21 = 7\)</span> che, essendo diverso da zero, ci costringe ad applicare A3, ponendo <span class="math inline">\(m - 21\)</span> e <span class="math inline">\(n = 7\)</span>. A questo punto vediamo subito che <span class="math inline">\(m\)</span> è divisibile per <span class="math inline">\(n\)</span>, e quest’ultimo è il MCD cercato. Più sinteticamente potremmo scrivere</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: right;">Iterazione</th>
+<th style="text-align: right;"><span class="math inline">\(m\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(n\)</span></th>
+<th style="text-align: right;"><span class="math inline">\(r\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: right;">1</td>
+<td style="text-align: right;"><span class="math inline">\(49\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(21\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(7\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: right;">2</td>
+<td style="text-align: right;"><span class="math inline">\(21\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(7\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(0\)</span></td>
+</tr>
+</tbody>
+</table>
+<p>e, in questo caso l’algoritmo converge al valore corretto in due passi. Per inciso, è anche interessante notare come l’algoritmo avrebbe funzionato anche scambiando <span class="math inline">\(m\)</span> ed <span class="math inline">\(n\)</span>, ovverosia partendo da <span class="math inline">\(m = 21\)</span> e <span class="math inline">\(n = 49\)</span>: in questo caso il primo ciclo A1 A3 avrebbe semplicemente scambiato tra di loro i due input, e da lì in poi niente sarebbe cambiato.</p>
+</section>
+<section id="algoritmi-e-complessità" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="algoritmi-e-complessità"><span class="header-section-number">11.2</span> Algoritmi e complessità</h2>
+<p>Nel caso particolare che abbiamo considerato (<span class="math inline">\(m = 49\)</span> e <span class="math inline">\(n = 21\)</span>) abbiamo visto che il passo A1 dell’algoritmo di Euclide viene eseguito esattamente <span class="math inline">\(2\)</span> volte prima che l’algoritmo stesso arrivi al termine. E, se fissiamo due valori arbitrari in ingresso possiamo semplicemente eseguire l’algoritmo per calcolare quante iterazioni richiede per convergere. Se ci chiediamo adesso come varia il numero di iterazione al variare di <span class="math inline">\(m\)</span> ed <span class="math inline">\(n\)</span>, è chiaro che questa domanda è interessante—è legata in modo ovvio al tempo che l’algoritmo impiega a convergere—ma è altresì chiaro che la risposta non è ovvia. Ci possiamo aspettare intuitivamente che al crescere di <span class="math inline">\(m\)</span> ed <span class="math inline">\(n\)</span> il numero di iterazioni necessarie cresca, ma ovviamente questo dipende in modo cruciale dalla scelta dei numeri: il MCD tra <span class="math inline">\(m\)</span> e <span class="math inline">\(2\)</span>, ad esempio, è banale da calcolare indipendentemente da quanto è grande <span class="math inline">\(m\)</span>. Se vogliamo caratterizzare la <em>complessità</em> dell’algoritmo al crescere di <span class="math inline">\(n\)</span> dobbiamo prima trovare una domanda ben posta.</p>
+<p>La prima cosa da notare (di nuovo) è che se <span class="math inline">\(n &gt; m\)</span> il passo A1 dell’algoritmo di Euclide consiste semplicemente nello scambio tra <span class="math inline">\(n\)</span> ed <span class="math inline">\(m\)</span>. Allora una domanda ben posta che potremmo farci è: se fissiamo <span class="math inline">\(n\)</span> qual è il valor medio di volte in cui il pass A1 è eseguito, quando <span class="math inline">\(0 \leq m \leq n\)</span>? Potremmo anche chiederci qual è il valore minimo di iterazioni che possono servire (best case). Oppure il numero massimo (worst case).</p>
+<p>La prima domanda costituisce un problema estremamente complicato che non ha ancora una soluzione completa, ma si pu ò dimostrare che per <span class="math inline">\(n\)</span> grandi vale lo sviluppo asintotico <span class="math display">\[
+  T_n \approx \frac{12 \ln 2}{\pi^2} \ln n;
+\]</span> la risposta alla seconda domanda è banale perché nel caso migliore (quando <span class="math inline">\(n\)</span> è divisibile per <span class="math inline">\(m\)</span>) un passaggio è sufficiente; la terza domanda ha una difficoltà intermedia, e si pu ò dimostrare che il caso peggiore è quello in cui <span class="math inline">\(n\)</span> ed <span class="math inline">\(m\)</span> sono due numeri di Fibonacci consecutivi—caso in cui il numero di iterazione è di nuovo proporzionale a <span class="math inline">\(\log n\)</span>.</p>
+<p>Quanto appena detto va generalmente sotto il nome di <em>analisi degli algoritmi</em>. La legge di scala con la grandezza dell’input del numero medio di iterazioni necessarie perché l’algoritmo termini prende il nome di <em>complessità</em>, e corrisponde con il termine dominante dello sviluppo in <span class="math inline">\(n\)</span>. Così diciamo che l’algoritmo di Euclide ha una complessità <span class="math inline">\(O(\log n)\)</span> o “ordine <span class="math inline">\(\log n\)</span>”.</p>
+</section>
+<section id="la-ricerca-binaria" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="la-ricerca-binaria"><span class="header-section-number">11.3</span> La ricerca binaria</h2>
+<p>Inquadriamo il problema da un punto di vista differente. Supponiamo di avere un elenco telefonico con <span class="math inline">\(N\)</span> elementi ordinati alfabeticamente e di essere interessati al numero di telefono di una persona specifica—quale strategia useremmo?</p>
+<p>Potremmo partire dall’inizio, scorrere nome per nome l’elenco e fermarci quando arriviamo alla persona desiderata—operare, cioè, una <em>ricerca sequenziale</em>. Così facendo dovremo controllare in media <span class="math inline">\(N/2\)</span> numeri, ed <span class="math inline">\(N\)</span> nel caso più sfavorevole (quello cioè in cui la persona cercata è l’ultima nell’elenco).</p>
+<p>Oppure possiamo partire da metà dell’elenco e vedere se il nome cercato è prima o dopo nella lista: in un passo eliminiamo metà dell’elenco, e possiamo ripetere la procedura bisecando ogni volta la parte rimanente, che in questo modo si dimezza ad ogni passo. Non è difficile convincersi che il processo converge in un numero di passi minore o uguale a <span class="math inline">\(log_2 N\)</span>. (E per <span class="math inline">\(N\)</span> grande, <span class="math inline">\(\log_2 N\)</span> o <span class="math inline">\(N\)</span> fa un’enorme differenza.) L’algoritmo che abbiamo appena delineato si dice <em>ricerca binaria</em> ed è ottimale per la ricerca di un elemento in una lista ordinata.</p>
+<!--
+\begin{figure}[htb!]
+  \autohstack{
+    \input{figures/ricerca_binaria}
+  }{
+    \caption{Illustrazione di due strategie di ricerca delle iniziali
+      "MA" in una lista di 11 iniziali (fittizie) ordinate alfabeticamente.
+      La ricerca sequenziale termina in 8 passi, quella binaria in 4 (o
+      3, a seconda di come definiamo l'algoritmo di bisezione). I cerchi
+      neri indicano i punti di inizio e fine della ricerca.}
+    \label{fig:ricerca_binaria}
+  }
+\end{figure}
+
+\begin{examplebox}
+  \begin{example}
+    In un elenco telefonico con $11$ persone una ricerca sequenziale richiede
+    al massimo $11$ passi ed una ricerca binaria $4$. (Un esempio specifico
+    è mostrato in figura \ref{fig:ricerca_binaria}, in cui per brevità
+    si è usato iniziali fittizie al posto dei nomi completi.) In questo caso
+    la differenza non è impressionante, ma con un elenco di $10\,000\,000$
+    di persone una ricerca sequenziale richiede al massimo $10\,000\,000$ di
+    passi, mentre una ricerca binaria ne richiede al massimo
+    $\log_2{10\,000\,000} < 24$.
+  \end{example}
+\end{examplebox}
+-->
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="184" data-source-offset="-1"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 183;"><span id="cb1-184"><a href="#cb1-184" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> [<span class="dv">3</span><span class="op">,</span> <span class="dv">8</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">17</span><span class="op">,</span> <span class="dv">23</span><span class="op">,</span> <span class="dv">31</span><span class="op">,</span> <span class="dv">42</span><span class="op">,</span> <span class="dv">56</span><span class="op">,</span> <span class="dv">68</span><span class="op">,</span> <span class="dv">74</span><span class="op">,</span> <span class="dv">89</span>]</span>
+<span id="cb1-185"><a href="#cb1-185" aria-hidden="true" tabindex="-1"></a>target <span class="op">=</span> <span class="dv">42</span></span>
+<span id="cb1-186"><a href="#cb1-186" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-187"><a href="#cb1-187" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> {</span>
+<span id="cb1-188"><a href="#cb1-188" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> result <span class="op">=</span> []</span>
+<span id="cb1-189"><a href="#cb1-189" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> left <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb1-190"><a href="#cb1-190" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> right <span class="op">=</span> data<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb1-191"><a href="#cb1-191" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-192"><a href="#cb1-192" aria-hidden="true" tabindex="-1"></a>  <span class="cf">while</span> (left <span class="op">&lt;=</span> right) {</span>
+<span id="cb1-193"><a href="#cb1-193" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> mid <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>((left <span class="op">+</span> right) <span class="op">/</span> <span class="dv">2</span>)</span>
+<span id="cb1-194"><a href="#cb1-194" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-195"><a href="#cb1-195" aria-hidden="true" tabindex="-1"></a>    result<span class="op">.</span><span class="fu">push</span>({</span>
+<span id="cb1-196"><a href="#cb1-196" aria-hidden="true" tabindex="-1"></a>      left<span class="op">,</span></span>
+<span id="cb1-197"><a href="#cb1-197" aria-hidden="true" tabindex="-1"></a>      right<span class="op">,</span></span>
+<span id="cb1-198"><a href="#cb1-198" aria-hidden="true" tabindex="-1"></a>      mid<span class="op">,</span></span>
+<span id="cb1-199"><a href="#cb1-199" aria-hidden="true" tabindex="-1"></a>      <span class="dt">value</span><span class="op">:</span> data[mid]</span>
+<span id="cb1-200"><a href="#cb1-200" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb1-201"><a href="#cb1-201" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-202"><a href="#cb1-202" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (data[mid] <span class="op">===</span> target) <span class="cf">break</span></span>
+<span id="cb1-203"><a href="#cb1-203" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-204"><a href="#cb1-204" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (data[mid] <span class="op">&lt;</span> target) {</span>
+<span id="cb1-205"><a href="#cb1-205" aria-hidden="true" tabindex="-1"></a>      left <span class="op">=</span> mid <span class="op">+</span> <span class="dv">1</span></span>
+<span id="cb1-206"><a href="#cb1-206" aria-hidden="true" tabindex="-1"></a>    } <span class="cf">else</span> {</span>
+<span id="cb1-207"><a href="#cb1-207" aria-hidden="true" tabindex="-1"></a>      right <span class="op">=</span> mid <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-210"><a href="#cb1-210" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-211"><a href="#cb1-211" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> result</span>
+<span id="cb1-212"><a href="#cb1-212" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-213"><a href="#cb1-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-214"><a href="#cb1-214" aria-hidden="true" tabindex="-1"></a>viewof step <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">range</span>(</span>
+<span id="cb1-215"><a href="#cb1-215" aria-hidden="true" tabindex="-1"></a>  [<span class="dv">0</span><span class="op">,</span> steps<span class="op">.</span><span class="at">length</span> <span class="op">-</span> <span class="dv">1</span>]<span class="op">,</span></span>
+<span id="cb1-216"><a href="#cb1-216" aria-hidden="true" tabindex="-1"></a>  {</span>
+<span id="cb1-217"><a href="#cb1-217" aria-hidden="true" tabindex="-1"></a>    <span class="dt">value</span><span class="op">:</span> <span class="dv">0</span><span class="op">,</span></span>
+<span id="cb1-218"><a href="#cb1-218" aria-hidden="true" tabindex="-1"></a>    <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb1-219"><a href="#cb1-219" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"Passo"</span></span>
+<span id="cb1-220"><a href="#cb1-220" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-221"><a href="#cb1-221" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-222"><a href="#cb1-222" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-223"><a href="#cb1-223" aria-hidden="true" tabindex="-1"></a>state <span class="op">=</span> steps[step]</span>
+<span id="cb1-224"><a href="#cb1-224" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-225"><a href="#cb1-225" aria-hidden="true" tabindex="-1"></a>message <span class="op">=</span> {</span>
+<span id="cb1-226"><a href="#cb1-226" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (state<span class="op">.</span><span class="at">value</span> <span class="op">===</span> target) {</span>
+<span id="cb1-227"><a href="#cb1-227" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>state<span class="op">.</span><span class="at">value</span><span class="sc">}</span><span class="vs"> è il valore cercato.`</span></span>
+<span id="cb1-228"><a href="#cb1-228" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-229"><a href="#cb1-229" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-230"><a href="#cb1-230" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (state<span class="op">.</span><span class="at">value</span> <span class="op">&lt;</span> target) {</span>
+<span id="cb1-231"><a href="#cb1-231" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>target<span class="sc">}</span><span class="vs"> è maggiore di </span><span class="sc">${</span>state<span class="op">.</span><span class="at">value</span><span class="sc">}</span><span class="vs">: scartiamo la metà sinistra.`</span></span>
+<span id="cb1-232"><a href="#cb1-232" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-233"><a href="#cb1-233" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-234"><a href="#cb1-234" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>target<span class="sc">}</span><span class="vs"> è minore di </span><span class="sc">${</span>state<span class="op">.</span><span class="at">value</span><span class="sc">}</span><span class="vs">: scartiamo la metà destra.`</span></span>
+<span id="cb1-235"><a href="#cb1-235" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-236"><a href="#cb1-236" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-237"><a href="#cb1-237" aria-hidden="true" tabindex="-1"></a><span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;div class="binary-search-widget"&gt;</span></span>
+<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;div class="binary-array"&gt;</span></span>
+<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>data<span class="op">.</span><span class="fu">map</span>((value<span class="op">,</span> index) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>      <span class="kw">let</span> className <span class="op">=</span> <span class="st">"binary-cell"</span></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (index <span class="op">&lt;</span> state<span class="op">.</span><span class="at">left</span> <span class="op">||</span> index <span class="op">&gt;</span> state<span class="op">.</span><span class="at">right</span>) {</span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a>        className <span class="op">+=</span> <span class="st">" discarded"</span></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>      } <span class="cf">else</span> {</span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>        className <span class="op">+=</span> <span class="st">" active"</span></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (index <span class="op">===</span> state<span class="op">.</span><span class="at">mid</span>) {</span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>        className <span class="op">+=</span> <span class="st">" middle"</span></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>      <span class="cf">if</span> (value <span class="op">===</span> target <span class="op">&amp;&amp;</span> state<span class="op">.</span><span class="at">value</span> <span class="op">===</span> target) {</span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>        className <span class="op">+=</span> <span class="st">" found"</span></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>      }</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>      <span class="cf">return</span> <span class="fu">html</span><span class="vs">`</span></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;div class="</span><span class="sc">${</span>className<span class="sc">}</span><span class="vs">"&gt;</span></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;span class="binary-index"&gt;</span><span class="sc">${</span>index<span class="sc">}</span><span class="vs">&lt;/span&gt;</span></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a><span class="vs">          &lt;span class="binary-value"&gt;</span><span class="sc">${</span>value<span class="sc">}</span><span class="vs">&lt;/span&gt;</span></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a><span class="vs">        &lt;/div&gt;</span></span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a><span class="vs">      `</span></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>    })<span class="sc">}</span></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/div&gt;</span></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;p class="binary-message"&gt;</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a><span class="vs">    </span><span class="sc">${</span>message<span class="sc">}</span></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a><span class="vs">  &lt;/p&gt;</span></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a><span class="vs">&lt;/div&gt;</span></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a><span class="vs">`</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<div id="ojs-cell-1-7" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-taocp1" class="csl-entry" role="listitem">
+Knuth, Donald E. 1997. <em>The Art of Computer Programming, Vol. 1: Fundamental Algorithms</em>. Third. Addison-Wesley.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script type="ojs-module-contents">
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuZGF0YSA9IFszLCA4LCAxMiwgMTcsIDIzLCAzMSwgNDIsIDU2LCA2OCwgNzQsIDg5XVxudGFyZ2V0ID0gNDJcblxuc3RlcHMgPSB7XG4gIGNvbnN0IHJlc3VsdCA9IFtdXG4gIGxldCBsZWZ0ID0gMFxuICBsZXQgcmlnaHQgPSBkYXRhLmxlbmd0aCAtIDFcblxuICB3aGlsZSAobGVmdCA8PSByaWdodCkge1xuICAgIGNvbnN0IG1pZCA9IE1hdGguZmxvb3IoKGxlZnQgKyByaWdodCkgLyAyKVxuXG4gICAgcmVzdWx0LnB1c2goe1xuICAgICAgbGVmdCxcbiAgICAgIHJpZ2h0LFxuICAgICAgbWlkLFxuICAgICAgdmFsdWU6IGRhdGFbbWlkXVxuICAgIH0pXG5cbiAgICBpZiAoZGF0YVttaWRdID09PSB0YXJnZXQpIGJyZWFrXG5cbiAgICBpZiAoZGF0YVttaWRdIDwgdGFyZ2V0KSB7XG4gICAgICBsZWZ0ID0gbWlkICsgMVxuICAgIH0gZWxzZSB7XG4gICAgICByaWdodCA9IG1pZCAtIDFcbiAgICB9XG4gIH1cblxuICByZXR1cm4gcmVzdWx0XG59XG5cbnZpZXdvZiBzdGVwID0gSW5wdXRzLnJhbmdlKFxuICBbMCwgc3RlcHMubGVuZ3RoIC0gMV0sXG4gIHtcbiAgICB2YWx1ZTogMCxcbiAgICBzdGVwOiAxLFxuICAgIGxhYmVsOiBcIlBhc3NvXCJcbiAgfVxuKVxuXG5zdGF0ZSA9IHN0ZXBzW3N0ZXBdXG5cbm1lc3NhZ2UgPSB7XG4gIGlmIChzdGF0ZS52YWx1ZSA9PT0gdGFyZ2V0KSB7XG4gICAgcmV0dXJuIGAke3N0YXRlLnZhbHVlfSDDqCBpbCB2YWxvcmUgY2VyY2F0by5gXG4gIH1cblxuICBpZiAoc3RhdGUudmFsdWUgPCB0YXJnZXQpIHtcbiAgICByZXR1cm4gYCR7dGFyZ2V0fSDDqCBtYWdnaW9yZSBkaSAke3N0YXRlLnZhbHVlfTogc2NhcnRpYW1vIGxhIG1ldMOgIHNpbmlzdHJhLmBcbiAgfVxuXG4gIHJldHVybiBgJHt0YXJnZXR9IMOoIG1pbm9yZSBkaSAke3N0YXRlLnZhbHVlfTogc2NhcnRpYW1vIGxhIG1ldMOgIGRlc3RyYS5gXG59XG5cbmh0bWxgXG48ZGl2IGNsYXNzPVwiYmluYXJ5LXNlYXJjaC13aWRnZXRcIj5cbiAgPGRpdiBjbGFzcz1cImJpbmFyeS1hcnJheVwiPlxuICAgICR7ZGF0YS5tYXAoKHZhbHVlLCBpbmRleCkgPT4ge1xuICAgICAgbGV0IGNsYXNzTmFtZSA9IFwiYmluYXJ5LWNlbGxcIlxuXG4gICAgICBpZiAoaW5kZXggPCBzdGF0ZS5sZWZ0IHx8IGluZGV4ID4gc3RhdGUucmlnaHQpIHtcbiAgICAgICAgY2xhc3NOYW1lICs9IFwiIGRpc2NhcmRlZFwiXG4gICAgICB9IGVsc2Uge1xuICAgICAgICBjbGFzc05hbWUgKz0gXCIgYWN0aXZlXCJcbiAgICAgIH1cblxuICAgICAgaWYgKGluZGV4ID09PSBzdGF0ZS5taWQpIHtcbiAgICAgICAgY2xhc3NOYW1lICs9IFwiIG1pZGRsZVwiXG4gICAgICB9XG5cbiAgICAgIGlmICh2YWx1ZSA9PT0gdGFyZ2V0ICYmIHN0YXRlLnZhbHVlID09PSB0YXJnZXQpIHtcbiAgICAgICAgY2xhc3NOYW1lICs9IFwiIGZvdW5kXCJcbiAgICAgIH1cblxuICAgICAgcmV0dXJuIGh0bWxgXG4gICAgICAgIDxkaXYgY2xhc3M9XCIke2NsYXNzTmFtZX1cIj5cbiAgICAgICAgICA8c3BhbiBjbGFzcz1cImJpbmFyeS1pbmRleFwiPiR7aW5kZXh9PC9zcGFuPlxuICAgICAgICAgIDxzcGFuIGNsYXNzPVwiYmluYXJ5LXZhbHVlXCI+JHt2YWx1ZX08L3NwYW4+XG4gICAgICAgIDwvZGl2PlxuICAgICAgYFxuICAgIH0pfVxuICA8L2Rpdj5cblxuICA8cCBjbGFzcz1cImJpbmFyeS1tZXNzYWdlXCI+XG4gICAgJHttZXNzYWdlfVxuICA8L3A+XG48L2Rpdj5cbmBcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnc3RlcCcpIn1dfQ==
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../chapters";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiato!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiato!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/unipi-physics-labs\.github\.io\/lab1-computing\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/float.html" class="pagination-link" aria-label="L'aritmetica in virgola mobile">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’aritmetica in virgola mobile</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/vec.html" class="pagination-link" aria-label="Vettorizzazione">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Vettorizzazione</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Luca Baldini. Rilasciato sotto licenza <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.it">CC BY-SA 4.0</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/algs.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

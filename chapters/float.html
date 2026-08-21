@@ -1,0 +1,1434 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>10&nbsp; L’aritmetica in virgola mobile – Elementi di computazione</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/algs.html" rel="next">
+<link href="../chapters/io.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-eb1bc3aaadf2658264f2b941ac69fc6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nessun risultato",
+    "search-matching-documents-text": "documenti trovati",
+    "search-copy-link-title": "Copiare il link nella ricerca",
+    "search-hide-matches-text": "Nascondere i risultati aggiuntivi",
+    "search-more-match-text": "ci sono altri risultati in questo documento",
+    "search-more-matches-text": "ulteriori risultati in questo documento",
+    "search-clear-button-title": "Pulire",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancellare",
+    "search-submit-button-title": "Inviare",
+    "search-label": "Ricerca"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/count.html">Parte seconda: ripartiamo dai principi</a></li><li class="breadcrumb-item"><a href="../chapters/float.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’aritmetica in virgola mobile</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Elementi di computazione</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/unipi-physics-labs/lab1-computing" title="Eseguire il codice" class="quarto-navigation-tool px-1" aria-label="Eseguire il codice"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Ricerca"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefazione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../copyright.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licenza</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../gender.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nota sul linguaggio di genere</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nota sul software libero</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte prima: dal problema alla soluzione</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Cominciamo?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/crash.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo programma</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Variabili e tipi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funzioni</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/flow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte seconda: ripartiamo dai principi</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/count.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Contare in base 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/hw.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dentro il calcolatore</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/os.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Il sistema operativo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Input/output</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/float.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’aritmetica in virgola mobile</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/algs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Algoritmi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/vec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Vettorizzazione</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendici</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/latex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">LaTeX</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formati grafici</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice</h2>
+   
+  <ul>
+  <li><a href="#virgola-mobile-e-rappresentazione-in-base-2" id="toc-virgola-mobile-e-rappresentazione-in-base-2" class="nav-link active" data-scroll-target="#virgola-mobile-e-rappresentazione-in-base-2"><span class="header-section-number">10.1</span> Virgola mobile e rappresentazione in base 2</a></li>
+  <li><a href="#di-nuovo-sulla-nostra-provocazione-iniziale" id="toc-di-nuovo-sulla-nostra-provocazione-iniziale" class="nav-link" data-scroll-target="#di-nuovo-sulla-nostra-provocazione-iniziale"><span class="header-section-number">10.2</span> Di nuovo sulla nostra provocazione iniziale</a></li>
+  <li><a href="#virtù-e-limiti-dellaritmetica-in-virgola-mobile" id="toc-virtù-e-limiti-dellaritmetica-in-virgola-mobile" class="nav-link" data-scroll-target="#virtù-e-limiti-dellaritmetica-in-virgola-mobile"><span class="header-section-number">10.3</span> Virtù e limiti dell’aritmetica in virgola mobile</a>
+  <ul class="collapse">
+  <li><a href="#range-e-risoluzione" id="toc-range-e-risoluzione" class="nav-link" data-scroll-target="#range-e-risoluzione"><span class="header-section-number">10.3.1</span> Range e risoluzione</a></li>
+  <li><a href="#un-esempio-di-accortezza-numerica" id="toc-un-esempio-di-accortezza-numerica" class="nav-link" data-scroll-target="#un-esempio-di-accortezza-numerica"><span class="header-section-number">10.3.2</span> Un esempio di accortezza numerica</a></li>
+  <li><a href="#proprietà-dellaritmetica-elementare" id="toc-proprietà-dellaritmetica-elementare" class="nav-link" data-scroll-target="#proprietà-dellaritmetica-elementare"><span class="header-section-number">10.3.3</span> Proprietà dell’aritmetica elementare</a></li>
+  <li><a href="#confronti-tra-numeri-in-virgola-mobile" id="toc-confronti-tra-numeri-in-virgola-mobile" class="nav-link" data-scroll-target="#confronti-tra-numeri-in-virgola-mobile"><span class="header-section-number">10.3.4</span> Confronti tra numeri in virgola mobile</a></li>
+  </ul></li>
+  <li><a href="#e-quindi" id="toc-e-quindi" class="nav-link" data-scroll-target="#e-quindi"><span class="header-section-number">10.4</span> E quindi?</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/float.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/count.html">Parte seconda: ripartiamo dai principi</a></li><li class="breadcrumb-item"><a href="../chapters/float.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’aritmetica in virgola mobile</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-float" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’aritmetica in virgola mobile</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">21 agosto 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Cominciamo con una piccola provocazione, nella forma della singola riga di codice che segue:</p>
+<div id="bc3cb26d" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">==</span> <span class="fl">0.3</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>False</code></pre>
+</div>
+</div>
+<p>Sorprese? Non vi sono dubbi che sul libro di analisi matematica questa eguaglianza <span class="math display">\[
+\frac{1}{10} + \frac{2}{10} = \frac{3}{10}
+\]</span> sarebbe vera. Perché, invece, Python ci dice che è falsa? Si tratta di un bug di uno dei più linguaggi di programmazione più diffusi al mondo, oppure la cosa nasconde qualcosa di profondo?</p>
+<p>L’aritmetica in virgola mobile è sempre una sorgente di sorprese per chi si avvicina per la prima volta alla programmazione. In questo capitolo cercheremo di mettere a fuoco le questioni principali. Tra le varie risorse sull’argomento presenti su web, segnaliamo questo <a href="https://docs.python.org/3/tutorial/floatingpoint.html">tutorial</a>, parte della documentazione ufficiale di Python.</p>
+<section id="virgola-mobile-e-rappresentazione-in-base-2" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="virgola-mobile-e-rappresentazione-in-base-2"><span class="header-section-number">10.1</span> Virgola mobile e rappresentazione in base 2</h2>
+<p>Nel capitolo <a href="count.html" class="quarto-xref"><span>Capitolo 6</span></a> abbiamo imparato come si rappresentano in base 2 i numeri <em>interi</em>. Se ricordate, avevamo lasciato deliberatamente da parte i numeri in virgola mobile, e adesso è arrivato il momento di riprendere e sviscerare la questione.</p>
+<p>Partiamo da un esempio semplice. Che cosa intendiamo quando scriviamo il numero <span class="math inline">\(2.25\)</span> (nell’ordinaria rappresentazione in base 10)? Evidentemente <span class="math display">\[\begin{align*}
+  2.25 = 2 + 2 \times 10^{-1} + 5 \times 10^{-2},
+\end{align*}\]</span> il che vuol dire che, se non siamo interessati solamente ai numeri interi, dobbiamo generalizzare la nostra definizione nell’equazione <a href="count.html#eq-notazione_posizionale" class="quarto-xref">Equazione&nbsp;<span>6.1</span></a> come <span class="math display">\[\begin{align}
+  (c_m\ldots c_2c_1c_0.c_{-1}c_{-2}\ldots)_b =
+  c_m \times b^m + \cdots + c_2 \times b^2 +  c_1 \times n + c_0 +
+  c_{-1} b^{-1} +   c_{-2} b^{-2} \ldots
+\end{align}\]</span> In questo schema possiamo scrivere il nostro <span class="math inline">\(2.25\)</span> nella rappresentazione in base 2 come <span class="math display">\[\begin{align*}
+  0b10.01 = 1 \times 2 + 0 + 0 \times 2^{-1} + 1 \times 2^{-2} =
+  2 + \frac{1}{4} = 2.25.
+\end{align*}\]</span></p>
+<p>Fino a qui niente di strano. Ma cosa succede se proviamo a fare la stessa cosa con il numero (apparentemente innocuo) <span class="math inline">\(0.1\)</span>? Per rispondere possiamo provare ad approssimare (da sopra e da sotto) con un numero fissato di cifre binarie dopo il punto fino a che non otteniamo il risultato esatto:</p>
+<div id="584d8158" class="cell" data-execution_count="2">
+<div class="cell-output cell-output-display" data-execution_count="2">
+<style type="text/css">
+</style>
+
+<table id="T_bafa6" class="caption-top table table-sm table-striped small">
+<tbody>
+<tr class="odd">
+<td id="T_bafa6_row0_col0" class="data row0 col0">0</td>
+<td id="T_bafa6_row0_col1" class="data row0 col1">0/2</td>
+<td id="T_bafa6_row0_col2" class="data row0 col2">0b0.0</td>
+<td id="T_bafa6_row0_col3" class="data row0 col3">0.1</td>
+<td id="T_bafa6_row0_col4" class="data row0 col4">0b0.1</td>
+<td id="T_bafa6_row0_col5" class="data row0 col5">1/2</td>
+<td id="T_bafa6_row0_col6" class="data row0 col6">0.5</td>
+</tr>
+<tr class="even">
+<td id="T_bafa6_row1_col0" class="data row1 col0">0</td>
+<td id="T_bafa6_row1_col1" class="data row1 col1">0/4</td>
+<td id="T_bafa6_row1_col2" class="data row1 col2">0b0.00</td>
+<td id="T_bafa6_row1_col3" class="data row1 col3">0.1</td>
+<td id="T_bafa6_row1_col4" class="data row1 col4">0b0.01</td>
+<td id="T_bafa6_row1_col5" class="data row1 col5">1/4</td>
+<td id="T_bafa6_row1_col6" class="data row1 col6">0.25</td>
+</tr>
+<tr class="odd">
+<td id="T_bafa6_row2_col0" class="data row2 col0">0</td>
+<td id="T_bafa6_row2_col1" class="data row2 col1">0/8</td>
+<td id="T_bafa6_row2_col2" class="data row2 col2">0b0.000</td>
+<td id="T_bafa6_row2_col3" class="data row2 col3">0.1</td>
+<td id="T_bafa6_row2_col4" class="data row2 col4">0b0.001</td>
+<td id="T_bafa6_row2_col5" class="data row2 col5">1/8</td>
+<td id="T_bafa6_row2_col6" class="data row2 col6">0.125</td>
+</tr>
+<tr class="even">
+<td id="T_bafa6_row3_col0" class="data row3 col0">0.0625</td>
+<td id="T_bafa6_row3_col1" class="data row3 col1">1/16</td>
+<td id="T_bafa6_row3_col2" class="data row3 col2">0b0.0001</td>
+<td id="T_bafa6_row3_col3" class="data row3 col3">0.1</td>
+<td id="T_bafa6_row3_col4" class="data row3 col4">0b0.0010</td>
+<td id="T_bafa6_row3_col5" class="data row3 col5">2/16</td>
+<td id="T_bafa6_row3_col6" class="data row3 col6">0.125</td>
+</tr>
+<tr class="odd">
+<td id="T_bafa6_row4_col0" class="data row4 col0">0.09375</td>
+<td id="T_bafa6_row4_col1" class="data row4 col1">3/32</td>
+<td id="T_bafa6_row4_col2" class="data row4 col2">0b0.00011</td>
+<td id="T_bafa6_row4_col3" class="data row4 col3">0.1</td>
+<td id="T_bafa6_row4_col4" class="data row4 col4">0b0.00100</td>
+<td id="T_bafa6_row4_col5" class="data row4 col5">4/32</td>
+<td id="T_bafa6_row4_col6" class="data row4 col6">0.125</td>
+</tr>
+<tr class="even">
+<td id="T_bafa6_row5_col0" class="data row5 col0">0.09375</td>
+<td id="T_bafa6_row5_col1" class="data row5 col1">6/64</td>
+<td id="T_bafa6_row5_col2" class="data row5 col2">0b0.000110</td>
+<td id="T_bafa6_row5_col3" class="data row5 col3">0.1</td>
+<td id="T_bafa6_row5_col4" class="data row5 col4">0b0.000111</td>
+<td id="T_bafa6_row5_col5" class="data row5 col5">7/64</td>
+<td id="T_bafa6_row5_col6" class="data row5 col6">0.109375</td>
+</tr>
+<tr class="odd">
+<td id="T_bafa6_row6_col0" class="data row6 col0">0.09375</td>
+<td id="T_bafa6_row6_col1" class="data row6 col1">12/128</td>
+<td id="T_bafa6_row6_col2" class="data row6 col2">0b0.0001100</td>
+<td id="T_bafa6_row6_col3" class="data row6 col3">0.1</td>
+<td id="T_bafa6_row6_col4" class="data row6 col4">0b0.0001101</td>
+<td id="T_bafa6_row6_col5" class="data row6 col5">13/128</td>
+<td id="T_bafa6_row6_col6" class="data row6 col6">0.101562</td>
+</tr>
+<tr class="even">
+<td id="T_bafa6_row7_col0" class="data row7 col0">0.0976562</td>
+<td id="T_bafa6_row7_col1" class="data row7 col1">25/256</td>
+<td id="T_bafa6_row7_col2" class="data row7 col2">0b0.00011001</td>
+<td id="T_bafa6_row7_col3" class="data row7 col3">0.1</td>
+<td id="T_bafa6_row7_col4" class="data row7 col4">0b0.00011010</td>
+<td id="T_bafa6_row7_col5" class="data row7 col5">26/256</td>
+<td id="T_bafa6_row7_col6" class="data row7 col6">0.101562</td>
+</tr>
+<tr class="odd">
+<td id="T_bafa6_row8_col0" class="data row8 col0">0.0996094</td>
+<td id="T_bafa6_row8_col1" class="data row8 col1">51/512</td>
+<td id="T_bafa6_row8_col2" class="data row8 col2">0b0.000110011</td>
+<td id="T_bafa6_row8_col3" class="data row8 col3">0.1</td>
+<td id="T_bafa6_row8_col4" class="data row8 col4">0b0.000110100</td>
+<td id="T_bafa6_row8_col5" class="data row8 col5">52/512</td>
+<td id="T_bafa6_row8_col6" class="data row8 col6">0.101562</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>Possiamo andare avanti quanto vogliamo, ma non è difficile convincersi che il numero decimale <span class="math inline">\(0.1\)</span> <em>non ha uno sviluppo finito</em> nella sua rappresentazione binaria. Possiamo approssimare il valore con un numero arbitrario <span class="math inline">\(n\)</span> di cifre (binarie) <span class="math display">\[
+  \frac{\left\lfloor \frac{2^n}{10} \right\rfloor}{2^n} &lt; 0.1 &lt;
+  \frac{\left\lfloor \frac{2^n}{10} \right\rfloor + 1}{2^n},
+\]</span> ma lo sviluppo binario di <span class="math inline">\(0.1\)</span> è periodico: <span class="math display">\[
+  0.1 = 0b0.00011001100110011001100110011001100110011001100110011
+  \ldots = 0b0.0\overline{0}\overline{0}\overline{1}\overline{1}
+\]</span></p>
+<p>Se ci pensate un attimo, la cosa non è sorprendente, perché anche nell’ordinaria rappresentazione decimale, molti numeri razionali non hanno un’espansione finita—ad esempio <span class="math display">\[
+\frac{1}{3} = 0.\overline{3}
+\]</span> (E, in effetti, in un senso che non precisiamo, quai tutti i numeri razionali, in una qualsiasi base intera, non hanno una rappresentazione finita.)</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La condizione necessaria e sufficiente perché un numero razionale, espresso nei suoi minimi termini dalla frazione <span class="math inline">\(p/q\)</span>, abbia uno sviluppo finito in base <span class="math inline">\(b\)</span> è tutti i fattori primi del denominatore <span class="math inline">\(q\)</span> siano anche fattori primi di <span class="math inline">\(b\)</span>. Così in base <span class="math inline">\(10\)</span> un numero razionale ha uno sviluppo finito se e solo se il suo denominatore (dopo la riduzione ai minimi termini) è un prodotto di potenze arbitrarie di <span class="math inline">\(2\)</span> e <span class="math inline">\(5\)</span>. In base <span class="math inline">\(2\)</span> (e <span class="math inline">\(16\)</span>), la condizione è più restrittiva, perché l’unico fattore primo della base è, appunto, il <span class="math inline">\(2\)</span>.</p>
+<p>Notiamo, per completezza, che questo è uno dei motivi per cui, a partire dai Babilonesi e fino all’avvento dei calcolatori, la base <span class="math inline">\(60\)</span> (che ha <span class="math inline">\(2\)</span>, <span class="math inline">\(5\)</span> <em>e</em> <span class="math inline">\(3\)</span> come fattori primi) è stata molto utilizzata per i calcoli—molti numeri razionali che non hanno rappresentazione finita in base <span class="math inline">\(10\)</span> ce l’hanno in base <span class="math inline">\(60\)</span>.</p>
+</div>
+</div>
+</section>
+<section id="di-nuovo-sulla-nostra-provocazione-iniziale" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="di-nuovo-sulla-nostra-provocazione-iniziale"><span class="header-section-number">10.2</span> Di nuovo sulla nostra provocazione iniziale</h2>
+<p>Abbiamo più o meno tutti i pezzi necessari per sbrogliare l’arcano della provocazione con cui abbiamo aperto questo capitolo. E la chiave per la soluzione è fatta da due fattori distinti, ugualmente importanti:</p>
+<ol type="1">
+<li>la maggior parte dei numeri in virgola mobile, come abbiamo detto, non ha una rappresentazione finita in nessuna base intera per cui (indipendentemente dalla base utilizzata internamente dal calcolatore) è impossibile darne una rappresentazione <em>esatta</em> a meno di avere memoria infinita—nello stesso modo in cui non possiamo scrivere tutta l’espansione decimale della frazione <span class="math inline">\(1/3\)</span>;</li>
+<li>molti dei numeri in virgola mobile che possiamo rappresentare esattamente in base <span class="math inline">\(10\)</span> non hanno uno sviluppo finito in base <span class="math inline">\(2\)</span>.</li>
+</ol>
+<p>Prese singolarmente, queste due cose sono abbastanza ovvie. Ma quando le mettiamo insieme, e realizziamo che i numeri nei nostri programmi sono tipicamente rappresentati in base <span class="math inline">\(10\)</span>, mentre il computer li immagazzina internamente rappresentandoli in base <span class="math inline">\(2\)</span>, i risultati sono potenzialmente disastrosi.</p>
+<p>In altre parole: quando scriviamo <span class="math inline">\(0.1\)</span>, <span class="math inline">\(0.2\)</span> e <span class="math inline">\(0.3\)</span>, implicitamente stiamo assumendo che questi numeri si possano rappresentare esattamente, perché il loro sviluppo <em>decimale</em> è finito. Ma per il calcolatore, che lavora in base <span class="math inline">\(2\)</span>, nessuna tra le frazioni <span class="math display">\[
+\frac{1}{10},~\frac{1}{5}~\text{e}~\frac{3}{10}
+\]</span> può essere rappresentata esattamente, perché entrambe hanno il fattore primo <span class="math inline">\(5\)</span> al denominatore. Come abbiamo visto, essenzialmente il computer alloca in memoria solo numeri razionali in cui il denominatore è una potenza di <span class="math inline">\(2\)</span>, limitata in grandezza dal numero di bit che abbiamo a disposizione.</p>
+<p>Possiamo rendere la cosa più quantitativa e capire cosa succede fino all’ultimo bit usando la funzione <code>as_integer_ratio()</code>, che ci dice <em>esattamente</em> qual è la frazione allocata dal computer</p>
+<div id="64578dbc" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> (<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    numerator, denominator <span class="op">=</span> x.as_integer_ratio()</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>x<span class="sc">}</span><span class="ss"> -&gt; </span><span class="sc">{</span>numerator<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>denominator<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>x<span class="sc">:.20f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.1 -&gt; 3602879701896397 / 36028797018963968 = 0.10000000000000000555
+0.2 -&gt; 3602879701896397 / 18014398509481984 = 0.20000000000000001110
+0.3 -&gt; 5404319552844595 / 18014398509481984 = 0.29999999999999998890</code></pre>
+</div>
+</div>
+<p>Il che vuol dire che la mappatura tra quello che noi scriviamo nel codice sorgente e quello che il computer alloca in memoria è <span class="math display">\[
+\begin{aligned}
+0.1 \rightarrow \frac{3602879701896397}{36028797018963968} =
+\frac{3602879701896397}{2^{55}} \approx 0.10000000000000000555 \\[5pt]
+0.2 \rightarrow \frac{3602879701896397}{18014398509481984} =
+\frac{3602879701896397}{2^{54}} \approx 0.20000000000000001110 \\[5pt]
+0.3 \rightarrow \frac{5404319552844595}{18014398509481984} =
+\frac{5404319552844595}{2^{54}} \approx 0.29999999999999998890
+\end{aligned}
+\]</span></p>
+<p>Ah, allora abbiamo capito! Quando facciamo la somma dei primi due numeri otteniamo <span class="math display">\[
+0.1 + 0.2 \rightarrow
+\frac{3602879701896397}{2^{55}} + \frac{3602879701896397}{2^{54}} =
+\frac{10808639105689191}{2^{55}}
+\]</span> che, chiaramente, non è proprio uguale alla rappresentazione che conosciamo già di <span class="math inline">\(0.3\)</span> <span class="math display">\[
+0.3 \rightarrow \frac{5404319552844595}{2^{54}} = \frac{10808639105689190}{2^{55}}
+\]</span> (Notate la differenza sull’ultima cifra.)</p>
+<p>Giusto? Non proprio. Quando abbiamo fatto la somma ci siamo dimenticati che la precisione con cui possiamo scrivere la mantissa è limitata a <span class="math inline">\(53\)</span> bit, per cui quando l’esponente è negativo, il numeratore della frazione ridotta che rappresenta il nostro numero in virgola mobile è limitata a <span class="math inline">\(2^{53} - 1 = 9007199254740991\)</span> che, chiaramente, noi abbiamo superato. Ma ci siamo quasi. Cosa possiamo fare per riportare il numeratore entro l’intervallo permesso? Facile: dividiamo per <span class="math inline">\(2\)</span> numeratore e denominatore—se non ché il numeratore è dispari per cui, nel processo di divisione, siamo costretti ad arrotondare all’intero (pari) più vicino <span class="math display">\[
+\frac{10808639105689191}{2^{55}} \rightarrow \frac{5404319552844596}{2^{54}} =
+\frac{1351079888211149}{2^{52}}
+\]</span> (Nell’ultimo passaggio abbiamo ridotto la frazione ai minimi termini, perché il numeratore era multiplo di <span class="math inline">\(4\)</span>). Riprova per le più scettiche</p>
+<div id="ee32452d" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> (<span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>numerator, denominator <span class="op">=</span> x.as_integer_ratio()</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"(0.1 + 0.2) -&gt; </span><span class="sc">{</span>numerator<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>denominator<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>x<span class="sc">:.20f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(0.1 + 0.2) -&gt; 1351079888211149 / 4503599627370496 = 0.30000000000000004441</code></pre>
+</div>
+</div>
+<p>ovverosia <span class="math display">\[
+0.1 + 0.2 \rightarrow
+\frac{1351079888211149}{4503599627370496} =
+\frac{1351079888211149}{2^{52}} \approx 0.30000000000000004441
+\]</span></p>
+<p>Adesso possiamo chiudere il cerchio. Il confronto con cui abbiamo aperto questo capitolo era falso semplicemente perché <span class="math display">\[
+(0.1 + 0.2) - 0.3 \rightarrow
+\frac{1351079888211149}{2^{52}} - \frac{5404319552844595}{2^{54}} = \frac{1}{2^{54}}
+\]</span> che potete verificare da sole nell’interprete Python</p>
+<div id="b2997639" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> (<span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span>) <span class="op">-</span> <span class="fl">0.3</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>numerator, denominator <span class="op">=</span> x.as_integer_ratio()</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"(0.1 + 0.2) - 0.3 -&gt; </span><span class="sc">{</span>numerator<span class="sc">}</span><span class="ss"> / </span><span class="sc">{</span>denominator<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>x<span class="sc">:.20f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(0.1 + 0.2) - 0.3 -&gt; 1 / 18014398509481984 = 0.00000000000000005551</code></pre>
+</div>
+</div>
+<p>Wow—questa è stata una sezione piuttosto densa, e vale la pena fermarsi un attimo per distinguere le cose importanti da quelle secondarie. Nella vita reale devo essere capace di replicare su carta e penna, bit per bit, quello che succede in ogni operazione tra numeri in virgola mobile su un calcolatore digitale? La risposta è: non fa male, ma non è strettamente necessario. (Anche se è un argomento interessante che, sotto opportune condizioni, può risolvere una conversazione a cena.)</p>
+<p>Quello che dovete aver chiaro, invece, è che anche numeri apparentemente innocui come <span class="math inline">\(0.1\)</span> sono rappresentati, all’interno del calcolatore, in modo intrinsecamente inesatto. E queste inesattezze fanno cose interessanti nelle normali operazioni aritmetiche, per cui è necessario fare un po’ di attenzione quando interpretiamo il risultato.</p>
+</section>
+<section id="virtù-e-limiti-dellaritmetica-in-virgola-mobile" class="level2" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="virtù-e-limiti-dellaritmetica-in-virgola-mobile"><span class="header-section-number">10.3</span> Virtù e limiti dell’aritmetica in virgola mobile</h2>
+<p>A questo punto il fatto che l’aritmetica in virgola mobile su un calcolatore digitale sia, per sua natura, inesatta, dovrebbe essere impresso in modo indelebile nella vostra testa. In questa sezione cercheremo di esplorare alcune delle implicazioni di questo fatto fondamentale—e nel farlo ci concentreremo sullo standard IEEE-754 a doppia precisione, che è quello che Python utilizza di default.</p>
+<section id="range-e-risoluzione" class="level3" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="range-e-risoluzione"><span class="header-section-number">10.3.1</span> Range e risoluzione</h3>
+<p>Il <em>range</em> disponibile per i numeri in virgola è determinato principalmente dal numero di bit allocati per l’esponente. Nello standard a doppia precisione</p>
+<ul>
+<li>la mantissa varia tra <span class="math inline">\(1\)</span> e <span class="math inline">\(2\)</span> (escluso);</li>
+<li>l’esponente varia tra <span class="math inline">\(-1022\)</span> e <span class="math inline">\(1023\)</span></li>
+</ul>
+<p>e i numeri normali si estendono da <span class="math display">\[
+1 \times 2^{-1022} \approx 2.2 \times 10^{-308}
+\quad\text{fino a }\quad
+(2 - 2^{-52}) \times 2^{1023} \approx 2 \times 2^{1023} \approx 1.8 \times 10^{308}
+\]</span></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Per completezza: quando l’esponente assume il valore minimo possibile, che corrisponderebbe a <span class="math inline">\(-1023\)</span>, lo standard prevede di passare alla rappresentazione <em>sub-normale</em>, in cui l’esponente vale ancora <span class="math inline">\(-1022\)</span>, ma il bit più significativo della mantissa si assume essere <span class="math inline">\(0\)</span> anziché <span class="math inline">\(1\)</span>. Si tratta di un regime completamente diverso, in cui la precisione relative cessa di essere costante, ma il range si estende verso lo zero fino a <span class="math display">\[
+2^{-52} \times 2^{-1022} = 2^{-1074} \approx 4.9 \times 10^{-324}
+\]</span></p>
+</div>
+</div>
+<p>Guardiamo le limitazioni sul range in opera:</p>
+<div id="d86e05d9" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">1.e-324</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">5.e-324</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">1.5e308</span>)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">2.e308</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.0
+5e-324
+1.5e+308
+inf</code></pre>
+</div>
+</div>
+<p>(Occhio alle operazioni matematiche—non servono numeri stratosferici per triggerare overflow: <span class="math inline">\(171!\)</span> è troppo grande per essere convertito in virgola mobile, così come <span class="math inline">\(144^{144}\)</span>, oppure <span class="math inline">\(e^{710}\)</span>.)</p>
+<p>Come abbiamo capito, l’aritmetica in virgola mobile è progettata per operare a <em>precisione relativa</em> costante. Quest’ultima è determinata essenzialmente dai bit allocati per la mantissa: con <span class="math inline">\(53\)</span> bit effettivi (i <span class="math inline">\(52\)</span> fisici e quello più significativo, che si assume essere <span class="math inline">\(1\)</span>) abbiamo <span class="math display">\[
+2^{53} \approx 9 \times 10^{15}
+\]</span> valori possibili nell’intervallo <span class="math inline">\([1, 2[\)</span>, per cui <em>la rappresentazione in doppia precisione permette di avere circa <span class="math inline">\(16\)</span> cifre significative</em>—<span class="math inline">\(2^{-53}\)</span> corrisponde all’errore (relativo) di arrotondamento massimo, che a volte viene anche chiamato <em>half spacing</em>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Fermatevi un attimo a riflettere su quest’ultima cosa. Siccome nella propagazione degli errori su moltiplicazioni e divisioni si sommano le incertezze relative, l’aritmetica in virgola mobile, by design, permette di moltiplicare o dividere tra loro senza problemi numeri che differiscono di molti ordini di grandezza. Ma la storia è completamente diversa per la somma e la differenza, come vedremo in dettaglio tra un attimo!</p>
+</div>
+</div>
+<p>Il fatto che la precisione relativa sia costante, implica che la spaziatura fisica tra valori consecutivi per i numeri in virgola mobile <em>non è costante</em>, ma dipende dal valore del numero che vogliamo rappresentare—più specificamente è <em>approssimativamente</em> proporzionale a quest’ultimo. Così, se per i numeri tra <span class="math inline">\(1\)</span> e <span class="math inline">\(2\)</span> la spaziatura tra due numeri in virgola mobile consecutivi è <span class="math inline">\(2^{-52}\)</span>, tra <span class="math inline">\(2\)</span> e <span class="math inline">\(4\)</span> diventa <span class="math inline">\(2^{-51}\)</span> e così via: raddoppia ogni volta che si attraversa una potenza di <span class="math inline">\(2\)</span>. Il modulo <code>math</code> della libreria standard di Python fornisce la funzione <code>ulp</code> (<em>unit in the last place</em>) che, per un numero in virgola mobile dato <span class="math inline">\(x\)</span> restituisce la distanza dal numero immediatamente più alto che si può rappresentare</p>
+<div id="837710ea" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> x <span class="kw">in</span> (<span class="fl">1.</span>, <span class="fl">1.e10</span>, <span class="fl">1.e20</span>, <span class="fl">1.e50</span>, <span class="fl">1.e100</span>):</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(math.ulp(x))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>2.220446049250313e-16
+1.9073486328125e-06
+16384.0
+2.076918743413931e+34
+1.942668892225729e+84</code></pre>
+</div>
+</div>
+<p>Quando si arriva a valori dell’ordine di <span class="math inline">\(2^{52} \approx 4.5 \times 10^{15}\)</span> la spaziatura diventa più grande di <span class="math inline">\(1\)</span> e possono succedere cose curiose. Se volessimo trattate il numero di Avogadro come un <em>vero</em> intero, ad esempio, incapperemmo nella situazione paradossale in cui aggiungere una molecola non ha effetto:</p>
+<div id="711c6013" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="fl">6.02e23</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.ulp(N))</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(N <span class="op">==</span> N <span class="op">+</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>67108864.0
+True</code></pre>
+</div>
+</div>
+<p>(Intorno al numero di Avogadro la spaziatura della rappresentazione in virgola mobile, ovvero il nostro quanto di molecole, è di circa <span class="math inline">\(70,000,000\)</span>.)</p>
+<p>A questo punto possiamo chiederci: come mai chi ha progettato lo standard IEEE 754 ha deciso di allocare i 64 disponibili proprio in questo modo—1 per il segno, 52 per la mantissa e 11 per l’esponente? Abbiamo visto che il numero di bit <span class="math inline">\(n_e\)</span> che riserviamo per l’esponente determina il <em>range dinamico</em> del nostro standard, ovvero sia il numero di ordini di grandezza (o <em>decadi</em>) tra il minimo ed il massimo numero rappresentabile <span class="math display">\[
+\text{dex}(x_{\text{min}}, x_{\text{max}}) =
+\log_{10} \left( \frac{x_{\text{max}}}{x_{\text{min}}} \right)
+\approx \log_{10} \left( 2^{2^{n_e}}\right) = 2^{n_e} \log_{10} 2
+\]</span> Il numero di bit <span class="math inline">\(n_m\)</span> che riserviamo per la mantissa, d’altra parte, determina la precisione relativa con cui possiamo rappresentare i numeri, o, equivalentemente, il numero di cifre significative nell’ordinaria rappresentazione decimale <span class="math display">\[
+\log_{10} \left( 2^{n_m + 1} \right) = (n_m + 1) \log_{10} 2
+\]</span></p>
+<p>La tabella che segue mostra il range dinamico ed il numero di cifre significative che otterremmo con diverse scelte (per 11 bit di esponente e 52 + 1 di mantissa torniamo al nostro range dinamico di circa 616 decadi, con una precisione di circa 16 cifre significative).</p>
+<div class="cell" data-execution_count="9">
+<div id="tbl-floating-point" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="9">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-floating-point-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabella&nbsp;10.1: Precisione e intervallo dinamico al variare del numero di bit dell’esponente e della mantissa. Lo standard IEEE 754 utilizza 11 bit per l’esponente e 52 + 1 bit per la mantissa. Notiamo che, mentre il range dinamico cambia in modo piuttosto violento attorno a questi valori, l’effetto sulla precisione è relativamente modesto.
+</figcaption>
+<div aria-describedby="tbl-floating-point-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="9">
+<style type="text/css">
+</style>
+
+<table id="T_98ae6" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_98ae6_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Bit di esponente</th>
+<th id="T_98ae6_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Bit di mantissa</th>
+<th id="T_98ae6_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Range dinamico</th>
+<th id="T_98ae6_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Cifre significative</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_98ae6_row0_col0" class="data row0 col0">5</td>
+<td id="T_98ae6_row0_col1" class="data row0 col1">58 + 1</td>
+<td id="T_98ae6_row0_col2" class="data row0 col2">9.6</td>
+<td id="T_98ae6_row0_col3" class="data row0 col3">17.8</td>
+</tr>
+<tr class="even">
+<td id="T_98ae6_row1_col0" class="data row1 col0">6</td>
+<td id="T_98ae6_row1_col1" class="data row1 col1">57 + 1</td>
+<td id="T_98ae6_row1_col2" class="data row1 col2">19.3</td>
+<td id="T_98ae6_row1_col3" class="data row1 col3">17.5</td>
+</tr>
+<tr class="odd">
+<td id="T_98ae6_row2_col0" class="data row2 col0">7</td>
+<td id="T_98ae6_row2_col1" class="data row2 col1">56 + 1</td>
+<td id="T_98ae6_row2_col2" class="data row2 col2">38.5</td>
+<td id="T_98ae6_row2_col3" class="data row2 col3">17.2</td>
+</tr>
+<tr class="even">
+<td id="T_98ae6_row3_col0" class="data row3 col0">8</td>
+<td id="T_98ae6_row3_col1" class="data row3 col1">55 + 1</td>
+<td id="T_98ae6_row3_col2" class="data row3 col2">77.1</td>
+<td id="T_98ae6_row3_col3" class="data row3 col3">16.9</td>
+</tr>
+<tr class="odd">
+<td id="T_98ae6_row4_col0" class="data row4 col0">9</td>
+<td id="T_98ae6_row4_col1" class="data row4 col1">54 + 1</td>
+<td id="T_98ae6_row4_col2" class="data row4 col2">154.1</td>
+<td id="T_98ae6_row4_col3" class="data row4 col3">16.6</td>
+</tr>
+<tr class="even">
+<td id="T_98ae6_row5_col0" class="data row5 col0">10</td>
+<td id="T_98ae6_row5_col1" class="data row5 col1">53 + 1</td>
+<td id="T_98ae6_row5_col2" class="data row5 col2">308.3</td>
+<td id="T_98ae6_row5_col3" class="data row5 col3">16.3</td>
+</tr>
+<tr class="odd">
+<td id="T_98ae6_row6_col0" class="data row6 col0">11</td>
+<td id="T_98ae6_row6_col1" class="data row6 col1">52 + 1</td>
+<td id="T_98ae6_row6_col2" class="data row6 col2">616.5</td>
+<td id="T_98ae6_row6_col3" class="data row6 col3">16.0</td>
+</tr>
+<tr class="even">
+<td id="T_98ae6_row7_col0" class="data row7 col0">12</td>
+<td id="T_98ae6_row7_col1" class="data row7 col1">51 + 1</td>
+<td id="T_98ae6_row7_col2" class="data row7 col2">1233.0</td>
+<td id="T_98ae6_row7_col3" class="data row7 col3">15.7</td>
+</tr>
+<tr class="odd">
+<td id="T_98ae6_row8_col0" class="data row8 col0">13</td>
+<td id="T_98ae6_row8_col1" class="data row8 col1">50 + 1</td>
+<td id="T_98ae6_row8_col2" class="data row8 col2">2466.0</td>
+<td id="T_98ae6_row8_col3" class="data row8 col3">15.4</td>
+</tr>
+<tr class="even">
+<td id="T_98ae6_row9_col0" class="data row9 col0">14</td>
+<td id="T_98ae6_row9_col1" class="data row9 col1">49 + 1</td>
+<td id="T_98ae6_row9_col2" class="data row9 col2">4932.1</td>
+<td id="T_98ae6_row9_col3" class="data row9 col3">15.1</td>
+</tr>
+<tr class="odd">
+<td id="T_98ae6_row10_col0" class="data row10 col0">15</td>
+<td id="T_98ae6_row10_col1" class="data row10 col1">48 + 1</td>
+<td id="T_98ae6_row10_col2" class="data row10 col2">9864.2</td>
+<td id="T_98ae6_row10_col3" class="data row10 col3">14.8</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>Cosa possiamo dire, come fisiche? Beh, se pensiamo alle scale di lunghezza possiamo dire che ci sono circa 42 ordini di grandezza tra il raggio del protone ed il raggio dell’universo osservabile—61 se partiamo dalla scala di Planck. Ci sono circa 90 ordini di grandezza tra la massa del neutrino più pesante (che ancora non conosciamo) e la massa che stimiamo comporre l’universo. In altre parole: non è facile trovare un range dinamico rilevante in Fisica che ecceda di molto i 100 ordini di grandezza.</p>
+<p>E per la precisione? La misura più recente del momento magnetico dell’elettrone <span class="citation" data-cites="electron_magnetic_moment">(<a href="#ref-electron_magnetic_moment" role="doc-biblioref">Fan et al. 2023</a>)</span>, con una precisione di 0.1 ppb (part per billion), ovvero con 13 cifre significative, detiene il record della proprietà meglio misurata di una particelle. Ovviamente le nostre amiche metrologhe non smettono di fare progressi, ed il record più recente di precisione sulla misura di una frequenza <span class="citation" data-cites="metrology_record">(<a href="#ref-metrology_record" role="doc-biblioref">Marshall et al. 2025</a>)</span> sfiora le 19 cifre significative.</p>
+<p>Ma nel complesso possiamo dire che i 64 bit dello standard IEEE sono ben allocati: ci permettono di rappresentare comodamente tutti gl intervalli dinamici che potrebbero essere rilevanti per la Fisica, con una precisione che supera abbondantemente quella delle misure più all’avanguardia, con l’eccezione di alcune applicazioni molto specifiche.</p>
+</section>
+<section id="un-esempio-di-accortezza-numerica" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="un-esempio-di-accortezza-numerica"><span class="header-section-number">10.3.2</span> Un esempio di accortezza numerica</h3>
+<p>Quindi siamo salve? Non proprio, perché a queste condizioni la tragedia è potenzialmente dietro l’angolo attraverso underflow/overflow nei calcoli intermedi e/o cancellazioni catastrofiche non volute. Prendiamo ad esempio la nostra amica distribuzione di Poisson <span class="math display">\[
+P(k; \mu) = \frac{\mu^k e^{-\mu}}{k!}
+\]</span> Da un punto di vista numerico, l’espressione è un coacerbo di tutte le funzioni matematiche che sono più prone all’overflow, tanto è vero che non bisogna arrivare a numeri stratosferici per far fallire l’implementazione più naive che una potrebbe immaginare—provare per credere!</p>
+<div id="16b32693" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson(k, mu):</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> mu<span class="op">**</span>k <span class="op">*</span> math.exp(<span class="op">-</span>mu) <span class="op">/</span> math.factorial(k)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="fl">10.</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>):</span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"P(</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>mu<span class="sc">}</span><span class="ss">) = </span><span class="sc">{</span>poisson(k, mu)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>P(100, 10.0) = 4.864649182067611e-63
+P(150, 10.0) = 7.94624168593895e-118</code></pre>
+</div>
+<div class="cell-output cell-output-error">
+<div class="ansi-escaped-output">
+<pre><span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">OverflowError</span>                             Traceback (most recent call last)
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 8</span>
+<span class="ansi-green-fg">      4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> mu**k * math.exp(-mu) / math.factorial(k)
+<span class="ansi-green-fg">      5</span> 
+<span class="ansi-green-fg">      6</span> mu = <span class="ansi-green-fg">10.</span>
+<span class="ansi-green-fg">      7</span> <span style="font-weight:bold;color:rgb(0,135,0)">for</span> k <span style="font-weight:bold;color:rgb(0,135,0)">in</span> (<span class="ansi-green-fg">100</span>, <span class="ansi-green-fg">150</span>, <span class="ansi-green-fg">200</span>):
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">8</span>     print(f"P({k}, {mu}) = {poisson(k, mu)}")
+
+<span class="ansi-cyan-fg">Cell</span><span class="ansi-cyan-fg"> </span><span class="ansi-green-fg">In[10]</span><span class="ansi-green-fg">, line 4</span>, in <span class="ansi-cyan-fg">poisson</span><span class="ansi-blue-fg">(k, mu)</span>
+<span class="ansi-green-fg">      3</span> <span style="font-weight:bold;color:rgb(0,135,0)">def</span> poisson(k, mu):
+<span class="ansi-green-fg">----&gt; </span><span class="ansi-green-fg">4</span>     <span style="font-weight:bold;color:rgb(0,135,0)">return</span> mu**k * math.exp(-mu) / math.factorial(k)
+
+<span class="ansi-red-fg">OverflowError</span>: int too large to convert to float</pre>
+</div>
+</div>
+</div>
+<p>(Avete capito bene. Se non ci mettiamo un pizzico di intelligenza, calcolare la probabilità che una variabile Poissoniana con media <span class="math inline">\(10\)</span> valga <span class="math inline">\(200\)</span> diventa un problema intrattabile.)</p>
+<p>L’espediente standard, qui, è passare ai logaritmi, e passare attraverso la funzione <span class="math inline">\(\Gamma\)</span> per calcolare il logaritmo del fattoriale <span class="math display">\[
+\log P(k; \mu) = k \log \mu - \mu - \log k! = k \log \mu - \mu - \log \Gamma(k + 1)
+\]</span> Curiosamente, il modulo <code>math</code> della libreria standard di Python fornisce proprio una funzione che restituisce il logaritmo della funzione <span class="math inline">\(\Gamma\)</span>, per cui una possibile implementazione di questo approccio potrebbe essere</p>
+<div id="0424f76f" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> poisson(k, mu):</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    logp <span class="op">=</span> k <span class="op">*</span> math.log(mu) <span class="op">-</span> mu <span class="op">-</span> math.lgamma(k <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> math.exp(logp)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="fl">10.</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>, <span class="dv">400</span>):</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"P(</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>mu<span class="sc">}</span><span class="ss">) = </span><span class="sc">{</span>poisson(k, mu)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>P(100, 10.0) = 4.864649182067763e-63
+P(150, 10.0) = 7.946241685938612e-118
+P(200, 10.0) = 5.7566064628489175e-180
+P(400, 10.0) = 0.0</code></pre>
+</div>
+</div>
+<p>Come vedete, adesso il caso con <span class="math inline">\(k = 200\)</span> è trattato correttamente—il problema non era il valore finale, ma i numeri nei calcoli intermedi, che passando ai logaritmi diventano molto più piccoli. Ovviamente ad un certo punto ci scontriamo con il fatto che il risultato è troppo piccolo per essere rappresentato, ed in quel caso otteniamo semplicemente <span class="math inline">\(0\)</span> come risposta, senza alcun overflow.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Resistete alla tentazione di re-implementare la Poisson nella vita reale. Il modulo <a href="https://docs.scipy.org/doc/scipy/reference/stats.html"><code>scipy.stats</code></a> offre, tra le altre cose, un’implementazione della distribuzione di <a href="https://docs.scipy.org/doc/scipy/reference/generated/scipy.stats.poisson.html">Poisson</a> robusta e ben testata (anche se l’implementazione non è molto diversa da quella che abbiamo appena visto) e non c’è ragione di re-inventare la ruota!</p>
+<div id="f95411ec" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> poisson</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="fl">10.</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> k <span class="kw">in</span> (<span class="dv">100</span>, <span class="dv">150</span>, <span class="dv">200</span>, <span class="dv">400</span>):</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"P(</span><span class="sc">{</span>k<span class="sc">}</span><span class="ss">, </span><span class="sc">{</span>mu<span class="sc">}</span><span class="ss">) = </span><span class="sc">{</span>poisson(mu)<span class="sc">.</span>pmf(k)<span class="sc">}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>P(100, 10.0) = 4.864649182067763e-63
+P(150, 10.0) = 7.946241685938612e-118
+P(200, 10.0) = 5.7566064628489175e-180
+P(400, 10.0) = 0.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="proprietà-dellaritmetica-elementare" class="level3" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="proprietà-dellaritmetica-elementare"><span class="header-section-number">10.3.3</span> Proprietà dell’aritmetica elementare</h3>
+<p>Noi tutte diamo per scontato le proprietà dell’aritmetica cha abbiamo studiato alle scuole elementari: la proprietà commutativa della somma e del prodotto, la proprietà associativa e la proprietà distributiva della moltplicazione rispetto alla somma. Ebbene, il carattere intrinsecamente inesatto dell’artitmetica in virgola mobile fa sì che queste proprietà, in generale, non possano essere preservate tutte insieme in un calcolatore digitale. (Giusto per chiarezza: questo è vero solo in virgola mobile—l’aritmetica intera, da questo punto di vista, si comporta come ci aspetteremmo.)</p>
+<div id="5c5f8f67" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((a <span class="op">+</span> b) <span class="op">-</span> c <span class="op">==</span> a <span class="op">+</span> (b <span class="op">-</span> c))</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">*</span> (b <span class="op">+</span> c) <span class="op">==</span> a <span class="op">*</span> b <span class="op">+</span> a <span class="op">*</span> c)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>False
+False</code></pre>
+</div>
+</div>
+<p>All’inizio questa realizzazione può apparire sorprendente, ma se ci pensate bene è una conseguenza abbastanza diretta di ciò che abbiamo detto fino ad ora. Se ad ogni operazione in virgola mobile, potenzialmente, facciamo approssimazioni, allora è chiaro che il risultato finale può dipendere dall’ordine in cui facciamo le cose. Nell’esempio che abbiamo appena visto il risultato dei due confronti è falso perché le due cose che confrontiamo differiscono di una quantità piccola—al limite della precisione della macchina—ma a volte la cosa può diventare distrastosa:</p>
+<div id="224e30b2" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">1.e16</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="op">-</span><span class="fl">1.e16</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">1.</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>((a <span class="op">+</span> b) <span class="op">+</span> c)</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(a <span class="op">+</span> (b <span class="op">+</span> c))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.0
+0.0</code></pre>
+</div>
+</div>
+<p>Questo è un caso interessante, perché chiaramente la prima risposta è quella che ci aspetteremmo ingenuamente, ma a seconda di come mettiamo le parentesi possiamo ottenere un nuemero completamente diverso. Il problema, chiaramente, è quello che abbiamo cercato di mettere in evidenza con l’esempio del numero di Avogadro nella sezione precedente, e la soluzione (se così possiamo dire) è <em>cercare, ove possibile, di non sommare o sottrarre direttamente numeri che differiscono tra loro di molti ordini di grandezza</em>.</p>
+</section>
+<section id="confronti-tra-numeri-in-virgola-mobile" class="level3" data-number="10.3.4">
+<h3 data-number="10.3.4" class="anchored" data-anchor-id="confronti-tra-numeri-in-virgola-mobile"><span class="header-section-number">10.3.4</span> Confronti tra numeri in virgola mobile</h3>
+<p>Ormai abbiamo capito che <em>confrontare</em> tra loro numeri in virgola mobile è potenzialmente pericoloso, eppure vi assicuro che, andando avanti, vi imbatterete di frequente in programmi del tipo</p>
+<div id="17682efe" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a <span class="op">+</span> b <span class="op">&lt;=</span> c:</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"win!"</span>)</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"lose..."</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>lose...</code></pre>
+</div>
+</div>
+<p>Se ci mettiamo per un attimo in un caso realistico, in cui <code>a + b</code> rappresenta una generica operazione matematica e <code>a</code>, <code>b</code> e <code>c</code> sono distribuiti in intervalli grandi rispetto alla precisione relativa dell’aritmetica, la cosa non è così disastrosa, perché il risultato della disuguaglianza sarà quello atteso nella maggior parte dei casi. Resta il fatto che, in senso stretto, non possiamo far affidamento sul confronto tra numeri in virgola mobile.</p>
+<p>La libreria standard, oltre che pacchetti esterni come <code>numpy</code>, offrono funzioni specifiche per gestire il confronto tra numeri in virgola mobile, che possono essere utili in alcune situazioni</p>
+<div id="268cdf23" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.isclose(a <span class="op">+</span> b, c))</span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.allclose(a <span class="op">+</span> b, c))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+True</code></pre>
+</div>
+</div>
+<p>Allora l’esempio iniziale di questa sezione si potrebbe scrivere in modo leggermente più robusto come</p>
+<div id="fa1770a1" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>a <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>c <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> a <span class="op">+</span> b <span class="op">&lt;</span> c <span class="kw">or</span> math.isclose(a <span class="op">+</span> b ,c):</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"win!"</span>)</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a><span class="cf">else</span>:</span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"lose..."</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>win!</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="e-quindi" class="level2" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="e-quindi"><span class="header-section-number">10.4</span> E quindi?</h2>
+<p>Semplice: l’aritmetica in virgola mobile è intrinsecamente inesatta e dovete sempre fare attenzione. Lo standard IEEE 754 è progettato in modo che le cose funzionino in modo trasparente nella maggior parte dei casi, ma non è magico, per cui non dovete assumere che i numeri in un calcolatore digitale si comportino come quelli sul libro di analisi. In particolare dovete fare attenzione a:</p>
+<ul>
+<li>addizioni e sottrazioni di numeri che differiscono tra loro di molti ordini di grandezza;</li>
+<li>sottrazioni di numeri molto vicini tra loro;</li>
+<li>moltiplicazioni e divisioni in catena in cui i risultati intermedi sono potenzialmente soggetti a underflow o overflow;</li>
+<li>accumulo coerente di piccoli errori dentro loop molto lunghi (se avete ancora tempo da dedicare all’argomento e vi suggerisco la lettura di <a href="https://www.gao.gov/assets/imtec-92-26.pdf">questo report</a> su un avvenimento drammatico in un teatro di guerra).</li>
+</ul>
+<p>A volte ci sono espedienti che permettono di aggirare il problema—ad esempio passare ai logaritmi come abbiamo visto nel caso della distribuzione di Poisson. Altre volte le potenziali soluzione sono più sottili, come nel caso dell’<a href="https://en.wikipedia.org/wiki/Algorithms_for_calculating_variance">algoritmo di Welford</a> per il calcolo della varianza <span class="citation" data-cites="Welford">(<a href="#ref-Welford" role="doc-biblioref">Welford 1962</a>)</span>. Ove possibile, usare librerie popolari e ben testate come <code>numpy</code> e <code>scipy</code> è sicuaramente da preferire rispetto al reimplementare tutto from scratch.</p>
+<p>La lettura di questo capitolo non vi rende esperte di calcolo numerico, ma siete state avvertite!</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-electron_magnetic_moment" class="csl-entry" role="listitem">
+Fan, X., T. G. Myers, B. A. D. Sukra, e G. Gabrielse. 2023. <span>«Measurement of the Electron Magnetic Moment»</span>. <em>Phys. Rev. Lett.</em> 130 (febbraio): 071801. <a href="https://doi.org/10.1103/PhysRevLett.130.071801">https://doi.org/10.1103/PhysRevLett.130.071801</a>.
+</div>
+<div id="ref-metrology_record" class="csl-entry" role="listitem">
+Marshall, Mason C., Daniel A. Rodriguez Castillo, Willa J. Arthur-Dworschack, et al. 2025. <span>«High-Stability Single-Ion Clock with <span class="math inline">\(5.5\times10^{-19}\)</span> Systematic Uncertainty»</span>. <em>Phys. Rev. Lett.</em> 135 (luglio): 033201. <a href="https://doi.org/10.1103/hb3c-dk28">https://doi.org/10.1103/hb3c-dk28</a>.
+</div>
+<div id="ref-Welford" class="csl-entry" role="listitem">
+Welford, B. P. 1962. <span>«Note on a Method for Calculating Corrected Sums of Squares and Products»</span>. <em>Technometrics</em> 4 (3): 419–20. <a href="https://doi.org/10.1080/00401706.1962.10490022">https://doi.org/10.1080/00401706.1962.10490022</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiato!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiato!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/unipi-physics-labs\.github\.io\/lab1-computing\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/io.html" class="pagination-link" aria-label="Input/output">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Input/output</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/algs.html" class="pagination-link" aria-label="Algoritmi">
+        <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Algoritmi</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Luca Baldini. Rilasciato sotto licenza <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.it">CC BY-SA 4.0</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/float.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

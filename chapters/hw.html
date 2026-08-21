@@ -1,0 +1,1132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Dentro il calcolatore – Elementi di computazione</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/os.html" rel="next">
+<link href="../chapters/count.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-eb1bc3aaadf2658264f2b941ac69fc6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nessun risultato",
+    "search-matching-documents-text": "documenti trovati",
+    "search-copy-link-title": "Copiare il link nella ricerca",
+    "search-hide-matches-text": "Nascondere i risultati aggiuntivi",
+    "search-more-match-text": "ci sono altri risultati in questo documento",
+    "search-more-matches-text": "ulteriori risultati in questo documento",
+    "search-clear-button-title": "Pulire",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancellare",
+    "search-submit-button-title": "Inviare",
+    "search-label": "Ricerca"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/count.html">Parte seconda: ripartiamo dai principi</a></li><li class="breadcrumb-item"><a href="../chapters/hw.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dentro il calcolatore</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Elementi di computazione</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/unipi-physics-labs/lab1-computing" title="Eseguire il codice" class="quarto-navigation-tool px-1" aria-label="Eseguire il codice"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Ricerca"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefazione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../copyright.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licenza</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../gender.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nota sul linguaggio di genere</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nota sul software libero</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte prima: dal problema alla soluzione</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Cominciamo?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/crash.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo programma</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Variabili e tipi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funzioni</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/flow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte seconda: ripartiamo dai principi</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/count.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Contare in base 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/hw.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dentro il calcolatore</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/os.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Il sistema operativo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Input/output</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/float.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’aritmetica in virgola mobile</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/algs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Algoritmi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/vec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Vettorizzazione</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendici</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/latex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">LaTeX</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formati grafici</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice</h2>
+   
+  <ul>
+  <li><a href="#il-flip-flop-come-base-della-logica-sequenziale" id="toc-il-flip-flop-come-base-della-logica-sequenziale" class="nav-link active" data-scroll-target="#il-flip-flop-come-base-della-logica-sequenziale"><span class="header-section-number">7.1</span> Il flip-flop come base della logica sequenziale</a></li>
+  <li><a href="#bit-e-bytes" id="toc-bit-e-bytes" class="nav-link" data-scroll-target="#bit-e-bytes"><span class="header-section-number">7.2</span> Bit e bytes</a></li>
+  <li><a href="#struttura-di-massima-di-un-calcolatore" id="toc-struttura-di-massima-di-un-calcolatore" class="nav-link" data-scroll-target="#struttura-di-massima-di-un-calcolatore"><span class="header-section-number">7.3</span> Struttura di massima di un calcolatore</a></li>
+  <li><a href="#la-cpu" id="toc-la-cpu" class="nav-link" data-scroll-target="#la-cpu"><span class="header-section-number">7.4</span> La CPU</a>
+  <ul class="collapse">
+  <li><a href="#frequenza-di-clock" id="toc-frequenza-di-clock" class="nav-link" data-scroll-target="#frequenza-di-clock"><span class="header-section-number">7.4.1</span> Frequenza di clock</a></li>
+  <li><a href="#architettura-della-cpu" id="toc-architettura-della-cpu" class="nav-link" data-scroll-target="#architettura-della-cpu"><span class="header-section-number">7.4.2</span> Architettura della CPU</a></li>
+  </ul></li>
+  <li><a href="#la-memoria" id="toc-la-memoria" class="nav-link" data-scroll-target="#la-memoria"><span class="header-section-number">7.5</span> La memoria</a>
+  <ul class="collapse">
+  <li><a href="#la-ram" id="toc-la-ram" class="nav-link" data-scroll-target="#la-ram"><span class="header-section-number">7.5.1</span> La RAM</a></li>
+  <li><a href="#la-memoria-di-massa" id="toc-la-memoria-di-massa" class="nav-link" data-scroll-target="#la-memoria-di-massa"><span class="header-section-number">7.5.2</span> La memoria di massa</a></li>
+  <li><a href="#la-cache" id="toc-la-cache" class="nav-link" data-scroll-target="#la-cache"><span class="header-section-number">7.5.3</span> La cache</a></li>
+  </ul></li>
+  <li><a href="#e-quindi" id="toc-e-quindi" class="nav-link" data-scroll-target="#e-quindi"><span class="header-section-number">7.6</span> E quindi?</a>
+  <ul class="collapse">
+  <li><a href="#una-piccola-provocazione" id="toc-una-piccola-provocazione" class="nav-link" data-scroll-target="#una-piccola-provocazione"><span class="header-section-number">7.6.1</span> Una piccola provocazione</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/hw.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/count.html">Parte seconda: ripartiamo dai principi</a></li><li class="breadcrumb-item"><a href="../chapters/hw.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dentro il calcolatore</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dentro il calcolatore</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">21 agosto 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Noi tutte, da Fisiche, siamo educate—e per buoni motivi—ad apprezzare l’importanza del principio di sovrapposizione caratteristico dei sistemi lineari: la forza totale agente su un punto materiale è la somma (vettoriale) delle forze agenti, ed il campo elettrico creato da un sistema di cariche è la somma (vettoriale) dei campi generati dalle singole cariche. L’elettronica digitale alla base del funzionamento di un calcolatore è un esempio archetipico di un tipo di sistema il cui funzionamento è dovuto alle caratteristiche intrinsecamente non lineari dei componenti—diodi triodi e transistor sono gli elementi circuitali che rendono possibile la computazione come lo conosciamo, e non andremmo molto lontano sfruttando solo la legge di Ohm che regola le reti lineari di resistenze.</p>
+<section id="il-flip-flop-come-base-della-logica-sequenziale" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="il-flip-flop-come-base-della-logica-sequenziale"><span class="header-section-number">7.1</span> Il flip-flop come base della logica sequenziale</h2>
+<p>Sotto molti punti di vista il mattone costitutivo fondamentale dei moderni calcolatori elettronici è il <em>flip-flop</em>, un elemento circuitale con due stati stabili (e.g., due livelli distinti di tensione in uscita) che si mantengono indefinitamente nel tempo se non si interviene sul dispositivo, e con la possibilità di cambiare lo stato attraverso uno o più opportuni segnali di controllo, tipicamente in modo sincronizzato con un segnale di <em>clock</em> esterno.</p>
+<p>Ora: che un oggetto con due stati si presti ad essere usato come una sorta di alfabeto di due lettere per implementare una memoria digitale è abbastanza intuitivo; che i cambiamenti di stato si possano controllare dall’esterno è essenziale per poter fare operazioni sui dati in memoria; ed il fatto che il tutto sia controllato da una sorta di <em>orologio</em> esterno (il clock) lascia intravedere la possibilità che un numero arbitrario di flip-flop possano lavorare insieme, sincronizzati, per implementare operazioni complesse. Ma qual è il motivo per cui le architetture basate su flip-flop hanno resistito al test del tempo e non sono state soppiantate da approcci più complessi, basati su elementi circuitali a più stati—ad esempio un ipotetico <em>flip-flop-flap</em> a <span class="math inline">\(3\)</span> stati? La risposta, in una parola, è la semplicità di realizzazione. Ideato negli anni ’<span class="math inline">\(10\)</span> del 900 come sistema composto da due valvole, il flip-flop è evoluto dopo l’invenzione del transistor in uno degli elementi circuitali con la più alta impacchettabilità in chip. Una conseguenza fondamentale, ed il motivo per cui abbiamo cominciato la nostra discussione da questo aspetto apparentemente mondano dell’hardware, è il fatto che <em>la totalità dei calcolatori moderni lavora in logica binaria, sia per quanto riguarda la rappresentazione dei dati che nella manipolazione dei dati stessi</em>.</p>
+</section>
+<section id="bit-e-bytes" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="bit-e-bytes"><span class="header-section-number">7.2</span> Bit e bytes</h2>
+<p>Ad un livello microscopico, l’informazione dentro un computer è immagazzinata in una serie di <em>bit</em> (b). Per usare un’analogia con la meccanica quantistica, il bit è il <em>quanto</em> di memoria, e ad ogni istante si trova in uno di due stati possibili: <span class="math inline">\(0\)</span> o <span class="math inline">\(1\)</span>. (Strettamente parlando, non c’è niente di speciale nella scelta di utilizzare <span class="math inline">\(0\)</span> e <span class="math inline">\(1\)</span> come denominazione per i due possibili valori del contenuto di un bit—potremmo anche utilizzare vero e falso, bianco e nero, testa e croce—ma al solito non c’è ragione di non uniformarsi all’uso comune, che per di più, in questo caso, si sposa naturalmente con l’aritmetica in base <span class="math inline">\(2\)</span>.) All’interno di un calcolatore qualsiasi cosa è una serie di <span class="math inline">\(0\)</span> ed <span class="math inline">\(1\)</span>. Programmi, dati, numeri, testo, immagini, video sono rappresentati internamente con l’opportuna alternanza di zero ed uno, come vedremo più in dettaglio nel seguito in alcuni casi rilevanti.</p>
+<p>Ora, come abbiamo detto un bit ha due soli stati, e non c’è molto di utile che si possa fare con così poco. Le cose cambiano però drasticamente quando mettiamo insieme più bit—con <span class="math inline">\(2\)</span> bit, ad esempio, possiamo comporre esattamente <span class="math inline">\(4\)</span> <em>bit pattern</em> <span class="math display">\[
+  \texttt{00} \quad \texttt{01} \quad \texttt{10} \quad \texttt{11}.
+\]</span> La cosa è sostanzialmente identica al modo in cui, quando parliamo o scriviamo, componiamo le parole con le lettere dell’alfabeto. Non è difficile convincersi che, utilizzando <span class="math inline">\(n\)</span> bit, il numero di bit pattern distinti che si possono rappresentare è <span class="math inline">\(2^n\)</span>. Con <span class="math inline">\(8\)</span> bit, allora, possiamo rappresentare esattamente <span class="math inline">\(2^8 = 256\)</span> configurazioni distinte—ad esempio i numeri interi da <span class="math inline">\(0\)</span> a <span class="math inline">\(255\)</span>. Questo comincia ad essere un numero potenzialmente interessante: è più grande, ad esempio del numero di tasti di un pianoforte standard (<span class="math inline">\(88\)</span>), e del numero di tasti di una moderna tastiera da calcolatore (<span class="math inline">\(104\)</span> o <span class="math inline">\(105\)</span>), e non è un caso che il protocollo MIDI e la codifica ASCII utilizzino entrambi <span class="math inline">\(8\)</span> bit. I personal computer con processori a <span class="math inline">\(8\)</span> bit sono stati estremamente popolari negli anni ’80, ed l’architettura a <span class="math inline">\(8\)</span> bit si trova ancora usata in alcuni micro-controllori disponibili sul mercato. Un gruppo di <span class="math inline">\(8\)</span> bit è un concetto così importante in informatica da meritare un nome dedicato: il <em>byte</em> (B). Se è vero che il bit è il quanto di memoria, in pratica il byte è l’unità di misura della capacità dei dispositivi di memorizzazione sul mercato.</p>
+<p>Per inciso, gli informatici amano a tal punto le potenze di <span class="math inline">\(2\)</span> che, sfruttando la coincidenza notevole che <span class="math display">\[
+  2^{10} = 1024 \approx 1000 = 10^2
+\]</span> hanno fornito una loro re-interpretazione in chiave binaria dei prefissi del sistema metrico internazionale. Così, tradizionalmente, l’unità kB è comunemente usata per indicare <span class="math inline">\(1024\)</span> B (anziché <span class="math inline">\(1000\)</span> B), il termine MB per indicare <span class="math inline">\(10124^2 = 1,048,576\)</span> B, e così via. (La cosa non è bislacca come potrebbe sembrare: lo schema di indirizzamento tipico della memoria ad accesso casuale fa sì che, in pratica, la capacità di quest’ultima espressa in B sia per definizione pari ad una potenza di <span class="math inline">\(2\)</span>. L’interpretazione binaria dei prefissi del sistema metrico è stata, storicamente, sorgente di ambiguità, ma insistere oltre sulla questione va al di là dei nostri scopi.)</p>
+<div id="tbl-storage" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-storage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabella&nbsp;7.1: Alcuni esempi di capacità di memorizzazione.
+</figcaption>
+<div aria-describedby="tbl-storage-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Elemento</th>
+<th style="text-align: right;">Capacità</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><em>Soldati</em> di Giuseppe Ungaretti</td>
+<td style="text-align: right;"><span class="math inline">\(44~\mathrm{B}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">La <em>Divina Commedia</em> in formato testo</td>
+<td style="text-align: right;"><span class="math inline">\(\sim 500~\mathrm{kB} \approx 5\times10^5~\mathrm{B}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Una canzone pop in formato MP3</td>
+<td style="text-align: right;"><span class="math inline">\(\sim 1~\mathrm{MB} \approx 10^6~\mathrm{B}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Memoria cache tipica di una CPU</td>
+<td style="text-align: right;"><span class="math inline">\(\sim 1~\mathrm{MB} \approx 10^6~\mathrm{B}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Compact Disc (CD)</td>
+<td style="text-align: right;"><span class="math inline">\(\sim 1~\mathrm{GB} \approx 10^9~\mathrm{B}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">RAM tipica di un PC</td>
+<td style="text-align: right;"><span class="math inline">\(\sim 10~\mathrm{GB} \approx 10^{10}~\mathrm{B}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Film in streaming (full HD)</td>
+<td style="text-align: right;"><span class="math inline">\(\sim 10~\mathrm{GB} \approx 10^{10}~\mathrm{B}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Contenuto della biblioteca di Alessandria</td>
+<td style="text-align: right;"><span class="math inline">\(\sim 50~\mathrm{GB} \approx 5 \times 10^{10}~\mathrm{B}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Disco rigido tipico di un PC</td>
+<td style="text-align: right;"><span class="math inline">\(\sim 1~\mathrm{TB} \approx 10^{12}~\mathrm{B}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Contenuto di wikipedia (solo testo)</td>
+<td style="text-align: right;"><span class="math inline">\(\sim 500~\mathrm{GB} \approx 5 \times 10^{11}~\mathrm{B}\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Dati di LHC immagazzinati al CERN nel 2024</td>
+<td style="text-align: right;"><span class="math inline">\(\sim 1~\mathrm{EB} \approx 10^{18}~\mathrm{B}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dati nel World Wide Web nel 2021</td>
+<td style="text-align: right;"><span class="math inline">\(\sim 100~\mathrm{ZB} \approx 10^{23}~\mathrm{B}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Giusto per avere in mente gli ordini di grandezza, la <a href="#tbl-storage" class="quarto-xref">Tabella&nbsp;<span>7.1</span></a> illustra le capacità tipiche di alcuni elementi di memorizzazione rilevanti per la nostra discussione. Non preoccupatevi se non avete mai sentito parlare di <em>compact disk</em> (lo studierete nel corso di archeologia) o se non sapete ancora cosa è la memoria <em>cache</em> di un processore (lo vedremo brevemente tra un attimo) e ricordatevi che si tratta di ordini di grandezza e non di numeri accurati al <span class="math inline">\(10\)</span>%; il messaggio fondamentale è: <em>quando lavorate con un calcolatore digitale la memoria che avete a disposizione non è infinita!</em> Il fatto che il web abbia una capacità di immagazzinamento globale dell’ordine di un numero di Avogadro di byte ci sorprende da una parte per la grandezza del numero stesso, ma ci dice allo stesso tempo che una simulazione microscopica che dovesse seguire, molecola per molecola, una mole di gas (ovvero <span class="math inline">\(20\)</span> miseri litri) sarebbe completamente fuori questione—oltre che inutile, come la meccanica statistica ci ha insegnato molto prima che esistessero i computer.</p>
+</section>
+<section id="struttura-di-massima-di-un-calcolatore" class="level2" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="struttura-di-massima-di-un-calcolatore"><span class="header-section-number">7.3</span> Struttura di massima di un calcolatore</h2>
+<p>Se aprite la pagina web del vostro sito di e-commerce preferito in cerca di un laptop, oppure andate in un negozio di elettronica, nella scheda tecnica del prodotto troverete invariabilmente una serie di parole chiave: processore (o CPU), cache, RAM, disco rigido, complementate da una serie di caratteristiche (e.g., la frequenza di clock) ed eventualmente da riferimenti alle tecnologie costruttive (e.g., DDR e SSD). Supponiamo di essere interessati all’acquisto di un laptop con queste ipotetiche caratteristiche</p>
+<ul>
+<li>Processore ACME X5-8400 (2.6 GHz, 8 core, 1 MB L1 cache)</li>
+<li>16 GB DDR5 RAM (5600 MT/s)</li>
+<li>1 TB SSD</li>
+</ul>
+<p>Proviamo a cercare di orientarci in questa selva di cifre e numeri.</p>
+</section>
+<section id="la-cpu" class="level2" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="la-cpu"><span class="header-section-number">7.4</span> La CPU</h2>
+<p>Partiamo dalla CPU. Il processore di un computer è, in molti sensi, il <em>cervello</em> del calcolatore, ed è il responsabile dell’esecuzione dei programmi. Si tratta di un microprocessore, fisicamente realizzato nella forma di un sottile blocco di silicio di qualche cm<span class="math inline">\(^2\)</span> di area, che coordina il flusso dei dai da e verso la memoria e le periferiche, e fornisce un insieme di istruzioni per eseguire operazioni aritmetiche e logiche su questi dati.</p>
+<p>Il progresso delle prestazioni dei microprocessori, dalla loro introduzione all’inizio degli anni ’70 del 900 è stato niente meno che spettacolare. La <a href="#fig-microprocessor_transistors" class="quarto-xref">Figura&nbsp;<span>7.1</span></a> mostra il numero di transistor impacchettati nei più diffusi microprocessori in funzione dell’anno di rilascio: l’andamento è approssimativamente esponenziale con un tempo caratteristico di duplicazione di circa tre anni—questa semplice osservazione va generalmente sotto il nome di legge di Moore. (Assicuratevi di capire cosa vuol dire in pratica: il numero di transistor in un tipico microprocessore è raddoppiato ogni 3 anni, senza sosta, per gli ultimi 50 anni. Impressionante, no?)</p>
+<div id="fig-microprocessor_transistors" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-microprocessor_transistors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/generated/microprocessor_transistors.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-microprocessor_transistors-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.1: Numero di transistor integrati nei più diffusi microprocessori commerciali in funzione dell’anno di commercializzazione. L’andamento è approssimativamente esponenziale con un tempo caratteristico di raddoppio di circa <span class="math inline">\(3\)</span> anni. (Adattato da <a href="https://github.com/karlrupp/microprocessor-trend-data">Karl Rupp</a>.)
+</figcaption>
+</figure>
+</div>
+<p>Così, se lo Zilog Z80 (che all’inizio degli anni ’80 del 900 equipaggiava alcuni tra i più diffusi micro-computer in commercio, come lo ZX Spectrum e la famiglia MSX) integrava circa <span class="math inline">\(8500\)</span> transistor, le CPU di ultima generazione (nel 2026) viaggiano intorno alla fantasmagorica cifra di <span class="math inline">\(10^{11}\)</span>. Da fisiche quali siamo tutte, fermiamoci per un attimo a pensare cosa voglia dire integrare 100 miliardi di transistor su un’area di 1 cm<span class="math inline">\(^2\)</span>: la superficie occupata dal singolo dispositivo è dell’ordine di <span class="math inline">\(10^{-11}\)</span> cm<span class="math inline">\(^2\)</span>, in che significa una dimensione lineare caratteristica di <span class="math inline">\(3 \times 10^{-6}\)</span> cm, o 30 nm. (Avete capito bene, 30 nanometri.) Dato che le dimensioni atomiche tipiche sono dell’ordine di 0.1 nm, questo significa che <em>un transistor di una moderna CPU è grande appena qualche centinaio di atomi</em>. Se è vero che in cinquant’anni le dimensioni tipiche dei processi di integrazione si sono ridotte di un fattore <span class="math inline">\(10^4\)</span>, è altrettanto chiaro che il processo di scala non può continuare per molto a meno che non immaginiamo tecniche di produzione radicalmente diverse.</p>
+<section id="frequenza-di-clock" class="level3" data-number="7.4.1">
+<h3 data-number="7.4.1" class="anchored" data-anchor-id="frequenza-di-clock"><span class="header-section-number">7.4.1</span> Frequenza di clock</h3>
+<p>Il numero di transistor in una CPU ci dà un’idea della complessità della circuiteria elettronica, ma non si traduce direttamente in un insieme di metriche che misurino la performance complessivo del dispositivo in termini pratici. Torniamo allora all’etichetta illustrativa con cui abbiamo aperto questo capitolo.</p>
+<p><em>ACME X5-8400</em> è il nome fittizio che abbiamo dato al nostro processore, e non è molto interessante. Il primo numero (2.6 GHz), invece, in indica la <em>frequenza di clock</em>, ed è una metrica importante—anche se, da sola, non determina univocamente la velocità con cui la CPU può portare a termine un compito. Nel nostro quadretto naive, in cui sostanzialmente abbiamo descritto la CPU come un’immensa <em>orchestra</em> di flip-flop che si muovono in modo coordinato per eseguire task complessi, la frequenza di clock rappresenta sostanzialmente il tempo che la direttrice d’orchestra dà alle orchestrali con la bacchetta. E 2.6 GHz significa 2.6 milioni di battiti al secondo, ovvero sia un battito ogni 0.4 ns circa. Ora, non è facile capire cosa voglia dire veramente questo numero, ma è interessante notare che in 0.4 ns la luce (nel vuoto) percorre appena una decina di cm. La cosa non è da poco, perché si tratta dello stesso ordine di grandezza delle dimensioni tipiche di una CPU, per cui potete immaginare che, visto che niente viaggia più velocemente della luce (e la maggior parte delle cose, compresi i segnali elettrici, viaggiano ad una velocità significativamente inferiore) il problema di mantenere la sincronia durante la propagazione dei segnali sia tutt’altro che banale.</p>
+<div id="fig-microprocessor_clock_frequency" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-microprocessor_clock_frequency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/generated/microprocessor_clock_frequency.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-microprocessor_clock_frequency-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.2: Frequenza di clock dei più diffusi microprocessori commerciali in funzione dell’anno di commercializzazione. (Adattato da <a href="https://github.com/karlrupp/microprocessor-trend-data">Karl Rupp</a>.)
+</figcaption>
+</figure>
+</div>
+<p>La <a href="#fig-microprocessor_clock_frequency" class="quarto-xref">Figura&nbsp;<span>7.2</span></a> mostra l’andamento nel tempo delle frequenze di clock nominali dei più diffusi microprocessori. Basta un’occhiata veloce per capire che qui la situazione è completamente diversa rispetto a prima. Se il nostro buon vecchio Zilog Z80 operava ad <em>appena</em> qualche MHz, le tipiche frequenze di clock non sono sostanzialmente aumentate negli ultimi 20, assestandosi intorno a <span class="math inline">\(2\)</span>–<span class="math inline">\(5\)</span> GHz. Certo il progresso è stato sostanziale—un fattore <span class="math inline">\(1000\)</span>—ma la domanda sorge spontanea: qual’è il motivo per cui si è arrestato all’inizio del ventunesimo secolo, nonostante siamo diventate sempre più brave ad impacchettare transistor nei chip?</p>
+<p>Trascurando i fattori sottodominanti, la risposta è semplice, e si tratta di una questione di termodinamica elementare: oltre una certa velocità diventa impossibile dissipare in modo efficace il calore generato dalla CPU. Se è vero che nei chip a tecnologia CMOS che sono onnipresenti nei nostri dispositivi elettronici la potenza consumata <span class="math inline">\(P\)</span> è proporzionale alla frequenza di clock <span class="math inline">\(f\)</span>, è anche vero che in pratica aumentare la frequenza di clock di un microprocessore richiede tipicamente di aumentare la tensione di alimentazione, e, senza entrare nei dettagli, lo scaling completo della potenza è dato da <span class="math display">\[
+  P \propto V^2 f.
+\]</span> In altre parole, oltre qualche GHz la tecnologia corrente si scontra contro un vero e proprio muro che rende praticamente impossibile andare oltre. Eppure non vi è dubbio che i laptop di oggi siano più <em>potenti</em> di quelli di 20 anni fa. Dove sta il trucco?</p>
+</section>
+<section id="architettura-della-cpu" class="level3" data-number="7.4.2">
+<h3 data-number="7.4.2" class="anchored" data-anchor-id="architettura-della-cpu"><span class="header-section-number">7.4.2</span> Architettura della CPU</h3>
+<p>Come abbiamo detto, la frequenza di clock non è l’unico elemento che determina quanto velocemente una CPU può eseguire un’operazione—come potete immaginare l’architettura stessa della CPU riveste un ruolo fondamentale, e differenti architetture hanno differenti performance a parità di clock. (In altre parole: non potete giudicare un laptop da un solo numero.)</p>
+<p>Per prima cosa, non è detto che serva esattamente un ciclo di clock per eseguire un’istruzione. (Esiste anche un nome per identificare la metrica di performance corrispondente: le <em>istructions per cycle</em>, o IPC.) Così, se i vecchi microprocessori come lo Z80 avevano un IPC di <span class="math inline">\(0.1\)</span>–<span class="math inline">\(0.3\)</span>—il che vuol dire che servivano diversi cicli di clock per eseguire una singola istruzione—le CPU moderne, esattamente al contrario, sono in grado di eseguire diverse istruzioni per ciclo di clock. Questo è uno dei meccanismi con cui le prestazioni complessive sono aumentate negli ultimi 20 anni anche se la frequenza di clock tipica è rimasta invariata.</p>
+<div id="fig-microprocessor_num_cores" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-microprocessor_num_cores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/generated/microprocessor_num_cores.svg" class="img-fluid figure-img">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-microprocessor_num_cores-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.3: Numero di core nei più diffusi microprocessori commerciali in funzione dell’anno di commercializzazione. (Adattato da <a href="https://github.com/karlrupp/microprocessor-trend-data">Karl Rupp</a>.)
+</figcaption>
+</figure>
+</div>
+<p>Ma forse l’aspetto architetturale che più è cambiato negli ultimi due decenni è quello del parallelismo: la progressiva miniaturizzazione dei processi produttivi ha permesso di integrare su un singolo chip di silicio non più una, ma molte CPU. Se all’inizio degni anni 2000 sostanzialmente tutti i processori erano single core, adesso 8 o 16 core sono la norma anche per un laptop di classe media, mentre i processori più avanzati per server possono integrare più di 200 core. (Chiaramente come usare in modo efficiente un gran numero di core è un argomento che meriterebbe un corso a se stante, e va decisamente oltre lo scopo di questa breve introduzione.) E con questo abbiamo abbiamo, sia pur sommariamente, chiarito un altro dei numerini da cui siamo partiti. Non sappiamo ancora il significato di questa strana parola “cache”, ma rimandiamo per un attimo la discussione alla prossima sezione.</p>
+<p>Prima di andare avanti, però, è utile notare che abbiamo messo insieme tutti gli ingredienti per definire il FLOP (floating point operations per second), che è una metrica di performance tipica per le applicazioni che richiedono la manipolazione di numeri in virgola mobile. (Si, siamo tutti chiamati in causa.) Se chiamiamo con <span class="math inline">\(n_c\)</span> il numero di core nel nostro processore, il numero teorico di operazioni in virgola mobile al secondo può essere calcolato semplicemente come <span class="math display">\[
+  \text{FLOPs} = n_c \times f \times \frac{\text{FLOPs}}{\text{cycle}}.
+\]</span> Il nostro ipotetico computer di cui valutiamo l’acquisto, con una frequenza di clock di 2.6 GHz e 8 core, assumendo 10 operazioni in virgola mobile per ciclo di clock, si assesterebbe alla ragguardevole cifra di quasi <span class="math inline">\(2 \times 10^{11}\)</span> FLOPs, o 200 GFLOPs. Per confronto, ENIAC, tradizionalmente considerato il primo computer digitale moderno, ed entrato in funzione nel~1945, operava a circa <span class="math inline">\(500\)</span>~FLOP. I più grandi supercomputer raggiungono ormai gli EFLOPs (esa-FLOPs, o <span class="math inline">\(10^{18}\)</span> FLOPs). Come abbiamo detto, con <span class="math inline">\(f\)</span> più o meno costante, il progresso degli ultimi 20 anni è venuto sostanzialmente dagli altri due fattori della nostra espressione—l’aumento del numero di core e la maggior efficienza delle nuove architetture in termini di istruzioni per ciclo.</p>
+</section>
+</section>
+<section id="la-memoria" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="la-memoria"><span class="header-section-number">7.5</span> La memoria</h2>
+<p>La CPU è un oggetto utile solo nel limite in cui ha un continuo flusso di dati su cui operare e fare cose interessanti. E questi dati devono essere <em>in memoria</em> in qualche forma.</p>
+<p>Per tornare alla nostra metafora della cucina, se la CPU rappresenta le pentole ed i fornelli, la memoria non è altro che tutto quello spazio fisico in cui conserviamo gli ingredienti necessari per il nostro piatto—il bancone, i pensili, il frigorifero, la cantina (se l’avete), il negozio sotto casa ed il supermercato. Per quanto spericolata, questa analogia ci fa capire in modo immediato un certo numero di cose. Ad esempio che ci sono diversi tipi di memoria con caratteristiche diverse—se ad un certo punto ci accorgiamo che ci manca un ingrediente, un conto è se lo abbiamo in figorifero, tutt’altro paio di maniche se dobbiamo lasciare tutto per andare al supermercato!</p>
+<section id="la-ram" class="level3" data-number="7.5.1">
+<h3 data-number="7.5.1" class="anchored" data-anchor-id="la-ram"><span class="header-section-number">7.5.1</span> La RAM</h3>
+<p>Cerchiamo di capire se e come tutto questo sia rilevante per noi partendo, al solito, dalla nostra etichetta illustrativa iniziale: <em>16 GB DDR5 RAM (5600 MT/s)</em>. La densità di acronimi è tale da intimorire le deboli di cuore.</p>
+<p>Le prima quattro lettere sono la parte facile: 16 GB, come ormai sappiamo bene, indicano <span class="math inline">\(1.6 \times 10^{10}\)</span> B di memoria, ovverosia abbastanza per contenere 32,000 libri della lunghezza della divina commedia. Detto così, forse, non è molto impressionante, ma è interessante notare come, per una curiosa coincidenza, questo numero sia dello stesso ordine di grandezza del contenuto di informazione della Biblioteca di Alessandria—la più grande ed importante biblioteca dell’antichità, che al picco del suo splendore ospitava probabilmente svariate centinaia di migliaia di rotoli. Fermatevi per un attimo a pensare: tutto il contenuto del centro più importante della cultura ellenistica, disponibile in pochi mm<span class="math inline">\(^3\)</span> di silicio, con un tempo di accesso che, come vedremo, è così piccolo da essere difficile da immaginare sulle scale umane.</p>
+<p>Ma andiamo avanti. Se mettiamo per un attimo da parte l’acronimo DDR5 (ci torneremo tra un attimo) arriviamo a RAM che, come forse saprete, sta per <em>random access memory</em>. La traduzione italiana del termine (<em>memoria ad accesso casuale</em>), diciamolo, non è molto espressiva, perché ad una prima lettura “accesso casuale” assomiglia pericolosamente ad “accesso a casaccio”, che chiaramente non è quello che ci interessa. In questo contesto “accesso casuale” significa invece che <em>il tempo di accesso ad una qualsiasi cella di memoria è indipendente da dove fisicamente si trova la cella in questione</em>. L’accesso casuale, inteso in questo senso, è detto a volte, e forse in modo più espressivo, anche <em>accesso diretto</em>, ed è spesso contrapposto all’accesso <em>sequenziale</em>, tipico di quei dispositivi in cui i dati debbono essere estratti nell’ordine in cui sono stati inseriti, come avviene con un nastro magnetico. Tenetelo a mente perché si tratta di un concetto fondamentale che è rilevante anche in altri contesti, e.g., gli algoritmi e le strutture di dati.</p>
+<p>Cosa vuol dire in pratica? Potete essere creative a piacere sul tema (guardate la <a href="#fig-plates" class="quarto-xref">Figura&nbsp;<span>7.4</span></a>, as esempio), ma il dispenser delle spezie che qualcuna di voi avrà in cucina è un esempio di memoria ad accesso casuale—una decina di bellissimi barattolini messi in fila, con le etichette (magari ordinate alfabeticamente) in bella vista, ed il gioco è fatto: non importa se vi serve il curry o la curcuma, perché il tempo che occorre per allungare il braccio e prendere il barattolino è esattamente lo stesso. La cosa è interessante, perché la maggior parte dello storage che avete in cucina, purtroppo, <em>non</em> è ad accesso casuale; recuperare le cose che abbiamo messo in fondo al frigorifero o al pensile è più laborioso che recuperare le cose che stanno davanti—e, potenzialmente, <em>molto</em> più laborioso se dobbiamo cominciare a tirare fuori e rimettere a posto un sacco di cose. E come mai la tipica cucina non è tutta ad accesso casuale? Semplice, perché per mettere tutto il contenuto tenendo gli oggetti uno accanto all’altro in modo che siano tutti sempre a portata di mano servirebbe una cucina enorme. (Fermatevi un attimo a pensare; potete anche provare a casa.)</p>
+<div id="fig-plates" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-plates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../figures/static/plates.jpg" class="img-fluid figure-img" style="width:70.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-plates-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;7.4: Differenza tra memoria ad accesso casuale (ripiano inferiore) e memoria ad accesso sequenziale (ripiano superiore). Nel ripiano inferiore il tempo necessario per prendere un piatto qualsiasi non dipende dalla sua posizione nello scaffale, mentre nei due ripiani superiori questo chiaramente non è vero. (Pensate un attimo che noia tirare fuori proprio il piatto alla base della pila.) Provate a contare i piatti in ciascun ripiano: quale delle due strategie è più efficiente in termini di capacità?
+</figcaption>
+</figure>
+</div>
+<p>Bene, cominciamo ad inquadrare le caratteristiche fondamentali della RAM. La prima cosa è che l’accesso è veloce, e non dipende dalla particolare posizione in memoria. Chiaramente questa bellissima proprietà ha un prezzo: non è banale scalare la capacità oltre un certo limite. E, già che ci siamo: la RAM è tipicamente volatile, cioè l’informazione non è conservata quando spegniamo il calcolatore. Per uno storage <em>persistente</em>, come vedremo, serve una tecnologia diversa.</p>
+<p>Una tipica memoria RAM moderna garantisce tranquillamente diversi miliardi di trasverimenti al secondo o, esprimendo la cosa in modo leggermente più barocco, migliaia di MT/s (mega transfers per second). Oh: ecco spiegato quel criptico <em>5600 MT/s</em>: sono semplicemente 5.6 miliardi di trasferimenti al secondo, che corrispondono a circa 0.17 ns per il singolo trasferimento. (Cosa significa un <em>trasferimento</em> in termini di byte? Dipende dalle dimensioni del bus, ma per una tipica architettura moderna sono 64 bit, ovvero 8 Byte—quindi 5600 MT/s corrispondono a <span class="math inline">\(44.8\)</span> GB/s. Non male: possiamo trasverire l’equivalente dell’intera biblioteca di Alessandria in qualche decimo di secondo.)</p>
+<p>Esattamente come nella CPU, la sincronizzazione delle operazione sulla memoria è garantita da un clock. Perché allora in questo contesto parliamo di MT/s e non, come prima di frequenza di clock in MHz? Semplice, perché la moderna RAM DDR (<em>double data rate</em>) trasferisce dati due volte per ciclo di clock—specificamente, sul fronte di salita e sul fronte di discesa. E, con questo, abbiamo capito anche cosa vuol dire la parte “DDR” di “DDR5”. Per completezza, il 5 indica semplicemente la quinta generazione.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Non entreremo nemmeno superficialmente nella descrizione di come le memorie (più o meno) moderne sono fisicamente implementate da un punto di vista elettronico—per questo dovete aspettare il laboratorio del terzo anno. Le più attente tra voi avranno notato, però, che quando misuriamo la capacità di un banco di RAM, e.g., in GB, il valore numerico è quasi invariabilmente una potenza di <span class="math inline">\(2\)</span>. Questo deriva dal modo in cui la memoria è indirizzata, ovvero attraverso <em>multiplexing</em> e <em>demultiplexing</em>. In pratica una memoria RAM ha <span class="math inline">\(n\)</span> linee di indirizzamento, e ad ogni combinazione di segnali di queste linee corrisponde una specifica locazione di memoria. Allora è chiaro che anche qui valgono tutte le regole che abbiamo detto a proposito di bit e byte, e con <span class="math inline">\(n\)</span> segnali di controllo possiamo indirizzare <span class="math inline">\(2^n\)</span> elementi distinti—avere un numero di celle elementari che non fosse una potenza di due sarebbe uno spreco!</p>
+</div>
+</div>
+</section>
+<section id="la-memoria-di-massa" class="level3" data-number="7.5.2">
+<h3 data-number="7.5.2" class="anchored" data-anchor-id="la-memoria-di-massa"><span class="header-section-number">7.5.2</span> La memoria di massa</h3>
+<p>Quali sono le differenze tra la memoria RAM e la memoria di massa? Abbiamo parzialmente rovinato la sorpresa all’inizio del capitolo, ma, ad altissimo livello, sono essenzialmente tre: la capacità del disco rigido è tipicamente più grande di quella della RAM, la velcità di accesso (e la banda di trasferimento) più piccola, e la memoria è di tipo <em>persistente</em>—ovverosia, i vostri dati su disco, grazie al cielo, non scompaio quando spegnete il computer.</p>
+<p>Da un punto di vista microscopico queste differenze derivano dalle tecnologie costruttive. Voi siete troppo giovani per ricordare i tempi (erano gli anni ’80 del secolo scorso) in cui la musica non si ascoltava in streaming, ma con delle cassette a nastro magnetico. (Se avete mezz’ora da buttare e vi sentite ben disposte ad un momento di archeologia, provate a cercare su wikipedia due parole: walkman e VHS.)</p>
+<p>Per molti anni l’archiviazione di massa nei calcolatori digitali è avvenuta esclusivamente attraverso l’uso di HDD (<em>hard disk drive</em>), dispositivi elettromeccanici contententi uno o più dischi magnetici su cui è possibile leggere e scrivere attraverso una apposita testina. Gli HDD hanno alcune buone proprità: permettono di salvare i dati in modo persistente (i.e., i dati sono preservati anche quando il disco non è alimentato), in grande quantità e ad un prezzo relativamente contenuto. Ma il modo in cui permettono l’accesso ai dati non è diretto come ne caso della RAM—il tempo necessario per arrivare ad una specifica cella di memoria dipende dalla posizione fisica di questa cella. La cosa non è sorprendente, perché, al contrario della RAM, l’accesso non avviene puramente attraverso segnali elettrici, ma richiede il movimento meccanico della testina. Se per un attimo ci rimettiamo il nostro cappellino da fisiche capiamo immediatamente che la differenza è fondamentale, perché ci spostiamo da un regime in cui il limite ultimo è la velocità della luce ad uno, molto più mondano, in cui le velocità tipiche sono quelle con cui possiamo spostare oggetti macroscopici senza danneggairli. Allora se vogliamo spostarci da una particolare locazione di memoria ad un’altra, il tempo necessario dipende da quanto fisicamente queste due locazioni sono distanti tra loro sul disco, perché la testina deve muoversi lungo questa distanza.</p>
+<p>Come per tutte le cose, la tecnologia per lo storage di massa è migliorate ininterrottamente con il tempo, e lo sviluppo di <em>solid state drive</em> (SSD), dispositivi puramente elettronici di archiviazione, ha parzialmente colmato il gap tra la RAM e gli hard disk tradizionali. Le unità di memoria a stato solido non hanno parti in movimento, e garantiscono un tempo di accesso ed una banda di trasverimento dati significativamente migliori rispetto alla loro controparte tradizionale. Nonostante questo sono ancora almeno un ordine di grandezza più lenti della RAM, perché l’accesso ai dati non è veramente diretto. La <a href="#tbl-memory-comparison" class="quarto-xref">Tabella&nbsp;<span>7.2</span></a> riassume in modo compatto i numeri fondamentali (al solito, vanno presi come puramente rappresentativi.)</p>
+<div id="tbl-memory-comparison" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-memory-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabella&nbsp;7.2: Confronto tra le caratteristiche principali della memoria RAM e del disco rigido.
+</figcaption>
+<div aria-describedby="tbl-memory-comparison-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Characteristic</th>
+<th style="text-align: left;">RAM</th>
+<th style="text-align: left;">SSD / HDD</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Persistenza</td>
+<td style="text-align: left;">Volatile</td>
+<td style="text-align: left;">Non volatile</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Capacità tipica</td>
+<td style="text-align: left;">16 GB</td>
+<td style="text-align: left;">1 TB</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tempo di accesso tipico</td>
+<td style="text-align: left;">100 ns</td>
+<td style="text-align: left;">50 μs / 10 ms</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Banda di trasferimento</td>
+<td style="text-align: left;">50 GB/s</td>
+<td style="text-align: left;">5 GB/s / 100 MB/s</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Accesso casuale</td>
+<td style="text-align: left;">diretto</td>
+<td style="text-align: left;">attraverso un controller</td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Abbiamo più o meno tutti gli ingredienti per capire il punto da cui siamo partiti: <em>1 TB SSD</em>, no?</p>
+</section>
+<section id="la-cache" class="level3" data-number="7.5.3">
+<h3 data-number="7.5.3" class="anchored" data-anchor-id="la-cache"><span class="header-section-number">7.5.3</span> La cache</h3>
+<p>Siamo arrivati quasi alla fine di questa brevissima carrellata. Se torniamo alle nostre specifiche di partenza, l’unica porzione che non abbiamo ancora sviscerato è quel criptico <em>1 MB L1 cache</em>, e adesso siamo pronti ad affrontare quest’ultima questione.</p>
+<p>Quando eseguiamo un programma la prima cosa che il calcolatore fa è prendere fisicamente il contenuto del file eseguibile dal disco e copiarlo nella RAM. Il motivo, a questo punto, dovrebbe essere ovvio: se la CPU dovesse recuperare ogni singola istruzione dal disco, una alla volta, durante l’esecuzione, vivremmo in un mondo in cui i computer sarebbero infinitamente più lenti. Molto meglio copiare tutto all’inizio, e andarsi a prendere le istruzioni dalla RAM, che garantisce un accesso estremamente veloce.</p>
+<p>L’analogia con la cucina, ancora una volta, ci viene in aiuto: quando vogliamo preparare il nostro piatto preferito, la prima cosa che facciamo è fare la spesa, cioè spostiamo gli ingredienti dal supermercato alla cucina. (Ricordate, in questa analogia il supermercato è la nostra memoria di massa—ha un sacco di spazio, ma la velocità di accesso non è gran ché—mentre la cucina è la RAM—piccola, ma con tutto a portata di mano). Pensandoci meglio, forse il lavoro di preparazione è un pochino più granulare: gli ingredienti che sappiamo ci serviranno nel momento <em>clou</em> della nostra creazione, oppure, più semplicemente, ci serviranno spesso (il sale? il pepe?) li spostiamo direttamente sul bancone in modo da averli a disposizione alla bisogna in un batter d’occhio.</p>
+<p>E allora non sarebbe bello se la CPU avesse il suo piccolo spazio di memoria, magari piccolo, direttamente su chip, con un tempo di accesso tipico di 1 ns anziché i 100 ns della RAM? Ebbene, questo piccolo spazio di memoria esiste, e si chiama <em>cache</em>. (Anzi, nei moderni processori esistono tipicamente 2 o 3 livelli di chache che coprono il gap di accesso alla RAM in modo gerarchico, ma questo va oltre i nostri scopi). Che cos’è fisicamente la chache? Facile: una memoria ad accesso casuale, i.e., una RAM. E se è una RAM, cosa c’è di magico che rende l’accesso così veloce? Due cose: (i) la tecnologia costruttiva è tipicamente diversa (SRAM anziché DRAM, ma questo è un dettaglio tecnico in cui non abbiamo il tempo di addentrarci) e (ii) la cache è fisicamente più vicina alla CPU—anzi, essendo sullo stesso chip di silicio, potremmo dire che più vicina di così non potrebbe essere.</p>
+</section>
+</section>
+<section id="e-quindi" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="e-quindi"><span class="header-section-number">7.6</span> E quindi?</h2>
+<p>Giunte a questo punto, qualche commento finale è d’obbligo. Perché tutto questo dovrebbe essere importante per una fisica? E lo è ancora nel 2026? Perché, se è così impotrante, non me ne sono mai accorta?</p>
+<p>L’infrastruttura tecnologica all’interno della quale ormai tutte viviamo è progettata esplicitamente per rendere sfumati i confini delle cose che memorizziamo in forma digitale, dandoci l’illusione di avere a disposizione risorse infinite. I computer con cui interagiamo più frequentemente (smartphone e tablet) sono fatti in modo da rendere difficile persino capire dove siano fisicamente gli oggetti—quando fate vedere i video dell’ultima vacanza alla vostra migliore amica, dove sono fisicamente i file? Sul telefonino? Sul cloud? In entrambi i posti, perché lo smartphone fa automaticamente una copia per voi? (Ci torneremo diffusamente nella prossima sezione.) E quando l’interazione con il dispositivo smette di essere fluida, è più probabile che cambiamo telefonino piuttosto che chiederci se effettivamente le 24 fotografie al risotto agli asparagi che abbiamo mangiato la sera prima valevano effettivamente lo spazio su disco.</p>
+<p>Ebbene, fare un esperimento di fisica di frontiera è una cosa concettualmente diversa dall’archiviare le foto delle vacanze. A seconda della situazione, nella vostra vita professionale potreste trovarvi di fronte a sfide che definire impegnative è dir poco. Gli esperimenti del Large Hadron Collider (LHC) producono all’origine una mole di dati che si misura in decine di TB/s. Pensateci un attimo: si tratta di un numero così formidabile, che basta una rapida occhiata ai numeri che abbiamo discusso in questa sezione per capire che, nell’inviluppo della tecnologia attuale non c’è nessuna speranza di scrivere tutto su disco—non abbiamo né spazio, né banda. Qual è la soluzione? Ovvio, buttare via quasi tutto e scrivere solo la piccola parte di cose che potenzialmente ci interessa (facile a dirsi e difficile a farsi, perché capire cose ci interessa in tempo reale è un’altra sfida non da poco). E anche immaginando di scrivere su disco lo 0.1% di quello che produciamo, qualche GB/s, secondo dopo secondo, diventano 1 PB in una giornata. Cioè, centinaia di PB in un anno. È chiaro che qui la risposta al problema non può essere solo l’equivalente di “cambio il telefonino”, e.g.&nbsp;“compro più hard disk, e più veloci”.</p>
+<p>Giusto per essere chiare: arrivate alla fine di questo capitolo non siete ancora pronte per progettare un esperimento di Fisica delle particelle, ed è estremamente improbabile che qualcuno ve lo chieda a breve. Ma se volete fare Fisica professionalmente dovrete imparate ad interagire con i calcolatori in modo diverso che con il telefonino. La memoria non è infinita. La velocità non è infinita. La banda non è infinita. Anche in un mondo che cambia velocemente come il nostro, non ci sono segni all’orizzonte che le cose che abbiamo detto smettano di essere rilevanti in futuro.</p>
+<section id="una-piccola-provocazione" class="level3" data-number="7.6.1">
+<h3 data-number="7.6.1" class="anchored" data-anchor-id="una-piccola-provocazione"><span class="header-section-number">7.6.1</span> Una piccola provocazione</h3>
+<p>Esaminate attentamente le due righe di Python che seguono, descrivete le differenze e provate a capire le implicazioni nel limite in cui il numero di iterazioni nel ciclo <code>for</code> passa da <span class="math inline">\(100\)</span> ad un numero molto grande, e.g., <span class="math inline">\(1,000,000,000\)</span> (un miliardo).</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Importante
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Non guardate la soluzione prima di averci pensato almeno un po’ in modo indipendente. E, cosa ancora più importante, non esegute un miliardo di iterazioni sul vostro portatile prima di aver letto la soluzione.</p>
+</div>
+</div>
+<div id="88a61b28" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>): <span class="bu">print</span>(i)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">100</span>)): <span class="bu">print</span>(i)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<details>
+<summary>
+<strong>Soluzione</strong>
+</summary>
+<p>L’unica differenza tra le due righe è la creazione esplicita di una lista nel secondo caso. Ma andiamo per ordine.</p>
+<p>Se vogliamo iterare sui numeri interi (o su un loro sottoinsieme), da un punto di vista prettamente algoritmico non c’è nessun bisogno di precompilare una lista. Possiamo procedere per induzione, tenendo traccia del numero a cui siamo arrivati ed aggiungendo <span class="math inline">\(1\)</span> ogni volta. Il nostro piccolo programma si può riscrivere senza usare nessun built-in di Python nella forma equivalente</p>
+<div id="8c57d52a" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;</span> <span class="dv">100</span>:</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>in cui è chiaro che l’unica memoria che stiamo utilizzando è quella necessaria per il singolo intero <code>i</code>.</p>
+<p>Torniamo al programma originale. Contrariamente a quanto potreste pensare, il built-in <code>range(100)</code> <em>non</em> produce una lista dei primi <span class="math inline">\(100\)</span> numeri interi. Tecnicamente produce un <em>iterabile</em> sul quale il ciclo <code>for</code> può agire esattamente come descritto nella versione alternativa del programma che utilizza il <code>while</code>. Non c’è nessuno spreco di memoria.</p>
+<p>Quando invece scriviamo</p>
+<div id="c3278a3a" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">100</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>le cose cambiano sostanzialmente: qui stiamo effettivamente allocando tutta la lista in memoria. Qual è il costo dell’operazione? Dobbiamo chiederci quanto occupa in memoria un intero</p>
+<div id="261f99be" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.getsizeof(<span class="dv">1</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>28</code></pre>
+</div>
+</div>
+<p>e moltiplicare per la lunghezza della lista. (La cosa è leggermente più complicata di così, ma questo è irrilevante per i nostri scopi.) Con <span class="math inline">\(100\)</span> numeri sono circa <span class="math inline">\(3\)</span> kB, i.e., niente di cui preoccuparsi. Ma con una lista di un miliardo di numeri la memoria necessaria diventa dell’ordine di <span class="math inline">\(30\)</span> GB, che con ogni probabilità è abbastanza per esaurire la memoria RAM che avete a disposizione.</p>
+<p>Cosa succede a questo punto? Dipende dal vostro setup. Se siete abbastanza fortunati il sistema operativo uccide indipendentemente il processo prima ancora che il ciclo <code>for</code> inizi e, a parte un messaggio di errore, non succede niente di grave. Ma in generale non provate nemmeno a fare l’esercizio in pratica se non siete disposti a riavviare il computer, perché la cosa è nel novero delle possibilità.</p>
+</details>
+<p>Cosa ci abbiamo imparato, e perché questo dovrebbe essere rilevante per la discussione? Beh, anche in un linguaggio di altissimo livello come Python, in cui non abbiamo un vero controllo sull’allocazione di memoria, è possibile ridurre in lacrime un calcolatore con una sola riga di codice.</p>
+<p>Allora se a un certo punto della vostra vita doveste analizzare anche una piccolissima parte delle centinaia di PB di dati di LHC di cui dicutevamo prima—diciamo <span class="math inline">\(1\)</span> TB—sarà bene che prima vi sediate un attimo per capire come leggerli, perché abbiamo capito che tutto in una volta non è possibile. In quel momento queste paginette vi saranno utili 😉</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiato!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiato!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/unipi-physics-labs\.github\.io\/lab1-computing\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/count.html" class="pagination-link" aria-label="Contare in base 2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Contare in base 2</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/os.html" class="pagination-link" aria-label="Il sistema operativo">
+        <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Il sistema operativo</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Luca Baldini. Rilasciato sotto licenza <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.it">CC BY-SA 4.0</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/hw.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

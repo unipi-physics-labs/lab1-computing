@@ -1,0 +1,1553 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; Input/output – Elementi di computazione</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" integrity="sha384-ZvpUoO/+PpLXR1lu4jmpXWu80pZlYUAfxl5NsBMWOEPSjUn/6Z/hRTt8+pR6L4N2" crossorigin="anonymous"></script><script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/float.html" rel="next">
+<link href="../chapters/os.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-eb1bc3aaadf2658264f2b941ac69fc6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nessun risultato",
+    "search-matching-documents-text": "documenti trovati",
+    "search-copy-link-title": "Copiare il link nella ricerca",
+    "search-hide-matches-text": "Nascondere i risultati aggiuntivi",
+    "search-more-match-text": "ci sono altri risultati in questo documento",
+    "search-more-matches-text": "ulteriori risultati in questo documento",
+    "search-clear-button-title": "Pulire",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancellare",
+    "search-submit-button-title": "Inviare",
+    "search-label": "Ricerca"
+  }
+}</script>
+<script src="https://cdn.jsdelivr.net/npm/requirejs@2.3.6/require.min.js" integrity="sha384-c9c+LnTbwQ3aujuU7ULEPVvgLs+Fn6fJUvIGTsuu1ZcCf11fiEubah0ttpca4ntM sha384-6V1/AdqZRWk1KAlWbKBlGhN7VG4iE/yAZcO6NZPMF8od0vukrvr0tg4qY6NSrItx" crossorigin="anonymous"></script>
+
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/count.html">Parte seconda: ripartiamo dai principi</a></li><li class="breadcrumb-item"><a href="../chapters/io.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Input/output</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Elementi di computazione</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/unipi-physics-labs/lab1-computing" title="Eseguire il codice" class="quarto-navigation-tool px-1" aria-label="Eseguire il codice"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Ricerca"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefazione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../copyright.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licenza</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../gender.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nota sul linguaggio di genere</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../foss.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nota sul software libero</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte prima: dal problema alla soluzione</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Cominciamo?</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/crash.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo programma</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Variabili e tipi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funzioni</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/flow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte seconda: ripartiamo dai principi</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/count.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Contare in base 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/hw.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dentro il calcolatore</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/os.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Il sistema operativo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/io.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Input/output</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/float.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’aritmetica in virgola mobile</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/algs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Algoritmi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/vec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Vettorizzazione</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendici</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/latex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">LaTeX</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formati grafici</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice</h2>
+   
+  <ul>
+  <li><a href="#rappresentazione-del-testo" id="toc-rappresentazione-del-testo" class="nav-link active" data-scroll-target="#rappresentazione-del-testo"><span class="header-section-number">9.1</span> Rappresentazione del testo</a>
+  <ul class="collapse">
+  <li><a href="#la-tabella-ascii" id="toc-la-tabella-ascii" class="nav-link" data-scroll-target="#la-tabella-ascii"><span class="header-section-number">9.1.1</span> La tabella ASCII</a></li>
+  <li><a href="#altri-encoding" id="toc-altri-encoding" class="nav-link" data-scroll-target="#altri-encoding"><span class="header-section-number">9.1.2</span> Altri encoding</a></li>
+  <li><a href="#inputoutput-in-formato-testo" id="toc-inputoutput-in-formato-testo" class="nav-link" data-scroll-target="#inputoutput-in-formato-testo"><span class="header-section-number">9.1.3</span> Input/output in formato testo</a></li>
+  </ul></li>
+  <li><a href="#rappresentazione-dei-numeri" id="toc-rappresentazione-dei-numeri" class="nav-link" data-scroll-target="#rappresentazione-dei-numeri"><span class="header-section-number">9.2</span> Rappresentazione dei numeri</a>
+  <ul class="collapse">
+  <li><a href="#numeri-interi" id="toc-numeri-interi" class="nav-link" data-scroll-target="#numeri-interi"><span class="header-section-number">9.2.1</span> Numeri interi</a></li>
+  <li><a href="#numeri-in-virgola-mobile" id="toc-numeri-in-virgola-mobile" class="nav-link" data-scroll-target="#numeri-in-virgola-mobile"><span class="header-section-number">9.2.2</span> Numeri in virgola mobile</a></li>
+  </ul></li>
+  <li><a href="#stringhe-numeri-e-modalità-di-io" id="toc-stringhe-numeri-e-modalità-di-io" class="nav-link" data-scroll-target="#stringhe-numeri-e-modalità-di-io"><span class="header-section-number">9.3</span> Stringhe, numeri e modalità di IO</a></li>
+  <li><a href="#leggere-tabelle-di-numeri" id="toc-leggere-tabelle-di-numeri" class="nav-link" data-scroll-target="#leggere-tabelle-di-numeri"><span class="header-section-number">9.4</span> Leggere tabelle di numeri</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/io.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/count.html">Parte seconda: ripartiamo dai principi</a></li><li class="breadcrumb-item"><a href="../chapters/io.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Input/output</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Input/output</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">21 agosto 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Abbiamo detto che all’interno di un calcolatore digitale qualsiasi cosa viene rappresentata come una sequenza di <span class="math inline">\(0\)</span> e <span class="math inline">\(1\)</span>. Benissimo: quando scriviamo o leggiamo un file, come è rappresentata, allora, la lettera <code>a</code>? E i numero <code>7</code> e <code>7.0</code>? E una stringa arbitraria di testo? Se non vedete l’ora di saperlo, siete nel posto giusto.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Il contenuto di questo capitolo è focalizzato sulla rappresentazione dei dati nella memoria persistente, e.g., sul disco. Stringhe e numeri intesi come tipi nativi di Python sono oggetti complessi e il loro layout nella memoria volatile durante l’esecuzione del programma sono tutt’altra cosa.</p>
+</div>
+</div>
+<section id="rappresentazione-del-testo" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="rappresentazione-del-testo"><span class="header-section-number">9.1</span> Rappresentazione del testo</h2>
+<p>Avrete sicuramente tutte presenti la scena del film “The Martian” in cui l’astronauta Mark Watney (al secolo Matt Damon), davanti al problema non banale di stabilire un canale di comunicazione con il controllo missione a Terra, rispolvera un vecchio manuale degli anni ’60 recuperato da uno scatolone.</p>
+<p>La trascrizione della scena è estremamente istruttiva, per cui la riportiamo verbatim qui sotto.</p>
+<blockquote class="blockquote">
+<p>So, here’s the rep. Somehow we have to have complex astrophysical engineering conversations using nothing but a still frame camera from 1996. Luckily, the camera does spin, so I can make an alphabet. I can’t be our alphabet: 26 characters plus a question card and the 360 gives us 13 degrees of arc, that’s way too narrow, you’d never know what the camera was pointing at…</p>
+<p>[Pausa di suspence per costruire il climax ascendente.]</p>
+<p>Hexadecimals! Hexadecimals!</p>
+<p>I figured one of you guys kept an ASCII table lying around. And I was right!</p>
+</blockquote>
+<p>Wow. Se questo non è ragionare come una fisica, non so cosa potrebbe esserlo. Vediamo un attimo.</p>
+<ul>
+<li>Mark è capace di calcolare approssimativamente <span class="math inline">\(360 / 27\)</span> in testa—il processo mentale potrebbe essere: <span class="math inline">\(360 / 30 = 12\)</span>; <span class="math inline">\(27\)</span> è circa il <span class="math inline">\(10\%\)</span> più piccolo di <span class="math inline">\(30\)</span>; per cui il risultato sarà il <span class="math inline">\(10\%\)</span> più grande di 12; ovvero circa <span class="math inline">\(13\)</span>.</li>
+<li>Mark ha ben chiaro il concetto di unità di misura, e capisce immediatamente che una risoluzione angolare di <span class="math inline">\(13^\circ\)</span> è al limite per il sistema che sta per mettere in piedi.</li>
+<li>Mark conosce la rappresentazione esadecimale dei numeri—un momento: non è quella che abbiamo visto nella <a href="count.html#sec-hex" class="quarto-xref"><span>Sezione 6.3</span></a>?</li>
+<li>Ma sopratutto: Mark conosce la tabella ASCII, ed è proprio questo che ci porta all’argomento della prima sezione di questo capitolo. (Ci arriviamo tra un secondo.)</li>
+</ul>
+<p>In un certo senso potremmo dire che dopo il corso di laboratorio del primo anno avreste qualche chance di sopravvivere da sole su Marte, se per caso vi capitasse di essere abbandonate là. (La coltivazione delle patate, però, dovete impararla come attività extra-curricolare.)</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Perdonerete la lunghezza di questo siparietto introduttivo, ma ci sono due cose che devo dirvi. “Discussioni complicate di ingegneria astrofisica” non vuol dire assolutamente niente; se dopo la laurea doveste essere ingaggiate come consulenti per un film di fantascienza, resistete, per favore, alla tentazione di mettere assurdità dei dialoghi solo perché alcune parole sono accattivanti di altre.</p>
+<p>Un’altra cosa: se guardate la <a href="https://www.youtube.com/watch?v=0xkP_FQUsuM">scena</a> su YouTube (un attimo! ho appena nominato la piattaforma di sorveglianza di Google?) noterete che (sigh!) “ASCII table” è sottotitolato come “asking table”. Vi rendete conto? Il concetto fondamentale dell’intera scena letteralmente annientato in sei caratteri…</p>
+</div>
+</div>
+<section id="la-tabella-ascii" class="level3" data-number="9.1.1">
+<h3 data-number="9.1.1" class="anchored" data-anchor-id="la-tabella-ascii"><span class="header-section-number">9.1.1</span> La tabella ASCII</h3>
+<p>Se ci pensate un attimo, l’idea di fondo nella scena di “The Martian” è tutto sommato semplice. Se vogliamo rappresentare in modo efficiente un insieme arbitrario di caratteri, possiamo assegnare univocamente un numero intero a ciascuno di essi ed usare questo numero al posto il carattere. La tabella di conversione che ne risulta è quello che si chiama generalmente un <em>encoding</em>, o <em>codifica</em>. (Ed il processo inverso—quello, cioè, che fa passare da numero a carattere, si chiama <em>decoding</em>, o <em>decodifica</em>.)</p>
+<p>Cosa ci guadagno, vi chiedete? Beh, nella situazione di Mark Watney, questo permette di rappresentare <em>qualsiasi</em> carattere con 16 cifre, che si traducono in un settore circolare sotteso da un arco di <span class="math inline">\(22.5^\circ\)</span>. Ma tornando al nostro problema, i numeri interi hanno la bella proprietà di poter essere scritti nella loro rappresentazione binaria—cioè proprio come una sequenza di <span class="math inline">\(0\)</span> e <span class="math inline">\(1\)</span>!</p>
+<p>Nei giorni eroici dei primi calcolatori digitali la codifica dei dati era implementata in modo custom ed incompatibile da sistema a sistema. Lo standard ASCII (American Standard Code for Information Interchange), inizialmente pubblicata nel 1963, è stato il primo tentativo organico di mettere ordine nella questione. In linea di principio la decisione di come rappresentare i dati è totalmente arbitraria, ma uno standard comune è fondamentale per lo scambio di informazioni. (Con le dovute differenze, una cosa simile succede anche noi tutti i giorni: la Fisica è indipendente dal nome che diamo alle variabili, ma vi è un vantaggio indubbio nell’usare, ove possibile, convenzioni comuni, e.g., indicare l’energia con <span class="math inline">\(E\)</span> e la massa con <span class="math inline">\(m\)</span>.)</p>
+<p>Nel progettare uno standard di codifica, la prima cosa che dobbiamo chiederci è: quanti, e quali caratteri vogliamo rappresentare? La codifica ASCII originale prevedeva <span class="math inline">\(128\)</span> caratteri (corrispondenti quindi a <span class="math inline">\(7\)</span> bit), cui hanno fatto seguito un certo numero di proposte di estensione, parzialmente incompatibili tra loro, a <span class="math inline">\(8\)</span> bit, i.e., <span class="math inline">\(256\)</span> caratteri. (La scelta iniziale non è irragionevole, perché <span class="math inline">\(128\)</span> è paragonabile al numero di tasti di una tastiera tipica da terminale.) Questi <span class="math inline">\(128\)</span> caratteri includono le <span class="math inline">\(26\)</span> lettere (maiuscole e minuscole) dell’alfabeto inglese, le cifre da <span class="math inline">\(0\)</span> a <span class="math inline">\(9\)</span>, segni di punteggiatura, parentesi ed operatori, più un certo numero di cose più esotiche che non abbiamo tempo di analizzare in dettaglio.</p>
+<div class="cell" data-execution_count="1">
+<div id="tbl-ascii" class="cell quarto-float quarto-figure quarto-figure-center anchored" data-execution_count="1">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-ascii-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabella&nbsp;9.1: Tabella ASCII a 7 bit.
+</figcaption>
+<div aria-describedby="tbl-ascii-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<style type="text/css">
+</style>
+
+<table id="T_33e39" class="cell caption-top table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th id="T_33e39_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Dec</th>
+<th id="T_33e39_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Hex</th>
+<th id="T_33e39_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Char</th>
+<th id="T_33e39_level0_col3" class="col_heading level0 col3" data-quarto-table-cell-role="th">Dec</th>
+<th id="T_33e39_level0_col4" class="col_heading level0 col4" data-quarto-table-cell-role="th">Hex</th>
+<th id="T_33e39_level0_col5" class="col_heading level0 col5" data-quarto-table-cell-role="th">Char</th>
+<th id="T_33e39_level0_col6" class="col_heading level0 col6" data-quarto-table-cell-role="th">Dec</th>
+<th id="T_33e39_level0_col7" class="col_heading level0 col7" data-quarto-table-cell-role="th">Hex</th>
+<th id="T_33e39_level0_col8" class="col_heading level0 col8" data-quarto-table-cell-role="th">Char</th>
+<th id="T_33e39_level0_col9" class="col_heading level0 col9" data-quarto-table-cell-role="th">Dec</th>
+<th id="T_33e39_level0_col10" class="col_heading level0 col10" data-quarto-table-cell-role="th">Hex</th>
+<th id="T_33e39_level0_col11" class="col_heading level0 col11" data-quarto-table-cell-role="th">Char</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td id="T_33e39_row0_col0" class="data row0 col0">0</td>
+<td id="T_33e39_row0_col1" class="data row0 col1">0x00</td>
+<td id="T_33e39_row0_col2" class="data row0 col2">NUL</td>
+<td id="T_33e39_row0_col3" class="data row0 col3">32</td>
+<td id="T_33e39_row0_col4" class="data row0 col4">0x20</td>
+<td id="T_33e39_row0_col5" class="data row0 col5">SP</td>
+<td id="T_33e39_row0_col6" class="data row0 col6">64</td>
+<td id="T_33e39_row0_col7" class="data row0 col7">0x40</td>
+<td id="T_33e39_row0_col8" class="data row0 col8">@</td>
+<td id="T_33e39_row0_col9" class="data row0 col9">96</td>
+<td id="T_33e39_row0_col10" class="data row0 col10">0x60</td>
+<td id="T_33e39_row0_col11" class="data row0 col11">`</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row1_col0" class="data row1 col0">1</td>
+<td id="T_33e39_row1_col1" class="data row1 col1">0x01</td>
+<td id="T_33e39_row1_col2" class="data row1 col2">SOH</td>
+<td id="T_33e39_row1_col3" class="data row1 col3">33</td>
+<td id="T_33e39_row1_col4" class="data row1 col4">0x21</td>
+<td id="T_33e39_row1_col5" class="data row1 col5">!</td>
+<td id="T_33e39_row1_col6" class="data row1 col6">65</td>
+<td id="T_33e39_row1_col7" class="data row1 col7">0x41</td>
+<td id="T_33e39_row1_col8" class="data row1 col8">A</td>
+<td id="T_33e39_row1_col9" class="data row1 col9">97</td>
+<td id="T_33e39_row1_col10" class="data row1 col10">0x61</td>
+<td id="T_33e39_row1_col11" class="data row1 col11">a</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row2_col0" class="data row2 col0">2</td>
+<td id="T_33e39_row2_col1" class="data row2 col1">0x02</td>
+<td id="T_33e39_row2_col2" class="data row2 col2">STX</td>
+<td id="T_33e39_row2_col3" class="data row2 col3">34</td>
+<td id="T_33e39_row2_col4" class="data row2 col4">0x22</td>
+<td id="T_33e39_row2_col5" class="data row2 col5">"</td>
+<td id="T_33e39_row2_col6" class="data row2 col6">66</td>
+<td id="T_33e39_row2_col7" class="data row2 col7">0x42</td>
+<td id="T_33e39_row2_col8" class="data row2 col8">B</td>
+<td id="T_33e39_row2_col9" class="data row2 col9">98</td>
+<td id="T_33e39_row2_col10" class="data row2 col10">0x62</td>
+<td id="T_33e39_row2_col11" class="data row2 col11">b</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row3_col0" class="data row3 col0">3</td>
+<td id="T_33e39_row3_col1" class="data row3 col1">0x03</td>
+<td id="T_33e39_row3_col2" class="data row3 col2">ETX</td>
+<td id="T_33e39_row3_col3" class="data row3 col3">35</td>
+<td id="T_33e39_row3_col4" class="data row3 col4">0x23</td>
+<td id="T_33e39_row3_col5" class="data row3 col5">#</td>
+<td id="T_33e39_row3_col6" class="data row3 col6">67</td>
+<td id="T_33e39_row3_col7" class="data row3 col7">0x43</td>
+<td id="T_33e39_row3_col8" class="data row3 col8">C</td>
+<td id="T_33e39_row3_col9" class="data row3 col9">99</td>
+<td id="T_33e39_row3_col10" class="data row3 col10">0x63</td>
+<td id="T_33e39_row3_col11" class="data row3 col11">c</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row4_col0" class="data row4 col0">4</td>
+<td id="T_33e39_row4_col1" class="data row4 col1">0x04</td>
+<td id="T_33e39_row4_col2" class="data row4 col2">EOT</td>
+<td id="T_33e39_row4_col3" class="data row4 col3">36</td>
+<td id="T_33e39_row4_col4" class="data row4 col4">0x24</td>
+<td id="T_33e39_row4_col5" class="data row4 col5">$</td>
+<td id="T_33e39_row4_col6" class="data row4 col6">68</td>
+<td id="T_33e39_row4_col7" class="data row4 col7">0x44</td>
+<td id="T_33e39_row4_col8" class="data row4 col8">D</td>
+<td id="T_33e39_row4_col9" class="data row4 col9">100</td>
+<td id="T_33e39_row4_col10" class="data row4 col10">0x64</td>
+<td id="T_33e39_row4_col11" class="data row4 col11">d</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row5_col0" class="data row5 col0">5</td>
+<td id="T_33e39_row5_col1" class="data row5 col1">0x05</td>
+<td id="T_33e39_row5_col2" class="data row5 col2">ENQ</td>
+<td id="T_33e39_row5_col3" class="data row5 col3">37</td>
+<td id="T_33e39_row5_col4" class="data row5 col4">0x25</td>
+<td id="T_33e39_row5_col5" class="data row5 col5">%</td>
+<td id="T_33e39_row5_col6" class="data row5 col6">69</td>
+<td id="T_33e39_row5_col7" class="data row5 col7">0x45</td>
+<td id="T_33e39_row5_col8" class="data row5 col8">E</td>
+<td id="T_33e39_row5_col9" class="data row5 col9">101</td>
+<td id="T_33e39_row5_col10" class="data row5 col10">0x65</td>
+<td id="T_33e39_row5_col11" class="data row5 col11">e</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row6_col0" class="data row6 col0">6</td>
+<td id="T_33e39_row6_col1" class="data row6 col1">0x06</td>
+<td id="T_33e39_row6_col2" class="data row6 col2">ACK</td>
+<td id="T_33e39_row6_col3" class="data row6 col3">38</td>
+<td id="T_33e39_row6_col4" class="data row6 col4">0x26</td>
+<td id="T_33e39_row6_col5" class="data row6 col5">&amp;</td>
+<td id="T_33e39_row6_col6" class="data row6 col6">70</td>
+<td id="T_33e39_row6_col7" class="data row6 col7">0x46</td>
+<td id="T_33e39_row6_col8" class="data row6 col8">F</td>
+<td id="T_33e39_row6_col9" class="data row6 col9">102</td>
+<td id="T_33e39_row6_col10" class="data row6 col10">0x66</td>
+<td id="T_33e39_row6_col11" class="data row6 col11">f</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row7_col0" class="data row7 col0">7</td>
+<td id="T_33e39_row7_col1" class="data row7 col1">0x07</td>
+<td id="T_33e39_row7_col2" class="data row7 col2">BEL</td>
+<td id="T_33e39_row7_col3" class="data row7 col3">39</td>
+<td id="T_33e39_row7_col4" class="data row7 col4">0x27</td>
+<td id="T_33e39_row7_col5" class="data row7 col5">'</td>
+<td id="T_33e39_row7_col6" class="data row7 col6">71</td>
+<td id="T_33e39_row7_col7" class="data row7 col7">0x47</td>
+<td id="T_33e39_row7_col8" class="data row7 col8">G</td>
+<td id="T_33e39_row7_col9" class="data row7 col9">103</td>
+<td id="T_33e39_row7_col10" class="data row7 col10">0x67</td>
+<td id="T_33e39_row7_col11" class="data row7 col11">g</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row8_col0" class="data row8 col0">8</td>
+<td id="T_33e39_row8_col1" class="data row8 col1">0x08</td>
+<td id="T_33e39_row8_col2" class="data row8 col2">BS</td>
+<td id="T_33e39_row8_col3" class="data row8 col3">40</td>
+<td id="T_33e39_row8_col4" class="data row8 col4">0x28</td>
+<td id="T_33e39_row8_col5" class="data row8 col5">(</td>
+<td id="T_33e39_row8_col6" class="data row8 col6">72</td>
+<td id="T_33e39_row8_col7" class="data row8 col7">0x48</td>
+<td id="T_33e39_row8_col8" class="data row8 col8">H</td>
+<td id="T_33e39_row8_col9" class="data row8 col9">104</td>
+<td id="T_33e39_row8_col10" class="data row8 col10">0x68</td>
+<td id="T_33e39_row8_col11" class="data row8 col11">h</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row9_col0" class="data row9 col0">9</td>
+<td id="T_33e39_row9_col1" class="data row9 col1">0x09</td>
+<td id="T_33e39_row9_col2" class="data row9 col2">HT</td>
+<td id="T_33e39_row9_col3" class="data row9 col3">41</td>
+<td id="T_33e39_row9_col4" class="data row9 col4">0x29</td>
+<td id="T_33e39_row9_col5" class="data row9 col5">)</td>
+<td id="T_33e39_row9_col6" class="data row9 col6">73</td>
+<td id="T_33e39_row9_col7" class="data row9 col7">0x49</td>
+<td id="T_33e39_row9_col8" class="data row9 col8">I</td>
+<td id="T_33e39_row9_col9" class="data row9 col9">105</td>
+<td id="T_33e39_row9_col10" class="data row9 col10">0x69</td>
+<td id="T_33e39_row9_col11" class="data row9 col11">i</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row10_col0" class="data row10 col0">10</td>
+<td id="T_33e39_row10_col1" class="data row10 col1">0x0a</td>
+<td id="T_33e39_row10_col2" class="data row10 col2">LF</td>
+<td id="T_33e39_row10_col3" class="data row10 col3">42</td>
+<td id="T_33e39_row10_col4" class="data row10 col4">0x2a</td>
+<td id="T_33e39_row10_col5" class="data row10 col5">*</td>
+<td id="T_33e39_row10_col6" class="data row10 col6">74</td>
+<td id="T_33e39_row10_col7" class="data row10 col7">0x4a</td>
+<td id="T_33e39_row10_col8" class="data row10 col8">J</td>
+<td id="T_33e39_row10_col9" class="data row10 col9">106</td>
+<td id="T_33e39_row10_col10" class="data row10 col10">0x6a</td>
+<td id="T_33e39_row10_col11" class="data row10 col11">j</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row11_col0" class="data row11 col0">11</td>
+<td id="T_33e39_row11_col1" class="data row11 col1">0x0b</td>
+<td id="T_33e39_row11_col2" class="data row11 col2">VT</td>
+<td id="T_33e39_row11_col3" class="data row11 col3">43</td>
+<td id="T_33e39_row11_col4" class="data row11 col4">0x2b</td>
+<td id="T_33e39_row11_col5" class="data row11 col5">+</td>
+<td id="T_33e39_row11_col6" class="data row11 col6">75</td>
+<td id="T_33e39_row11_col7" class="data row11 col7">0x4b</td>
+<td id="T_33e39_row11_col8" class="data row11 col8">K</td>
+<td id="T_33e39_row11_col9" class="data row11 col9">107</td>
+<td id="T_33e39_row11_col10" class="data row11 col10">0x6b</td>
+<td id="T_33e39_row11_col11" class="data row11 col11">k</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row12_col0" class="data row12 col0">12</td>
+<td id="T_33e39_row12_col1" class="data row12 col1">0x0c</td>
+<td id="T_33e39_row12_col2" class="data row12 col2">FF</td>
+<td id="T_33e39_row12_col3" class="data row12 col3">44</td>
+<td id="T_33e39_row12_col4" class="data row12 col4">0x2c</td>
+<td id="T_33e39_row12_col5" class="data row12 col5">,</td>
+<td id="T_33e39_row12_col6" class="data row12 col6">76</td>
+<td id="T_33e39_row12_col7" class="data row12 col7">0x4c</td>
+<td id="T_33e39_row12_col8" class="data row12 col8">L</td>
+<td id="T_33e39_row12_col9" class="data row12 col9">108</td>
+<td id="T_33e39_row12_col10" class="data row12 col10">0x6c</td>
+<td id="T_33e39_row12_col11" class="data row12 col11">l</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row13_col0" class="data row13 col0">13</td>
+<td id="T_33e39_row13_col1" class="data row13 col1">0x0d</td>
+<td id="T_33e39_row13_col2" class="data row13 col2">CR</td>
+<td id="T_33e39_row13_col3" class="data row13 col3">45</td>
+<td id="T_33e39_row13_col4" class="data row13 col4">0x2d</td>
+<td id="T_33e39_row13_col5" class="data row13 col5">-</td>
+<td id="T_33e39_row13_col6" class="data row13 col6">77</td>
+<td id="T_33e39_row13_col7" class="data row13 col7">0x4d</td>
+<td id="T_33e39_row13_col8" class="data row13 col8">M</td>
+<td id="T_33e39_row13_col9" class="data row13 col9">109</td>
+<td id="T_33e39_row13_col10" class="data row13 col10">0x6d</td>
+<td id="T_33e39_row13_col11" class="data row13 col11">m</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row14_col0" class="data row14 col0">14</td>
+<td id="T_33e39_row14_col1" class="data row14 col1">0x0e</td>
+<td id="T_33e39_row14_col2" class="data row14 col2">SO</td>
+<td id="T_33e39_row14_col3" class="data row14 col3">46</td>
+<td id="T_33e39_row14_col4" class="data row14 col4">0x2e</td>
+<td id="T_33e39_row14_col5" class="data row14 col5">.</td>
+<td id="T_33e39_row14_col6" class="data row14 col6">78</td>
+<td id="T_33e39_row14_col7" class="data row14 col7">0x4e</td>
+<td id="T_33e39_row14_col8" class="data row14 col8">N</td>
+<td id="T_33e39_row14_col9" class="data row14 col9">110</td>
+<td id="T_33e39_row14_col10" class="data row14 col10">0x6e</td>
+<td id="T_33e39_row14_col11" class="data row14 col11">n</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row15_col0" class="data row15 col0">15</td>
+<td id="T_33e39_row15_col1" class="data row15 col1">0x0f</td>
+<td id="T_33e39_row15_col2" class="data row15 col2">SI</td>
+<td id="T_33e39_row15_col3" class="data row15 col3">47</td>
+<td id="T_33e39_row15_col4" class="data row15 col4">0x2f</td>
+<td id="T_33e39_row15_col5" class="data row15 col5">/</td>
+<td id="T_33e39_row15_col6" class="data row15 col6">79</td>
+<td id="T_33e39_row15_col7" class="data row15 col7">0x4f</td>
+<td id="T_33e39_row15_col8" class="data row15 col8">O</td>
+<td id="T_33e39_row15_col9" class="data row15 col9">111</td>
+<td id="T_33e39_row15_col10" class="data row15 col10">0x6f</td>
+<td id="T_33e39_row15_col11" class="data row15 col11">o</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row16_col0" class="data row16 col0">16</td>
+<td id="T_33e39_row16_col1" class="data row16 col1">0x10</td>
+<td id="T_33e39_row16_col2" class="data row16 col2">DLE</td>
+<td id="T_33e39_row16_col3" class="data row16 col3">48</td>
+<td id="T_33e39_row16_col4" class="data row16 col4">0x30</td>
+<td id="T_33e39_row16_col5" class="data row16 col5">0</td>
+<td id="T_33e39_row16_col6" class="data row16 col6">80</td>
+<td id="T_33e39_row16_col7" class="data row16 col7">0x50</td>
+<td id="T_33e39_row16_col8" class="data row16 col8">P</td>
+<td id="T_33e39_row16_col9" class="data row16 col9">112</td>
+<td id="T_33e39_row16_col10" class="data row16 col10">0x70</td>
+<td id="T_33e39_row16_col11" class="data row16 col11">p</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row17_col0" class="data row17 col0">17</td>
+<td id="T_33e39_row17_col1" class="data row17 col1">0x11</td>
+<td id="T_33e39_row17_col2" class="data row17 col2">DC1</td>
+<td id="T_33e39_row17_col3" class="data row17 col3">49</td>
+<td id="T_33e39_row17_col4" class="data row17 col4">0x31</td>
+<td id="T_33e39_row17_col5" class="data row17 col5">1</td>
+<td id="T_33e39_row17_col6" class="data row17 col6">81</td>
+<td id="T_33e39_row17_col7" class="data row17 col7">0x51</td>
+<td id="T_33e39_row17_col8" class="data row17 col8">Q</td>
+<td id="T_33e39_row17_col9" class="data row17 col9">113</td>
+<td id="T_33e39_row17_col10" class="data row17 col10">0x71</td>
+<td id="T_33e39_row17_col11" class="data row17 col11">q</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row18_col0" class="data row18 col0">18</td>
+<td id="T_33e39_row18_col1" class="data row18 col1">0x12</td>
+<td id="T_33e39_row18_col2" class="data row18 col2">DC2</td>
+<td id="T_33e39_row18_col3" class="data row18 col3">50</td>
+<td id="T_33e39_row18_col4" class="data row18 col4">0x32</td>
+<td id="T_33e39_row18_col5" class="data row18 col5">2</td>
+<td id="T_33e39_row18_col6" class="data row18 col6">82</td>
+<td id="T_33e39_row18_col7" class="data row18 col7">0x52</td>
+<td id="T_33e39_row18_col8" class="data row18 col8">R</td>
+<td id="T_33e39_row18_col9" class="data row18 col9">114</td>
+<td id="T_33e39_row18_col10" class="data row18 col10">0x72</td>
+<td id="T_33e39_row18_col11" class="data row18 col11">r</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row19_col0" class="data row19 col0">19</td>
+<td id="T_33e39_row19_col1" class="data row19 col1">0x13</td>
+<td id="T_33e39_row19_col2" class="data row19 col2">DC3</td>
+<td id="T_33e39_row19_col3" class="data row19 col3">51</td>
+<td id="T_33e39_row19_col4" class="data row19 col4">0x33</td>
+<td id="T_33e39_row19_col5" class="data row19 col5">3</td>
+<td id="T_33e39_row19_col6" class="data row19 col6">83</td>
+<td id="T_33e39_row19_col7" class="data row19 col7">0x53</td>
+<td id="T_33e39_row19_col8" class="data row19 col8">S</td>
+<td id="T_33e39_row19_col9" class="data row19 col9">115</td>
+<td id="T_33e39_row19_col10" class="data row19 col10">0x73</td>
+<td id="T_33e39_row19_col11" class="data row19 col11">s</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row20_col0" class="data row20 col0">20</td>
+<td id="T_33e39_row20_col1" class="data row20 col1">0x14</td>
+<td id="T_33e39_row20_col2" class="data row20 col2">DC4</td>
+<td id="T_33e39_row20_col3" class="data row20 col3">52</td>
+<td id="T_33e39_row20_col4" class="data row20 col4">0x34</td>
+<td id="T_33e39_row20_col5" class="data row20 col5">4</td>
+<td id="T_33e39_row20_col6" class="data row20 col6">84</td>
+<td id="T_33e39_row20_col7" class="data row20 col7">0x54</td>
+<td id="T_33e39_row20_col8" class="data row20 col8">T</td>
+<td id="T_33e39_row20_col9" class="data row20 col9">116</td>
+<td id="T_33e39_row20_col10" class="data row20 col10">0x74</td>
+<td id="T_33e39_row20_col11" class="data row20 col11">t</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row21_col0" class="data row21 col0">21</td>
+<td id="T_33e39_row21_col1" class="data row21 col1">0x15</td>
+<td id="T_33e39_row21_col2" class="data row21 col2">NAK</td>
+<td id="T_33e39_row21_col3" class="data row21 col3">53</td>
+<td id="T_33e39_row21_col4" class="data row21 col4">0x35</td>
+<td id="T_33e39_row21_col5" class="data row21 col5">5</td>
+<td id="T_33e39_row21_col6" class="data row21 col6">85</td>
+<td id="T_33e39_row21_col7" class="data row21 col7">0x55</td>
+<td id="T_33e39_row21_col8" class="data row21 col8">U</td>
+<td id="T_33e39_row21_col9" class="data row21 col9">117</td>
+<td id="T_33e39_row21_col10" class="data row21 col10">0x75</td>
+<td id="T_33e39_row21_col11" class="data row21 col11">u</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row22_col0" class="data row22 col0">22</td>
+<td id="T_33e39_row22_col1" class="data row22 col1">0x16</td>
+<td id="T_33e39_row22_col2" class="data row22 col2">SYN</td>
+<td id="T_33e39_row22_col3" class="data row22 col3">54</td>
+<td id="T_33e39_row22_col4" class="data row22 col4">0x36</td>
+<td id="T_33e39_row22_col5" class="data row22 col5">6</td>
+<td id="T_33e39_row22_col6" class="data row22 col6">86</td>
+<td id="T_33e39_row22_col7" class="data row22 col7">0x56</td>
+<td id="T_33e39_row22_col8" class="data row22 col8">V</td>
+<td id="T_33e39_row22_col9" class="data row22 col9">118</td>
+<td id="T_33e39_row22_col10" class="data row22 col10">0x76</td>
+<td id="T_33e39_row22_col11" class="data row22 col11">v</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row23_col0" class="data row23 col0">23</td>
+<td id="T_33e39_row23_col1" class="data row23 col1">0x17</td>
+<td id="T_33e39_row23_col2" class="data row23 col2">ETB</td>
+<td id="T_33e39_row23_col3" class="data row23 col3">55</td>
+<td id="T_33e39_row23_col4" class="data row23 col4">0x37</td>
+<td id="T_33e39_row23_col5" class="data row23 col5">7</td>
+<td id="T_33e39_row23_col6" class="data row23 col6">87</td>
+<td id="T_33e39_row23_col7" class="data row23 col7">0x57</td>
+<td id="T_33e39_row23_col8" class="data row23 col8">W</td>
+<td id="T_33e39_row23_col9" class="data row23 col9">119</td>
+<td id="T_33e39_row23_col10" class="data row23 col10">0x77</td>
+<td id="T_33e39_row23_col11" class="data row23 col11">w</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row24_col0" class="data row24 col0">24</td>
+<td id="T_33e39_row24_col1" class="data row24 col1">0x18</td>
+<td id="T_33e39_row24_col2" class="data row24 col2">CAN</td>
+<td id="T_33e39_row24_col3" class="data row24 col3">56</td>
+<td id="T_33e39_row24_col4" class="data row24 col4">0x38</td>
+<td id="T_33e39_row24_col5" class="data row24 col5">8</td>
+<td id="T_33e39_row24_col6" class="data row24 col6">88</td>
+<td id="T_33e39_row24_col7" class="data row24 col7">0x58</td>
+<td id="T_33e39_row24_col8" class="data row24 col8">X</td>
+<td id="T_33e39_row24_col9" class="data row24 col9">120</td>
+<td id="T_33e39_row24_col10" class="data row24 col10">0x78</td>
+<td id="T_33e39_row24_col11" class="data row24 col11">x</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row25_col0" class="data row25 col0">25</td>
+<td id="T_33e39_row25_col1" class="data row25 col1">0x19</td>
+<td id="T_33e39_row25_col2" class="data row25 col2">EM</td>
+<td id="T_33e39_row25_col3" class="data row25 col3">57</td>
+<td id="T_33e39_row25_col4" class="data row25 col4">0x39</td>
+<td id="T_33e39_row25_col5" class="data row25 col5">9</td>
+<td id="T_33e39_row25_col6" class="data row25 col6">89</td>
+<td id="T_33e39_row25_col7" class="data row25 col7">0x59</td>
+<td id="T_33e39_row25_col8" class="data row25 col8">Y</td>
+<td id="T_33e39_row25_col9" class="data row25 col9">121</td>
+<td id="T_33e39_row25_col10" class="data row25 col10">0x79</td>
+<td id="T_33e39_row25_col11" class="data row25 col11">y</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row26_col0" class="data row26 col0">26</td>
+<td id="T_33e39_row26_col1" class="data row26 col1">0x1a</td>
+<td id="T_33e39_row26_col2" class="data row26 col2">SUB</td>
+<td id="T_33e39_row26_col3" class="data row26 col3">58</td>
+<td id="T_33e39_row26_col4" class="data row26 col4">0x3a</td>
+<td id="T_33e39_row26_col5" class="data row26 col5">:</td>
+<td id="T_33e39_row26_col6" class="data row26 col6">90</td>
+<td id="T_33e39_row26_col7" class="data row26 col7">0x5a</td>
+<td id="T_33e39_row26_col8" class="data row26 col8">Z</td>
+<td id="T_33e39_row26_col9" class="data row26 col9">122</td>
+<td id="T_33e39_row26_col10" class="data row26 col10">0x7a</td>
+<td id="T_33e39_row26_col11" class="data row26 col11">z</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row27_col0" class="data row27 col0">27</td>
+<td id="T_33e39_row27_col1" class="data row27 col1">0x1b</td>
+<td id="T_33e39_row27_col2" class="data row27 col2">ESC</td>
+<td id="T_33e39_row27_col3" class="data row27 col3">59</td>
+<td id="T_33e39_row27_col4" class="data row27 col4">0x3b</td>
+<td id="T_33e39_row27_col5" class="data row27 col5">;</td>
+<td id="T_33e39_row27_col6" class="data row27 col6">91</td>
+<td id="T_33e39_row27_col7" class="data row27 col7">0x5b</td>
+<td id="T_33e39_row27_col8" class="data row27 col8">[</td>
+<td id="T_33e39_row27_col9" class="data row27 col9">123</td>
+<td id="T_33e39_row27_col10" class="data row27 col10">0x7b</td>
+<td id="T_33e39_row27_col11" class="data row27 col11">{</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row28_col0" class="data row28 col0">28</td>
+<td id="T_33e39_row28_col1" class="data row28 col1">0x1c</td>
+<td id="T_33e39_row28_col2" class="data row28 col2">FS</td>
+<td id="T_33e39_row28_col3" class="data row28 col3">60</td>
+<td id="T_33e39_row28_col4" class="data row28 col4">0x3c</td>
+<td id="T_33e39_row28_col5" class="data row28 col5">&lt;</td>
+<td id="T_33e39_row28_col6" class="data row28 col6">92</td>
+<td id="T_33e39_row28_col7" class="data row28 col7">0x5c</td>
+<td id="T_33e39_row28_col8" class="data row28 col8">\</td>
+<td id="T_33e39_row28_col9" class="data row28 col9">124</td>
+<td id="T_33e39_row28_col10" class="data row28 col10">0x7c</td>
+<td id="T_33e39_row28_col11" class="data row28 col11">|</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row29_col0" class="data row29 col0">29</td>
+<td id="T_33e39_row29_col1" class="data row29 col1">0x1d</td>
+<td id="T_33e39_row29_col2" class="data row29 col2">GS</td>
+<td id="T_33e39_row29_col3" class="data row29 col3">61</td>
+<td id="T_33e39_row29_col4" class="data row29 col4">0x3d</td>
+<td id="T_33e39_row29_col5" class="data row29 col5">=</td>
+<td id="T_33e39_row29_col6" class="data row29 col6">93</td>
+<td id="T_33e39_row29_col7" class="data row29 col7">0x5d</td>
+<td id="T_33e39_row29_col8" class="data row29 col8">]</td>
+<td id="T_33e39_row29_col9" class="data row29 col9">125</td>
+<td id="T_33e39_row29_col10" class="data row29 col10">0x7d</td>
+<td id="T_33e39_row29_col11" class="data row29 col11">}</td>
+</tr>
+<tr class="odd">
+<td id="T_33e39_row30_col0" class="data row30 col0">30</td>
+<td id="T_33e39_row30_col1" class="data row30 col1">0x1e</td>
+<td id="T_33e39_row30_col2" class="data row30 col2">RS</td>
+<td id="T_33e39_row30_col3" class="data row30 col3">62</td>
+<td id="T_33e39_row30_col4" class="data row30 col4">0x3e</td>
+<td id="T_33e39_row30_col5" class="data row30 col5">&gt;</td>
+<td id="T_33e39_row30_col6" class="data row30 col6">94</td>
+<td id="T_33e39_row30_col7" class="data row30 col7">0x5e</td>
+<td id="T_33e39_row30_col8" class="data row30 col8">^</td>
+<td id="T_33e39_row30_col9" class="data row30 col9">126</td>
+<td id="T_33e39_row30_col10" class="data row30 col10">0x7e</td>
+<td id="T_33e39_row30_col11" class="data row30 col11">~</td>
+</tr>
+<tr class="even">
+<td id="T_33e39_row31_col0" class="data row31 col0">31</td>
+<td id="T_33e39_row31_col1" class="data row31 col1">0x1f</td>
+<td id="T_33e39_row31_col2" class="data row31 col2">US</td>
+<td id="T_33e39_row31_col3" class="data row31 col3">63</td>
+<td id="T_33e39_row31_col4" class="data row31 col4">0x3f</td>
+<td id="T_33e39_row31_col5" class="data row31 col5">?</td>
+<td id="T_33e39_row31_col6" class="data row31 col6">95</td>
+<td id="T_33e39_row31_col7" class="data row31 col7">0x5f</td>
+<td id="T_33e39_row31_col8" class="data row31 col8">_</td>
+<td id="T_33e39_row31_col9" class="data row31 col9">127</td>
+<td id="T_33e39_row31_col10" class="data row31 col10">0x7f</td>
+<td id="T_33e39_row31_col11" class="data row31 col11">DEL</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</figure>
+</div>
+</div>
+<p>La codifica ASCII, dunque, è essenzialmente una tabella di <span class="math inline">\(128\)</span> righe nella quale, a ciascuno dei <span class="math inline">\(128\)</span> caratteri scelti, corrisponde un numero intero da <span class="math inline">\(0\)</span> a <span class="math inline">\(127\)</span>, che prende il nome di <em>code point</em>. I primi <span class="math inline">\(32\)</span> code point sono riservati a caratteri di controllo (non stampabili) che, senza andare troppo a fondo nella questione, includono tra le altre cose lo spazio e l’andata a capo. Ogni carattere è rappresentato in memoria (e, eventualmente, in un file) come il suo code point, ed ogni code point può essere convertito nel carattere corrispondente una volta che sappiamo l’encoding. Tanto per fare un esempio, il code point ASCII del carattere <code>a</code> (lettera a minuscola) è <code>97</code> in decimale, i.e., <code>0x61</code> in esadecimale.</p>
+<div id="8e92f323" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">ord</span>(<span class="st">"a"</span>), <span class="bu">hex</span>(<span class="bu">ord</span>(<span class="st">"a"</span>)))</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">chr</span>(<span class="dv">97</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>97 0x61
+a</code></pre>
+</div>
+</div>
+<p>Se supponiamo, ad esempio, di avere un file contenente la stringa “Ciao!” (più un’andata a capo alla fine della prima linea), ed assumiamo di avere un qualche tipo di utility per visualizzato il contenuto su disco del file (ad esempio <code>xxd</code> su GNU-Linux), il file avrebbe una dimensione di esattamente <span class="math inline">\(6\)</span> byte ed apparirebbe come <span class="math display">\[
+  \overbrace{\texttt{01000011}}^{67~\text{(C)}}\;\;
+  \overbrace{\texttt{01101001}}^{105~\text{(i)}}\;\;
+  \overbrace{\texttt{01100001}}^{97~\text{(a)}}\;\;
+  \overbrace{\texttt{01101111}}^{111~\text{(o)}}\;\;
+  \overbrace{\texttt{00100001}}^{33~\text{(!)}}\;\;
+  \overbrace{\texttt{00001010}}^{10~\text{(Line feed)}}
+\]</span></p>
+</section>
+<section id="altri-encoding" class="level3" data-number="9.1.2">
+<h3 data-number="9.1.2" class="anchored" data-anchor-id="altri-encoding"><span class="header-section-number">9.1.2</span> Altri encoding</h3>
+<!-- TODO: write this section -->
+<p>Le più attente tra voi avranno notato che la tabella ASCII non comprende, tra le altre cose, le lettere accentate—che pure sono, per ovvi motivi, rilevanti per chi parla (e scrive in) italiano.</p>
+<div id="76df8973" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"</span><span class="ch">\U0001F600</span><span class="st">"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>😀</code></pre>
+</div>
+</div>
+</section>
+<section id="inputoutput-in-formato-testo" class="level3" data-number="9.1.3">
+<h3 data-number="9.1.3" class="anchored" data-anchor-id="inputoutput-in-formato-testo"><span class="header-section-number">9.1.3</span> Input/output in formato testo</h3>
+</section>
+</section>
+<section id="rappresentazione-dei-numeri" class="level2" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="rappresentazione-dei-numeri"><span class="header-section-number">9.2</span> Rappresentazione dei numeri</h2>
+<section id="numeri-interi" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="numeri-interi"><span class="header-section-number">9.2.1</span> Numeri interi</h3>
+<p>Per noi che abbiamo una buona familiarità con i bit e la numerazione in base <span class="math inline">\(2\)</span>, la rappresentazione dei numeri interi risulta tutto sommato naturale—sicuramente più naturale e meno ambigua della rappresentazione di una stringa. Sappiamo già che con <span class="math inline">\(n\)</span> bit possiamo rappresentare <span class="math inline">\(2^n\)</span> configurazioni diverse, ad esempio tutti i numeri interi positivi tra <span class="math inline">\(0\)</span> e <span class="math inline">\(2^n - 1\)</span>, ed in effetti se ci limitiamo agli interi positivi (senza segno, o unsigned) questo è proprio ciò che accade. Allora con <span class="math inline">\(8\)</span> bit possiamo rappresentare gli interi tra <span class="math inline">\(0\)</span> e <span class="math inline">\(2^8 - 1 = 255\)</span>, con <span class="math inline">\(16\)</span> bit quelli da <span class="math inline">\(0\)</span> a <span class="math inline">\(2^{16} - 1 = 65536\)</span>, e così via; il valore di un intero senza segno è semplicemente il valore numerico del pattern binario che lo rappresenta in memoria.</p>
+<p>Il segno complica leggermente le cose. La generalizzazione più semplice di quanto abbiamo appena detto è quella che generalmente va sotto il nome di <em>sign-magnitude representation</em>: utilizziamo il bit più significativo per codificare il segno (con lo <span class="math inline">\(0\)</span> che rappresenta numeri positivi e l’<span class="math inline">\(1\)</span> che rappresenta numeri negativi), e gli altri <span class="math inline">\(n - 1\)</span> per rappresentare il valore numerico. Questa rappresentazione non è utilizzata in pratica perché ha due limitazioni importanti:</p>
+<ol type="1">
+<li>ci sono due rappresentazioni possibili dello zero (se volete, <span class="math inline">\(+0\)</span> e <span class="math inline">\(-0\)</span>), il che è suscettibile a confusione; e, cosa pi`u importante,</li>
+<li>interi positivi ed interi negativi debbono essere processati indipendentemente nelle operazioni aritmetiche.</li>
+</ol>
+<p>La strategia che invece si utilizza nei calcolatori è la cosiddetta <em>2’s complement representation</em> in cui il bit più significativo rappresenta ancora il segno (con la solita convenzione), mentre i restanti <span class="math inline">\(n - 1\)</span> bit rappresentano il valore numerico con le seguenti regole:</p>
+<ul>
+<li>per gli interi positivi (ovverosia quando il bit più significativo è <span class="math inline">\(0\)</span>) il valore assoluto del numero è uguale al valore numerico del pattern binario degli <span class="math inline">\(n - 1\)</span> bit meno significativi;</li>
+<li>per gli interi negativi si prende il complemento (ovvero la negazione bit a bit) degli <span class="math inline">\(n - 1\)</span> bit meno significativi, aumentata di <span class="math inline">\(1\)</span>. Non `e difficile convincersi che in questo modo si possono rappresentare tutti gli interi tra <span class="math inline">\(-2^{n - 1}\)</span> e <span class="math inline">\(2^{n - 1} - 1\)</span>, con un’unica rappresentazione (e quindi non ambigua) dello zero. Ad esempio con <span class="math inline">\(8\)</span> bit si possono rappresentare tutti i numeri da un minimo di <span class="math inline">\(-128\)</span> <span class="math display">\[
+\texttt{10000000}
+%\underbrace{1}_\text{segno}\!\!\!\!\!\!\overbrace{0000000}^\text{valore}
+\rightarrow -(0b1111111 + 0b1) = -0b10000000 = -0x80 = -128
+\]</span> ad un massimo di <span class="math inline">\(127\)</span> <span class="math display">\[
+\texttt{01111111}
+%\underbrace{0}_\text{segno}\!\!\!\!\!\!\overbrace{1111111}^\text{valore}
+\rightarrow +0b1111111 = +0x7F = +127,
+\]</span> passando per lo zero, che è ovviamente rappresentato dal pattern <span class="math inline">\(\texttt{000000000}\)</span>.</li>
+</ul>
+<p>La maggior parte dei linguaggi di programmazioni mette a disposizione dell’utente tipi distinti per interi unsigned e signed, con diverse profondità—tipicamente <span class="math inline">\(8\)</span>, <span class="math inline">\(16\)</span>, <span class="math inline">\(32\)</span> o <span class="math inline">\(64\)</span> bit, ovverosia <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span>, <span class="math inline">\(3\)</span> o <span class="math inline">\(4\)</span> byte. I corrispondenti intervalli utili sono indicato nella <a href="#tbl-integer-ranges" class="quarto-xref">Tabella&nbsp;<span>9.2</span></a>. Python fa eccezione: come abbiamo visto gli interi hanno precisione arbitraria, e la memoria utilizzata per la rappresentazione è allocata automaticamente a seconda del valore che vogliamo rappresentare. Questo non vuol dire che quando scriviamo su disco possiamo farlo senza sapere quanto è grande quello che scriviamo.</p>
+<div id="tbl-integer-ranges" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-integer-ranges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabella&nbsp;9.2: Intervalli rappresentabili con interi binari a lunghezza fissa.
+</figcaption>
+<div aria-describedby="tbl-integer-ranges-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 14%">
+<col style="width: 11%">
+<col style="width: 35%">
+<col style="width: 38%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tipo</th>
+<th style="text-align: right;">Bit</th>
+<th style="text-align: right;">Valore minimo</th>
+<th style="text-align: right;">Valore massimo</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">signed</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;"><span class="math inline">\(-2^7 = -128\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(2^7-1 = 127\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">unsigned</td>
+<td style="text-align: right;">8</td>
+<td style="text-align: right;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(2^8-1 = 255\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">signed</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;"><span class="math inline">\(-2^{15} = -32\,768\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(2^{15}-1 = 32\,767\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">unsigned</td>
+<td style="text-align: right;">16</td>
+<td style="text-align: right;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(2^{16}-1 = 65\,535\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">signed</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;"><span class="math inline">\(-2^{31} \approx - 2.15 \times 10^9\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(2^{31}-1 \approx 2.15 \times 10^9\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">unsigned</td>
+<td style="text-align: right;">32</td>
+<td style="text-align: right;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(2^{32}-1 \approx 4.29 \times 10^9\)</span></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">signed</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;"><span class="math inline">\(-2^{63} \approx - 9.22 \times 10^{18}\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(2^{63}-1 \approx 9.22 \times 10^{18}\)</span></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">unsigned</td>
+<td style="text-align: right;">64</td>
+<td style="text-align: right;"><span class="math inline">\(0\)</span></td>
+<td style="text-align: right;"><span class="math inline">\(2^{64}-1 \approx 1.85 \times 10^{19}\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<!-- TODO: qui dobbiamo chiarire cosa vuol dire scrivere su disco in Python -->
+<!-- TODO: manca anche una sezione sui tipi in numpy -->
+</section>
+<section id="numeri-in-virgola-mobile" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="numeri-in-virgola-mobile"><span class="header-section-number">9.2.2</span> Numeri in virgola mobile</h3>
+<p>La rappresentazione dei numeri in virgola mobile nei moderni calcolatori digitali è ormai universalmente conforme allo standard IEEE 754 <span class="citation" data-cites="ieee_754">(<a href="#ref-ieee_754" role="doc-biblioref">Cowlishaw 2008</a>)</span>, nelle due specifiche di formato a 32 e 64 bit. Più precisamente, ogni volta che scriviamo un numero in virgola mobile, dobbiamo pensare che, all’interno del calcolatore, esso sia rappresentato nella forma <span class="math display">\[
+  x = (-1)^s \times m \times 2^{e - b} \quad \text{dove} \quad 1 \leq m &lt; 2,
+\]</span> in cui, spostandosi da sinistra a destra nella rappresentazione—ovverosia dal bit più significativo a quello meno significativo:</p>
+<ul>
+<li><span class="math inline">\(s\)</span> rappresenta il del numero, e corrisponde al bit più significativo (<span class="math inline">\(0\)</span> se il numero è positivo, <span class="math inline">\(1\)</span> se è negativo);</li>
+<li><span class="math inline">\(e\)</span> è l’esponente, che ha a disposizione 8 bit in precisione singola e 11 bit in precisione doppia; <span class="math inline">\(b\)</span>, che prende il nome di <em>bias</em>, è una costante additiva (positiva) che permette di rappresentare numeri <span class="math inline">\(&lt; 1\)</span> senza bisogno di aggiungere un segno all’esponente, e vale <span class="math inline">\(127\)</span> in precisione singola e <span class="math inline">\(1023\)</span> in precisione doppia;</li>
+<li><span class="math inline">\(m\)</span> prende il nome di <em>mantissa</em> e rappresenta (utilizzando 23 bit in precisione singola e 52 bit in precisione doppia) la sequenza di cifre dopo la virgola, <em>assumendo che la parte intera sia <span class="math inline">\(1\)</span></em> (cioè la mantissa è convenzionalmente compresa tra <span class="math inline">\(1\)</span> e <span class="math inline">\(2\)</span> ed il bit più significativo, che è garantito essere <span class="math inline">\(1\)</span>, può essere omesso).</li>
+</ul>
+<!-- TODO: vogliamo mettere una figura del layout? -->
+<p>Proviamo a scrivere un numero semplice, <span class="math inline">\(x = 2.25\)</span>, seguendo queste regole, i.e., come il prodotto di una mantissa compresa tra <span class="math inline">\(1\)</span> e <span class="math inline">\(2\)</span> per una potenza di <span class="math inline">\(2\)</span>: <span class="math display">\[
+x = 2.25 = 1.125 \times 2
+\]</span> Nel formato in doppia precisione avremo dunque <span class="math display">\[\begin{align*}
+  s &amp; = 0\\
+  e &amp; - b = 1 \implies e = 1024 =  0b10000000000\\
+  m &amp; = 1.125 = 0b(1).0010000000000000000000000000000000000000000000000000
+\end{align*}\]</span> (notate che abbiamo indicato tutti gli 11 bit per l’esponente ed i 52 per la mantissa, con il bit più significativo di normalizzazione tra parentesi) e, in definitiva <span class="math display">\[
+  x \rightarrow 0b0\overbrace{0010000000}^{e-b}
+  \overbrace{0010000000000000000000000000000000000000000000000000}^{m~\text{(bit più significativo omesso)}}
+\]</span></p>
+<p>Wow! Abbiamo scritto il nostro primo numero in virgola mobile nella forma in cui lo troveremmo nel disco rigido del nostro calcolatore!</p>
+</section>
+</section>
+<section id="stringhe-numeri-e-modalità-di-io" class="level2" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="stringhe-numeri-e-modalità-di-io"><span class="header-section-number">9.3</span> Stringhe, numeri e modalità di IO</h2>
+<p>Arrivati a questo punto, se avete letto con attenzione, non potrete fare a meno di chiedervi: se io scrivo su disco un singolo byte, ad esempio <code>10101001</code>, che cosa ho fatto realmente? Dato che <span class="math display">\[
+  0b10101001 = 0xa9 = 169
+\]</span> abbiamo almento tre risposte potenzialmente corrette a disposizione! Il <span class="math inline">\(169\)</span> è al di fuori della tabella ASCII ristretta, ma se lo interpretiamo come code point di una tipica estensione ad <span class="math inline">\(8\)</span> bit della codifica ASCII, abbiamo scritto un bel simbolo di copyright. Se assumiamo che il nostro byte di storage rappresenti un intero unsigned, allora abbiamo scritto <span class="math inline">\(169\)</span>. Se invece assumiamo che sia un intero con segno, siccome il bit più significativo è <span class="math inline">\(1\)</span>, si tratta di un numero negativo, e per la precisione <span class="math inline">\(-87\)</span>. Complicato?</p>
+<p>La risposta corretta è, come spesso accade: dipende. Quando rileggiamo dal disco il nostro byte di informazione possiamo intepretarlo come vogliamo. Ed il corollario è che sarà bene assicurarci prima dell’intento con cui il file è stato scritto per evitare di prendere cantonate. Se il file in questione è un file di testo, allora dovremo leggerlo come tale, e con l’encoding corretto (quello con cui è stato scritto). Se invece il file è un file binario, allora dovremo leggerlo con la modalità opportuna, e dobbiamo sapere esattamente qual è il layout dei dati all’interno per poterli spacchettare nel modo opportuno.</p>
+<p>Abbiamo imparato una lezione fondamentale, ovvero la distinzione tra il contenuto di una porzione di memoria (sia essa volatile o su disco) ed il significato che noi diamo a quella particolare sequenza di <span class="math inline">\(0\)</span> ed <span class="math inline">\(1\)</span> all’interno del nostro programma. Ed abbiamo capito che lo stesso bit pattern in memoria può essere interpretato in più modi, che che dobbiamo fare attenzione ad essere consistenti nelle fasi di lettura e di scrittura.</p>
+<p>Prima di chiudere vale la pena di parlare un attimo della scrittura su disco. Senza entrare in discorsi troppo complicati, il caso d’uso tipico per il corso di laboratorio è quello in cui scriviamo, manualmente o programmaticamente, un numero (limitato) di valori in un file di testo, e poi rileggiamo questi valori con <code>numpy</code> per analizzarli. Questo va benissmo, e funziona come uno si aspetterebbe, ma non dobbiamo dimenticare che, mentre un numero in virgola mobile costa su disco <span class="math inline">\(32\)</span> o <span class="math inline">\(64\)</span> bit, un numero scritto in un file di testo costa <span class="math inline">\(8\)</span> bit per ciascun carattere—incluse le cifre numeriche, il separatore decimale se presenti, e la potenza di <span class="math inline">\(10\)</span> se scriviamo in notazione ingegneristica. Tanto per fissare le idee, scrivere <code>9.1093837139e-31</code> (la massa dell’elettrone in kg) in un file di testo costa esattamente <span class="math inline">\(128\)</span> bit, mentre con la metà dello spazio potremmo confortevolmente raggiungere lo stesso risultato se scrivessimo un file binario.</p>
+</section>
+<section id="leggere-tabelle-di-numeri" class="level2" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="leggere-tabelle-di-numeri"><span class="header-section-number">9.4</span> Leggere tabelle di numeri</h2>
+<p>Spiegare numpy.loadtxt.</p>
+
+
+<div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-ieee_754" class="csl-entry" role="listitem">
+Cowlishaw, Mike, a c. di. 2008. <em>IEEE Standard for Floating-Point Arithmetic</em>. Standard IEEE Std 754-2008. IEEE Computer Society. <a href="https://web.archive.org/web/20160806053349/http://www.csee.umbc.edu/~tsimo1/CMSC455/IEEE-754-2008.pdf">https://web.archive.org/web/20160806053349/http://www.csee.umbc.edu/~tsimo1/CMSC455/IEEE-754-2008.pdf</a>.
+</div>
+</div>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiato!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiato!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/unipi-physics-labs\.github\.io\/lab1-computing\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../chapters/os.html" class="pagination-link" aria-label="Il sistema operativo">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Il sistema operativo</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/float.html" class="pagination-link" aria-label="L'aritmetica in virgola mobile">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’aritmetica in virgola mobile</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Luca Baldini. Rilasciato sotto licenza <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.it">CC BY-SA 4.0</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/io.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
