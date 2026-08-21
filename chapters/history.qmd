@@ -1,5 +1,9 @@
 # Cronologia delle versioni {#sec-history}
 
+* Versione iniziale di un semplice release manager.
+* Non ci sono cambiamenti al testo delle note.
+
+
 ### Versione 0.1.0 {.unnumbered}
 
 * Versione iniziale, con tutto il materiale delle vecchie note in LaTeX, ed un
