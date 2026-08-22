@@ -402,14 +402,14 @@ lbaldini@nblbaldini:~$</code></pre>
 <p>Se state cercando di leggere un file sotto Windows (diciamo, per fissare le idee <code>c:\abc\def\ghi.txt</code>) e Python si ostina a dire che il file non esiste, nonostante voi lo vediate con i vostri occhi, non preoccupatevi—non siete sole nella vostra confusione.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">"c:</span><span class="ch">\a</span><span class="st">bc</span><span class="er">\</span><span class="st">def</span><span class="er">\</span><span class="st">ghi.txt"</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_path)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="e3407fbf" class="cell" data-execution_count="1">
+<div id="ea155424" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>c:bc\def\ghi.txt</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:1: SyntaxWarning: invalid escape sequence '\d'
 &lt;&gt;:1: SyntaxWarning: invalid escape sequence '\d'
-/tmp/ipykernel_2950/4099420625.py:1: SyntaxWarning: invalid escape sequence '\d'
+/tmp/ipykernel_3045/4099420625.py:1: SyntaxWarning: invalid escape sequence '\d'
   file_path = "c:\abc\def\ghi.txt"</code></pre>
 </div>
 </div>
@@ -503,7 +503,7 @@ Nota
 <p>Solo che in una stringa di Python (e, per quel che conta, lo stesso vale per la maggior parte dei linguaggi di programmazione e dei terminali) il backslash ha un significato speciale, e non è trattato come tutti gli altri caratteri. Allora la domanda è: come faccio a scrivere un backslash in una stringa?</p>
 <p>Una prima risposta corretta ce la fornisce la prima riga della <a href="#tbl-sequenze-escape" class="quarto-xref">Tabella&nbsp;<span>8.1</span></a>: possiamo usare un backslash per fare l’escape di se stesso, il che vuol dire che la sequenza di escape <code>\\</code> si traduce in un <code>\</code> semplice. Questo funziona come una si aspetta nella maggior parte delle situazioni.</p>
 <p>In alternativa, Python fornisce la possibilità di aggiungere una lettera <code>r</code> o <code>R</code> prima della virgoletta iniziale della stringa: così facendo si crea quella che si chiama una stringa grezza (<em>raw string</em>), in cui il backslash è trattato alla pari di un qualsiasi altro carattere.</p>
-<div id="3e5ce774" class="cell" data-execution_count="2">
+<div id="41f1c835" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">"c:</span><span class="ch">\\</span><span class="st">abc</span><span class="ch">\\</span><span class="st">def</span><span class="ch">\\</span><span class="st">ghi.txt"</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_path)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="vs">r"c:</span><span class="ch">\a</span><span class="vs">bc</span><span class="dv">\d</span><span class="vs">ef</span><span class="er">\</span><span class="vs">ghi</span><span class="dv">.</span><span class="vs">txt"</span></span>

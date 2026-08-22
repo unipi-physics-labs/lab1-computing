@@ -658,7 +658,7 @@ Importante
 <p>Non guardate la soluzione prima di averci pensato almeno un po’ in modo indipendente. E, cosa ancora più importante, non esegute un miliardo di iterazioni sul vostro portatile prima di aver letto la soluzione.</p>
 </div>
 </div>
-<div id="e2148133" class="cell" data-execution_count="1">
+<div id="9399f09a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>): <span class="bu">print</span>(i)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">100</span>)): <span class="bu">print</span>(i)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -668,7 +668,7 @@ Importante
 </summary>
 <p>L’unica differenza tra le due righe è la creazione esplicita di una lista nel secondo caso. Ma andiamo per ordine.</p>
 <p>Se vogliamo iterare sui numeri interi (o su un loro sottoinsieme), da un punto di vista prettamente algoritmico non c’è nessun bisogno di precompilare una lista. Possiamo procedere per induzione, tenendo traccia del numero a cui siamo arrivati ed aggiungendo <span class="math inline">\(1\)</span> ogni volta. Il nostro piccolo programma si può riscrivere senza usare nessun built-in di Python nella forma equivalente</p>
-<div id="5dd41b0d" class="cell" data-execution_count="2">
+<div id="6a65eea0" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> i <span class="op">&lt;</span> <span class="dv">100</span>:</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    i <span class="op">+=</span> <span class="dv">1</span></span>
@@ -677,11 +677,11 @@ Importante
 <p>in cui è chiaro che l’unica memoria che stiamo utilizzando è quella necessaria per il singolo intero <code>i</code>.</p>
 <p>Torniamo al programma originale. Contrariamente a quanto potreste pensare, il built-in <code>range(100)</code> <em>non</em> produce una lista dei primi <span class="math inline">\(100\)</span> numeri interi. Tecnicamente produce un <em>iterabile</em> sul quale il ciclo <code>for</code> può agire esattamente come descritto nella versione alternativa del programma che utilizza il <code>while</code>. Non c’è nessuno spreco di memoria.</p>
 <p>Quando invece scriviamo</p>
-<div id="ef806d94" class="cell" data-execution_count="3">
+<div id="9e6bdbf9" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(<span class="bu">range</span>(<span class="dv">100</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <p>le cose cambiano sostanzialmente: qui stiamo effettivamente allocando tutta la lista in memoria. Qual è il costo dell’operazione? Dobbiamo chiederci quanto occupa in memoria un intero</p>
-<div id="4bb3ac74" class="cell" data-execution_count="4">
+<div id="55b3c048" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(sys.getsizeof(<span class="dv">1</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
