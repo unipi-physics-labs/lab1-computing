@@ -1,6 +1,5 @@
 # Cronologia delle versioni {#sec-history}
 
-
 * Nome del file pdf cambiato in "compnotes".
 * Script di release modificato per generare il README aggiornato.
 * Non ci sono cambiamenti al testo delle note.
