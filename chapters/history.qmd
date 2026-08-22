@@ -1,5 +1,7 @@
 # Cronologia delle versioni {#sec-history}
 
+### Versione 0.4.5 (2026-08-22) {.unnumbered}
+
 
 * Bug fix nell'import dei moduli JS.
 * Non ci sono cambiamenti al testo delle note.
