@@ -102,7 +102,7 @@ qualche minuto per convincervi di dominare il processo di conversione.
 <div id="dec2bin"></div>
 <script type="module">
 
-import { BaseConverter } from "/widgets/base_converter.js";
+import { BaseConverter } from "../widgets/base_converter.js";
 
 new BaseConverter(
     document.getElementById("dec2bin"),
@@ -117,7 +117,7 @@ new BaseConverter(
 <div id="bin2dec"></div>
 <script type="module">
 
-import { BaseConverter } from "/widgets/base_converter.js";
+import { BaseConverter } from "../widgets/base_converter.js";
 
 new BaseConverter(
     document.getElementById("bin2dec"),
@@ -218,7 +218,7 @@ Ancora una volta, assicuratevi di aver capito prima di andare avanti.
 <div id="dec2hex"></div>
 <script type="module">
 
-import { BaseConverter } from "/widgets/base_converter.js";
+import { BaseConverter } from "../widgets/base_converter.js";
 
 new BaseConverter(
     document.getElementById("dec2hex"),
@@ -233,7 +233,7 @@ new BaseConverter(
 <div id="hex2dec"></div>
 <script type="module">
 
-import { BaseConverter } from "/widgets/base_converter.js";
+import { BaseConverter } from "../widgets/base_converter.js";
 
 new BaseConverter(
     document.getElementById("hex2dec"),
