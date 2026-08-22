@@ -394,7 +394,7 @@ window.Quarto = {
 <section id="assegnamento-e-confronto" class="level2" data-number="3.1">
 <h2 data-number="3.1" class="anchored" data-anchor-id="assegnamento-e-confronto"><span class="header-section-number">3.1</span> Assegnamento e confronto</h2>
 <p>Come abbiamo detto, le variabili in Python si creano con l’operatore di assegnamento <code>=</code>, ed alle variabili ci si può comodamente riferire per tutto il loro ciclo di vita con il nome che abbiamo usato al momento dell’assegnamento, e.g.</p>
-<div id="34cb1823" class="cell" data-execution_count="1">
+<div id="0045990b" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -402,7 +402,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Quando si parla di variabili, una delle prime cose che è utile realizzare è che l’oggetto a cui fa riferimento il nome, che con un leggero abuso di terminologia potremmo chiamare il <em>valore della variabile</em>, può cambiare durante l’esecuzione del programma</p>
-<div id="cc7abe7a" class="cell" data-execution_count="2">
+<div id="43968416" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">11</span></span>
@@ -419,7 +419,7 @@ window.Quarto = {
 <li><em>dopo</em> assegniamo al risultato dell’espressione il <em>nome</em> che sta a destra.</li>
 </ol>
 <p>Detta così, la cosa non pare particolarmente problematica. Ad un’analisi appena più approfondita, però, ci accorgiamo subito di alcune cosa interessanti, la prima delle quali è che <em>la nostra variabile può stare contemporaneamente a sinistra e a destra dell’operatore di assegnamento!</em> Prendete ad esempio</p>
-<div id="9c26395a" class="cell" data-execution_count="3">
+<div id="117326eb" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-label="1"></a>x <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-label="2"></a><span class="bu">print</span>(x)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-label="3"></a>x <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> x <span class="op">-</span> <span class="dv">4</span></span>
@@ -436,7 +436,7 @@ window.Quarto = {
 <li>solo a questo punto facciamo il binding del nome <code>x</code> al valore 2—da questo punto in poi <code>x</code> non vale più <span class="math inline">\(3\)</span>, ma <span class="math inline">\(2\)</span>!</li>
 </ul>
 <p>La cosa è talmente utile ed utilizzata, che la maggior parte dei linguaggi di programmazione (Python incluso) prevedono specifiche scorciatoie per eseguire operazioni aritmetiche <em>sul posto</em></p>
-<div id="314d446c" class="cell" data-execution_count="4">
+<div id="cea0403d" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">+=</span> <span class="dv">10</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x)</span>
@@ -448,7 +448,7 @@ window.Quarto = {
 </div>
 </div>
 <p>L’altra cosa da tenere sempre a mente è che, se a destra dell’operatore di assegnamento c’è un’espressione, <em>a sinistra c’è sempre un nome</em>, per cui l’interprete, giustamente, si lamenta se provate a scrivere</p>
-<div id="06505c69" class="cell" data-execution_count="5">
+<div id="0d30701a" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">*</span> x <span class="op">=</span> <span class="dv">2</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -484,7 +484,7 @@ Nota
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="loperatore-di-confronto"><span class="header-section-number">3.1.2</span> L’operatore di confronto</h3>
 <p>A questo punto potreste chiedervi se Python offra qualcosa, in termini di operatori binari, che assomigli all’uguaglianza in aritmetica? La risposta è sì: si chiama <em>operatore di confronto</em> e in Python si scrive come <code>==</code>. (Si, avete capito bene: due segni di uguale giustapposti).</p>
 <p>L’operatore di confronto accetta <em>espressioni</em> da entrambi i suoi lati, e restituisce <em>vero</em> o <em>falso</em> a seconda che le espressioni diano lo stesso risultato oppure no.</p>
-<div id="288b769f" class="cell" data-execution_count="6">
+<div id="3c7c8dfd" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">==</span> <span class="dv">3</span>)</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">==</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -493,7 +493,7 @@ False</code></pre>
 </div>
 </div>
 <p>(Se siete curiose esiste anche il complementare logico dell’operatore <code>==</code>, che si indica con <code>!=</code>.)</p>
-<div id="c3e083d0" class="cell" data-execution_count="7">
+<div id="5fa82e44" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">!=</span> <span class="dv">3</span>)</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">!=</span> <span class="dv">4</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -502,7 +502,7 @@ True</code></pre>
 </div>
 </div>
 <p>Questo vuol dire che abbiamo trovato l’equivalente perfetto dell’uguaglianza aritmetica in Python? Non proprio, perché mentre si possono usare espressioni arbitrariamente complesse, con variabili al loro interno</p>
-<div id="49a11227" class="cell" data-execution_count="8">
+<div id="e393258f" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span> <span class="op">*</span> x <span class="op">==</span> <span class="dv">2</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -512,7 +512,7 @@ True</code></pre>
 <p>è anche vero che tutte le variabili debbono essere definite nel momento in cui facciamo il confronto. Ricordatevi che in aritmetica <span class="math display">\[
 2x = 2 \implies x = 1
 \]</span> mentre la stessa cosa in Python, se non definiamo prima la variabile <span class="math inline">\(x\)</span>, fallisce miseramente, e per un motivo diverso da prima:</p>
-<div id="50b28e77" class="cell" data-execution_count="10">
+<div id="2f8cd7fd" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="dv">2</span> <span class="op">*</span> x <span class="op">==</span> <span class="dv">2</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-error">
 <div class="ansi-escaped-output">
@@ -531,7 +531,7 @@ True</code></pre>
 <section id="tipi" class="level2" data-number="3.2">
 <h2 data-number="3.2" class="anchored" data-anchor-id="tipi"><span class="header-section-number">3.2</span> Tipi</h2>
 <p>Anche se non doveste aver prestato particolare attenzioni, vi sarete accorte che abbiamo già incontrato diversi <em>tipi</em> di variabili. Quando scriviamo</p>
-<div id="4ae084cc" class="cell" data-execution_count="11">
+<div id="ec13360e" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">11</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>title <span class="op">=</span> <span class="st">"scatter plot"</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
@@ -553,7 +553,7 @@ Nota
 </div>
 </div>
 <p>Ogni variabile nel nostro programma, ad ogni istante, è di un tipo ben preciso. Come faccio a sapere qual è? Semplice: con il built-in <a href="https://docs.python.org/3/library/functions.html#type">type</a></p>
-<div id="d368646c" class="cell" data-execution_count="12">
+<div id="5244c6a5" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">11</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>title <span class="op">=</span> <span class="st">"scatter plot"</span></span>
@@ -571,7 +571,7 @@ Nota
 <h3 data-number="3.2.1" class="anchored" data-anchor-id="tipi-ed-operazioni"><span class="header-section-number">3.2.1</span> Tipi ed operazioni</h3>
 <p>Perché dovrebbe interessarvi di che tipo è una variabile? Per molti motivi, ma il principale è che <em>il tipo di una variabile determina univocamente le operazioni che si possono fare sulla variabile stessa</em>.</p>
 <p>Se ho due numeri, ad esempio, mi aspetto di poter fare su di loro le ordinarie operazioni aritmetiche, ed in effetti è proprio così</p>
-<div id="d38197cd" class="cell" data-execution_count="13">
+<div id="e3541e75" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">4</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>j <span class="op">=</span> <span class="dv">8</span></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i <span class="op">+</span> j)</span>
@@ -582,7 +582,7 @@ Nota
 </div>
 </div>
 <p>mentre non è immediatamente ovvio cosa potrebbe voler dire sommare un numero ad una stringa di testo, ed in effetti se proviamo a farlo, l’interprete Python ci segnala un errore</p>
-<div id="604bb9ca" class="cell" data-execution_count="14">
+<div id="e352b28e" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">3</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>title <span class="op">=</span> <span class="st">"scatter plot"</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(n <span class="op">+</span> title)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
@@ -610,7 +610,7 @@ Nota
 </div>
 <div class="callout-body-container callout-body">
 <p>In alcuni casi la semantica delle operazioni che potremmo aspettarci da uno specifico tipo di variabile non è ovvia. A seconda delle inclinazioni personali, potreste (o no) essere sorprese dal fatto che Python supporta la somma (nel senso di concatenazione) tra stringhe e il prodotto (nel senso di ripetizione) di una stringa per un numero intero.</p>
-<div id="cf00d227" class="cell" data-execution_count="15">
+<div id="a3bc48dd" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello "</span> <span class="op">+</span> <span class="st">"World"</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Eh"</span> <span class="op">*</span> <span class="dv">10</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -621,7 +621,7 @@ EhEhEhEhEhEhEhEhEhEh</code></pre>
 </div>
 </div>
 <p>L’ultimo esempio ci dà lo spunto per sottolineare, se ce ne fosse bisogno, l’importanza di capire il sistema dei tipi. Che differenza c’è tra <code>3</code> (il numero intero 3) e <code>"3"</code> (una stringa di testo contenente il singolo carattere numerico “3”)? In nessun momento dobbiamo confondere i due, perché i risultati sono potenzialmente disastrosi</p>
-<div id="4788f6fc" class="cell" data-execution_count="16">
+<div id="733c5675" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">==</span> <span class="st">"3"</span>)</span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">*</span> <span class="dv">3</span>)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">*</span> <span class="st">"3"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
@@ -652,7 +652,7 @@ Nota
 <section id="stringhe" class="level3" data-number="3.3.1">
 <h3 data-number="3.3.1" class="anchored" data-anchor-id="stringhe"><span class="header-section-number">3.3.1</span> Stringhe</h3>
 <p>Una stringa è essenzialmente una sequenza di caratteri che utilizziamo per rappresentare del testo, e può contenere lettere, numeri, punteggiatura, spazi—in realtà qualsiasi cosa sia supportata dallo standard <a href="https://home.unicode.org/">unicode</a>. Tecnicamente Python tratta come stringa tutte le sequenze di caratteri racchiuse da due apici—non importa se singoli o doppi</p>
-<div id="b22cd759" class="cell" data-execution_count="17">
+<div id="13f4f164" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="st">"Hello!"</span>))</span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">type</span>(<span class="st">'Hello!'</span>))</span>
 <span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello!"</span> <span class="op">==</span> <span class="st">'Hello!'</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
@@ -665,7 +665,7 @@ True</code></pre>
 <p>Al solito, la sorgente di informazione più autorevole sulla questione è la <a href="https://docs.python.org/3/library/stdtypes.html#text-sequence-type-str">documentazione</a>.</p>
 <p>Ci siamo già imbattuti nelle stringhe per la questione mondana del titolo della nostra figura di matplotlib, e per mettere nomi agli assi dei grafici. Ma forse la cosa più importante è imparare a capire come <em>formattare opportunamente</em> il testo quando vogliamo farci stampare qualcosa su terminale o su file.</p>
 <p>Nel 2026, il meccanismo principale per la formattazione di testo è quello delle <a href="https://docs.python.org/3/tutorial/inputoutput.html#formatted-string-literals">f-string</a>, che illustriamo sommariamente con un piccolo esempio. Supponiamo di voler stampare il valore centrale e l’incertezza di un fit con una costante, che abbiamo a disposizione in due variabili separate. Possiamo stamparle direttamente sullo schermo così come sono, oppure formattarle opportunamente. Guardate la differenza e giudicate voi stesse:</p>
-<div id="f10eaecb" class="cell" data-execution_count="18">
+<div id="65cd8ecb" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>m_hat <span class="op">=</span> <span class="fl">0.32467</span></span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>sigma_m <span class="op">=</span> <span class="fl">0.03</span></span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -697,7 +697,7 @@ m = 0.32 ± 0.03 cm</code></pre>
 <li>numeri complessi (li includiamo per completezza ma non ci torneremo sopra).</li>
 </ul>
 <p>Vediamoli in opera:</p>
-<div id="7d16d0b4" class="cell" data-execution_count="19">
+<div id="5fb4ff7e" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">17</span></span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="fl">0.26</span></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="fl">1.4</span> <span class="op">+</span> <span class="ot">2.3j</span></span>
@@ -810,7 +810,7 @@ Consiglio
 <li><code>dict</code>: mapping di tipo chiave-valore.</li>
 </ul>
 <p>E la stessa lista, vista in azione:</p>
-<div id="0d2c4eae" class="cell" data-execution_count="20">
+<div id="afadf363" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> (<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>)</span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> {<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>}</span>
@@ -832,7 +832,7 @@ Consiglio
 <h3 data-number="3.3.4" class="anchored" data-anchor-id="altre-cose"><span class="header-section-number">3.3.4</span> Altre cose?</h3>
 <p>Ci sono almeno altre due cose che dobbiamo menzionare prima di chiudere la nostra carrellata sui tipi nativi di Python.</p>
 <p>Abbiamo già visto che quando testiamo l’uguaglianza di due oggetti con l’operatore <code>==</code> il risultato può essere vero o falso. Tecnicamente una variabile che ha solo due valori possibili (convenzionalmente vero o falso) si chiama variabile <em>booleana</em>. In Python il risultato del confronto tra due oggetti è una variabile booleana.</p>
-<div id="dcb822cc" class="cell" data-execution_count="21">
+<div id="faeb2441" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">==</span> <span class="dv">3</span>, <span class="bu">type</span>(<span class="dv">3</span> <span class="op">==</span> <span class="dv">3</span>))</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">3</span> <span class="op">==</span> <span class="dv">4</span>, <span class="bu">type</span>(<span class="dv">3</span> <span class="op">==</span> <span class="dv">4</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -841,7 +841,7 @@ False &lt;class 'bool'&gt;</code></pre>
 </div>
 </div>
 <p>L’ultima cosa è l’oggetto speciale <code>None</code>, che non fa niente, non è uguale a nient’altro se non se stesso e non supporta nessuna operazione specifica.</p>
-<div id="0832a908" class="cell" data-execution_count="22">
+<div id="7b96ffb7" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="va">None</span>, <span class="bu">type</span>(<span class="va">None</span>))</span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="va">None</span> <span class="op">==</span> <span class="st">"None"</span>)</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="va">None</span> <span class="op">==</span> <span class="va">False</span>)</span>
@@ -860,7 +860,7 @@ False</code></pre>
 <h2 data-number="3.4" class="anchored" data-anchor-id="sec-array"><span class="header-section-number">3.4</span> Gli array di numpy</h2>
 <p><a href="https://numpy.org/">numpy</a> è la libreria alla base dell’ecosistema scientifico di Python. Se dovessimo riassumere in una frase quel che offre numpy, diremmo: un nuovo tipo di <em>array</em> multidimensionali, ed una collezione estensiva di funzioni matematiche capaci di inter-operare con esso in modo trasparente. In questa breve sezione ci prenderemo il tempo per capire cosa significa attraverso alcuni esempi.</p>
 <p>Un array di numpy è, superficialmente, non troppo dissimile da una lista—tanto che il modo più immediato di creare un array è proprio partendo da una lista.</p>
-<div id="a7c62242" class="cell" data-execution_count="23">
+<div id="f62effe0" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>l <span class="op">=</span> [<span class="fl">1.</span>, <span class="fl">2.</span>, <span class="fl">3.</span>, <span class="fl">4.</span>]</span>
@@ -874,7 +874,7 @@ False</code></pre>
 </div>
 <p>(Le più attente tra voi avranno notato la sottile differenza con cui i due oggetti vengono rappresentati attraverso il built-in <code>print</code>; non è una cosa fondamentale, ma tenetela in mente perché potrebbe tornarvi utile quando dovete distinguere tra cosa diverse.)</p>
 <p>Ci sono altri modi di creare array? Moltissimi, e offriamo qui una breve selezione senza particolari spiegazioni—ove i nomi non fossero completamente auto-esplicativi il consiglio è sempre lo stesso: la <a href="https://numpy.org/doc/stable/user/absolute_beginners.html">documentazione</a>.</p>
-<div id="14e84a3e" class="cell" data-execution_count="24">
+<div id="2eca7e8a" class="cell" data-execution_count="24">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb42"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.zeros(<span class="dv">8</span>))</span>
@@ -901,7 +901,7 @@ False</code></pre>
 <section id="aritmetica-degli-array" class="level3" data-number="3.4.1">
 <h3 data-number="3.4.1" class="anchored" data-anchor-id="aritmetica-degli-array"><span class="header-section-number">3.4.1</span> Aritmetica degli array</h3>
 <p>Abbiamo già visto che le liste supportano alcune operazioni aritmetiche—la somma, che in questo contesto intendiamo come concatenazione, ed il prodotto per un numero intero, intesa come ripetizione.</p>
-<div id="2af73fa3" class="cell" data-execution_count="25">
+<div id="fbdd1f87" class="cell" data-execution_count="25">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>l1 <span class="op">=</span> [<span class="fl">1.</span>, <span class="fl">2.</span>, <span class="fl">3.</span>]</span>
 <span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>l2 <span class="op">=</span> [<span class="fl">4.</span>, <span class="fl">5.</span>, <span class="fl">6.</span>]</span>
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -914,7 +914,7 @@ False</code></pre>
 </div>
 <p>Questo è più o meno tutto. Se provate a moltiplicare due liste tra di loro, o sottrarre (o dividere) due liste, o moltiplicare una lista per un numero in virgola mobile, vedrete che la cosa fallisce miseramente. (E per ottimi motivi, diremmo, perché non è per niente ovvio cosa dovremmo aspettarci da una divisione tra liste.)</p>
 <p>E gli array? Qui la cosa è completamente diversa, perché gli array di numpy <em>supportano estensivamente le operazioni aritmetiche elementari, intese però come operazioni elemento per elemento</em>. Ne segue, banalmente, che là dove c’è sovrapposizione con le operazioni supportate dalle liste, il comportamento dei due oggetti è completamente diverso!</p>
-<div id="6f7ebb5c" class="cell" data-execution_count="26">
+<div id="9301f0a9" class="cell" data-execution_count="26">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a>a1 <span class="op">=</span> np.array([<span class="fl">1.</span>, <span class="fl">2.</span>, <span class="fl">3.</span>])</span>
@@ -937,7 +937,7 @@ False</code></pre>
 </div>
 <p>Quale delle due cose vi pare più utile per noi? Beh, dovrebbe essere più o meno ovvio che se la nostra attività principale è manipolare numeri, allora gli array sono quello che fa per noi.</p>
 <p>Volete un esempio? Torniamo per un secondo al nostro glorioso, primo grafico che abbiamo visto nel <a href="crash.html" class="quarto-xref"><span>Capitolo 2</span></a>, ed in particolare a come abbiamo definito i valori centrali e le incertezze sulla variabile indipendente</p>
-<div id="6b07d3e4" class="cell" data-execution_count="27">
+<div id="83018edf" class="cell" data-execution_count="27">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> [<span class="fl">1.</span>, <span class="fl">4.</span>, <span class="fl">9.</span>, <span class="fl">16.</span>, <span class="fl">25.</span>]</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>dy <span class="op">=</span> [<span class="fl">1.</span>, <span class="fl">1.</span>, <span class="fl">1.</span>, <span class="fl">1.</span>, <span class="fl">1.</span>]</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -950,7 +950,7 @@ False</code></pre>
 </div>
 <p>(Notate: adesso che sappiamo la differenza tra numeri interi e numeri in virgola mobile dobbiamo cercare di usare consistentemente questi ultimi per scrivere le misure.)</p>
 <p>Pensate un attimo: non sarebbe più semplice scrivere</p>
-<div id="6e9dc1b4" class="cell" data-execution_count="28">
+<div id="517d97cb" class="cell" data-execution_count="28">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="fl">1.</span>, <span class="fl">4.</span>, <span class="fl">9.</span>, <span class="fl">16.</span>, <span class="fl">25.</span>])</span>
@@ -964,7 +964,7 @@ False</code></pre>
 </div>
 </div>
 <p>Così facendo, se ad un certo punto decidessimo che il valore più appropriato per l’incertezza <code>dy</code> è <span class="math inline">\(1.2\)</span> anziché <span class="math inline">\(1.\)</span>, dovremmo cambiare solo un numero e non 5! E ancora, con questa aggiunta alla nostra cassetta degli attrezzi è facile esprimere un errore relativo costante</p>
-<div id="1346633e" class="cell" data-execution_count="29">
+<div id="7249b944" class="cell" data-execution_count="29">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.array([<span class="fl">1.</span>, <span class="fl">4.</span>, <span class="fl">9.</span>, <span class="fl">16.</span>, <span class="fl">25.</span>])</span>
@@ -983,7 +983,7 @@ False</code></pre>
 <h3 data-number="3.4.2" class="anchored" data-anchor-id="indirizzamento-degli-elementi"><span class="header-section-number">3.4.2</span> Indirizzamento degli elementi</h3>
 <p>C’è una cosa importante che abbiamo omesso di dire quando abbiamo introdotto le sequenze: come faccio ad indirizzare un elemento specifico (<em>indexing</em>) o un sottoinsieme di elementi (<em>slicing</em>) all’interno della sequenza? In fondo le operazioni elemento-a-elemento non sono l’unica cosa che potrei voler fare con un array…</p>
 <p>Trovate i dettagli più importanti <a href="https://numpy.org/doc/stable/user/absolute_beginners.html#indexing-and-slicing">qui</a> ma la risposta breve è che gli array (e le liste) si indirizzano con una sintassi dedicata che fa uso delle parentesi quadre.</p>
-<div id="da0b8bc6" class="cell" data-execution_count="30">
+<div id="76e85d12" class="cell" data-execution_count="30">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="fl">1.</span>, <span class="fl">10.</span>, <span class="dv">10</span>)</span>
@@ -1019,7 +1019,7 @@ Consiglio
 <h3 data-number="3.4.3" class="anchored" data-anchor-id="operazioni-matematiche"><span class="header-section-number">3.4.3</span> Operazioni matematiche</h3>
 <p>Siamo arrivati al piatto forte: la lista sterminata di <a href="https://numpy.org/doc/stable/reference/routines.math.html">funzioni matematiche</a> supportata da numpy. Se queste non bastassero, il modulo <a href="https://docs.scipy.org/doc/scipy/reference/special.html#module-scipy.special">scipy.special</a> ne aggiunge molte altre decine. Ce n’è letteralmente per tutti i gusti, e non solo le solite sospette (funzioni trigonometriche, esponenziali, logaritmi), ma veramente tutte quelle che potete verosimilmente immaginare. Seguite i link e date un’occhiata voi stesse.</p>
 <p>Ma la cosa più importante non è la lunghezza della lista di funzioni supportate—è il fatto che tutte queste funzioni, esattamente come abbiamo visto per l’aritmetica, operano sugli array <em>elemento per elemento</em>!</p>
-<div id="e2c08a9f" class="cell" data-execution_count="31">
+<div id="f36af5c3" class="cell" data-execution_count="31">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb56-2"><a href="#cb56-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.array([<span class="fl">1.</span>, <span class="fl">2.</span>, <span class="fl">3.</span>, <span class="fl">4.</span>, <span class="fl">5.</span>])</span>
 <span id="cb56-3"><a href="#cb56-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -1033,7 +1033,7 @@ Consiglio
 </div>
 </div>
 <p>Volete fare il grafico di una funzione trigonometrica? Niente di più semplice.</p>
-<div id="859d185e" class="cell" data-execution_count="32">
+<div id="a1e6c134" class="cell" data-execution_count="32">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
