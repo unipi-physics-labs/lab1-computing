@@ -1,5 +1,7 @@
 # Cronologia delle versioni {#sec-history}
 
+### Versione 0.4.3 (2026-08-22) {.unnumbered}
+
 * Nome del file pdf cambiato in "compnotes".
 * Script di release modificato per generare il README aggiornato.
 * Non ci sono cambiamenti al testo delle note.
