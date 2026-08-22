@@ -364,7 +364,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">21 agosto 2026</p>
+      <p class="date">22 agosto 2026</p>
     </div>
   </div>
   
@@ -377,7 +377,7 @@ window.Quarto = {
 
 
 <p>Siamo pronti per partire con il nostro primo grafico. Leggete attentamente il frammento di codice che segue. (Notate che abbiamo aggiunto i numeri di linea all’inizio per poter commentare puntualmente, ma ovviamente questi non fanno parte del programma.)</p>
-<div id="528b6f28" class="cell" data-execution_count="1">
+<div id="b086e8f6" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-label="2"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="co"># Define the input data.</span></span>
@@ -411,7 +411,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Quando lanciate l’interprete Python in modalità interattiva, l’insieme di cose che avete a disposizione è estremamente limitata—essenzialmente la sintassi del linguaggio ed un numero limitato di <a href="https://docs.python.org/3/library/functions.html">funzioni built-in</a>. (Prendetevi un secondo per seguire il link e dare un’occhiata sommaria alla pagine, in modo da avere un’idea grossolana di cosa stiamo parlando—sono un centinaio di funzioni con nomi che vi sembreranno, per la maggio parte esotici.)</p>
 <p>Se volete arrotondare un numero reale all’intero più vicino, ad esempio, non vi serve altro che il built-in <code>round()</code>:</p>
-<div id="377b567b" class="cell" data-execution_count="2">
+<div id="08cf61e2" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(<span class="fl">2.25</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(<span class="fl">2.75</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -421,7 +421,7 @@ window.Quarto = {
 </div>
 <p>Oltre alle funzioni built-in, Python fornisce una <a href="https://docs.python.org/3/library/index.html">libreria standard</a> onnicomprensiva che, con ogni probabilità, copre una buona parte delle esigenze che avrete mai nella vostra carriera di fisiche. (Anche qui: prendetevi un attimo per seguire il link e dare una rapida occhiata alla documentazione della libreria standard: si tratta letteralmente di centinaia di moduli, ciascuno dei quali offre un numero variabile—spesso molte decine—di funzioni e strutture dati.)</p>
 <p>Avete bisogno di funzioni trigonometriche, logaritmi ed esponenziali? Non ci sono problemi:</p>
-<div id="79fa0129" class="cell" data-execution_count="3">
+<div id="83ff52bb" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.log(<span class="dv">10</span>))</span>
@@ -436,7 +436,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Equivalentemente (lo troverete spesso in giro, per cui tanto vale ingoiare subito la pillola) potete arrivare allo stesso risultato per una strada leggermente diversa</p>
-<div id="8fc69269" class="cell" data-execution_count="4">
+<div id="faf2343f" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> log, log10, exp, cos</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(log(<span class="dv">10</span>))</span>
