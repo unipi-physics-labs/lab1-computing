@@ -1,6 +1,0 @@
-# Nota sul software libero {.unnumbered #sec-foss}
-
-Ok, questa è letteralmente la quarta sezione non numerata: una prefazione, una licenza,
-una nota sul linguaggio di genere e adesso una nota sul software libero?
-Ma non dovevamo imparare a programmare? Controllate l'impazienza, perché ci siamo quasi,
-ma anche questa è una cosa importante.

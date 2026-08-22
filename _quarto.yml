@@ -36,10 +36,10 @@ book:
     - index.qmd
     - copyright.qmd
     - gender.qmd
-    - foss.qmd
 
     - part: "Parte prima: dal problema alla soluzione"
       chapters:
+        - chapters/glossary.qmd
         - chapters/install.qmd
         - chapters/crash.qmd
         - chapters/types.qmd
