@@ -38,12 +38,12 @@ REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 METADATA_FILE_PATH = REPO_ROOT / "meta.yml"
 README_FILE_PATH = REPO_ROOT / "README.md"
 GITHUB_PAGES_URL = "https://unipi-physics-labs.github.io/lab1-computing/"
-GITHUB_PAGES_URL = "https://github.com/unipi-physics-labs/lab1-computing/issues"
+GITHUB_TRACKER_URL = "https://github.com/unipi-physics-labs/lab1-computing/issues"
 GITHUB_RELEASE_URL = "https://github.com/unipi-physics-labs/lab1-computing/releases"
 
-INCREMENT_MODES = ('major', 'minor', 'patch')
+INCREMENT_MODES = ("major", "minor", "patch")
 
-_ENCODING = 'utf-8'
+_ENCODING = "utf-8"
 
 README = f"""# lab1-computing
 
@@ -58,7 +58,7 @@ La versione corrente delle note è disponibile:
 
 Se trovate errori e/o omissioni, oppure avete suggerimenti per migliorare il materiale,
 non esitate ad aprire una issue nel nostro
-[tracker]({GITHUB_PAGES_URL}).
+[tracker]({GITHUB_TRACKER_URL}).
 
 Buona lettura!
 """
