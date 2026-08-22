@@ -92,7 +92,7 @@ jobs:
             exit 1
           fi
 
-          OUTPUT="elementi-di-computazione-${VERSION}.pdf"
+          OUTPUT="compnotes-${VERSION}.pdf"
           mv "$PDF" "$OUTPUT"
 
           echo "PDF_FILE=$OUTPUT" >> "$GITHUB_ENV"
