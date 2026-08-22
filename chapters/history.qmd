@@ -1,5 +1,7 @@
 # Cronologia delle versioni {#sec-history}
 
+### Versione 0.4.4 (2026-08-22) {.unnumbered}
+
 * Piccolo bug fix nel README.
 * Non ci sono cambiamenti al testo delle note.
 
