@@ -310,5 +310,46 @@ decompilazione automatica su vasta scala rimane non praticabile.
 
 ## Software aperto e software chiuso
 
+Tutto quello che abbiamo detto fino ad ora ha implicazioni interessanti in termini delle
+modalità in cui il software viene tipicamente *distribuito*. Mettiamoci per un attimo
+nella posizione di una sviluppatrice. Se l'unica cosa che ci interessa è che le nostre
+utenti possano *usare* il nostro programma, allora, da un punto di vista strettamente
+tecnico, l'unica cosa che dobbiamo distribuire è il file eseguibile---esattamente nello
+stesso modo in cui al ristorante ci viene dato il piatto che abbiamo ordinato, cucinato
+e pronto per il consumo, e non la ricetta.
+
+Se facciamo così, però, limitiamo fortemente quello che la nostra utente può fare con
+il programma. Può usarlo, certo, ma la cosa finisce lì. Senza accesso al codice sorgente
+non può studiarne la struttura logica, né i dettagli tecnici del funzionamento interno,
+che talvolta possono essere interessanti quanto e più del risultato finale. Non può
+verificare, se non indirettamente, che il programma non provochi effetti collaterali
+non voluti o addirittura malevoli. Non può *modificare* il programma (ammesso che ne sia
+in grado) per implementare una nuova funzionalità utile.
+
+È chiaro che siamo di fronte ad una dicotomia fondamentale.
+
+***Software aperto (open source)**: software il cui codice sorgente è reso disponibile
+sotto condizioni permissive in termini di modifica e re-distribuzione.*
+
+***Software chiuso (proprietario)**: software per il quale il codice sorgente non è
+generalmente disponibile e la modifica e redistribuzione è controllata dalla persona
+o entità proprietaria del software stesso.*
+
+Abbiamo semplificato enormemente, e la questione è più sottile, ma queste note
+riguardano la computazione, e non il diritto d'autore, per cui ci facciamo bastare
+questo.
+
+| Tipologia | Software libero / open source | Software proprietario |
+|:-----|:-------------------------------|:-----------------------|
+| Sistema operativo | [GNU/Linux](https://www.kernel.org/) | [Microsoft Windows](https://www.microsoft.com/windows/) |
+| Web browser | [Mozilla Firefox](https://www.mozilla.org/firefox/) | [Google Chrome](https://www.google.com/chrome/) |
+| Calcolo scientifico | [Python](https://www.python.org/), [NumPy](https://numpy.org/), [SciPy](https://scipy.org/) | [MATLAB](https://www.mathworks.com/products/matlab.html) |
+| Produttività personale | [LibreOffice](https://www.libreoffice.org/) | [Microsoft 365](https://www.microsoft.com/microsoft-365/) |
+| Editing di immagini | [GIMP](https://www.gimp.org/) | [Adobe Photoshop](https://www.adobe.com/products/photoshop.html) |
+| Editing audio | Ardour | ProTools, Cubase |
+| Editing video |  |  |
+
+: Esempi di software open source e proprietario, raggruppati per tipologia. {#tbl-open-proprietary-software}
+
 
 ## Software libero
