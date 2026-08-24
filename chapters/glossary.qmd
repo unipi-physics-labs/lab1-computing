@@ -1,2 +1,314 @@
 # Glossario {#sec-glossary}
 
+Prima di cominciare abbiamo bisogno di sviluppare un minimo di linguaggio comune, e
+andare attraverso un certo numero di termini che incontreremo regolarmente nel seguito.
+(A onor del vero non si tratta proprio di un glossario, come il titolo di questo
+capitolo sembrerebbe indicare, perché proveremo a procedere in ordine logico anziché
+alfabetico.) Lo faremo in modo estremamente informale---a tratti al limite della
+correttezza---per cui portate pazienza. Nel proseguo di queste note cercheremo di fare
+ammenda per le cose che abbiamo introdotto in modo troppo sommario in questo capitolo.
+
+
+## Algoritmi e programmi
+
+***Algoritmo**: sequenza finita e non ambigua di operazioni che permette di eseguire un
+determinato compito*.
+
+Torneremo più in dettaglio sull'argomento nel @{sec-algs}, ma non potevamo non iniziare
+con la parola più inflazionata dell'ultimo decennio. Curiosamente, quando pensiamo in
+questi termini, il concetto di algoritmo perde gran parte di quell'aura magica di cui
+i mezzi di comunicazione sembrano averlo circondato, e torna ad essere una cosa
+normale---quasi noiosa.
+
+***Programma**: sequenza di istruzioni che può essere eseguita da un calcolatore.*
+
+Leggete con attenzione, perché a prima vista potreste far fatica a distinguere la
+differenza tra questi due concetti. Indicano entrambi sequenze (di *operazioni* o di
+*istruzioni*, poco importa per il momento) che hanno lo scopo (anche se nel secondo caso
+non lo abbiamo messo in evidenza esplicitamente) di portare a termine un compito
+specifico. Ma, mentre un algoritmo è un concetto largamente astratto, che possiamo
+esprimere in una varietà di forme prive di collegamenti immediati con i calcolatori
+digitali (e.g., con un elenco puntato, con un diagramma di flusso, o semplicemente
+con una descrizione testuale) un programma deve essere espresso in modo che un
+calcolatore, appositamente equipaggiato, sia in grado di interpretarlo.
+
+Le due cose, va da sé, sono collegate: un algoritmo si può esprimere compiutamente nella
+forma di un programma ed un programma può *implementare* un algoritmo. Ma la differenza
+di fondo rimane sostanziale. Spesso, prima di cominciare a scrivere un programma, è
+necessario interrogarsi su quali siano gli algoritmi più adatti a risolvere il problema
+che stiamo affrontando, e chiunque scriva programmi in modo più che casuale deve essere
+proficiente in entrambi gli aspetti.
+
+
+## Linguaggi
+
+Nelle definizione di programma abbiamo utilizzato la parola *istruzione* senza
+definirla, e dobbiamo cercare di ovviare alla mancanza. Non è completamente banale, ma
+proviamo.
+
+***Istruzione**: operazione elementare specificata da un determinato linguaggio di
+programmazione.*
+
+Di per sé questo non è sufficiente perché: (i) non sappiamo cosa vuol dire elementare;
+e (ii) non sappiamo cosa è un linguaggio di programmazione. (In effetti l'aggettivo
+elementare, qui, ha un significato che può variare in modo drammatico a seconda del
+contesto.) Prima che le vostre aspettative crescano troppo, diciamo subito che, scritta
+così, questa definizione è problematica, e non avremo tempo di attaccare il problema
+alla radice ed arrivare ad una definizione formalmente corretta. Ma è utile ugualmente
+provare ad andare avanti ed aggiungere un ulteriore termine al nostro bagaglio.
+
+***Linguaggio di programmazione**: linguaggio formale usato per descrivere operazioni
+eseguibili da un calcolatore.*
+
+Formale, come immaginerete, significa che un linguaggio di programmazione deve avere
+una sintassi ed una semantica ben definita, in cui il significato di un'espressione non
+è soggetto al livello tipico di ambiguità che siamo tutti ben disposti ad accettare
+nei linguaggi naturali.
+
+Ora: non c'è niente di più variegato dell'inventario dei linguaggi di programmazione
+disponibili sul mercato, e la storia dei linguaggi di programmazione è un argomento
+interessante di per sé. Tradizionalmente il primo programma che una persona scrive
+quando impara un nuovo linguaggio di programmazione consiste nello scrivere sullo
+schermo la stringa "[Hello World](https://en.wikipedia.org/wiki/Hello,_world)", e
+la pagina web [The Hello World Collection](http://helloworldcollection.de/) raccoglie
+esempi in più di 600 linguaggi di programmazione.
+
+Se dovessimo scrivere il programma "Hello World" su uno
+[ZX Spectrum](https://en.wikipedia.org/wiki/ZX_Spectrum) nell'*assembly language* del
+microprocessore [Zilog Z80](https://en.wikipedia.org/wiki/Zilog_Z80), il risultato
+potrebbe essere qualcosa del tipo:
+```asm
+org $8000
+  ld bc, STRING
+
+LOOP
+  ld a, (bc)
+  cp 0
+  jr z, EXIT
+  rst $10
+  inc bc
+  jr LOOP
+
+EXIT
+  ret
+
+STRING
+  defb "Hello World!"
+  defb 13, 0
+```
+(Lo Z80 è uno dei microprocessori che hanno permesso la rivoluzione dei personal
+computer negli anni '70 e '80 del 1900, e lo incontreremo di nuovo
+nel @{sec-hw}. Il programma qui sopra è preso verbatim da
+[questo blog](https://benjamin.computer/posts/2022-04-22-ZX-coding.html), che è
+piacevole da leggere e consigliato a tutte le persone interessate all'archeologia
+digitale.)
+
+Lo stesso programma nel linguaggio [Python](https://www.python.org/), che potete
+eseguire comodamente sul vostro portatile, diventa
+```python
+print("Hello World")
+```
+Spoiler alert: noi utilizzeremo Python e non l'assembly language dello Z 80. Non dovreste
+essere sorprese.
+
+Anche senza entrare nei dettagli tecnici, un confronto sommario tra i due programmi ci
+racconta di una storia in cui i linguaggi di programmazione si sono via via allontanati
+dall'hardware, fornendo layer di *astrazione* sempre più avanzati grazie ai quali non è
+più necessaria una conoscenza approfondita della struttura interna della CPU o del layout
+della memoria, e lo stesso programma funziona in modo *trasparente* su un gran numero
+di calcolatori diversi, indipendentemente dai dettagli della loro struttura fisica.
+(Detto così sembra una una cosa perfettamente naturale, ma storicamente il processo è
+stato lungo e complicato.)
+
+Alla luce di questo possiamo rivisitare la definizione di istruzione che abbiamo dato
+all'inizio di questa sezione. Da un punto di vista della macchina, una istruzione è una
+sorta di operazione primitiva definita dalla CPU, che è in un certo senso il cuore del
+calcolatore---in pratica si tratta di operazioni relativamente semplici: caricare un
+determinato valore in un registro, confrontare due numeri, compiere operazioni
+aritmetiche, e così via. (Per completezza: lo Z80 forniva 158 istruzioni distinte, e
+questo numero è aumentato, ma non di ordini di grandezza, nelle CPU moderne.)
+Nel primo esempio qui sopra le righe del nostro programma tendono a mappare una ad una
+con il set di istruzioni definito dalla CPU: `ld` sta per *load*, `cp` per *compare* e
+così via.
+
+Quando invece programmiamo in un linguaggio di altissimo livello come Python, questa
+corrispondenza si perde completamente, tanto che possiamo chiederci se la singola
+riga del nostro programma (che, a più basso livello, si traduce in una serie di
+operazioni elementari) si possa ancora chiamare istruzione.
+Nel capitolo @{sec-functions} vedremo che, in effetti, `print` è una *funzione*, ma
+per il momento possiamo far finta di nulla: abbiamo una vaga idea di cosa sia un
+programma, sappiamo che per scrivere un programma serve un linguaggio, ed un linguaggio
+è fatto, con leggero abuso di notazione, di istruzioni. Questi sono i mattoncini che
+ci servono.
+
+
+## Codice sorgente e codice macchina
+
+Nella seconda parte di queste note impareremo una cosa fondamentale: indipendentemente
+dal linguaggio di programmazione che utilizziamo, *tutto ciò che il nostro calcolatore
+vede è una lunga stringa di zeri ed uni*. In particolare: il programma che noi
+scriviamo, e le istruzioni al suo interno, deve essere *tradotto* in una opportuna
+forma binaria prima di poter essere eseguito dalla macchina.
+
+Si tratta di un punto fondamentale e qualificante, che ci porta immediatamente alla
+distinzione tra due tipi di *codice*.
+
+***Codice sorgente**: rappresentazione testuale di un programma scritto in un linguaggio
+di programmazione.*
+
+***Codice macchina**: sequenza di istruzioni in formato binario che il calcolatore è in
+grado di eseguire direttamente*.
+
+In altre parole, siamo di fronte ad una dicotomia tra la rappresentazione del programma
+nella sue forma intesa per il consumo umano (codice sorgente) ed in quella intesa per
+l'utilizzo da parte della macchina (codice macchina). La prima è pensata per essere
+(scritta e) letta da persone; la seconda per essere eseguita da un calcolatore. Tenetelo
+a mente, perché anche in un era in cui parte della scrittura dei programmi viene
+regolarmente demandata a LLM ed agenti, questa distinzione continua ad essere rilevante.
+
+Se avete mai sentito parlare di *programma eseguibile* o semplicemente *eseguibile*, la
+cosa è rilevante in questo contesto, perché nei moderni sistemi operativi l'eseguibile
+è sostanzialmente un file che contiene il programma in linguaggio macchina, più tutte
+le informazioni aggiuntive che sono necessarie per caricare fisicamente il programma in
+memoria ed eseguirlo. A questo livello non è scandaloso usare i due termini in modo
+intercambiabile.
+
+***Eseguibile**: file contenente un programma in una forma che il sistema operativo può
+fisicamente eseguire.*
+
+La traduzione di un programma dalla sua forma in codice sorgente a quella in codice
+macchina è un processo completamente automatizzato eseguito da un altro programma che,
+a seconda del contesto, prende il nome di *assembler*, *compilatore* o *interprete*.
+
+L'assembler, come dice il nome, è un programma che traduce il codice sorgente in
+assembly language nel codice macchina corrispondente, ed è tipicamente un programma
+altamente specializzato che funzione solo per una particolare architettura ed un
+particolare tipo di CPU. Il programma in assembly language per lo Zilog Z80 che
+abbiamo visto prima, ad esempio, una volta assemblato nel linguaggio macchina
+corrispondente sarebbe qualcosa del tipo:
+```asm
+00000001
+00001101
+10000000
+00001010
+11111110
+00000000
+00101000
+00000100
+11010111
+00000011
+00011000
+11110111
+11001001
+01001000
+01100101
+01101100
+01101100
+01101111
+00100000
+01010111
+01101111
+01110010
+01101100
+01100100
+00100001
+00001101
+00000000
+```
+(Per ragioni che saranno chiare nel seguito abbiamo raggruppato le cifre binarie in
+gruppi di 8, ma, a parte questo, abbiamo deliberatamente scritto un gruppo dopo l'altro,
+senza preservare la corrispondenza con le istruzioni corrispondenti nel codice sorgente.)
+Andare avanti e indietro qualche volta tra i codice sorgente ed il codice macchina
+del nostro programma "Hello World" per lo Z80 è uno dei modi più efficaci per capire
+la differenza tra le due cose---il codice sorgente è, oggettivamente criptico, ma il
+codice macchina è completamente indigeribile per una persona!
+
+Per diverse ragioni su cui non abbiamo il tempo di soffermarci, la scrittura di
+programmi in assembly language è andata fuori moda diversi decenni fa in favore
+dei linguaggi di alto livello *compilati*. Guardiamo una possibile implementazione del
+programma di "Hello World" in C.
+```c
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+  puts("Hello World!");
+  return EXIT_SUCCESS;
+}
+```
+Il *compilatore* (C, in questo caso) è quel programma che traduce il codice sorgente
+in una forma (assembly language oppure codice macchina) che sia direttamente
+utilizzabile dal calcolatore. Superficialmente può sembrare esattamente la stessa cosa
+che fa l'assembler, ma nella realtà il compilatore fa molto di più, perché nel
+programma qui sopra *è scomparso ogni riferimento ai dettagli dell'hardware*.
+Non ci sono indirizzi di memoria o registri, solo costrutti di alto livello che il
+compilatore deve tradurre in istruzioni veri e proprie per l'architettura di riferimento.
+In altre parole, il lavoro dell'assembler è relativamente semplice---si tratta
+principalmente di una traduzione uno ad uno di istruzioni da codice sorgente a codice
+macchina. Il lavoro del compilatore è molto più sofisticato, perché nel processo deve
+convertire costrutti potenzialmente molto complessi nell'opportuna combinazione di
+istruzioni di basso livello---e, se possibile, quella più efficiente. (Per inciso,
+questo è uno dei motivi per cui i linguaggi compilati hanno acquistato la popolarità
+che hanno: sollevano le persone da una mole enorme di lavoro di dettaglio che
+può essere fatto automaticamente e permettono di scrivere programmi complessi
+concentrandosi prevalentemente sulla loro struttura logica e funzionale.)
+
+Esiste un'altra classe di linguaggi, quelli *interpretati*, in cui il processo di
+traduzione da codice sorgente a codice macchina è affidato ad un interprete e
+non avviene, come nel caso dei linguaggi compilati, tutto in una volta prima
+dell'esecuzione---al contrario la traduzione è fatta da un *interprete*, riga per
+riga, durante l'esecuzione. Il nostro programma di "Hello World", in un linguaggio
+interpretato come il BASIC, sarebbe
+```asm
+10 PRINT "Hello World!"
+```
+(Incidentalmente, questo assomiglia molto a quello che scriveremmo in Python. La cosa
+non è sorprendente, perché Python è un linguaggio interpretato, anche se i dettagli
+del funzionamento sono diversi da quelli del BASIC.)
+
+Al di là dei dettagli tecnici, sui quali potete glissare, abbiamo capito il punto
+fondamentale: abbiamo il codice sorgente per le persone, il codice macchina per i
+computer, e si passa dal primo al secondo attraverso programmi che si occupano della
+traduzione in modo automatico.
+
+
+## Reverse engineering
+
+La compilazione (o l'interpretazione) di un programma scritto in un linguaggio di alto
+livello è un classico problema *non invertibile*. Mentre compilare il codice sorgente è,
+per definizione, un'operazione meccanica, risalire al codice sorgente a partire dal
+codice macchina (e.g., dal file eseguibile) non è, in generale possibile---le
+informazioni che il compilatore non preserva e la natura delle decisioni che il
+compilatore deve prendere nel processo di traduzione sono tali che le istruzioni nel
+risultato finale in codice macchina, banalmente, non sono in corrispondenza biunivoca
+con il codice sorgente.
+(Le cose sono significativamente più semplici nel caso di codice macchina assemblato
+a partire da un programma in assembly language, ma siccome viviamo in un'era in cui
+questa modalità di programmazione è, al più, un'applicazione di nicchia, la cosa è
+largamente irrilevante.)
+
+La cosa è, in qualche senso, analoga a quel che avviene in cucina, se pensiamo ad una
+ricetta come al codice sorgente e al piatto pronto come file eseguibile. Possiamo
+seguire fedelmente una ricetta e preparare il nostro piatto preferito, ma se
+andiamo al ristorante ed ordiniamo un piatto che ci piace particolarmente, riprodurlo
+a casa senza altra informazione che il piatto stesso è significativamente più
+difficile---probabilmente possiamo identificare gli ingredienti più importanti,
+ma per chiudere il cerchio avremo bisogno di informazioni aggiuntive che solo chi
+conosce la ricetta possiede.
+
+***Reverse engineering**: processo attraverso il quale si cerca di ricostruire il
+flusso logico e strutturale di un programma (e.g., nella forma di un possibile codice
+sorgente) a partire dal codice macchina (e.g., dal file eseguibile).*
+
+Decompilare è un'operazione difficile, ma non impossibile. Esistono strumenti
+sviluppati specificamente per il reverse engineering, e lo sviluppo tumultuoso
+dell'IA generativa che abbiamo visto negli ultimi anni potrebbe generare una vera e
+propria rivoluzione in questo senso. Detto questo, oltre una certa complessità, la
+decompilazione automatica su vasta scala rimane non praticabile.
+
+
+## Software aperto e software chiuso
+
+
+## Software libero

@@ -1,4 +1,4 @@
-# Dentro il calcolatore
+# Dentro il calcolatore {#sec-hw}
 
 Noi tutte, da Fisiche, siamo educate---e per buoni motivi---ad apprezzare l'importanza
 del principio di sovrapposizione caratteristico dei sistemi lineari: la forza totale
