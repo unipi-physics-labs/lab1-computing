@@ -308,7 +308,7 @@ propria rivoluzione in questo senso. Detto questo, oltre una certa complessità,
 decompilazione automatica su vasta scala rimane non praticabile.
 
 
-## Software aperto e software chiuso
+## Software aperto e software proprietario
 
 Tutto quello che abbiamo detto fino ad ora ha implicazioni interessanti in termini delle
 modalità in cui il software viene tipicamente *distribuito*. Mettiamoci per un attimo
@@ -328,28 +328,67 @@ in grado) per implementare una nuova funzionalità utile.
 
 È chiaro che siamo di fronte ad una dicotomia fondamentale.
 
-***Software aperto (open source)**: software il cui codice sorgente è reso disponibile
+***Software aperto (o open source)**: software il cui codice sorgente è reso disponibile
 sotto condizioni permissive in termini di modifica e re-distribuzione.*
 
-***Software chiuso (proprietario)**: software per il quale il codice sorgente non è
+***Software proprietario**: software per il quale il codice sorgente non è
 generalmente disponibile e la modifica e redistribuzione è controllata dalla persona
 o entità proprietaria del software stesso.*
+
+E, per completezza, il software aperto non è un concetto astratto di valore unicamente
+accademico---il mondo reale ne è letteralmente pieno. Date un'occhiata alla
+@{tbl-open-proprietary-software}.
+
+| Tipologia | Software libero / open source | Software proprietario |
+|:-----|:-------------------------------|:-----------------------|
+| Sistema operativo | [GNU/Linux](https://www.kernel.org/) | [Microsoft Windows](https://www.microsoft.com/windows/), [macOS](https://www.apple.com/os/macos/) |
+| Web browser | [Firefox](https://www.mozilla.org/firefox/) | [Google Chrome](https://www.google.com/chrome/) |
+| Calcolo scientifico | [Python](https://www.python.org/), [NumPy](https://numpy.org/), [SciPy](https://scipy.org/) | [MATLAB](https://www.mathworks.com/products/matlab.html) |
+| Produttività personale | [LibreOffice](https://www.libreoffice.org/) | [Microsoft 365](https://www.microsoft.com/microsoft-365/) |
+| Editing di immagini | [GIMP](https://www.gimp.org/) | [Adobe Photoshop](https://www.adobe.com/products/photoshop.html) |
+| Editing audio | [Ardour](https://ardour.org/) | [ProTools](https://www.avid.com/pro-tools), [Cubase](https://www.steinberg.net/cubase/) |
+
+: Esempi di software open source e proprietario, raggruppati per tipologia. {#tbl-open-proprietary-software}
 
 Abbiamo semplificato enormemente, e la questione è più sottile, ma queste note
 riguardano la computazione, e non il diritto d'autore, per cui ci facciamo bastare
 questo.
 
-| Tipologia | Software libero / open source | Software proprietario |
-|:-----|:-------------------------------|:-----------------------|
-| Sistema operativo | [GNU/Linux](https://www.kernel.org/) | [Microsoft Windows](https://www.microsoft.com/windows/) |
-| Web browser | [Mozilla Firefox](https://www.mozilla.org/firefox/) | [Google Chrome](https://www.google.com/chrome/) |
-| Calcolo scientifico | [Python](https://www.python.org/), [NumPy](https://numpy.org/), [SciPy](https://scipy.org/) | [MATLAB](https://www.mathworks.com/products/matlab.html) |
-| Produttività personale | [LibreOffice](https://www.libreoffice.org/) | [Microsoft 365](https://www.microsoft.com/microsoft-365/) |
-| Editing di immagini | [GIMP](https://www.gimp.org/) | [Adobe Photoshop](https://www.adobe.com/products/photoshop.html) |
-| Editing audio | Ardour | ProTools, Cubase |
-| Editing video |  |  |
 
-: Esempi di software open source e proprietario, raggruppati per tipologia. {#tbl-open-proprietary-software}
+### Software aperto, software libero, software gratuito
 
+A ben guardare, c'è una cosa che abbiamo colpevolmente tralasciato nella discussione
+precedente: la differenza tra il software *open source* ed il software *libero*.
+Si tratta di due concetti che nella pratica sono largamente sovrapponibili, le cui
+differenze puntano però ad una questione fondamentale, ovverosia il motivo per cui
+decidiamo di adottare un particolare modello di sviluppo piuttosto per un altro.
+Nel primo caso è per una questione meramente tecnica, nel secondo caso è una questione,
+come dice il nome, di libertà. (Stiamo divagando, ma se siete interessate leggete
+[qui](https://www.gnu.org/philosophy/open-source-misses-the-point.html).)
 
-## Software libero
+***Software libero**: software che rispetta le libertà dell'utente e la comunità.*
+
+Per completezza, le quattro libertà *classiche* identificate dalla
+[Free Software Foundation](https://www.fsf.org/) sono:
+
+* Libertà di eseguire il programma come si desidera, per qualsiasi scopo (libertà 0).
+* Libertà di studiare come funziona il programma e di modificarlo in modo da adattarlo
+alle proprie necessità (libertà 1). L'accesso al codice sorgente ne è un prerequisito.
+* Libertà di ridistribuire copie in modo da aiutare gli altri (libertà 2).
+* Libertà di migliorare il programma e distribuirne pubblicamente i miglioramenti
+apportati (e le versioni modificate in genere), in modo tale che tutta la
+comunità ne tragga beneficio (libertà 3). L'accesso al codice sorgente ne è un
+prerequisito.
+
+Se siete arrivate fino a qui ed avete fatto attenzione avrete anche notato che non
+abbiamo mai parlato di *prezzo*, e questa volta deliberatamente. Tipicamente il
+software proprietario si paga---direttamente, in soldi, o indirettamente, e.g., in
+privacy. Di converso il software libero, per definizione, si può usare gratuitamente.
+Ma il software libero, come dice il nome, è una questione di libertà, non di prezzo.
+
+::: {.callout-warning}
+Questo corso è deproprietarizzato: quando possibile, tutte le attività del corso saranno svolte tramite programmi e piattaforme basate su software libero. Questa scelta è motivata dall'esigenza di garantire pari opportunità di accesso agli strumenti didattici, favorire la riproducibilità di metodi e risultati e incoraggiare l'adozione di tecnologie libere, trasparenti e sostenibili nel contesto scientifico e professionale.
+:::
+
+*"Le libertà sono tutte solidali. Non se ne offende una senza offenderle tutte."*
+(Filippo Turati, 1923)
