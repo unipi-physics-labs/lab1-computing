@@ -1,24 +1,420 @@
 # Controllo del flusso {#sec-flow}
 
-"Ripetete il tutto per altre tre volte."; "lasciate cuocere fino a che le patate
-non saranno dorate"; "se il sugo è troppo secco aggiungere un po' di acqua di
-cottura". Se avete letto anche distrattamente un libro di ricette in vita vostra
-vi sarà capitato di imbattervi in frasi di questo tipo. Per noi le parole chiave
-sono *tre volte*, *fino a che*, e *se*.
+Riflettiamo un attimo sulle frasi seguenti, prese dal mio libro di cucina preferito:
+
+* *fate lievitare girando l'impasto per 2 o 3 volte a intervalli qualche minuto*;
+* *mescolare fino ad ottenere un impasto uniforme e senza grumi*;
+* *se il sugo risulta amaro, aggiungere un cucchiaino di zucchero*.
+
+Cosa c'entra tutto questo con la programmazione? Beh, per cominciare queste semplici
+frasi ci dicono che una ricetta non è necessariamente una semplice sequenza di
+istruzioni da eseguire una dopo l'altra. Ci sono casi in cui la nozione di
+*ripetere un'operazione* (per un certo numero di volte, o fino a che non succeda
+qualcosa) è indispensabile. E altri in cui il da farsi dipende dal
+*verificarsi o meno di una condizione*. E siccome abbiamo detto che una ricetta è la
+nostra analogia archetipica per un programma, una cosa simile varrà anche in
+quest'ultimo caso.
+
+Spoiler alert: è proprio così. Prendete nota delle espressioni *per $n$ volte*,
+*fino a che* e *se* (nel senso condizionale, senza l'accento acuto) perché ogni
+linguaggio di programmazione che si rispetti fornisce parole chiave per esprimere
+esattamente questi costrutti. Python non fa eccezione.
+
+
+## Prendere decisioni
 
 
 ## Ripetere
 
-Una delle cose che capita più di frequente quando programmiamo è quella di
-*ripetere*, o *iterare* un'operazione. Sommare i numeri interi da $0$ a
-$100$, per esempio, significa in pratica partire da $0$ e poi sommare ripetutamente
-$1$, $2$\ldots e così via. Python, così come del resto la maggior parte dei
-linguaggi di programmazione offre due costrutti: `for` e `while`.
+*Provando e riprovando* è il motto della
+[Società Italiana di Fisica](https://www.sif.it/chi); e non a caso.
+Ripetere, o *iterare*, un'operazione è letteralmente una delle componenti fondamentali
+del metodo scientifico.
+
+Supponiamo per un attimo che una persona vi chieda di sommare i primi $1000$ numeri
+interi positivi. Potete aiutarvi con un calcolatore, e siete incoraggiate ad utilizzare
+tutte le cose che abbiamo imparato fino a questo momento. Facile, no?
+
+```{python}
+s = 0 + 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10 + 11 + 12 + 13 + 14 + 15 + 16 + \
+17 + 18 + 19 + 20 + 21 + 22 + 23 + 24 + 25 + 26 + 27 + 28 + 29 + 30 + 31 + 32 + \
+33 + 34 + 35 + 36 + 37 + 38 + 39 + 40 + 41 + 42 + 43 + 44 + 45 + 46 + 47 + 48 + \
+49 + 50 + 51 + 52 + 53 + 54 + 55 + 56 + 57 + 58 + 59 + 60 + 61 + 62 + 63 + 64 + \
+65 + 66 + 67 + 68 + 69 + 70 + 71 + 72 + 73 + 74 + 75 + 76 + 77 + 78 + 79 + 80 + \
+81 + 82 + 83 + 84 + 85 + 86 + 87 + 88 + 89 + 90 + 91 + 92 + 93 + 94 + 95 + 96 + \
+97 + 98 + 99 + 100 + 101 + 102 + 103 + 104 + 105 + 106 + 107 + 108 + 109 + 110 + \
+111 + 112 + 113 + 114 + 115 + 116 + 117 + 118 + 119 + 120 + 121 + 122 + 123 + \
+124 + 125 + 126 + 127 + 128 + 129 + 130 + 131 + 132 + 133 + 134 + 135 + 136 + \
+137 + 138 + 139 + 140 + 141 + 142 + 143 + 144 + 145 + 146 + 147 + 148 + 149 + \
+150 + 151 + 152 + 153 + 154 + 155 + 156 + 157 + 158 + 159 + 160 + 161 + 162 + \
+163 + 164 + 165 + 166 + 167 + 168 + 169 + 170 + 171 + 172 + 173 + 174 + 175 + \
+176 + 177 + 178 + 179 + 180 + 181 + 182 + 183 + 184 + 185 + 186 + 187 + 188 + \
+189 + 190 + 191 + 192 + 193 + 194 + 195 + 196 + 197 + 198 + 199 + 200 + 201 + \
+202 + 203 + 204 + 205 + 206 + 207 + 208 + 209 + 210 + 211 + 212 + 213 + 214 + \
+215 + 216 + 217 + 218 + 219 + 220 + 221 + 222 + 223 + 224 + 225 + 226 + 227 + \
+228 + 229 + 230 + 231 + 232 + 233 + 234 + 235 + 236 + 237 + 238 + 239 + 240 + \
+241 + 242 + 243 + 244 + 245 + 246 + 247 + 248 + 249 + 250 + 251 + 252 + 253 + \
+254 + 255 + 256 + 257 + 258 + 259 + 260 + 261 + 262 + 263 + 264 + 265 + 266 + \
+267 + 268 + 269 + 270 + 271 + 272 + 273 + 274 + 275 + 276 + 277 + 278 + 279 + \
+280 + 281 + 282 + 283 + 284 + 285 + 286 + 287 + 288 + 289 + 290 + 291 + 292 + \
+293 + 294 + 295 + 296 + 297 + 298 + 299 + 300 + 301 + 302 + 303 + 304 + 305 + \
+306 + 307 + 308 + 309 + 310 + 311 + 312 + 313 + 314 + 315 + 316 + 317 + 318 + \
+319 + 320 + 321 + 322 + 323 + 324 + 325 + 326 + 327 + 328 + 329 + 330 + 331 + \
+332 + 333 + 334 + 335 + 336 + 337 + 338 + 339 + 340 + 341 + 342 + 343 + 344 + \
+345 + 346 + 347 + 348 + 349 + 350 + 351 + 352 + 353 + 354 + 355 + 356 + 357 + \
+358 + 359 + 360 + 361 + 362 + 363 + 364 + 365 + 366 + 367 + 368 + 369 + 370 + \
+371 + 372 + 373 + 374 + 375 + 376 + 377 + 378 + 379 + 380 + 381 + 382 + 383 + \
+384 + 385 + 386 + 387 + 388 + 389 + 390 + 391 + 392 + 393 + 394 + 395 + 396 + \
+397 + 398 + 399 + 400 + 401 + 402 + 403 + 404 + 405 + 406 + 407 + 408 + 409 + \
+410 + 411 + 412 + 413 + 414 + 415 + 416 + 417 + 418 + 419 + 420 + 421 + 422 + \
+423 + 424 + 425 + 426 + 427 + 428 + 429 + 430 + 431 + 432 + 433 + 434 + 435 + \
+436 + 437 + 438 + 439 + 440 + 441 + 442 + 443 + 444 + 445 + 446 + 447 + 448 + \
+449 + 450 + 451 + 452 + 453 + 454 + 455 + 456 + 457 + 458 + 459 + 460 + 461 + \
+462 + 463 + 464 + 465 + 466 + 467 + 468 + 469 + 470 + 471 + 472 + 473 + 474 + \
+475 + 476 + 477 + 478 + 479 + 480 + 481 + 482 + 483 + 484 + 485 + 486 + 487 + \
+488 + 489 + 490 + 491 + 492 + 493 + 494 + 495 + 496 + 497 + 498 + 499 + 500 + \
+501 + 502 + 503 + 504 + 505 + 506 + 507 + 508 + 509 + 510 + 511 + 512 + 513 + \
+514 + 515 + 516 + 517 + 518 + 519 + 520 + 521 + 522 + 523 + 524 + 525 + 526 + \
+527 + 528 + 529 + 530 + 531 + 532 + 533 + 534 + 535 + 536 + 537 + 538 + 539 + \
+540 + 541 + 542 + 543 + 544 + 545 + 546 + 547 + 548 + 549 + 550 + 551 + 552 + \
+553 + 554 + 555 + 556 + 557 + 558 + 559 + 560 + 561 + 562 + 563 + 564 + 565 + \
+566 + 567 + 568 + 569 + 570 + 571 + 572 + 573 + 574 + 575 + 576 + 577 + 578 + \
+579 + 580 + 581 + 582 + 583 + 584 + 585 + 586 + 587 + 588 + 589 + 590 + 591 + \
+592 + 593 + 594 + 595 + 596 + 597 + 598 + 599 + 600 + 601 + 602 + 603 + 604 + \
+605 + 606 + 607 + 608 + 609 + 610 + 611 + 612 + 613 + 614 + 615 + 616 + 617 + \
+618 + 619 + 620 + 621 + 622 + 623 + 624 + 625 + 626 + 627 + 628 + 629 + 630 + \
+631 + 632 + 633 + 634 + 635 + 636 + 637 + 638 + 639 + 640 + 641 + 642 + 643 + \
+644 + 645 + 646 + 647 + 648 + 649 + 650 + 651 + 652 + 653 + 654 + 655 + 656 + \
+657 + 658 + 659 + 660 + 661 + 662 + 663 + 664 + 665 + 666 + 667 + 668 + 669 + \
+670 + 671 + 672 + 673 + 674 + 675 + 676 + 677 + 678 + 679 + 680 + 681 + 682 + \
+683 + 684 + 685 + 686 + 687 + 688 + 689 + 690 + 691 + 692 + 693 + 694 + 695 + \
+696 + 697 + 698 + 699 + 700 + 701 + 702 + 703 + 704 + 705 + 706 + 707 + 708 + \
+709 + 710 + 711 + 712 + 713 + 714 + 715 + 716 + 717 + 718 + 719 + 720 + 721 + \
+722 + 723 + 724 + 725 + 726 + 727 + 728 + 729 + 730 + 731 + 732 + 733 + 734 + \
+735 + 736 + 737 + 738 + 739 + 740 + 741 + 742 + 743 + 744 + 745 + 746 + 747 + \
+748 + 749 + 750 + 751 + 752 + 753 + 754 + 755 + 756 + 757 + 758 + 759 + 760 + \
+761 + 762 + 763 + 764 + 765 + 766 + 767 + 768 + 769 + 770 + 771 + 772 + 773 + \
+774 + 775 + 776 + 777 + 778 + 779 + 780 + 781 + 782 + 783 + 784 + 785 + 786 + \
+787 + 788 + 789 + 790 + 791 + 792 + 793 + 794 + 795 + 796 + 797 + 798 + 799 + \
+800 + 801 + 802 + 803 + 804 + 805 + 806 + 807 + 808 + 809 + 810 + 811 + 812 + \
+813 + 814 + 815 + 816 + 817 + 818 + 819 + 820 + 821 + 822 + 823 + 824 + 825 + \
+826 + 827 + 828 + 829 + 830 + 831 + 832 + 833 + 834 + 835 + 836 + 837 + 838 + \
+839 + 840 + 841 + 842 + 843 + 844 + 845 + 846 + 847 + 848 + 849 + 850 + 851 + \
+852 + 853 + 854 + 855 + 856 + 857 + 858 + 859 + 860 + 861 + 862 + 863 + 864 + \
+865 + 866 + 867 + 868 + 869 + 870 + 871 + 872 + 873 + 874 + 875 + 876 + 877 + \
+878 + 879 + 880 + 881 + 882 + 883 + 884 + 885 + 886 + 887 + 888 + 889 + 890 + \
+891 + 892 + 893 + 894 + 895 + 896 + 897 + 898 + 899 + 900 + 901 + 902 + 903 + \
+904 + 905 + 906 + 907 + 908 + 909 + 910 + 911 + 912 + 913 + 914 + 915 + 916 + \
+917 + 918 + 919 + 920 + 921 + 922 + 923 + 924 + 925 + 926 + 927 + 928 + 929 + \
+930 + 931 + 932 + 933 + 934 + 935 + 936 + 937 + 938 + 939 + 940 + 941 + 942 + \
+943 + 944 + 945 + 946 + 947 + 948 + 949 + 950 + 951 + 952 + 953 + 954 + 955 + \
+956 + 957 + 958 + 959 + 960 + 961 + 962 + 963 + 964 + 965 + 966 + 967 + 968 + \
+969 + 970 + 971 + 972 + 973 + 974 + 975 + 976 + 977 + 978 + 979 + 980 + 981 + \
+982 + 983 + 984 + 985 + 986 + 987 + 988 + 989 + 990 + 991 + 992 + 993 + 994 + \
+995 + 996 + 997 + 998 + 999 + 1000
+
+print(s)
+```
+
+Cosa ne pensate? Non siete tentate di chiedervi se non ci sia una via più semplice?
+E, a una seconda occhiata, secondo voi come ho fatto a scrivere questo frammento di
+codice? A mano, pazientemente? O magari con qualche trucco? (Bonus track: il
+carattere `\`, o *backslash*, è quello che in Python permette di spezzare una riga
+troppo lunga ove necessario---nella sezione @{sec-backslash} impareremo un certo numero
+di altri usi di questo meraviglioso carattere.)
+
+::: {.callout-note}
+Nel caso conosceste un minimo di teoria dei numeri dal corso di analisi, o aveste
+un'intelligenza maggiore o uguale a quella del piccolo Gauss, vi metto subito il cuore
+in pace: potremmo fare
+```{python}
+n = 1000
+s = n * (n + 1) // 2
+
+print(s)
+```
+Ma non è questo il nocciolo della questione. Non tutto si risolve con una formuletta in
+forma chiusa, e spesso le situazioni in cui il calcolatore si rivela più utile sono
+quelle in cui serve usare la forza bruta. Mettiamo questo piccolo detour da parte e
+andiamo avanti.
+:::
+
+### Cicli `for`
+
+Ma torniamo a noi. Se in questo momento state pensando *"deve esserci un altro modo"*,
+complimenti: siete persone di buon gusto e non volete programmare come barbari---il
+vostro istinto vi sta suggerendo la cosa giusta.
+
+Non sarebbe bello se Python offrisse un costrutto esplicito per esprimere in modo
+formale quello che colloquialmente potremmo esprimere come: *vorrei partire dal numero
+$n = 1$ (o $n = 0$, il che è indifferente) ed incrementare $n$ di una unità per $999$
+(o $1000$) volte, sommando ogni volta il valore ottenuto alla somma parziale
+precedente*? Lo so, detto così sembra più difficile di quanto non sia in realtà, ma il
+punto è che questo costrutto esiste e si chiama *ciclo for*.
+
+```{python}
+s = 0
+for i in range(1, 1001):
+    s += i
+
+print(s)
+```
+
+Wow! Il risultato è giusto, per cui dobbiamo aver fatto qualcosa di buono. Ma fermiamoci
+un attimo per cercare di convincerci di aver capito tutto nei minimi dettagli.
+Andiamo per ordine: l'esempio più semplice possibile di ciclo for è
+```{python}
+for i in [1, 2, 3]:
+    print(i)
+```
+che è funzionalmente equivalente a
+```{python}
+i = 1
+print(i)
+i = 2
+print(i)
+i = 3
+print(i)
+```
+
+La sintassi generale
+```python
+for variable in iterable:
+    do_something(variable)
+```
+permette di scorrere tutti gli elementi di un oggetto *iterabile* (ad esempio una lista,
+una tupla o un array di numpy) e compiere una o più istruzioni all'interno delle quali
+la variabile su cui eseguiamo il ciclo assume il valore dell'elemento corrente
+dell'iterabile. Si tratta letteralmente di:
+
+* creare una variabile ausiliaria per il ciclo (nel nostro caso `i`);
+* scorrere l'iterabile un elemento alla volta ed assegnare alla variabile il valore
+dell'elemento in questione;
+* fare qualcosa con la variabile ausiliaria.
+
+Altro semplice esempio per chiarire il concetto:
+```{python}
+for name in ["Giulia", "Luca"]:
+    print(f"Hello, {name}!")
+```
+
+::: {.callout-warning}
+L'indentazione non è casuale, ed ha in Python la funzione strutturale di separare
+le istruzioni da eseguire all'interno del ciclo da quelle che, viceversa vivono
+al di fuori. Tutti i linguaggi di programmazione offrono il ciclo for in una qualche
+forma, ma il ruolo dell'indentazione (tipicamente $4$ spazi) è peculiare a Python.
+:::
+
+Torniamo al nostro esempio iniziale.
+[`range()`](https://docs.python.org/3/library/functions.html#func-range)
+è un built-in di Python che permette di iterare su una collezione di numeri interi---da
+un minimo ad un massimo, con un passo che di default è $1$. La segnatura
+principale è
+```python
+range(start, stop, step=1)
+```
+in cui `start` è *incluso* e `stop` è *escluso*, ma accetta anche la versione
+abbreviata
+```python
+range(stop)
+```
+in cui si assume `start = 0` e `step = 1`. Sperimentate cambiando i valori degli
+argomenti ed assicuratevi di capire cosa succede. Non dovreste essere sorprese di
+vedere che la nostra somma si può scrivere in modo equivalente come
+```{python}
+s = 0
+for i in range(1001):
+    s += i
+
+print(s)
+```
+(Vedete la differenza?)
+
+L'unica cosa che rimane da capire è cosa dobbiamo pensare della variabile `s` che
+abbiamo inizializzato a $0$ al di fuori del ciclo. Beh: se vogliamo fare una somma
+dobbiamo partire da qualcosa, e siccome lo $0$ è l'elemento neutro della somma, quello
+è il valore naturale da cui partire.
+
+Non vi lasciate confondere: nel nostro piccolo programma abbiamo due variabili
+(`s` ed `i`), e mai, nemmeno per un secondo, dovete far confusione tra le due:
+
+* `i` è semplicemente una variabile ausiliaria gestita dalla struttura del
+ciclo---possiamo utilizzarla ma *dobbiamo resistere alla tentazione di modificarla*
+(torniamo sulla questione tra un attimo);
+* `s` è una variabile *di nostra proprietà*: la inizializziamo a zero, per tutta la
+durata del ciclo rappresenta la somma parziale fino a quel momento, e quando usciamo
+dal loop rappresenta la somma totale, ovvero la risposta alla nostra domanda.
+
+Non abbiamo tempo di insistere troppo sulla questione, ma il modo migliore di convincersi
+che `i` va *trattata con cura* è probabilmente
+```python
+for i in range(10):
+    print(i)
+    if i == 5:
+        i = 8
+```
+Se pensate di utilizzare questa sorta di trucco per saltare il $6$ ed il $7$
+nell'esecuzione del ciclo, rimarrete sorprese! (L'output del codice non è incluso
+volutamente: provate a pensare a cosa succede nella vostra testa prima di copiare
+ed incollare il frammento nel vostro editor di testo.)
+
+::: {.callout-note}
+Mentre più o meno tutti i linguaggi di programmazione offrono una qualche forma di
+ciclo for, la semantica del costrutto varia sostanzialmente da linguaggio a linguaggio.
+L'ultima cosa che abbiamo detto, ad esempio, vale in Python ma non in C o C++.
+(Strettamente parlando la cosa è irrilevante per i nostri scopi, ma se in futuro
+doveste diventare poliglotte, tenetelo a mente, perché la cosa vi tornerà utile.)
+:::
 
 
-### I cicli `for`
+### Cicli `while`
 
-### I cicli `while`
+Ci sono situazioni in cui non sappiamo a priori quante iterazioni vogliamo
+fare---pensate alla parola chiave *fino a che* con cui abbiamo aperto questo capitolo.
+
+Proviamo, ad esempio, ad attaccare questo problema: *quanti numeri interi positivi
+consecutivi posso sommare prima che il risultato superi il valore $1000$?*
+Si tratta di una domanda cui sappiamo rispondere---il numero $n$ è dato da
+$$
+\left\lfloor \frac{n (n + 1)}{2} \right\rfloor = 1000
+$$
+ovverosia dobbiamo prendere la parte intera della soluzione positiva della
+corrispondente equazione di secondo grado nella variabile reale $x$
+$$
+x^2 + x - 2000 = 0
+\quad \text{da cui}\quad
+x = \frac{-1 + \sqrt{8001}}{2} \approx \sqrt(2000) \approx 44.7
+$$
+Possiamo verificare facilmente che abbiamo fatto la cosa giusta:
+$$
+\sum_{i=1}^{44} i = \frac{44 \times 45}{2} = 990
+\quad \text{e}\quad
+\sum_{i=1}^{45} i = \frac{45 \times 46}{2} = 1035.
+$$
+La risposta è $44$. Ma, sulla base di quanto detto fino a questo momento non è ovvio
+come tradurre la cosa in termini di un ciclo for...
+
+Ed è qui che Python ci viene in aiuto con un secondo costrutto per iterare: il
+*ciclo while*. Il ciclo while è una costrutto disegnato per interrompere l'iterazione
+quando una particolare condizione è soddisfatta---nel nostro caso:
+```{python}
+s = 0
+n = 0
+while s + (n + 1) <= 1000:
+    n += 1
+    s += n
+
+print(n)
+```
+Fate attenzione alla logica: qui `s` rappresenta la somma parziale, e `n`
+*l'ultimo numero aggiunto*. Il prossimo numero da aggiungere è `n + 1` e,  all'interno
+del loop, prima si incrementa `n` e poi si aggiunge `n` ad `s`. (A queste condizioni,
+`n` parte da $0$ e all'uscita del loop, rappresenta il numero cercato.)
+
+Se avete l'impressione che mettere insieme un ciclo while ben congegnato sia
+logicamente più delicato che fare un ciclo for, sono simpatetico con il sentimento. In
+questo caso, ad esempio, avremmo potuto prendere `n` come *il prossimo numero da
+aggiungere*, facendolo partire da $1$ e incrementandolo dentro il ciclo while
+*dopo* (e non prima) averlo aggiunto ad `s`. Così facendo il valore all'uscita dal
+loop non è il numero cercato, ma il successivo
+```{python}
+s = 0
+n = 1
+while s + n <= 1000:
+    s += n
+    n += 1
+
+print(n - 1)
+```
+Il risultato è lo stesso.
+
+::: {.callout-note}
+Tipicamente è possibile trovare un ciclo while equivalente per un dato ciclo for, e
+viceversa (in questo secondo caso è tipicamente necessario interrompere esplicitamente
+il ciclo con il comando `break`). Tuttavia, come abbiamo visto, ci sono casi in cui
+è più naturale usare un for (quando sappiamo in anticipo quante iterazioni dobbiamo
+fare) e casi in cui è più naturale usare un while (quando il numero di iterazioni
+da fare non è noto a priori). Inutile a dirsi, dovreste cercare di essere
+proficienti in entrambi.
+:::
 
 
-## Prendere decisioni
+## E quindi?
+
+Adesso che siamo maestre del controllo del flusso, e sappiamo *loopare* ed eseguire
+istruzioni condizionali, cosa ci facciamo?
+
+La prima tentazione ovvia è quella di dire: ogni volta che vedete il simbolo di
+sommatoria, lì avete spazio per tradurre il problema in un ciclo. E, da fisiche,
+di sommatorie ne vedete (e ne vedrete) comunemente. La media campione, ad esempio, è
+sostanzialmente una somma, e non c'è niente di male nel calcolarla con un loop.
+```{python}
+def mean(sample):
+    m = 0
+    for value in sample:
+        m += value
+    m /= len(sample)
+    return m
+
+sample = [1.2, 1.34, 2.1, 1.85, 1.44]
+print(mean(sample))
+```
+La varianza e la deviazione standard del campione sono pure somme, e allora potremmo
+andare avanti e vedere come implementarle sulla stessa linea.
+
+Arrivati a questo punto, però, è probabilmente più istruttivo un invito a non
+*reinventare la ruota ogni volta*. Il pacchetto `numpy` fornisce tutte le funzioni
+statistiche di cui potreste mai aver bisogno, inclusa la media, la varianza e la
+deviazione standard. Nella vostra vita professionale la via maestra al calcolo delle
+proprietà di un campione sarà
+```{python}
+import numpy as np
+
+sample = [1.2, 1.34, 2.1, 1.85, 1.44]
+print(np.mean(sample))
+```
+
+Perché? Beh, per diversi motivi, tutti importanti:
+
+* dovete scrivere meno righe di codice, e fate riposare le vostre dita;
+* le funzioni di un pacchetto largamente diffuso come `numpy` sono tipicamente molto
+meglio testate di quanto possa esserlo qualsiasi cosa prodotta semi-amatorialmente
+(senza offesa per nessuno);
+* quando processiamo dati numerici ci sono inevitabilmente sottigliezze che, se non
+trattate opportunamente, possono provocare disastri---ci torneremo diffusamente nel
+@{sec-float}, ma per il momento sappiate che chi ha scritto `numpy` ne è perfettamente
+al corrente;
+* se dovete processare molti numeri, è garantito che `numpy` sia significativamente
+più veloce di un loop *grezzo* in Python---ci torneremo nel @{sec-vec}.
+
+Se a questo punto siete rimaste con la brutta sensazione che abbiamo speso un intero
+capitolo per imparare una cosa che nella vita non userete mai, voglio rassicuravi:
+if, for e while sono costrutti che chiunque si avvicini, anche casualmente, alla
+programmazione deve saper maneggiare.
+
+```{python}
+import numpy as np
+from matplotlib import pyplot as plt
+
+def random_walk(step=0.02, max_radius=1.):
+    x = [0.]
+    y = [0.]
+    while np.hypot(x[-1], y[-1]) <= max_radius:
+        phi = np.random.uniform(0., 2. * np.pi)
+        dx = step * np.cos(phi)
+        dy = step * np.sin(phi)
+        x.append(x[-1] + dx)
+        y.append(y[-1] + dy)
+    return x, y
+
+for i in range(3):
+    x, y = random_walk()
+    plt.plot(x, y)
+
+circle = plt.Circle((0, 0), 1, fill=False, ls="dashed")
+plt.gca().add_patch(circle)
+plt.axis([-1.05, 1.05, -1.05, 1.05])
+plt.xlabel("x [a. u.]")
+plt.ylabel("y [a. u.]")
+plt.gca().set_aspect("equal")
+```

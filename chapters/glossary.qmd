@@ -354,6 +354,29 @@ Abbiamo semplificato enormemente, e la questione è più sottile, ma queste note
 riguardano la computazione, e non il diritto d'autore, per cui ci facciamo bastare
 questo.
 
+Ora vi chiederete: meglio usare software aperto o software proprietario?
+Questione di gusti, ma spero che prendiate spunto da questa sezione per riflettere
+seriamente sull'argomento. Anche una persona che utilizzi il computer in modo
+puramente ricreativo dovrebbe interrogarsi sulle implicazioni del fatto che
+l'utente non abbiamo modo di sapere esattamente cosa fa un programma. Potrebbe darsi il
+caso, ad esempio, che mentre navighiamo su web, o scriviamo una email, mandi
+informazioni sensibili, e completamente scorrelate da ciò che stiamo facendo, alla
+casa madre? Magari per essere profilati a scopi pubblicitari, o peggio?
+(No, non si tratta di complottismo. Gli esempi non si contano, e potete leggere
+[qui](https://privacyinternational.org/examples-abuse/1902/dutch-dpa-microsoft-breaches-data-protection-law-windows-10),
+[qui](https://www.cnil.fr/en/cookies-and-advertisements-inserted-between-emails-google-fined-325-million-euros-cnil),
+[qui](https://www.ftc.gov/news-events/news/press-releases/2019/07/ftc-sues-cambridge-analytica-settles-former-ceo-app-developer), o
+[qui](https://www.ftc.gov/news-events/news/press-releases/2024/06/ftc-finalizes-order-avast-banning-it-selling-or-licensing-web-browsing-data-advertising-requiring-it),
+senza contare i casi, ancora più diffusi, in cui siamo noi stessi a dare il
+consenso a pratiche discutibili accettando licenze d'uso che non leggiamo.)
+
+Ma anche mettendo da parte per un attimo le questioni di privacy che un sistema non
+verificabile, per sua natura, solleva, nella vostra vita professionale potreste
+trovarvi a processare tera- o peta-byte di dati per tirare fuori un singolo numero
+(e.g., la massa di una particella). Davvero attacchereste un problema di questa portata
+e mettereste il vostro nome sul risultato sulla base di software che non sapete
+esattamente cosa faccia?
+
 
 ### Software aperto, software libero, software gratuito
 
