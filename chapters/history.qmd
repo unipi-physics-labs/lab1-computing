@@ -1,5 +1,7 @@
 # Cronologia delle versioni {#sec-history}
 
+### Versione 0.5.0 (2026-08-27) {.unnumbered}
+
 * Prima versione completa del capitolo sul controllo del flusso.
 * Prima versione completa del glossario.
 * Piccoli cambiamenti quà e là.
