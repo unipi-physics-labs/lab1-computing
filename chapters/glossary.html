@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="it" xml:lang="it"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>1&nbsp; Glossario – Elementi di computazione</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../chapters/install.html" rel="next">
+<link href="../gender.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-eb1bc3aaadf2658264f2b941ac69fc6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "Nessun risultato",
+    "search-matching-documents-text": "documenti trovati",
+    "search-copy-link-title": "Copiare il link nella ricerca",
+    "search-hide-matches-text": "Nascondere i risultati aggiuntivi",
+    "search-more-match-text": "ci sono altri risultati in questo documento",
+    "search-more-matches-text": "ulteriori risultati in questo documento",
+    "search-clear-button-title": "Pulire",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancellare",
+    "search-submit-button-title": "Inviare",
+    "search-label": "Ricerca"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/glossary.html">Parte prima: dal problema alla soluzione</a></li><li class="breadcrumb-item"><a href="../chapters/glossary.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Glossario</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Elementi di computazione</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/unipi-physics-labs/lab1-computing" title="Eseguire il codice" class="quarto-navigation-tool px-1" aria-label="Eseguire il codice"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Ricerca"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Prefazione</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../copyright.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Licenza</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../gender.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Nota sul linguaggio di genere</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte prima: dal problema alla soluzione</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/glossary.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Glossario</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/install.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Prima di cominciare</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/crash.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Il primo programma</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Variabili e tipi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/functions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Funzioni</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/flow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Parte seconda: ripartiamo dai principi</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/count.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Contare in base 2</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/hw.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dentro il calcolatore</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/os.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Il sistema operativo</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/io.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Input/output</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/float.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">L’aritmetica in virgola mobile</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/algs.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Algoritmi</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/vec.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vettorizzazione</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendici</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Attiva/disattiva sezione">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/latex.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">LaTeX</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">Formati grafici</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice</h2>
+   
+  <ul>
+  <li><a href="#algoritmi-e-programmi" id="toc-algoritmi-e-programmi" class="nav-link active" data-scroll-target="#algoritmi-e-programmi"><span class="header-section-number">1.1</span> Algoritmi e programmi</a></li>
+  <li><a href="#linguaggi" id="toc-linguaggi" class="nav-link" data-scroll-target="#linguaggi"><span class="header-section-number">1.2</span> Linguaggi</a></li>
+  <li><a href="#codice-sorgente-e-codice-macchina" id="toc-codice-sorgente-e-codice-macchina" class="nav-link" data-scroll-target="#codice-sorgente-e-codice-macchina"><span class="header-section-number">1.3</span> Codice sorgente e codice macchina</a></li>
+  <li><a href="#reverse-engineering" id="toc-reverse-engineering" class="nav-link" data-scroll-target="#reverse-engineering"><span class="header-section-number">1.4</span> Reverse engineering</a></li>
+  <li><a href="#software-aperto-e-software-proprietario" id="toc-software-aperto-e-software-proprietario" class="nav-link" data-scroll-target="#software-aperto-e-software-proprietario"><span class="header-section-number">1.5</span> Software aperto e software proprietario</a>
+  <ul class="collapse">
+  <li><a href="#software-aperto-software-libero-software-gratuito" id="toc-software-aperto-software-libero-software-gratuito" class="nav-link" data-scroll-target="#software-aperto-software-libero-software-gratuito"><span class="header-section-number">1.5.1</span> Software aperto, software libero, software gratuito</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/glossary.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/glossary.html">Parte prima: dal problema alla soluzione</a></li><li class="breadcrumb-item"><a href="../chapters/glossary.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Glossario</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-glossary" class="quarto-section-identifier"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Glossario</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">27 agosto 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Prima di cominciare abbiamo bisogno di sviluppare un minimo di linguaggio comune, e andare attraverso un certo numero di termini che incontreremo regolarmente nel seguito. (A onor del vero non si tratta proprio di un glossario, come il titolo di questo capitolo sembrerebbe indicare, perché proveremo a procedere in ordine logico anziché alfabetico.) Lo faremo in modo estremamente informale—a tratti al limite della correttezza—per cui portate pazienza. Nel proseguo di queste note cercheremo di fare ammenda per le cose che abbiamo introdotto in modo troppo sommario in questo capitolo.</p>
+<section id="algoritmi-e-programmi" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="algoritmi-e-programmi"><span class="header-section-number">1.1</span> Algoritmi e programmi</h2>
+<p><em><strong>Algoritmo</strong>: sequenza finita e non ambigua di operazioni che permette di eseguire un determinato compito</em>.</p>
+<p>Torneremo più in dettaglio sull’argomento nel <a href="algs.html" class="quarto-xref"><span>Capitolo 12</span></a>, ma non potevamo non iniziare con la parola più inflazionata dell’ultimo decennio. Curiosamente, quando pensiamo in questi termini, il concetto di algoritmo perde gran parte di quell’aura magica di cui i mezzi di comunicazione sembrano averlo circondato, e torna ad essere una cosa normale—quasi noiosa.</p>
+<p><em><strong>Programma</strong>: sequenza di istruzioni che può essere eseguita da un calcolatore.</em></p>
+<p>Leggete con attenzione, perché a prima vista potreste far fatica a distinguere la differenza tra questi due concetti. Indicano entrambi sequenze (di <em>operazioni</em> o di <em>istruzioni</em>, poco importa per il momento) che hanno lo scopo (anche se nel secondo caso non lo abbiamo messo in evidenza esplicitamente) di portare a termine un compito specifico. Ma, mentre un algoritmo è un concetto largamente astratto, che possiamo esprimere in una varietà di forme prive di collegamenti immediati con i calcolatori digitali (e.g., con un elenco puntato, con un diagramma di flusso, o semplicemente con una descrizione testuale) un programma deve essere espresso in modo che un calcolatore, appositamente equipaggiato, sia in grado di interpretarlo.</p>
+<p>Le due cose, va da sé, sono collegate: un algoritmo si può esprimere compiutamente nella forma di un programma ed un programma può <em>implementare</em> un algoritmo. Ma la differenza di fondo rimane sostanziale. Spesso, prima di cominciare a scrivere un programma, è necessario interrogarsi su quali siano gli algoritmi più adatti a risolvere il problema che stiamo affrontando, e chiunque scriva programmi in modo più che casuale deve essere proficiente in entrambi gli aspetti.</p>
+</section>
+<section id="linguaggi" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="linguaggi"><span class="header-section-number">1.2</span> Linguaggi</h2>
+<p>Nelle definizione di programma abbiamo utilizzato la parola <em>istruzione</em> senza definirla, e dobbiamo cercare di ovviare alla mancanza. Non è completamente banale, ma proviamo.</p>
+<p><em><strong>Istruzione</strong>: operazione elementare specificata da un determinato linguaggio di programmazione.</em></p>
+<p>Di per sé questo non è sufficiente perché: (i) non sappiamo cosa vuol dire elementare; e (ii) non sappiamo cosa è un linguaggio di programmazione. (In effetti l’aggettivo elementare, qui, ha un significato che può variare in modo drammatico a seconda del contesto.) Prima che le vostre aspettative crescano troppo, diciamo subito che, scritta così, questa definizione è problematica, e non avremo tempo di attaccare il problema alla radice ed arrivare ad una definizione formalmente corretta. Ma è utile ugualmente provare ad andare avanti ed aggiungere un ulteriore termine al nostro bagaglio.</p>
+<p><em><strong>Linguaggio di programmazione</strong>: linguaggio formale usato per descrivere operazioni eseguibili da un calcolatore.</em></p>
+<p>Formale, come immaginerete, significa che un linguaggio di programmazione deve avere una sintassi ed una semantica ben definita, in cui il significato di un’espressione non è soggetto al livello tipico di ambiguità che siamo tutti ben disposti ad accettare nei linguaggi naturali.</p>
+<p>Ora: non c’è niente di più variegato dell’inventario dei linguaggi di programmazione disponibili sul mercato, e la storia dei linguaggi di programmazione è un argomento interessante di per sé. Tradizionalmente il primo programma che una persona scrive quando impara un nuovo linguaggio di programmazione consiste nello scrivere sullo schermo la stringa “<a href="https://en.wikipedia.org/wiki/Hello,_world">Hello World</a>”, e la pagina web <a href="http://helloworldcollection.de/">The Hello World Collection</a> raccoglie esempi in più di 600 linguaggi di programmazione.</p>
+<p>Se dovessimo scrivere il programma “Hello World” su uno <a href="https://en.wikipedia.org/wiki/ZX_Spectrum">ZX Spectrum</a> nell’<em>assembly language</em> del microprocessore <a href="https://en.wikipedia.org/wiki/Zilog_Z80">Zilog Z80</a>, il risultato potrebbe essere qualcosa del tipo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode asm code-with-copy"><code class="sourceCode fasm"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="bu">org</span> <span class="op">$</span><span class="bn">8000</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  ld bc<span class="op">,</span> STRING</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="cf">LOOP</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  ld a<span class="op">,</span> <span class="op">(</span>bc<span class="op">)</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  cp <span class="dv">0</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  jr z<span class="op">,</span> EXIT</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  rst <span class="op">$</span><span class="bn">10</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="bu">inc</span> bc</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  jr LOOP</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>EXIT</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">ret</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>STRING</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  defb <span class="st">"Hello World!"</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>  defb <span class="dv">13</span><span class="op">,</span> <span class="dv">0</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(Lo Z80 è uno dei microprocessori che hanno permesso la rivoluzione dei personal computer negli anni ’70 e ’80 del 1900, e lo incontreremo di nuovo nel <a href="hw.html" class="quarto-xref"><span>Capitolo 8</span></a>. Il programma qui sopra è preso verbatim da <a href="https://benjamin.computer/posts/2022-04-22-ZX-coding.html">questo blog</a>, che è piacevole da leggere e consigliato a tutte le persone interessate all’archeologia digitale.)</p>
+<p>Lo stesso programma nel linguaggio <a href="https://www.python.org/">Python</a>, che potete eseguire comodamente sul vostro portatile, diventa</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Hello World"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Spoiler alert: noi utilizzeremo Python e non l’assembly language dello Z 80. Non dovreste essere sorprese.</p>
+<p>Anche senza entrare nei dettagli tecnici, un confronto sommario tra i due programmi ci racconta di una storia in cui i linguaggi di programmazione si sono via via allontanati dall’hardware, fornendo layer di <em>astrazione</em> sempre più avanzati grazie ai quali non è più necessaria una conoscenza approfondita della struttura interna della CPU o del layout della memoria, e lo stesso programma funziona in modo <em>trasparente</em> su un gran numero di calcolatori diversi, indipendentemente dai dettagli della loro struttura fisica. (Detto così sembra una una cosa perfettamente naturale, ma storicamente il processo è stato lungo e complicato.)</p>
+<p>Alla luce di questo possiamo rivisitare la definizione di istruzione che abbiamo dato all’inizio di questa sezione. Da un punto di vista della macchina, una istruzione è una sorta di operazione primitiva definita dalla CPU, che è in un certo senso il cuore del calcolatore—in pratica si tratta di operazioni relativamente semplici: caricare un determinato valore in un registro, confrontare due numeri, compiere operazioni aritmetiche, e così via. (Per completezza: lo Z80 forniva 158 istruzioni distinte, e questo numero è aumentato, ma non di ordini di grandezza, nelle CPU moderne.) Nel primo esempio qui sopra le righe del nostro programma tendono a mappare una ad una con il set di istruzioni definito dalla CPU: <code>ld</code> sta per <em>load</em>, <code>cp</code> per <em>compare</em> e così via.</p>
+<p>Quando invece programmiamo in un linguaggio di altissimo livello come Python, questa corrispondenza si perde completamente, tanto che possiamo chiederci se la singola riga del nostro programma (che, a più basso livello, si traduce in una serie di operazioni elementari) si possa ancora chiamare istruzione. Nel capitolo <a href="functions.html" class="quarto-xref"><span>Capitolo 5</span></a> vedremo che, in effetti, <code>print</code> è una <em>funzione</em>, ma per il momento possiamo far finta di nulla: abbiamo una vaga idea di cosa sia un programma, sappiamo che per scrivere un programma serve un linguaggio, ed un linguaggio è fatto, con leggero abuso di notazione, di istruzioni. Questi sono i mattoncini che ci servono.</p>
+</section>
+<section id="codice-sorgente-e-codice-macchina" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="codice-sorgente-e-codice-macchina"><span class="header-section-number">1.3</span> Codice sorgente e codice macchina</h2>
+<p>Nella seconda parte di queste note impareremo una cosa fondamentale: indipendentemente dal linguaggio di programmazione che utilizziamo, <em>tutto ciò che il nostro calcolatore vede è una lunga stringa di zeri ed uni</em>. In particolare: il programma che noi scriviamo, e le istruzioni al suo interno, deve essere <em>tradotto</em> in una opportuna forma binaria prima di poter essere eseguito dalla macchina.</p>
+<p>Si tratta di un punto fondamentale e qualificante, che ci porta immediatamente alla distinzione tra due tipi di <em>codice</em>.</p>
+<p><em><strong>Codice sorgente</strong>: rappresentazione testuale di un programma scritto in un linguaggio di programmazione.</em></p>
+<p><em><strong>Codice macchina</strong>: sequenza di istruzioni in formato binario che il calcolatore è in grado di eseguire direttamente</em>.</p>
+<p>In altre parole, siamo di fronte ad una dicotomia tra la rappresentazione del programma nella sue forma intesa per il consumo umano (codice sorgente) ed in quella intesa per l’utilizzo da parte della macchina (codice macchina). La prima è pensata per essere (scritta e) letta da persone; la seconda per essere eseguita da un calcolatore. Tenetelo a mente, perché anche in un era in cui parte della scrittura dei programmi viene regolarmente demandata a LLM ed agenti, questa distinzione continua ad essere rilevante.</p>
+<p>Se avete mai sentito parlare di <em>programma eseguibile</em> o semplicemente <em>eseguibile</em>, la cosa è rilevante in questo contesto, perché nei moderni sistemi operativi l’eseguibile è sostanzialmente un file che contiene il programma in linguaggio macchina, più tutte le informazioni aggiuntive che sono necessarie per caricare fisicamente il programma in memoria ed eseguirlo. A questo livello non è scandaloso usare i due termini in modo intercambiabile.</p>
+<p><em><strong>Eseguibile</strong>: file contenente un programma in una forma che il sistema operativo può fisicamente eseguire.</em></p>
+<p>La traduzione di un programma dalla sua forma in codice sorgente a quella in codice macchina è un processo completamente automatizzato eseguito da un altro programma che, a seconda del contesto, prende il nome di <em>assembler</em>, <em>compilatore</em> o <em>interprete</em>.</p>
+<p>L’assembler, come dice il nome, è un programma che traduce il codice sorgente in assembly language nel codice macchina corrispondente, ed è tipicamente un programma altamente specializzato che funzione solo per una particolare architettura ed un particolare tipo di CPU. Il programma in assembly language per lo Zilog Z80 che abbiamo visto prima, ad esempio, una volta assemblato nel linguaggio macchina corrispondente sarebbe qualcosa del tipo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode asm code-with-copy"><code class="sourceCode fasm"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>00000001</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>00001101</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>10000000</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>00001010</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>11111110</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>00000000</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>00101000</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>00000100</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>11010111</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>00000011</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>00011000</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>11110111</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>11001001</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>01001000</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>01100101</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>01101100</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>01101100</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>01101111</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>00100000</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>01010111</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>01101111</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>01110010</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>01101100</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>01100100</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>00100001</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>00001101</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>00000000</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(Per ragioni che saranno chiare nel seguito abbiamo raggruppato le cifre binarie in gruppi di 8, ma, a parte questo, abbiamo deliberatamente scritto un gruppo dopo l’altro, senza preservare la corrispondenza con le istruzioni corrispondenti nel codice sorgente.) Andare avanti e indietro qualche volta tra i codice sorgente ed il codice macchina del nostro programma “Hello World” per lo Z80 è uno dei modi più efficaci per capire la differenza tra le due cose—il codice sorgente è, oggettivamente criptico, ma il codice macchina è completamente indigeribile per una persona!</p>
+<p>Per diverse ragioni su cui non abbiamo il tempo di soffermarci, la scrittura di programmi in assembly language è andata fuori moda diversi decenni fa in favore dei linguaggi di alto livello <em>compilati</em>. Guardiamo una possibile implementazione del programma di “Hello World” in C.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode c code-with-copy"><code class="sourceCode c"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="pp">#include </span><span class="im">&lt;stdlib.h&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="dt">int</span> main<span class="op">(</span><span class="dt">void</span><span class="op">)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">{</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  puts<span class="op">(</span><span class="st">"Hello World!"</span><span class="op">);</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> EXIT_SUCCESS<span class="op">;</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="op">}</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Il <em>compilatore</em> (C, in questo caso) è quel programma che traduce il codice sorgente in una forma (assembly language oppure codice macchina) che sia direttamente utilizzabile dal calcolatore. Superficialmente può sembrare esattamente la stessa cosa che fa l’assembler, ma nella realtà il compilatore fa molto di più, perché nel programma qui sopra <em>è scomparso ogni riferimento ai dettagli dell’hardware</em>. Non ci sono indirizzi di memoria o registri, solo costrutti di alto livello che il compilatore deve tradurre in istruzioni veri e proprie per l’architettura di riferimento. In altre parole, il lavoro dell’assembler è relativamente semplice—si tratta principalmente di una traduzione uno ad uno di istruzioni da codice sorgente a codice macchina. Il lavoro del compilatore è molto più sofisticato, perché nel processo deve convertire costrutti potenzialmente molto complessi nell’opportuna combinazione di istruzioni di basso livello—e, se possibile, quella più efficiente. (Per inciso, questo è uno dei motivi per cui i linguaggi compilati hanno acquistato la popolarità che hanno: sollevano le persone da una mole enorme di lavoro di dettaglio che può essere fatto automaticamente e permettono di scrivere programmi complessi concentrandosi prevalentemente sulla loro struttura logica e funzionale.)</p>
+<p>Esiste un’altra classe di linguaggi, quelli <em>interpretati</em>, in cui il processo di traduzione da codice sorgente a codice macchina è affidato ad un interprete e non avviene, come nel caso dei linguaggi compilati, tutto in una volta prima dell’esecuzione—al contrario la traduzione è fatta da un <em>interprete</em>, riga per riga, durante l’esecuzione. Il nostro programma di “Hello World”, in un linguaggio interpretato come il BASIC, sarebbe</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode asm code-with-copy"><code class="sourceCode fasm"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>10 PRINT <span class="st">"Hello World!"</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>(Incidentalmente, questo assomiglia molto a quello che scriveremmo in Python. La cosa non è sorprendente, perché Python è un linguaggio interpretato, anche se i dettagli del funzionamento sono diversi da quelli del BASIC.)</p>
+<p>Al di là dei dettagli tecnici, sui quali potete glissare, abbiamo capito il punto fondamentale: abbiamo il codice sorgente per le persone, il codice macchina per i computer, e si passa dal primo al secondo attraverso programmi che si occupano della traduzione in modo automatico.</p>
+</section>
+<section id="reverse-engineering" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="reverse-engineering"><span class="header-section-number">1.4</span> Reverse engineering</h2>
+<p>La compilazione (o l’interpretazione) di un programma scritto in un linguaggio di alto livello è un classico problema <em>non invertibile</em>. Mentre compilare il codice sorgente è, per definizione, un’operazione meccanica, risalire al codice sorgente a partire dal codice macchina (e.g., dal file eseguibile) non è, in generale possibile—le informazioni che il compilatore non preserva e la natura delle decisioni che il compilatore deve prendere nel processo di traduzione sono tali che le istruzioni nel risultato finale in codice macchina, banalmente, non sono in corrispondenza biunivoca con il codice sorgente. (Le cose sono significativamente più semplici nel caso di codice macchina assemblato a partire da un programma in assembly language, ma siccome viviamo in un’era in cui questa modalità di programmazione è, al più, un’applicazione di nicchia, la cosa è largamente irrilevante.)</p>
+<p>La cosa è, in qualche senso, analoga a quel che avviene in cucina, se pensiamo ad una ricetta come al codice sorgente e al piatto pronto come file eseguibile. Possiamo seguire fedelmente una ricetta e preparare il nostro piatto preferito, ma se andiamo al ristorante ed ordiniamo un piatto che ci piace particolarmente, riprodurlo a casa senza altra informazione che il piatto stesso è significativamente più difficile—probabilmente possiamo identificare gli ingredienti più importanti, ma per chiudere il cerchio avremo bisogno di informazioni aggiuntive che solo chi conosce la ricetta possiede.</p>
+<p><em><strong>Reverse engineering</strong>: processo attraverso il quale si cerca di ricostruire il flusso logico e strutturale di un programma (e.g., nella forma di un possibile codice sorgente) a partire dal codice macchina (e.g., dal file eseguibile).</em></p>
+<p>Decompilare è un’operazione difficile, ma non impossibile. Esistono strumenti sviluppati specificamente per il reverse engineering, e lo sviluppo tumultuoso dell’IA generativa che abbiamo visto negli ultimi anni potrebbe generare una vera e propria rivoluzione in questo senso. Detto questo, oltre una certa complessità, la decompilazione automatica su vasta scala rimane non praticabile.</p>
+</section>
+<section id="software-aperto-e-software-proprietario" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="software-aperto-e-software-proprietario"><span class="header-section-number">1.5</span> Software aperto e software proprietario</h2>
+<p>Tutto quello che abbiamo detto fino ad ora ha implicazioni interessanti in termini delle modalità in cui il software viene tipicamente <em>distribuito</em>. Mettiamoci per un attimo nella posizione di una sviluppatrice. Se l’unica cosa che ci interessa è che le nostre utenti possano <em>usare</em> il nostro programma, allora, da un punto di vista strettamente tecnico, l’unica cosa che dobbiamo distribuire è il file eseguibile—esattamente nello stesso modo in cui al ristorante ci viene dato il piatto che abbiamo ordinato, cucinato e pronto per il consumo, e non la ricetta.</p>
+<p>Se facciamo così, però, limitiamo fortemente quello che la nostra utente può fare con il programma. Può usarlo, certo, ma la cosa finisce lì. Senza accesso al codice sorgente non può studiarne la struttura logica, né i dettagli tecnici del funzionamento interno, che talvolta possono essere interessanti quanto e più del risultato finale. Non può verificare, se non indirettamente, che il programma non provochi effetti collaterali non voluti o addirittura malevoli. Non può <em>modificare</em> il programma (ammesso che ne sia in grado) per implementare una nuova funzionalità utile.</p>
+<p>È chiaro che siamo di fronte ad una dicotomia fondamentale.</p>
+<p><em><strong>Software aperto (o open source)</strong>: software il cui codice sorgente è reso disponibile sotto condizioni permissive in termini di modifica e re-distribuzione.</em></p>
+<p><em><strong>Software proprietario</strong>: software per il quale il codice sorgente non è generalmente disponibile e la modifica e redistribuzione è controllata dalla persona o entità proprietaria del software stesso.</em></p>
+<p>E, per completezza, il software aperto non è un concetto astratto di valore unicamente accademico—il mondo reale ne è letteralmente pieno. Date un’occhiata alla <a href="#tbl-open-proprietary-software" class="quarto-xref">Tabella&nbsp;<span>1.1</span></a>.</p>
+<div id="tbl-open-proprietary-software" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-tbl figure">
+<figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-open-proprietary-software-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Tabella&nbsp;1.1: Esempi di software open source e proprietario, raggruppati per tipologia.
+</figcaption>
+<div aria-describedby="tbl-open-proprietary-software-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th style="text-align: left;">Tipologia</th>
+<th style="text-align: left;">Software libero / open source</th>
+<th style="text-align: left;">Software proprietario</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Sistema operativo</td>
+<td style="text-align: left;"><a href="https://www.kernel.org/">GNU/Linux</a></td>
+<td style="text-align: left;"><a href="https://www.microsoft.com/windows/">Microsoft Windows</a>, <a href="https://www.apple.com/os/macos/">macOS</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Web browser</td>
+<td style="text-align: left;"><a href="https://www.mozilla.org/firefox/">Firefox</a></td>
+<td style="text-align: left;"><a href="https://www.google.com/chrome/">Google Chrome</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Calcolo scientifico</td>
+<td style="text-align: left;"><a href="https://www.python.org/">Python</a>, <a href="https://numpy.org/">NumPy</a>, <a href="https://scipy.org/">SciPy</a></td>
+<td style="text-align: left;"><a href="https://www.mathworks.com/products/matlab.html">MATLAB</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Produttività personale</td>
+<td style="text-align: left;"><a href="https://www.libreoffice.org/">LibreOffice</a></td>
+<td style="text-align: left;"><a href="https://www.microsoft.com/microsoft-365/">Microsoft 365</a></td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Editing di immagini</td>
+<td style="text-align: left;"><a href="https://www.gimp.org/">GIMP</a></td>
+<td style="text-align: left;"><a href="https://www.adobe.com/products/photoshop.html">Adobe Photoshop</a></td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Editing audio</td>
+<td style="text-align: left;"><a href="https://ardour.org/">Ardour</a></td>
+<td style="text-align: left;"><a href="https://www.avid.com/pro-tools">ProTools</a>, <a href="https://www.steinberg.net/cubase/">Cubase</a></td>
+</tr>
+</tbody>
+</table>
+</div>
+</figure>
+</div>
+<p>Abbiamo semplificato enormemente, e la questione è più sottile, ma queste note riguardano la computazione, e non il diritto d’autore, per cui ci facciamo bastare questo.</p>
+<p>Ora vi chiederete: meglio usare software aperto o software proprietario? Questione di gusti, ma spero che prendiate spunto da questa sezione per riflettere seriamente sull’argomento. Anche una persona che utilizzi il computer in modo puramente ricreativo dovrebbe interrogarsi sulle implicazioni del fatto che l’utente non abbiamo modo di sapere esattamente cosa fa un programma. Potrebbe darsi il caso, ad esempio, che mentre navighiamo su web, o scriviamo una email, mandi informazioni sensibili, e completamente scorrelate da ciò che stiamo facendo, alla casa madre? Magari per essere profilati a scopi pubblicitari, o peggio? (No, non si tratta di complottismo. Gli esempi non si contano, e potete leggere <a href="https://privacyinternational.org/examples-abuse/1902/dutch-dpa-microsoft-breaches-data-protection-law-windows-10">qui</a>, <a href="https://www.cnil.fr/en/cookies-and-advertisements-inserted-between-emails-google-fined-325-million-euros-cnil">qui</a>, <a href="https://www.ftc.gov/news-events/news/press-releases/2019/07/ftc-sues-cambridge-analytica-settles-former-ceo-app-developer">qui</a>, o <a href="https://www.ftc.gov/news-events/news/press-releases/2024/06/ftc-finalizes-order-avast-banning-it-selling-or-licensing-web-browsing-data-advertising-requiring-it">qui</a>, senza contare i casi, ancora più diffusi, in cui siamo noi stessi a dare il consenso a pratiche discutibili accettando licenze d’uso che non leggiamo.)</p>
+<p>Ma anche mettendo da parte per un attimo le questioni di privacy che un sistema non verificabile, per sua natura, solleva, nella vostra vita professionale potreste trovarvi a processare tera- o peta-byte di dati per tirare fuori un singolo numero (e.g., la massa di una particella). Davvero attacchereste un problema di questa portata e mettereste il vostro nome sul risultato sulla base di software che non sapete esattamente cosa faccia?</p>
+<section id="software-aperto-software-libero-software-gratuito" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="software-aperto-software-libero-software-gratuito"><span class="header-section-number">1.5.1</span> Software aperto, software libero, software gratuito</h3>
+<p>A ben guardare, c’è una cosa che abbiamo colpevolmente tralasciato nella discussione precedente: la differenza tra il software <em>open source</em> ed il software <em>libero</em>. Si tratta di due concetti che nella pratica sono largamente sovrapponibili, le cui differenze puntano però ad una questione fondamentale, ovverosia il motivo per cui decidiamo di adottare un particolare modello di sviluppo piuttosto per un altro. Nel primo caso è per una questione meramente tecnica, nel secondo caso è una questione, come dice il nome, di libertà. (Stiamo divagando, ma se siete interessate leggete <a href="https://www.gnu.org/philosophy/open-source-misses-the-point.html">qui</a>.)</p>
+<p><em><strong>Software libero</strong>: software che rispetta le libertà dell’utente e la comunità.</em></p>
+<p>Per completezza, le quattro libertà <em>classiche</em> identificate dalla <a href="https://www.fsf.org/">Free Software Foundation</a> sono:</p>
+<ul>
+<li>Libertà di eseguire il programma come si desidera, per qualsiasi scopo (libertà 0).</li>
+<li>Libertà di studiare come funziona il programma e di modificarlo in modo da adattarlo alle proprie necessità (libertà 1). L’accesso al codice sorgente ne è un prerequisito.</li>
+<li>Libertà di ridistribuire copie in modo da aiutare gli altri (libertà 2).</li>
+<li>Libertà di migliorare il programma e distribuirne pubblicamente i miglioramenti apportati (e le versioni modificate in genere), in modo tale che tutta la comunità ne tragga beneficio (libertà 3). L’accesso al codice sorgente ne è un prerequisito.</li>
+</ul>
+<p>Se siete arrivate fino a qui ed avete fatto attenzione avrete anche notato che non abbiamo mai parlato di <em>prezzo</em>, e questa volta deliberatamente. Tipicamente il software proprietario si paga—direttamente, in soldi, o indirettamente, e.g., in privacy. Di converso il software libero, per definizione, si può usare gratuitamente. Ma il software libero, come dice il nome, è una questione di libertà, non di prezzo.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Avviso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Questo corso è deproprietarizzato: quando possibile, tutte le attività del corso saranno svolte tramite programmi e piattaforme basate su software libero. Questa scelta è motivata dall’esigenza di garantire pari opportunità di accesso agli strumenti didattici, favorire la riproducibilità di metodi e risultati e incoraggiare l’adozione di tecnologie libere, trasparenti e sostenibili nel contesto scientifico e professionale.</p>
+</div>
+</div>
+<p><em>“Le libertà sono tutte solidali. Non se ne offende una senza offenderle tutte.”</em> (Filippo Turati, 1923)</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copiato!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copiato!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/unipi-physics-labs\.github\.io\/lab1-computing\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../gender.html" class="pagination-link" aria-label="Nota sul linguaggio di genere">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Nota sul linguaggio di genere</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../chapters/install.html" class="pagination-link" aria-label="Prima di cominciare">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Prima di cominciare</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© 2026 Luca Baldini. Rilasciato sotto licenza <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.it">CC BY-SA 4.0</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/glossary.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

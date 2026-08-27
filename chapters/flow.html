@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Controllo del flusso – Elementi di computazione</title>
+<title>6&nbsp; Controllo del flusso – Elementi di computazione</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -25,6 +25,41 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -117,7 +152,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/install.html">Parte prima: dal problema alla soluzione</a></li><li class="breadcrumb-item"><a href="../chapters/flow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/glossary.html">Parte prima: dal problema alla soluzione</a></li><li class="breadcrumb-item"><a href="../chapters/flow.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Attiva/disattiva la barra laterale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Ricerca" onclick="window.quartoOpenSearch();">
@@ -163,12 +198,6 @@ window.Quarto = {
  <span class="menu-text">Nota sul linguaggio di genere</span></a>
   </div>
 </li>
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../foss.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Nota sul software libero</span></a>
-  </div>
-</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
@@ -180,32 +209,38 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/glossary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Glossario</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/install.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Cominciamo?</span></span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Prima di cominciare</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/crash.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Il primo programma</span></span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Il primo programma</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/types.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Variabili e tipi</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Variabili e tipi</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/functions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funzioni</span></span></a>
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Funzioni</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/flow.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></span></a>
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></span></a>
   </div>
 </li>
       </ul>
@@ -222,43 +257,43 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/count.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Contare in base 2</span></span></a>
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Contare in base 2</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/hw.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Dentro il calcolatore</span></span></a>
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Dentro il calcolatore</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/os.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Il sistema operativo</span></span></a>
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Il sistema operativo</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/io.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Input/output</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Input/output</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/float.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">L’aritmetica in virgola mobile</span></span></a>
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">L’aritmetica in virgola mobile</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/algs.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Algoritmi</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Algoritmi</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/vec.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Vettorizzazione</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Vettorizzazione</span></span></a>
   </div>
 </li>
       </ul>
@@ -302,21 +337,30 @@ window.Quarto = {
     <h2 id="toc-title">Indice</h2>
    
   <ul>
-  <li><a href="#ripetere" id="toc-ripetere" class="nav-link active" data-scroll-target="#ripetere"><span class="header-section-number">5.1</span> Ripetere</a>
+  <li><a href="#prendere-decisioni" id="toc-prendere-decisioni" class="nav-link active" data-scroll-target="#prendere-decisioni"><span class="header-section-number">6.1</span> Prendere decisioni</a>
   <ul class="collapse">
-  <li><a href="#i-cicli-for" id="toc-i-cicli-for" class="nav-link" data-scroll-target="#i-cicli-for"><span class="header-section-number">5.1.1</span> I cicli <code>for</code></a></li>
-  <li><a href="#i-cicli-while" id="toc-i-cicli-while" class="nav-link" data-scroll-target="#i-cicli-while"><span class="header-section-number">5.1.2</span> I cicli <code>while</code></a></li>
+  <li><a href="#a-quale-gruppo-appartengo" id="toc-a-quale-gruppo-appartengo" class="nav-link" data-scroll-target="#a-quale-gruppo-appartengo"><span class="header-section-number">6.1.1</span> A quale gruppo appartengo?</a></li>
   </ul></li>
-  <li><a href="#prendere-decisioni" id="toc-prendere-decisioni" class="nav-link" data-scroll-target="#prendere-decisioni"><span class="header-section-number">5.2</span> Prendere decisioni</a></li>
+  <li><a href="#ripetere" id="toc-ripetere" class="nav-link" data-scroll-target="#ripetere"><span class="header-section-number">6.2</span> Ripetere</a>
+  <ul class="collapse">
+  <li><a href="#cicli-for" id="toc-cicli-for" class="nav-link" data-scroll-target="#cicli-for"><span class="header-section-number">6.2.1</span> Cicli <code>for</code></a></li>
+  <li><a href="#cicli-while" id="toc-cicli-while" class="nav-link" data-scroll-target="#cicli-while"><span class="header-section-number">6.2.2</span> Cicli <code>while</code></a></li>
+  </ul></li>
+  <li><a href="#e-quindi" id="toc-e-quindi" class="nav-link" data-scroll-target="#e-quindi"><span class="header-section-number">6.3</span> E quindi?</a>
+  <ul class="collapse">
+  <li><a href="#non-reinventare-la-ruota" id="toc-non-reinventare-la-ruota" class="nav-link" data-scroll-target="#non-reinventare-la-ruota"><span class="header-section-number">6.3.1</span> Non reinventare la ruota</a></li>
+  <li><a href="#un-semplice-problema-con-i-dadi" id="toc-un-semplice-problema-con-i-dadi" class="nav-link" data-scroll-target="#un-semplice-problema-con-i-dadi"><span class="header-section-number">6.3.2</span> Un semplice problema con i dadi</a></li>
+  <li><a href="#un-problema-più-fisico" id="toc-un-problema-più-fisico" class="nav-link" data-scroll-target="#un-problema-più-fisico"><span class="header-section-number">6.3.3</span> Un problema più fisico</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/flow.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/install.html">Parte prima: dal problema alla soluzione</a></li><li class="breadcrumb-item"><a href="../chapters/flow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../chapters/glossary.html">Parte prima: dal problema alla soluzione</a></li><li class="breadcrumb-item"><a href="../chapters/flow.html"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-flow" class="quarto-section-identifier"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></span></h1>
+<h1 class="title"><span id="sec-flow" class="quarto-section-identifier"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Controllo del flusso</span></span></h1>
 </div>
 
 
@@ -327,7 +371,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">22 agosto 2026</p>
+      <p class="date">27 agosto 2026</p>
     </div>
   </div>
   
@@ -339,21 +383,530 @@ window.Quarto = {
 </header>
 
 
-<p>“Ripetete il tutto per altre tre volte.”; “lasciate cuocere fino a che le patate non saranno dorate”; “se il sugo è troppo secco aggiungere un po’ di acqua di cottura”. Se avete letto anche distrattamente un libro di ricette in vita vostra vi sarà capitato di imbattervi in frasi di questo tipo. Per noi le parole chiave sono <em>tre volte</em>, <em>fino a che</em>, e <em>se</em>.</p>
-<section id="ripetere" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="ripetere"><span class="header-section-number">5.1</span> Ripetere</h2>
-<p>Una delle cose che capita più di frequente quando programmiamo è quella di <em>ripetere</em>, o <em>iterare</em> un’operazione. Sommare i numeri interi da <span class="math inline">\(0\)</span> a <span class="math inline">\(100\)</span>, per esempio, significa in pratica partire da <span class="math inline">\(0\)</span> e poi sommare ripetutamente <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span>e così via. Python, così come del resto la maggior parte dei linguaggi di programmazione offre due costrutti: <code>for</code> e <code>while</code>.</p>
-<section id="i-cicli-for" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="i-cicli-for"><span class="header-section-number">5.1.1</span> I cicli <code>for</code></h3>
+<p>Riflettiamo un attimo sulle frasi seguenti, prese dal mio libro di cucina preferito:</p>
+<ul>
+<li><em>se il sugo risulta amaro, aggiungere un cucchiaino di zucchero</em>.</li>
+<li><em>fate lievitare girando l’impasto per 2 o 3 volte a intervalli qualche minuto</em>;</li>
+<li><em>mescolare fino ad ottenere un impasto uniforme e senza grumi</em>;</li>
+</ul>
+<p>Cosa c’entra tutto questo con la programmazione? Beh, per cominciare queste semplici frasi ci dicono che una ricetta non è necessariamente una semplice sequenza di istruzioni da eseguire una dopo l’altra. Ci sono casi in cui il da farsi dipende dal <em>verificarsi o meno di una condizione</em>. E altri in cui la nozione di <em>ripetere un’operazione</em> (per un certo numero di volte, o fino a che non succeda qualcosa) è utile. E siccome abbiamo detto che una ricetta è la nostra analogia archetipica per un programma, una cosa simile varrà anche in quest’ultimo caso.</p>
+<p>Spoiler alert: è proprio così. Prendete nota delle espressioni <em>se</em> (nel senso condizionale, senza l’accento acuto), <em>per <span class="math inline">\(n\)</span> volte</em> e <em>fino a che</em>, perché ogni linguaggio di programmazione che si rispetti fornisce parole chiave per esprimere esattamente questi costrutti. Python non fa eccezione.</p>
+<section id="prendere-decisioni" class="level2" data-number="6.1">
+<h2 data-number="6.1" class="anchored" data-anchor-id="prendere-decisioni"><span class="header-section-number">6.1</span> Prendere decisioni</h2>
+<p>Come potremmo scrivere una piccola funzione per capire se un numero intero è pari o dispari? Si tratta del classico problema che è facile a dirsi, ma a una seconda occhiata non è immediatamente ovvio da matematizzare.</p>
+<p>Cosa vuol dire che un numero è <em>pari</em>? Facile: è divisibile per <span class="math inline">\(2\)</span>. Ovverosia: il resto della divisione intera (ovvero il <em>modulo</em>) per <span class="math inline">\(2\)</span> è zero. La fortuna ci viene in aiuto, perché Python fornice, disponibile in stock, un operatore binario che fa esattamente il modulo—si scrive <code>%</code>. Allora guardate un attimo:</p>
+<div id="6656db1b" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> is_even(value):</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(is_even(<span class="dv">22</span>))</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(is_even(<span class="dv">33</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+False</code></pre>
+</div>
+</div>
+<p>Congratulazioni: avete appena scritto il vostro primo programma con un’espressione condizionale. L’esempio è più o meno auto-esplicativo e non ha bisogno di particolari commenti, se non il fatto che, come nella definizione delle funzioni, l’indentazione qui ha carattere strutturate perché delimita l’estensione della logica incluse nelle due clausole if ed else.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Andando avanti imparerete che, in casi come questi, in cui una clausola condizionale termina con un <code>return</code>, l’else non è strettamente necessario. La forma più compatta</p>
+<div id="4864f42c" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> is_even(value):</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="va">False</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(is_even(<span class="dv">22</span>))</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(is_even(<span class="dv">33</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+False</code></pre>
+</div>
+</div>
+<p>è esattamente equivalente. (E, in generale, preferita). Ma per cominciare cerchiamo di mettere enfasi sulla chiarezza e sulla logica.</p>
+</div>
+</div>
+<section id="a-quale-gruppo-appartengo" class="level3" data-number="6.1.1">
+<h3 data-number="6.1.1" class="anchored" data-anchor-id="a-quale-gruppo-appartengo"><span class="header-section-number">6.1.1</span> A quale gruppo appartengo?</h3>
+<p>Narra le leggenda che un’università non meglio precisata usi dividere in gruppi le matricole secondo l’arcano criterio:</p>
+<ul>
+<li>gruppo A: matricole pari
+<ul>
+<li>sotto-gruppo A1: pari divisibile per 4</li>
+<li>sotto-gruppo A2: pari non divisibile per 4</li>
+</ul></li>
+<li>gruppo B: matricole dispari
+<ul>
+<li>sotto-gruppo B1: dispari con resto 1 se diviso per 4</li>
+<li>sotto-gruppo B2: dispari con resto 3 se diviso per 4</li>
+</ul></li>
+</ul>
+<p>Possiamo tradurre tutto questo in Python e scrivere una semplice funzione che restituisca il gruppo, dato il numero di matricola? Senza dubbio—e il segreto è di nuovo il modulo che abbiamo visto all’inizio di questa sezione.</p>
+<div id="cefbcdac" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> group(identifier):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    mod <span class="op">=</span> identifier <span class="op">%</span> <span class="dv">4</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mod <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"A1"</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> mod <span class="op">==</span> <span class="dv">1</span>:</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"B1"</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">elif</span> mod <span class="op">==</span> <span class="dv">2</span>:</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"A2"</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="st">"B2"</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(group(<span class="dv">194729</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>B1</code></pre>
+</div>
+</div>
+<p>Mi raccomando: non avete più scuse per presentarvi nel gruppo sbagliato il primo giorno di laboratorio.</p>
+<p>E, siccome c’è sempre un modo più compatto ed intelligente di fare le cose, il frammento che segue è esattamente equivalente</p>
+<div id="bb261447" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> group(identifier):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="st">"A1"</span>, <span class="st">"B1"</span>, <span class="st">"A2"</span>, <span class="st">"B2"</span>)[identifier <span class="op">%</span> <span class="dv">4</span>]</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(group(<span class="dv">194729</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>B1</code></pre>
+</div>
+</div>
+<p>Siete capaci di spiegare esattamente perché la cosa funziona?</p>
 </section>
-<section id="i-cicli-while" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="i-cicli-while"><span class="header-section-number">5.1.2</span> I cicli <code>while</code></h3>
+</section>
+<section id="ripetere" class="level2" data-number="6.2">
+<h2 data-number="6.2" class="anchored" data-anchor-id="ripetere"><span class="header-section-number">6.2</span> Ripetere</h2>
+<p><em>Provando e riprovando</em> è il motto della <a href="https://www.sif.it/chi">Società Italiana di Fisica</a>; e non a caso. Ripetere, o <em>iterare</em>, un’operazione è letteralmente una delle componenti fondamentali del metodo scientifico.</p>
+<p>Supponiamo per un attimo che una persona vi chieda di sommare i primi <span class="math inline">\(1000\)</span> numeri interi positivi. Potete aiutarvi con un calcolatore, e siete incoraggiate ad utilizzare tutte le cose che abbiamo imparato fino a questo momento. Facile, no?</p>
+<div id="9fedc7be" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">+</span> <span class="dv">4</span> <span class="op">+</span> <span class="dv">5</span> <span class="op">+</span> <span class="dv">6</span> <span class="op">+</span> <span class="dv">7</span> <span class="op">+</span> <span class="dv">8</span> <span class="op">+</span> <span class="dv">9</span> <span class="op">+</span> <span class="dv">10</span> <span class="op">+</span> <span class="dv">11</span> <span class="op">+</span> <span class="dv">12</span> <span class="op">+</span> <span class="dv">13</span> <span class="op">+</span> <span class="dv">14</span> <span class="op">+</span> <span class="dv">15</span> <span class="op">+</span> <span class="dv">16</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span> <span class="op">+</span> <span class="dv">18</span> <span class="op">+</span> <span class="dv">19</span> <span class="op">+</span> <span class="dv">20</span> <span class="op">+</span> <span class="dv">21</span> <span class="op">+</span> <span class="dv">22</span> <span class="op">+</span> <span class="dv">23</span> <span class="op">+</span> <span class="dv">24</span> <span class="op">+</span> <span class="dv">25</span> <span class="op">+</span> <span class="dv">26</span> <span class="op">+</span> <span class="dv">27</span> <span class="op">+</span> <span class="dv">28</span> <span class="op">+</span> <span class="dv">29</span> <span class="op">+</span> <span class="dv">30</span> <span class="op">+</span> <span class="dv">31</span> <span class="op">+</span> <span class="dv">32</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dv">33</span> <span class="op">+</span> <span class="dv">34</span> <span class="op">+</span> <span class="dv">35</span> <span class="op">+</span> <span class="dv">36</span> <span class="op">+</span> <span class="dv">37</span> <span class="op">+</span> <span class="dv">38</span> <span class="op">+</span> <span class="dv">39</span> <span class="op">+</span> <span class="dv">40</span> <span class="op">+</span> <span class="dv">41</span> <span class="op">+</span> <span class="dv">42</span> <span class="op">+</span> <span class="dv">43</span> <span class="op">+</span> <span class="dv">44</span> <span class="op">+</span> <span class="dv">45</span> <span class="op">+</span> <span class="dv">46</span> <span class="op">+</span> <span class="dv">47</span> <span class="op">+</span> <span class="dv">48</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="dv">49</span> <span class="op">+</span> <span class="dv">50</span> <span class="op">+</span> <span class="dv">51</span> <span class="op">+</span> <span class="dv">52</span> <span class="op">+</span> <span class="dv">53</span> <span class="op">+</span> <span class="dv">54</span> <span class="op">+</span> <span class="dv">55</span> <span class="op">+</span> <span class="dv">56</span> <span class="op">+</span> <span class="dv">57</span> <span class="op">+</span> <span class="dv">58</span> <span class="op">+</span> <span class="dv">59</span> <span class="op">+</span> <span class="dv">60</span> <span class="op">+</span> <span class="dv">61</span> <span class="op">+</span> <span class="dv">62</span> <span class="op">+</span> <span class="dv">63</span> <span class="op">+</span> <span class="dv">64</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="dv">65</span> <span class="op">+</span> <span class="dv">66</span> <span class="op">+</span> <span class="dv">67</span> <span class="op">+</span> <span class="dv">68</span> <span class="op">+</span> <span class="dv">69</span> <span class="op">+</span> <span class="dv">70</span> <span class="op">+</span> <span class="dv">71</span> <span class="op">+</span> <span class="dv">72</span> <span class="op">+</span> <span class="dv">73</span> <span class="op">+</span> <span class="dv">74</span> <span class="op">+</span> <span class="dv">75</span> <span class="op">+</span> <span class="dv">76</span> <span class="op">+</span> <span class="dv">77</span> <span class="op">+</span> <span class="dv">78</span> <span class="op">+</span> <span class="dv">79</span> <span class="op">+</span> <span class="dv">80</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="dv">81</span> <span class="op">+</span> <span class="dv">82</span> <span class="op">+</span> <span class="dv">83</span> <span class="op">+</span> <span class="dv">84</span> <span class="op">+</span> <span class="dv">85</span> <span class="op">+</span> <span class="dv">86</span> <span class="op">+</span> <span class="dv">87</span> <span class="op">+</span> <span class="dv">88</span> <span class="op">+</span> <span class="dv">89</span> <span class="op">+</span> <span class="dv">90</span> <span class="op">+</span> <span class="dv">91</span> <span class="op">+</span> <span class="dv">92</span> <span class="op">+</span> <span class="dv">93</span> <span class="op">+</span> <span class="dv">94</span> <span class="op">+</span> <span class="dv">95</span> <span class="op">+</span> <span class="dv">96</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="dv">97</span> <span class="op">+</span> <span class="dv">98</span> <span class="op">+</span> <span class="dv">99</span> <span class="op">+</span> <span class="dv">100</span> <span class="op">+</span> <span class="dv">101</span> <span class="op">+</span> <span class="dv">102</span> <span class="op">+</span> <span class="dv">103</span> <span class="op">+</span> <span class="dv">104</span> <span class="op">+</span> <span class="dv">105</span> <span class="op">+</span> <span class="dv">106</span> <span class="op">+</span> <span class="dv">107</span> <span class="op">+</span> <span class="dv">108</span> <span class="op">+</span> <span class="dv">109</span> <span class="op">+</span> <span class="dv">110</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a><span class="dv">111</span> <span class="op">+</span> <span class="dv">112</span> <span class="op">+</span> <span class="dv">113</span> <span class="op">+</span> <span class="dv">114</span> <span class="op">+</span> <span class="dv">115</span> <span class="op">+</span> <span class="dv">116</span> <span class="op">+</span> <span class="dv">117</span> <span class="op">+</span> <span class="dv">118</span> <span class="op">+</span> <span class="dv">119</span> <span class="op">+</span> <span class="dv">120</span> <span class="op">+</span> <span class="dv">121</span> <span class="op">+</span> <span class="dv">122</span> <span class="op">+</span> <span class="dv">123</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="dv">124</span> <span class="op">+</span> <span class="dv">125</span> <span class="op">+</span> <span class="dv">126</span> <span class="op">+</span> <span class="dv">127</span> <span class="op">+</span> <span class="dv">128</span> <span class="op">+</span> <span class="dv">129</span> <span class="op">+</span> <span class="dv">130</span> <span class="op">+</span> <span class="dv">131</span> <span class="op">+</span> <span class="dv">132</span> <span class="op">+</span> <span class="dv">133</span> <span class="op">+</span> <span class="dv">134</span> <span class="op">+</span> <span class="dv">135</span> <span class="op">+</span> <span class="dv">136</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="dv">137</span> <span class="op">+</span> <span class="dv">138</span> <span class="op">+</span> <span class="dv">139</span> <span class="op">+</span> <span class="dv">140</span> <span class="op">+</span> <span class="dv">141</span> <span class="op">+</span> <span class="dv">142</span> <span class="op">+</span> <span class="dv">143</span> <span class="op">+</span> <span class="dv">144</span> <span class="op">+</span> <span class="dv">145</span> <span class="op">+</span> <span class="dv">146</span> <span class="op">+</span> <span class="dv">147</span> <span class="op">+</span> <span class="dv">148</span> <span class="op">+</span> <span class="dv">149</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="dv">150</span> <span class="op">+</span> <span class="dv">151</span> <span class="op">+</span> <span class="dv">152</span> <span class="op">+</span> <span class="dv">153</span> <span class="op">+</span> <span class="dv">154</span> <span class="op">+</span> <span class="dv">155</span> <span class="op">+</span> <span class="dv">156</span> <span class="op">+</span> <span class="dv">157</span> <span class="op">+</span> <span class="dv">158</span> <span class="op">+</span> <span class="dv">159</span> <span class="op">+</span> <span class="dv">160</span> <span class="op">+</span> <span class="dv">161</span> <span class="op">+</span> <span class="dv">162</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="dv">163</span> <span class="op">+</span> <span class="dv">164</span> <span class="op">+</span> <span class="dv">165</span> <span class="op">+</span> <span class="dv">166</span> <span class="op">+</span> <span class="dv">167</span> <span class="op">+</span> <span class="dv">168</span> <span class="op">+</span> <span class="dv">169</span> <span class="op">+</span> <span class="dv">170</span> <span class="op">+</span> <span class="dv">171</span> <span class="op">+</span> <span class="dv">172</span> <span class="op">+</span> <span class="dv">173</span> <span class="op">+</span> <span class="dv">174</span> <span class="op">+</span> <span class="dv">175</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a><span class="dv">176</span> <span class="op">+</span> <span class="dv">177</span> <span class="op">+</span> <span class="dv">178</span> <span class="op">+</span> <span class="dv">179</span> <span class="op">+</span> <span class="dv">180</span> <span class="op">+</span> <span class="dv">181</span> <span class="op">+</span> <span class="dv">182</span> <span class="op">+</span> <span class="dv">183</span> <span class="op">+</span> <span class="dv">184</span> <span class="op">+</span> <span class="dv">185</span> <span class="op">+</span> <span class="dv">186</span> <span class="op">+</span> <span class="dv">187</span> <span class="op">+</span> <span class="dv">188</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a><span class="dv">189</span> <span class="op">+</span> <span class="dv">190</span> <span class="op">+</span> <span class="dv">191</span> <span class="op">+</span> <span class="dv">192</span> <span class="op">+</span> <span class="dv">193</span> <span class="op">+</span> <span class="dv">194</span> <span class="op">+</span> <span class="dv">195</span> <span class="op">+</span> <span class="dv">196</span> <span class="op">+</span> <span class="dv">197</span> <span class="op">+</span> <span class="dv">198</span> <span class="op">+</span> <span class="dv">199</span> <span class="op">+</span> <span class="dv">200</span> <span class="op">+</span> <span class="dv">201</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="dv">202</span> <span class="op">+</span> <span class="dv">203</span> <span class="op">+</span> <span class="dv">204</span> <span class="op">+</span> <span class="dv">205</span> <span class="op">+</span> <span class="dv">206</span> <span class="op">+</span> <span class="dv">207</span> <span class="op">+</span> <span class="dv">208</span> <span class="op">+</span> <span class="dv">209</span> <span class="op">+</span> <span class="dv">210</span> <span class="op">+</span> <span class="dv">211</span> <span class="op">+</span> <span class="dv">212</span> <span class="op">+</span> <span class="dv">213</span> <span class="op">+</span> <span class="dv">214</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a><span class="dv">215</span> <span class="op">+</span> <span class="dv">216</span> <span class="op">+</span> <span class="dv">217</span> <span class="op">+</span> <span class="dv">218</span> <span class="op">+</span> <span class="dv">219</span> <span class="op">+</span> <span class="dv">220</span> <span class="op">+</span> <span class="dv">221</span> <span class="op">+</span> <span class="dv">222</span> <span class="op">+</span> <span class="dv">223</span> <span class="op">+</span> <span class="dv">224</span> <span class="op">+</span> <span class="dv">225</span> <span class="op">+</span> <span class="dv">226</span> <span class="op">+</span> <span class="dv">227</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="dv">228</span> <span class="op">+</span> <span class="dv">229</span> <span class="op">+</span> <span class="dv">230</span> <span class="op">+</span> <span class="dv">231</span> <span class="op">+</span> <span class="dv">232</span> <span class="op">+</span> <span class="dv">233</span> <span class="op">+</span> <span class="dv">234</span> <span class="op">+</span> <span class="dv">235</span> <span class="op">+</span> <span class="dv">236</span> <span class="op">+</span> <span class="dv">237</span> <span class="op">+</span> <span class="dv">238</span> <span class="op">+</span> <span class="dv">239</span> <span class="op">+</span> <span class="dv">240</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="dv">241</span> <span class="op">+</span> <span class="dv">242</span> <span class="op">+</span> <span class="dv">243</span> <span class="op">+</span> <span class="dv">244</span> <span class="op">+</span> <span class="dv">245</span> <span class="op">+</span> <span class="dv">246</span> <span class="op">+</span> <span class="dv">247</span> <span class="op">+</span> <span class="dv">248</span> <span class="op">+</span> <span class="dv">249</span> <span class="op">+</span> <span class="dv">250</span> <span class="op">+</span> <span class="dv">251</span> <span class="op">+</span> <span class="dv">252</span> <span class="op">+</span> <span class="dv">253</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="dv">254</span> <span class="op">+</span> <span class="dv">255</span> <span class="op">+</span> <span class="dv">256</span> <span class="op">+</span> <span class="dv">257</span> <span class="op">+</span> <span class="dv">258</span> <span class="op">+</span> <span class="dv">259</span> <span class="op">+</span> <span class="dv">260</span> <span class="op">+</span> <span class="dv">261</span> <span class="op">+</span> <span class="dv">262</span> <span class="op">+</span> <span class="dv">263</span> <span class="op">+</span> <span class="dv">264</span> <span class="op">+</span> <span class="dv">265</span> <span class="op">+</span> <span class="dv">266</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="dv">267</span> <span class="op">+</span> <span class="dv">268</span> <span class="op">+</span> <span class="dv">269</span> <span class="op">+</span> <span class="dv">270</span> <span class="op">+</span> <span class="dv">271</span> <span class="op">+</span> <span class="dv">272</span> <span class="op">+</span> <span class="dv">273</span> <span class="op">+</span> <span class="dv">274</span> <span class="op">+</span> <span class="dv">275</span> <span class="op">+</span> <span class="dv">276</span> <span class="op">+</span> <span class="dv">277</span> <span class="op">+</span> <span class="dv">278</span> <span class="op">+</span> <span class="dv">279</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true" tabindex="-1"></a><span class="dv">280</span> <span class="op">+</span> <span class="dv">281</span> <span class="op">+</span> <span class="dv">282</span> <span class="op">+</span> <span class="dv">283</span> <span class="op">+</span> <span class="dv">284</span> <span class="op">+</span> <span class="dv">285</span> <span class="op">+</span> <span class="dv">286</span> <span class="op">+</span> <span class="dv">287</span> <span class="op">+</span> <span class="dv">288</span> <span class="op">+</span> <span class="dv">289</span> <span class="op">+</span> <span class="dv">290</span> <span class="op">+</span> <span class="dv">291</span> <span class="op">+</span> <span class="dv">292</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true" tabindex="-1"></a><span class="dv">293</span> <span class="op">+</span> <span class="dv">294</span> <span class="op">+</span> <span class="dv">295</span> <span class="op">+</span> <span class="dv">296</span> <span class="op">+</span> <span class="dv">297</span> <span class="op">+</span> <span class="dv">298</span> <span class="op">+</span> <span class="dv">299</span> <span class="op">+</span> <span class="dv">300</span> <span class="op">+</span> <span class="dv">301</span> <span class="op">+</span> <span class="dv">302</span> <span class="op">+</span> <span class="dv">303</span> <span class="op">+</span> <span class="dv">304</span> <span class="op">+</span> <span class="dv">305</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true" tabindex="-1"></a><span class="dv">306</span> <span class="op">+</span> <span class="dv">307</span> <span class="op">+</span> <span class="dv">308</span> <span class="op">+</span> <span class="dv">309</span> <span class="op">+</span> <span class="dv">310</span> <span class="op">+</span> <span class="dv">311</span> <span class="op">+</span> <span class="dv">312</span> <span class="op">+</span> <span class="dv">313</span> <span class="op">+</span> <span class="dv">314</span> <span class="op">+</span> <span class="dv">315</span> <span class="op">+</span> <span class="dv">316</span> <span class="op">+</span> <span class="dv">317</span> <span class="op">+</span> <span class="dv">318</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true" tabindex="-1"></a><span class="dv">319</span> <span class="op">+</span> <span class="dv">320</span> <span class="op">+</span> <span class="dv">321</span> <span class="op">+</span> <span class="dv">322</span> <span class="op">+</span> <span class="dv">323</span> <span class="op">+</span> <span class="dv">324</span> <span class="op">+</span> <span class="dv">325</span> <span class="op">+</span> <span class="dv">326</span> <span class="op">+</span> <span class="dv">327</span> <span class="op">+</span> <span class="dv">328</span> <span class="op">+</span> <span class="dv">329</span> <span class="op">+</span> <span class="dv">330</span> <span class="op">+</span> <span class="dv">331</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true" tabindex="-1"></a><span class="dv">332</span> <span class="op">+</span> <span class="dv">333</span> <span class="op">+</span> <span class="dv">334</span> <span class="op">+</span> <span class="dv">335</span> <span class="op">+</span> <span class="dv">336</span> <span class="op">+</span> <span class="dv">337</span> <span class="op">+</span> <span class="dv">338</span> <span class="op">+</span> <span class="dv">339</span> <span class="op">+</span> <span class="dv">340</span> <span class="op">+</span> <span class="dv">341</span> <span class="op">+</span> <span class="dv">342</span> <span class="op">+</span> <span class="dv">343</span> <span class="op">+</span> <span class="dv">344</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true" tabindex="-1"></a><span class="dv">345</span> <span class="op">+</span> <span class="dv">346</span> <span class="op">+</span> <span class="dv">347</span> <span class="op">+</span> <span class="dv">348</span> <span class="op">+</span> <span class="dv">349</span> <span class="op">+</span> <span class="dv">350</span> <span class="op">+</span> <span class="dv">351</span> <span class="op">+</span> <span class="dv">352</span> <span class="op">+</span> <span class="dv">353</span> <span class="op">+</span> <span class="dv">354</span> <span class="op">+</span> <span class="dv">355</span> <span class="op">+</span> <span class="dv">356</span> <span class="op">+</span> <span class="dv">357</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true" tabindex="-1"></a><span class="dv">358</span> <span class="op">+</span> <span class="dv">359</span> <span class="op">+</span> <span class="dv">360</span> <span class="op">+</span> <span class="dv">361</span> <span class="op">+</span> <span class="dv">362</span> <span class="op">+</span> <span class="dv">363</span> <span class="op">+</span> <span class="dv">364</span> <span class="op">+</span> <span class="dv">365</span> <span class="op">+</span> <span class="dv">366</span> <span class="op">+</span> <span class="dv">367</span> <span class="op">+</span> <span class="dv">368</span> <span class="op">+</span> <span class="dv">369</span> <span class="op">+</span> <span class="dv">370</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true" tabindex="-1"></a><span class="dv">371</span> <span class="op">+</span> <span class="dv">372</span> <span class="op">+</span> <span class="dv">373</span> <span class="op">+</span> <span class="dv">374</span> <span class="op">+</span> <span class="dv">375</span> <span class="op">+</span> <span class="dv">376</span> <span class="op">+</span> <span class="dv">377</span> <span class="op">+</span> <span class="dv">378</span> <span class="op">+</span> <span class="dv">379</span> <span class="op">+</span> <span class="dv">380</span> <span class="op">+</span> <span class="dv">381</span> <span class="op">+</span> <span class="dv">382</span> <span class="op">+</span> <span class="dv">383</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true" tabindex="-1"></a><span class="dv">384</span> <span class="op">+</span> <span class="dv">385</span> <span class="op">+</span> <span class="dv">386</span> <span class="op">+</span> <span class="dv">387</span> <span class="op">+</span> <span class="dv">388</span> <span class="op">+</span> <span class="dv">389</span> <span class="op">+</span> <span class="dv">390</span> <span class="op">+</span> <span class="dv">391</span> <span class="op">+</span> <span class="dv">392</span> <span class="op">+</span> <span class="dv">393</span> <span class="op">+</span> <span class="dv">394</span> <span class="op">+</span> <span class="dv">395</span> <span class="op">+</span> <span class="dv">396</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true" tabindex="-1"></a><span class="dv">397</span> <span class="op">+</span> <span class="dv">398</span> <span class="op">+</span> <span class="dv">399</span> <span class="op">+</span> <span class="dv">400</span> <span class="op">+</span> <span class="dv">401</span> <span class="op">+</span> <span class="dv">402</span> <span class="op">+</span> <span class="dv">403</span> <span class="op">+</span> <span class="dv">404</span> <span class="op">+</span> <span class="dv">405</span> <span class="op">+</span> <span class="dv">406</span> <span class="op">+</span> <span class="dv">407</span> <span class="op">+</span> <span class="dv">408</span> <span class="op">+</span> <span class="dv">409</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true" tabindex="-1"></a><span class="dv">410</span> <span class="op">+</span> <span class="dv">411</span> <span class="op">+</span> <span class="dv">412</span> <span class="op">+</span> <span class="dv">413</span> <span class="op">+</span> <span class="dv">414</span> <span class="op">+</span> <span class="dv">415</span> <span class="op">+</span> <span class="dv">416</span> <span class="op">+</span> <span class="dv">417</span> <span class="op">+</span> <span class="dv">418</span> <span class="op">+</span> <span class="dv">419</span> <span class="op">+</span> <span class="dv">420</span> <span class="op">+</span> <span class="dv">421</span> <span class="op">+</span> <span class="dv">422</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true" tabindex="-1"></a><span class="dv">423</span> <span class="op">+</span> <span class="dv">424</span> <span class="op">+</span> <span class="dv">425</span> <span class="op">+</span> <span class="dv">426</span> <span class="op">+</span> <span class="dv">427</span> <span class="op">+</span> <span class="dv">428</span> <span class="op">+</span> <span class="dv">429</span> <span class="op">+</span> <span class="dv">430</span> <span class="op">+</span> <span class="dv">431</span> <span class="op">+</span> <span class="dv">432</span> <span class="op">+</span> <span class="dv">433</span> <span class="op">+</span> <span class="dv">434</span> <span class="op">+</span> <span class="dv">435</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true" tabindex="-1"></a><span class="dv">436</span> <span class="op">+</span> <span class="dv">437</span> <span class="op">+</span> <span class="dv">438</span> <span class="op">+</span> <span class="dv">439</span> <span class="op">+</span> <span class="dv">440</span> <span class="op">+</span> <span class="dv">441</span> <span class="op">+</span> <span class="dv">442</span> <span class="op">+</span> <span class="dv">443</span> <span class="op">+</span> <span class="dv">444</span> <span class="op">+</span> <span class="dv">445</span> <span class="op">+</span> <span class="dv">446</span> <span class="op">+</span> <span class="dv">447</span> <span class="op">+</span> <span class="dv">448</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true" tabindex="-1"></a><span class="dv">449</span> <span class="op">+</span> <span class="dv">450</span> <span class="op">+</span> <span class="dv">451</span> <span class="op">+</span> <span class="dv">452</span> <span class="op">+</span> <span class="dv">453</span> <span class="op">+</span> <span class="dv">454</span> <span class="op">+</span> <span class="dv">455</span> <span class="op">+</span> <span class="dv">456</span> <span class="op">+</span> <span class="dv">457</span> <span class="op">+</span> <span class="dv">458</span> <span class="op">+</span> <span class="dv">459</span> <span class="op">+</span> <span class="dv">460</span> <span class="op">+</span> <span class="dv">461</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true" tabindex="-1"></a><span class="dv">462</span> <span class="op">+</span> <span class="dv">463</span> <span class="op">+</span> <span class="dv">464</span> <span class="op">+</span> <span class="dv">465</span> <span class="op">+</span> <span class="dv">466</span> <span class="op">+</span> <span class="dv">467</span> <span class="op">+</span> <span class="dv">468</span> <span class="op">+</span> <span class="dv">469</span> <span class="op">+</span> <span class="dv">470</span> <span class="op">+</span> <span class="dv">471</span> <span class="op">+</span> <span class="dv">472</span> <span class="op">+</span> <span class="dv">473</span> <span class="op">+</span> <span class="dv">474</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true" tabindex="-1"></a><span class="dv">475</span> <span class="op">+</span> <span class="dv">476</span> <span class="op">+</span> <span class="dv">477</span> <span class="op">+</span> <span class="dv">478</span> <span class="op">+</span> <span class="dv">479</span> <span class="op">+</span> <span class="dv">480</span> <span class="op">+</span> <span class="dv">481</span> <span class="op">+</span> <span class="dv">482</span> <span class="op">+</span> <span class="dv">483</span> <span class="op">+</span> <span class="dv">484</span> <span class="op">+</span> <span class="dv">485</span> <span class="op">+</span> <span class="dv">486</span> <span class="op">+</span> <span class="dv">487</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-37"><a href="#cb9-37" aria-hidden="true" tabindex="-1"></a><span class="dv">488</span> <span class="op">+</span> <span class="dv">489</span> <span class="op">+</span> <span class="dv">490</span> <span class="op">+</span> <span class="dv">491</span> <span class="op">+</span> <span class="dv">492</span> <span class="op">+</span> <span class="dv">493</span> <span class="op">+</span> <span class="dv">494</span> <span class="op">+</span> <span class="dv">495</span> <span class="op">+</span> <span class="dv">496</span> <span class="op">+</span> <span class="dv">497</span> <span class="op">+</span> <span class="dv">498</span> <span class="op">+</span> <span class="dv">499</span> <span class="op">+</span> <span class="dv">500</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-38"><a href="#cb9-38" aria-hidden="true" tabindex="-1"></a><span class="dv">501</span> <span class="op">+</span> <span class="dv">502</span> <span class="op">+</span> <span class="dv">503</span> <span class="op">+</span> <span class="dv">504</span> <span class="op">+</span> <span class="dv">505</span> <span class="op">+</span> <span class="dv">506</span> <span class="op">+</span> <span class="dv">507</span> <span class="op">+</span> <span class="dv">508</span> <span class="op">+</span> <span class="dv">509</span> <span class="op">+</span> <span class="dv">510</span> <span class="op">+</span> <span class="dv">511</span> <span class="op">+</span> <span class="dv">512</span> <span class="op">+</span> <span class="dv">513</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-39"><a href="#cb9-39" aria-hidden="true" tabindex="-1"></a><span class="dv">514</span> <span class="op">+</span> <span class="dv">515</span> <span class="op">+</span> <span class="dv">516</span> <span class="op">+</span> <span class="dv">517</span> <span class="op">+</span> <span class="dv">518</span> <span class="op">+</span> <span class="dv">519</span> <span class="op">+</span> <span class="dv">520</span> <span class="op">+</span> <span class="dv">521</span> <span class="op">+</span> <span class="dv">522</span> <span class="op">+</span> <span class="dv">523</span> <span class="op">+</span> <span class="dv">524</span> <span class="op">+</span> <span class="dv">525</span> <span class="op">+</span> <span class="dv">526</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-40"><a href="#cb9-40" aria-hidden="true" tabindex="-1"></a><span class="dv">527</span> <span class="op">+</span> <span class="dv">528</span> <span class="op">+</span> <span class="dv">529</span> <span class="op">+</span> <span class="dv">530</span> <span class="op">+</span> <span class="dv">531</span> <span class="op">+</span> <span class="dv">532</span> <span class="op">+</span> <span class="dv">533</span> <span class="op">+</span> <span class="dv">534</span> <span class="op">+</span> <span class="dv">535</span> <span class="op">+</span> <span class="dv">536</span> <span class="op">+</span> <span class="dv">537</span> <span class="op">+</span> <span class="dv">538</span> <span class="op">+</span> <span class="dv">539</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-41"><a href="#cb9-41" aria-hidden="true" tabindex="-1"></a><span class="dv">540</span> <span class="op">+</span> <span class="dv">541</span> <span class="op">+</span> <span class="dv">542</span> <span class="op">+</span> <span class="dv">543</span> <span class="op">+</span> <span class="dv">544</span> <span class="op">+</span> <span class="dv">545</span> <span class="op">+</span> <span class="dv">546</span> <span class="op">+</span> <span class="dv">547</span> <span class="op">+</span> <span class="dv">548</span> <span class="op">+</span> <span class="dv">549</span> <span class="op">+</span> <span class="dv">550</span> <span class="op">+</span> <span class="dv">551</span> <span class="op">+</span> <span class="dv">552</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-42"><a href="#cb9-42" aria-hidden="true" tabindex="-1"></a><span class="dv">553</span> <span class="op">+</span> <span class="dv">554</span> <span class="op">+</span> <span class="dv">555</span> <span class="op">+</span> <span class="dv">556</span> <span class="op">+</span> <span class="dv">557</span> <span class="op">+</span> <span class="dv">558</span> <span class="op">+</span> <span class="dv">559</span> <span class="op">+</span> <span class="dv">560</span> <span class="op">+</span> <span class="dv">561</span> <span class="op">+</span> <span class="dv">562</span> <span class="op">+</span> <span class="dv">563</span> <span class="op">+</span> <span class="dv">564</span> <span class="op">+</span> <span class="dv">565</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-43"><a href="#cb9-43" aria-hidden="true" tabindex="-1"></a><span class="dv">566</span> <span class="op">+</span> <span class="dv">567</span> <span class="op">+</span> <span class="dv">568</span> <span class="op">+</span> <span class="dv">569</span> <span class="op">+</span> <span class="dv">570</span> <span class="op">+</span> <span class="dv">571</span> <span class="op">+</span> <span class="dv">572</span> <span class="op">+</span> <span class="dv">573</span> <span class="op">+</span> <span class="dv">574</span> <span class="op">+</span> <span class="dv">575</span> <span class="op">+</span> <span class="dv">576</span> <span class="op">+</span> <span class="dv">577</span> <span class="op">+</span> <span class="dv">578</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-44"><a href="#cb9-44" aria-hidden="true" tabindex="-1"></a><span class="dv">579</span> <span class="op">+</span> <span class="dv">580</span> <span class="op">+</span> <span class="dv">581</span> <span class="op">+</span> <span class="dv">582</span> <span class="op">+</span> <span class="dv">583</span> <span class="op">+</span> <span class="dv">584</span> <span class="op">+</span> <span class="dv">585</span> <span class="op">+</span> <span class="dv">586</span> <span class="op">+</span> <span class="dv">587</span> <span class="op">+</span> <span class="dv">588</span> <span class="op">+</span> <span class="dv">589</span> <span class="op">+</span> <span class="dv">590</span> <span class="op">+</span> <span class="dv">591</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-45"><a href="#cb9-45" aria-hidden="true" tabindex="-1"></a><span class="dv">592</span> <span class="op">+</span> <span class="dv">593</span> <span class="op">+</span> <span class="dv">594</span> <span class="op">+</span> <span class="dv">595</span> <span class="op">+</span> <span class="dv">596</span> <span class="op">+</span> <span class="dv">597</span> <span class="op">+</span> <span class="dv">598</span> <span class="op">+</span> <span class="dv">599</span> <span class="op">+</span> <span class="dv">600</span> <span class="op">+</span> <span class="dv">601</span> <span class="op">+</span> <span class="dv">602</span> <span class="op">+</span> <span class="dv">603</span> <span class="op">+</span> <span class="dv">604</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-46"><a href="#cb9-46" aria-hidden="true" tabindex="-1"></a><span class="dv">605</span> <span class="op">+</span> <span class="dv">606</span> <span class="op">+</span> <span class="dv">607</span> <span class="op">+</span> <span class="dv">608</span> <span class="op">+</span> <span class="dv">609</span> <span class="op">+</span> <span class="dv">610</span> <span class="op">+</span> <span class="dv">611</span> <span class="op">+</span> <span class="dv">612</span> <span class="op">+</span> <span class="dv">613</span> <span class="op">+</span> <span class="dv">614</span> <span class="op">+</span> <span class="dv">615</span> <span class="op">+</span> <span class="dv">616</span> <span class="op">+</span> <span class="dv">617</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-47"><a href="#cb9-47" aria-hidden="true" tabindex="-1"></a><span class="dv">618</span> <span class="op">+</span> <span class="dv">619</span> <span class="op">+</span> <span class="dv">620</span> <span class="op">+</span> <span class="dv">621</span> <span class="op">+</span> <span class="dv">622</span> <span class="op">+</span> <span class="dv">623</span> <span class="op">+</span> <span class="dv">624</span> <span class="op">+</span> <span class="dv">625</span> <span class="op">+</span> <span class="dv">626</span> <span class="op">+</span> <span class="dv">627</span> <span class="op">+</span> <span class="dv">628</span> <span class="op">+</span> <span class="dv">629</span> <span class="op">+</span> <span class="dv">630</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-48"><a href="#cb9-48" aria-hidden="true" tabindex="-1"></a><span class="dv">631</span> <span class="op">+</span> <span class="dv">632</span> <span class="op">+</span> <span class="dv">633</span> <span class="op">+</span> <span class="dv">634</span> <span class="op">+</span> <span class="dv">635</span> <span class="op">+</span> <span class="dv">636</span> <span class="op">+</span> <span class="dv">637</span> <span class="op">+</span> <span class="dv">638</span> <span class="op">+</span> <span class="dv">639</span> <span class="op">+</span> <span class="dv">640</span> <span class="op">+</span> <span class="dv">641</span> <span class="op">+</span> <span class="dv">642</span> <span class="op">+</span> <span class="dv">643</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-49"><a href="#cb9-49" aria-hidden="true" tabindex="-1"></a><span class="dv">644</span> <span class="op">+</span> <span class="dv">645</span> <span class="op">+</span> <span class="dv">646</span> <span class="op">+</span> <span class="dv">647</span> <span class="op">+</span> <span class="dv">648</span> <span class="op">+</span> <span class="dv">649</span> <span class="op">+</span> <span class="dv">650</span> <span class="op">+</span> <span class="dv">651</span> <span class="op">+</span> <span class="dv">652</span> <span class="op">+</span> <span class="dv">653</span> <span class="op">+</span> <span class="dv">654</span> <span class="op">+</span> <span class="dv">655</span> <span class="op">+</span> <span class="dv">656</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-50"><a href="#cb9-50" aria-hidden="true" tabindex="-1"></a><span class="dv">657</span> <span class="op">+</span> <span class="dv">658</span> <span class="op">+</span> <span class="dv">659</span> <span class="op">+</span> <span class="dv">660</span> <span class="op">+</span> <span class="dv">661</span> <span class="op">+</span> <span class="dv">662</span> <span class="op">+</span> <span class="dv">663</span> <span class="op">+</span> <span class="dv">664</span> <span class="op">+</span> <span class="dv">665</span> <span class="op">+</span> <span class="dv">666</span> <span class="op">+</span> <span class="dv">667</span> <span class="op">+</span> <span class="dv">668</span> <span class="op">+</span> <span class="dv">669</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-51"><a href="#cb9-51" aria-hidden="true" tabindex="-1"></a><span class="dv">670</span> <span class="op">+</span> <span class="dv">671</span> <span class="op">+</span> <span class="dv">672</span> <span class="op">+</span> <span class="dv">673</span> <span class="op">+</span> <span class="dv">674</span> <span class="op">+</span> <span class="dv">675</span> <span class="op">+</span> <span class="dv">676</span> <span class="op">+</span> <span class="dv">677</span> <span class="op">+</span> <span class="dv">678</span> <span class="op">+</span> <span class="dv">679</span> <span class="op">+</span> <span class="dv">680</span> <span class="op">+</span> <span class="dv">681</span> <span class="op">+</span> <span class="dv">682</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-52"><a href="#cb9-52" aria-hidden="true" tabindex="-1"></a><span class="dv">683</span> <span class="op">+</span> <span class="dv">684</span> <span class="op">+</span> <span class="dv">685</span> <span class="op">+</span> <span class="dv">686</span> <span class="op">+</span> <span class="dv">687</span> <span class="op">+</span> <span class="dv">688</span> <span class="op">+</span> <span class="dv">689</span> <span class="op">+</span> <span class="dv">690</span> <span class="op">+</span> <span class="dv">691</span> <span class="op">+</span> <span class="dv">692</span> <span class="op">+</span> <span class="dv">693</span> <span class="op">+</span> <span class="dv">694</span> <span class="op">+</span> <span class="dv">695</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-53"><a href="#cb9-53" aria-hidden="true" tabindex="-1"></a><span class="dv">696</span> <span class="op">+</span> <span class="dv">697</span> <span class="op">+</span> <span class="dv">698</span> <span class="op">+</span> <span class="dv">699</span> <span class="op">+</span> <span class="dv">700</span> <span class="op">+</span> <span class="dv">701</span> <span class="op">+</span> <span class="dv">702</span> <span class="op">+</span> <span class="dv">703</span> <span class="op">+</span> <span class="dv">704</span> <span class="op">+</span> <span class="dv">705</span> <span class="op">+</span> <span class="dv">706</span> <span class="op">+</span> <span class="dv">707</span> <span class="op">+</span> <span class="dv">708</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-54"><a href="#cb9-54" aria-hidden="true" tabindex="-1"></a><span class="dv">709</span> <span class="op">+</span> <span class="dv">710</span> <span class="op">+</span> <span class="dv">711</span> <span class="op">+</span> <span class="dv">712</span> <span class="op">+</span> <span class="dv">713</span> <span class="op">+</span> <span class="dv">714</span> <span class="op">+</span> <span class="dv">715</span> <span class="op">+</span> <span class="dv">716</span> <span class="op">+</span> <span class="dv">717</span> <span class="op">+</span> <span class="dv">718</span> <span class="op">+</span> <span class="dv">719</span> <span class="op">+</span> <span class="dv">720</span> <span class="op">+</span> <span class="dv">721</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-55"><a href="#cb9-55" aria-hidden="true" tabindex="-1"></a><span class="dv">722</span> <span class="op">+</span> <span class="dv">723</span> <span class="op">+</span> <span class="dv">724</span> <span class="op">+</span> <span class="dv">725</span> <span class="op">+</span> <span class="dv">726</span> <span class="op">+</span> <span class="dv">727</span> <span class="op">+</span> <span class="dv">728</span> <span class="op">+</span> <span class="dv">729</span> <span class="op">+</span> <span class="dv">730</span> <span class="op">+</span> <span class="dv">731</span> <span class="op">+</span> <span class="dv">732</span> <span class="op">+</span> <span class="dv">733</span> <span class="op">+</span> <span class="dv">734</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-56"><a href="#cb9-56" aria-hidden="true" tabindex="-1"></a><span class="dv">735</span> <span class="op">+</span> <span class="dv">736</span> <span class="op">+</span> <span class="dv">737</span> <span class="op">+</span> <span class="dv">738</span> <span class="op">+</span> <span class="dv">739</span> <span class="op">+</span> <span class="dv">740</span> <span class="op">+</span> <span class="dv">741</span> <span class="op">+</span> <span class="dv">742</span> <span class="op">+</span> <span class="dv">743</span> <span class="op">+</span> <span class="dv">744</span> <span class="op">+</span> <span class="dv">745</span> <span class="op">+</span> <span class="dv">746</span> <span class="op">+</span> <span class="dv">747</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-57"><a href="#cb9-57" aria-hidden="true" tabindex="-1"></a><span class="dv">748</span> <span class="op">+</span> <span class="dv">749</span> <span class="op">+</span> <span class="dv">750</span> <span class="op">+</span> <span class="dv">751</span> <span class="op">+</span> <span class="dv">752</span> <span class="op">+</span> <span class="dv">753</span> <span class="op">+</span> <span class="dv">754</span> <span class="op">+</span> <span class="dv">755</span> <span class="op">+</span> <span class="dv">756</span> <span class="op">+</span> <span class="dv">757</span> <span class="op">+</span> <span class="dv">758</span> <span class="op">+</span> <span class="dv">759</span> <span class="op">+</span> <span class="dv">760</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-58"><a href="#cb9-58" aria-hidden="true" tabindex="-1"></a><span class="dv">761</span> <span class="op">+</span> <span class="dv">762</span> <span class="op">+</span> <span class="dv">763</span> <span class="op">+</span> <span class="dv">764</span> <span class="op">+</span> <span class="dv">765</span> <span class="op">+</span> <span class="dv">766</span> <span class="op">+</span> <span class="dv">767</span> <span class="op">+</span> <span class="dv">768</span> <span class="op">+</span> <span class="dv">769</span> <span class="op">+</span> <span class="dv">770</span> <span class="op">+</span> <span class="dv">771</span> <span class="op">+</span> <span class="dv">772</span> <span class="op">+</span> <span class="dv">773</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-59"><a href="#cb9-59" aria-hidden="true" tabindex="-1"></a><span class="dv">774</span> <span class="op">+</span> <span class="dv">775</span> <span class="op">+</span> <span class="dv">776</span> <span class="op">+</span> <span class="dv">777</span> <span class="op">+</span> <span class="dv">778</span> <span class="op">+</span> <span class="dv">779</span> <span class="op">+</span> <span class="dv">780</span> <span class="op">+</span> <span class="dv">781</span> <span class="op">+</span> <span class="dv">782</span> <span class="op">+</span> <span class="dv">783</span> <span class="op">+</span> <span class="dv">784</span> <span class="op">+</span> <span class="dv">785</span> <span class="op">+</span> <span class="dv">786</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-60"><a href="#cb9-60" aria-hidden="true" tabindex="-1"></a><span class="dv">787</span> <span class="op">+</span> <span class="dv">788</span> <span class="op">+</span> <span class="dv">789</span> <span class="op">+</span> <span class="dv">790</span> <span class="op">+</span> <span class="dv">791</span> <span class="op">+</span> <span class="dv">792</span> <span class="op">+</span> <span class="dv">793</span> <span class="op">+</span> <span class="dv">794</span> <span class="op">+</span> <span class="dv">795</span> <span class="op">+</span> <span class="dv">796</span> <span class="op">+</span> <span class="dv">797</span> <span class="op">+</span> <span class="dv">798</span> <span class="op">+</span> <span class="dv">799</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-61"><a href="#cb9-61" aria-hidden="true" tabindex="-1"></a><span class="dv">800</span> <span class="op">+</span> <span class="dv">801</span> <span class="op">+</span> <span class="dv">802</span> <span class="op">+</span> <span class="dv">803</span> <span class="op">+</span> <span class="dv">804</span> <span class="op">+</span> <span class="dv">805</span> <span class="op">+</span> <span class="dv">806</span> <span class="op">+</span> <span class="dv">807</span> <span class="op">+</span> <span class="dv">808</span> <span class="op">+</span> <span class="dv">809</span> <span class="op">+</span> <span class="dv">810</span> <span class="op">+</span> <span class="dv">811</span> <span class="op">+</span> <span class="dv">812</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-62"><a href="#cb9-62" aria-hidden="true" tabindex="-1"></a><span class="dv">813</span> <span class="op">+</span> <span class="dv">814</span> <span class="op">+</span> <span class="dv">815</span> <span class="op">+</span> <span class="dv">816</span> <span class="op">+</span> <span class="dv">817</span> <span class="op">+</span> <span class="dv">818</span> <span class="op">+</span> <span class="dv">819</span> <span class="op">+</span> <span class="dv">820</span> <span class="op">+</span> <span class="dv">821</span> <span class="op">+</span> <span class="dv">822</span> <span class="op">+</span> <span class="dv">823</span> <span class="op">+</span> <span class="dv">824</span> <span class="op">+</span> <span class="dv">825</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-63"><a href="#cb9-63" aria-hidden="true" tabindex="-1"></a><span class="dv">826</span> <span class="op">+</span> <span class="dv">827</span> <span class="op">+</span> <span class="dv">828</span> <span class="op">+</span> <span class="dv">829</span> <span class="op">+</span> <span class="dv">830</span> <span class="op">+</span> <span class="dv">831</span> <span class="op">+</span> <span class="dv">832</span> <span class="op">+</span> <span class="dv">833</span> <span class="op">+</span> <span class="dv">834</span> <span class="op">+</span> <span class="dv">835</span> <span class="op">+</span> <span class="dv">836</span> <span class="op">+</span> <span class="dv">837</span> <span class="op">+</span> <span class="dv">838</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-64"><a href="#cb9-64" aria-hidden="true" tabindex="-1"></a><span class="dv">839</span> <span class="op">+</span> <span class="dv">840</span> <span class="op">+</span> <span class="dv">841</span> <span class="op">+</span> <span class="dv">842</span> <span class="op">+</span> <span class="dv">843</span> <span class="op">+</span> <span class="dv">844</span> <span class="op">+</span> <span class="dv">845</span> <span class="op">+</span> <span class="dv">846</span> <span class="op">+</span> <span class="dv">847</span> <span class="op">+</span> <span class="dv">848</span> <span class="op">+</span> <span class="dv">849</span> <span class="op">+</span> <span class="dv">850</span> <span class="op">+</span> <span class="dv">851</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-65"><a href="#cb9-65" aria-hidden="true" tabindex="-1"></a><span class="dv">852</span> <span class="op">+</span> <span class="dv">853</span> <span class="op">+</span> <span class="dv">854</span> <span class="op">+</span> <span class="dv">855</span> <span class="op">+</span> <span class="dv">856</span> <span class="op">+</span> <span class="dv">857</span> <span class="op">+</span> <span class="dv">858</span> <span class="op">+</span> <span class="dv">859</span> <span class="op">+</span> <span class="dv">860</span> <span class="op">+</span> <span class="dv">861</span> <span class="op">+</span> <span class="dv">862</span> <span class="op">+</span> <span class="dv">863</span> <span class="op">+</span> <span class="dv">864</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-66"><a href="#cb9-66" aria-hidden="true" tabindex="-1"></a><span class="dv">865</span> <span class="op">+</span> <span class="dv">866</span> <span class="op">+</span> <span class="dv">867</span> <span class="op">+</span> <span class="dv">868</span> <span class="op">+</span> <span class="dv">869</span> <span class="op">+</span> <span class="dv">870</span> <span class="op">+</span> <span class="dv">871</span> <span class="op">+</span> <span class="dv">872</span> <span class="op">+</span> <span class="dv">873</span> <span class="op">+</span> <span class="dv">874</span> <span class="op">+</span> <span class="dv">875</span> <span class="op">+</span> <span class="dv">876</span> <span class="op">+</span> <span class="dv">877</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-67"><a href="#cb9-67" aria-hidden="true" tabindex="-1"></a><span class="dv">878</span> <span class="op">+</span> <span class="dv">879</span> <span class="op">+</span> <span class="dv">880</span> <span class="op">+</span> <span class="dv">881</span> <span class="op">+</span> <span class="dv">882</span> <span class="op">+</span> <span class="dv">883</span> <span class="op">+</span> <span class="dv">884</span> <span class="op">+</span> <span class="dv">885</span> <span class="op">+</span> <span class="dv">886</span> <span class="op">+</span> <span class="dv">887</span> <span class="op">+</span> <span class="dv">888</span> <span class="op">+</span> <span class="dv">889</span> <span class="op">+</span> <span class="dv">890</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-68"><a href="#cb9-68" aria-hidden="true" tabindex="-1"></a><span class="dv">891</span> <span class="op">+</span> <span class="dv">892</span> <span class="op">+</span> <span class="dv">893</span> <span class="op">+</span> <span class="dv">894</span> <span class="op">+</span> <span class="dv">895</span> <span class="op">+</span> <span class="dv">896</span> <span class="op">+</span> <span class="dv">897</span> <span class="op">+</span> <span class="dv">898</span> <span class="op">+</span> <span class="dv">899</span> <span class="op">+</span> <span class="dv">900</span> <span class="op">+</span> <span class="dv">901</span> <span class="op">+</span> <span class="dv">902</span> <span class="op">+</span> <span class="dv">903</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-69"><a href="#cb9-69" aria-hidden="true" tabindex="-1"></a><span class="dv">904</span> <span class="op">+</span> <span class="dv">905</span> <span class="op">+</span> <span class="dv">906</span> <span class="op">+</span> <span class="dv">907</span> <span class="op">+</span> <span class="dv">908</span> <span class="op">+</span> <span class="dv">909</span> <span class="op">+</span> <span class="dv">910</span> <span class="op">+</span> <span class="dv">911</span> <span class="op">+</span> <span class="dv">912</span> <span class="op">+</span> <span class="dv">913</span> <span class="op">+</span> <span class="dv">914</span> <span class="op">+</span> <span class="dv">915</span> <span class="op">+</span> <span class="dv">916</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-70"><a href="#cb9-70" aria-hidden="true" tabindex="-1"></a><span class="dv">917</span> <span class="op">+</span> <span class="dv">918</span> <span class="op">+</span> <span class="dv">919</span> <span class="op">+</span> <span class="dv">920</span> <span class="op">+</span> <span class="dv">921</span> <span class="op">+</span> <span class="dv">922</span> <span class="op">+</span> <span class="dv">923</span> <span class="op">+</span> <span class="dv">924</span> <span class="op">+</span> <span class="dv">925</span> <span class="op">+</span> <span class="dv">926</span> <span class="op">+</span> <span class="dv">927</span> <span class="op">+</span> <span class="dv">928</span> <span class="op">+</span> <span class="dv">929</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-71"><a href="#cb9-71" aria-hidden="true" tabindex="-1"></a><span class="dv">930</span> <span class="op">+</span> <span class="dv">931</span> <span class="op">+</span> <span class="dv">932</span> <span class="op">+</span> <span class="dv">933</span> <span class="op">+</span> <span class="dv">934</span> <span class="op">+</span> <span class="dv">935</span> <span class="op">+</span> <span class="dv">936</span> <span class="op">+</span> <span class="dv">937</span> <span class="op">+</span> <span class="dv">938</span> <span class="op">+</span> <span class="dv">939</span> <span class="op">+</span> <span class="dv">940</span> <span class="op">+</span> <span class="dv">941</span> <span class="op">+</span> <span class="dv">942</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-72"><a href="#cb9-72" aria-hidden="true" tabindex="-1"></a><span class="dv">943</span> <span class="op">+</span> <span class="dv">944</span> <span class="op">+</span> <span class="dv">945</span> <span class="op">+</span> <span class="dv">946</span> <span class="op">+</span> <span class="dv">947</span> <span class="op">+</span> <span class="dv">948</span> <span class="op">+</span> <span class="dv">949</span> <span class="op">+</span> <span class="dv">950</span> <span class="op">+</span> <span class="dv">951</span> <span class="op">+</span> <span class="dv">952</span> <span class="op">+</span> <span class="dv">953</span> <span class="op">+</span> <span class="dv">954</span> <span class="op">+</span> <span class="dv">955</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-73"><a href="#cb9-73" aria-hidden="true" tabindex="-1"></a><span class="dv">956</span> <span class="op">+</span> <span class="dv">957</span> <span class="op">+</span> <span class="dv">958</span> <span class="op">+</span> <span class="dv">959</span> <span class="op">+</span> <span class="dv">960</span> <span class="op">+</span> <span class="dv">961</span> <span class="op">+</span> <span class="dv">962</span> <span class="op">+</span> <span class="dv">963</span> <span class="op">+</span> <span class="dv">964</span> <span class="op">+</span> <span class="dv">965</span> <span class="op">+</span> <span class="dv">966</span> <span class="op">+</span> <span class="dv">967</span> <span class="op">+</span> <span class="dv">968</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-74"><a href="#cb9-74" aria-hidden="true" tabindex="-1"></a><span class="dv">969</span> <span class="op">+</span> <span class="dv">970</span> <span class="op">+</span> <span class="dv">971</span> <span class="op">+</span> <span class="dv">972</span> <span class="op">+</span> <span class="dv">973</span> <span class="op">+</span> <span class="dv">974</span> <span class="op">+</span> <span class="dv">975</span> <span class="op">+</span> <span class="dv">976</span> <span class="op">+</span> <span class="dv">977</span> <span class="op">+</span> <span class="dv">978</span> <span class="op">+</span> <span class="dv">979</span> <span class="op">+</span> <span class="dv">980</span> <span class="op">+</span> <span class="dv">981</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-75"><a href="#cb9-75" aria-hidden="true" tabindex="-1"></a><span class="dv">982</span> <span class="op">+</span> <span class="dv">983</span> <span class="op">+</span> <span class="dv">984</span> <span class="op">+</span> <span class="dv">985</span> <span class="op">+</span> <span class="dv">986</span> <span class="op">+</span> <span class="dv">987</span> <span class="op">+</span> <span class="dv">988</span> <span class="op">+</span> <span class="dv">989</span> <span class="op">+</span> <span class="dv">990</span> <span class="op">+</span> <span class="dv">991</span> <span class="op">+</span> <span class="dv">992</span> <span class="op">+</span> <span class="dv">993</span> <span class="op">+</span> <span class="dv">994</span> <span class="op">+</span> <span class="op">\</span></span>
+<span id="cb9-76"><a href="#cb9-76" aria-hidden="true" tabindex="-1"></a><span class="dv">995</span> <span class="op">+</span> <span class="dv">996</span> <span class="op">+</span> <span class="dv">997</span> <span class="op">+</span> <span class="dv">998</span> <span class="op">+</span> <span class="dv">999</span> <span class="op">+</span> <span class="dv">1000</span></span>
+<span id="cb9-77"><a href="#cb9-77" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-78"><a href="#cb9-78" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>500500</code></pre>
+</div>
+</div>
+<p>Cosa ne pensate? Non siete tentate di chiedervi se non ci sia una via più semplice? E, a una seconda occhiata, secondo voi come ho fatto a scrivere questo frammento di codice? A mano, pazientemente? O magari con qualche trucco? (Bonus track: il carattere <code>\</code>, o <em>backslash</em>, è quello che in Python permette di spezzare una riga troppo lunga ove necessario—nella sezione <a href="os.html#sec-backslash" class="quarto-xref"><span>Sezione 9.2.2</span></a> impareremo un certo numero di altri usi di questo meraviglioso carattere.)</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nel caso conosceste un minimo di teoria dei numeri dal corso di analisi, o aveste un’intelligenza maggiore o uguale a quella del piccolo Gauss, vi metto subito il cuore in pace: potremmo fare</p>
+<div id="acf8ea4b" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> n <span class="op">*</span> (n <span class="op">+</span> <span class="dv">1</span>) <span class="op">//</span> <span class="dv">2</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>500500</code></pre>
+</div>
+</div>
+<p>Ma non è questo il nocciolo della questione. Non tutto si risolve con una formuletta in forma chiusa, e spesso le situazioni in cui il calcolatore si rivela più utile sono quelle in cui serve usare la forza bruta. Mettiamo questo piccolo detour da parte e andiamo avanti.</p>
+</div>
+</div>
+<section id="cicli-for" class="level3" data-number="6.2.1">
+<h3 data-number="6.2.1" class="anchored" data-anchor-id="cicli-for"><span class="header-section-number">6.2.1</span> Cicli <code>for</code></h3>
+<p>Ma torniamo a noi. Se in questo momento state pensando <em>“deve esserci un altro modo”</em>, complimenti: siete persone di buon gusto e non volete programmare come barbari—il vostro istinto vi sta suggerendo la cosa giusta.</p>
+<p>Non sarebbe bello se Python offrisse un costrutto esplicito per esprimere in modo formale quello che colloquialmente potremmo esprimere come: <em>vorrei partire dal numero <span class="math inline">\(n = 1\)</span> (o <span class="math inline">\(n = 0\)</span>, il che è indifferente) ed incrementare <span class="math inline">\(n\)</span> di una unità per <span class="math inline">\(999\)</span> (o <span class="math inline">\(1000\)</span>) volte, sommando ogni volta il valore ottenuto alla somma parziale precedente</em>? Lo so, detto così sembra più difficile di quanto non sia in realtà, ma il punto è che questo costrutto esiste e si chiama <em>ciclo for</em>.</p>
+<div id="e5ab8917" class="cell" data-execution_count="7">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">1001</span>):</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    s <span class="op">+=</span> i</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>500500</code></pre>
+</div>
+</div>
+<p>Wow! Il risultato è giusto, per cui dobbiamo aver fatto qualcosa di buono. Ma fermiamoci un attimo per cercare di convincerci di aver capito tutto nei minimi dettagli. Andiamo per ordine: l’esempio più semplice possibile di ciclo for è</p>
+<div id="b9b4bfb5" class="cell" data-execution_count="8">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]:</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1
+2
+3</code></pre>
+</div>
+</div>
+<p>che è funzionalmente equivalente a</p>
+<div id="356e2626" class="cell" data-execution_count="9">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">2</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i)</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">3</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1
+2
+3</code></pre>
+</div>
+</div>
+<p>La sintassi generale</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> variable <span class="kw">in</span> iterable:</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    do_something(variable)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>permette di scorrere tutti gli elementi di un oggetto <em>iterabile</em> (ad esempio una lista, una tupla o un array di numpy) e compiere una o più istruzioni all’interno delle quali la variabile su cui eseguiamo il ciclo assume il valore dell’elemento corrente dell’iterabile. Si tratta letteralmente di:</p>
+<ul>
+<li>creare una variabile ausiliaria per il ciclo (nel nostro caso <code>i</code>);</li>
+<li>scorrere l’iterabile un elemento alla volta ed assegnare alla variabile il valore dell’elemento in questione;</li>
+<li>fare qualcosa con la variabile ausiliaria.</li>
+</ul>
+<p>Altro semplice esempio per chiarire il concetto:</p>
+<div id="93d490db" class="cell" data-execution_count="10">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> [<span class="st">"Giulia"</span>, <span class="st">"Luca"</span>]:</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Hello, Giulia!
+Hello, Luca!</code></pre>
+</div>
+</div>
+<p>(Notate che anche qui—ma ormai ci siete abituate—l’indentazione non è casuale.)</p>
+<p>Torniamo al nostro esempio iniziale. <a href="https://docs.python.org/3/library/functions.html#func-range"><code>range()</code></a> è un built-in di Python che permette di iterare su una collezione di numeri interi—da un minimo ad un massimo, con un passo che di default è <span class="math inline">\(1\)</span>. La segnatura principale è</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">range</span>(start, stop, step<span class="op">=</span><span class="dv">1</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>in cui <code>start</code> è <em>incluso</em> e <code>stop</code> è <em>escluso</em>, ma accetta anche la versione abbreviata</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">range</span>(stop)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>in cui si assume <code>start = 0</code> e <code>step = 1</code>. Sperimentate cambiando i valori degli argomenti ed assicuratevi di capire cosa succede. Non dovreste essere sorprese di vedere che la nostra somma si può scrivere in modo equivalente come</p>
+<div id="b27e224a" class="cell" data-execution_count="11">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1001</span>):</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    s <span class="op">+=</span> i</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(s)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>500500</code></pre>
+</div>
+</div>
+<p>(Vedete la differenza?)</p>
+<p>L’unica cosa che rimane da capire è cosa dobbiamo pensare della variabile <code>s</code> che abbiamo inizializzato a <span class="math inline">\(0\)</span> al di fuori del ciclo. Beh: se vogliamo fare una somma dobbiamo partire da qualcosa, e siccome lo <span class="math inline">\(0\)</span> è l’elemento neutro della somma, quello è il valore naturale da cui partire.</p>
+<p>Non vi lasciate confondere: nel nostro piccolo programma abbiamo due variabili (<code>s</code> ed <code>i</code>), e mai, nemmeno per un secondo, dovete far confusione tra le due:</p>
+<ul>
+<li><code>i</code> è semplicemente una variabile ausiliaria gestita dalla struttura del ciclo—possiamo utilizzarla ma <em>dobbiamo resistere alla tentazione di modificarla</em> (torniamo sulla questione tra un attimo);</li>
+<li><code>s</code> è una variabile <em>di nostra proprietà</em>: la inizializziamo a zero, per tutta la durata del ciclo rappresenta la somma parziale fino a quel momento, e quando usciamo dal loop rappresenta la somma totale, ovvero la risposta alla nostra domanda.</li>
+</ul>
+<p>Non abbiamo tempo di insistere troppo sulla questione, ma il modo migliore di convincersi che <code>i</code> va <em>trattata con cura</em> è probabilmente</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">10</span>):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> i <span class="op">==</span> <span class="dv">5</span>:</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> <span class="dv">8</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Se pensate di utilizzare questa sorta di trucco per saltare il <span class="math inline">\(6\)</span> ed il <span class="math inline">\(7\)</span> nell’esecuzione del ciclo, rimarrete sorprese! (L’output del codice non è incluso volutamente: provate a pensare a cosa succede nella vostra testa prima di copiare ed incollare il frammento nel vostro editor di testo.)</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Mentre più o meno tutti i linguaggi di programmazione offrono una qualche forma di ciclo for, la semantica del costrutto varia sostanzialmente da linguaggio a linguaggio. L’ultima cosa che abbiamo detto, ad esempio, vale in Python ma non in C o C++. (Strettamente parlando la cosa è irrilevante per i nostri scopi, ma se in futuro doveste diventare poliglotte, tenetelo a mente, perché la cosa vi tornerà utile.)</p>
+</div>
+</div>
+</section>
+<section id="cicli-while" class="level3" data-number="6.2.2">
+<h3 data-number="6.2.2" class="anchored" data-anchor-id="cicli-while"><span class="header-section-number">6.2.2</span> Cicli <code>while</code></h3>
+<p>Ci sono situazioni in cui non sappiamo a priori quante iterazioni vogliamo fare—pensate alla parola chiave <em>fino a che</em> con cui abbiamo aperto questo capitolo.</p>
+<p>Proviamo, ad esempio, ad attaccare questo problema: <em>quanti numeri interi positivi consecutivi posso sommare prima che il risultato superi il valore <span class="math inline">\(1000\)</span>?</em> Si tratta di una domanda cui sappiamo rispondere—il numero <span class="math inline">\(n\)</span> è dato da <span class="math display">\[
+\left\lfloor \frac{n (n + 1)}{2} \right\rfloor = 1000
+\]</span> ovverosia dobbiamo prendere la parte intera della soluzione positiva della corrispondente equazione di secondo grado nella variabile reale <span class="math inline">\(x\)</span> <span class="math display">\[
+x^2 + x - 2000 = 0
+\quad \text{da cui}\quad
+x = \frac{-1 + \sqrt{8001}}{2} \approx \sqrt(2000) \approx 44.7
+\]</span> Possiamo verificare facilmente che abbiamo fatto la cosa giusta: <span class="math display">\[
+\sum_{i=1}^{44} i = \frac{44 \times 45}{2} = 990
+\quad \text{e}\quad
+\sum_{i=1}^{45} i = \frac{45 \times 46}{2} = 1035.
+\]</span> La risposta è <span class="math inline">\(44\)</span>. Ma, sulla base di quanto detto fino a questo momento non è ovvio come tradurre la cosa in termini di un ciclo for…</p>
+<p>Ed è qui che Python ci viene in aiuto con un secondo costrutto per iterare: il <em>ciclo while</em>. Il ciclo while è una costrutto disegnato per interrompere l’iterazione quando una particolare condizione è soddisfatta—nel nostro caso:</p>
+<div id="8b9dfe14" class="cell" data-execution_count="12">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> s <span class="op">+</span> (n <span class="op">+</span> <span class="dv">1</span>) <span class="op">&lt;=</span> <span class="dv">1000</span>:</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    n <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>    s <span class="op">+=</span> n</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(n)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>44</code></pre>
+</div>
+</div>
+<p>Fate attenzione alla logica: qui <code>s</code> rappresenta la somma parziale, e <code>n</code> <em>l’ultimo numero aggiunto</em>. Il prossimo numero da aggiungere è <code>n + 1</code> e, all’interno del loop, prima si incrementa <code>n</code> e poi si aggiunge <code>n</code> ad <code>s</code>. (A queste condizioni, <code>n</code> parte da <span class="math inline">\(0\)</span> e all’uscita del loop, rappresenta il numero cercato.)</p>
+<p>Se avete l’impressione che mettere insieme un ciclo while ben congegnato sia logicamente più delicato che fare un ciclo for, sono simpatetico con il sentimento. In questo caso, ad esempio, avremmo potuto prendere <code>n</code> come <em>il prossimo numero da aggiungere</em>, facendolo partire da <span class="math inline">\(1\)</span> e incrementandolo dentro il ciclo while <em>dopo</em> (e non prima) averlo aggiunto ad <code>s</code>. Così facendo il valore all’uscita dal loop non è il numero cercato, ma il successivo</p>
+<div id="b91a8431" class="cell" data-execution_count="13">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> s <span class="op">+</span> n <span class="op">&lt;=</span> <span class="dv">1000</span>:</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    s <span class="op">+=</span> n</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    n <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(n <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>44</code></pre>
+</div>
+</div>
+<p>Il risultato è lo stesso.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tipicamente è possibile trovare un ciclo while equivalente per un dato ciclo for, e viceversa (in questo secondo caso è tipicamente necessario interrompere esplicitamente il ciclo con il comando <code>break</code>). Tuttavia, come abbiamo visto, ci sono casi in cui è più naturale usare un for (quando sappiamo in anticipo quante iterazioni dobbiamo fare) e casi in cui è più naturale usare un while (quando il numero di iterazioni da fare non è noto a priori). Inutile a dirsi, dovreste cercare di essere proficienti in entrambi.</p>
+</div>
+</div>
 </section>
 </section>
-<section id="prendere-decisioni" class="level2" data-number="5.2">
-<h2 data-number="5.2" class="anchored" data-anchor-id="prendere-decisioni"><span class="header-section-number">5.2</span> Prendere decisioni</h2>
+<section id="e-quindi" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="e-quindi"><span class="header-section-number">6.3</span> E quindi?</h2>
+<p>Adesso che siamo maestre del controllo del flusso, e sappiamo <em>loopare</em> ed eseguire istruzioni condizionali, cosa ci facciamo?</p>
+<section id="non-reinventare-la-ruota" class="level3" data-number="6.3.1">
+<h3 data-number="6.3.1" class="anchored" data-anchor-id="non-reinventare-la-ruota"><span class="header-section-number">6.3.1</span> Non reinventare la ruota</h3>
+<p>La prima tentazione ovvia è quella di dire: ogni volta che vedete il simbolo di sommatoria, lì avete spazio per tradurre il problema in un ciclo. E, da fisiche, di sommatorie ne vedete (e ne vedrete) comunemente. La media campione, ad esempio, è sostanzialmente una somma, e non c’è niente di male nel calcolarla con un loop.</p>
+<div id="29f0b309" class="cell" data-execution_count="14">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mean(sample):</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> value <span class="kw">in</span> sample:</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>        m <span class="op">+=</span> value</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    m <span class="op">/=</span> <span class="bu">len</span>(sample)</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> m</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> [<span class="fl">1.2</span>, <span class="fl">1.34</span>, <span class="fl">2.1</span>, <span class="fl">1.85</span>, <span class="fl">1.44</span>]</span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(mean(sample))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.5859999999999999</code></pre>
+</div>
+</div>
+<p>La varianza e la deviazione standard del campione sono pure somme, e allora potremmo andare avanti e vedere come implementarle sulla stessa linea.</p>
+<p>Arrivati a questo punto, però, è probabilmente più istruttivo un invito a non <em>reinventare la ruota ogni volta</em>. Il pacchetto <code>numpy</code> fornisce tutte le funzioni statistiche di cui potreste mai aver bisogno, inclusa la media, la varianza e la deviazione standard. Nella vostra vita professionale la via maestra al calcolo delle proprietà di un campione sarà</p>
+<div id="16efb617" class="cell" data-execution_count="15">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> [<span class="fl">1.2</span>, <span class="fl">1.34</span>, <span class="fl">2.1</span>, <span class="fl">1.85</span>, <span class="fl">1.44</span>]</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.mean(sample))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.5859999999999999</code></pre>
+</div>
+</div>
+<p>Perché? Beh, per diversi motivi, tutti importanti:</p>
+<ul>
+<li>dovete scrivere meno righe di codice, e fate riposare le vostre dita;</li>
+<li>le funzioni di un pacchetto largamente diffuso come <code>numpy</code> sono tipicamente molto meglio testate di quanto possa esserlo qualsiasi cosa prodotta semi-amatorialmente (senza offesa per nessuno);</li>
+<li>quando processiamo dati numerici ci sono inevitabilmente sottigliezze che, se non trattate opportunamente, possono provocare disastri—ci torneremo diffusamente nel <a href="float.html" class="quarto-xref"><span>Capitolo 11</span></a>, ma per il momento sappiate che chi ha scritto <code>numpy</code> ne è perfettamente al corrente;</li>
+<li>se dovete processare molti numeri, è garantito che <code>numpy</code> sia significativamente più veloce di un loop <em>grezzo</em> in Python—ci torneremo nel <a href="vec.html" class="quarto-xref"><span>Capitolo 13</span></a>.</li>
+</ul>
+<p>Se a questo punto siete rimaste con la brutta sensazione che abbiamo speso un intero capitolo per imparare una cosa che nella vita non userete mai, voglio rassicuravi: if, for e while sono costrutti che chiunque si avvicini, anche casualmente, alla programmazione deve saper maneggiare.</p>
+</section>
+<section id="un-semplice-problema-con-i-dadi" class="level3" data-number="6.3.2">
+<h3 data-number="6.3.2" class="anchored" data-anchor-id="un-semplice-problema-con-i-dadi"><span class="header-section-number">6.3.2</span> Un semplice problema con i dadi</h3>
+<p>Supponete per un attimo di dover risolver il seguente problema: <em>si lancino 10 dadi a 6 facce; qual è la probabilità che la somma delle uscite sia esattamente di 26, almeno due uscite siano 6 e non ci siano 4?</em> Si tratta di un problema che non ha nessuna difficoltà concettuale—dobbiamo semplicemente enumerare tutte le possibili combinazioni delle uscite e contare, tra queste, quante soddisfano alle condizioni. Il problema è che queste combinazioni sono <span class="math display">\[
+N = 6^5 = 7776
+\]</span> per cui l’esercizio, posto in questi termini, è più utile per ammazzare il tempo (ammesso che ne abbiate bisogno) più che per imparare qualcosa. Volete sapere una cosa bella? La cosa si può formalizzare in non più di 6 righe di Python, che coinvolgono, guarda caso, un if ed un for—il frammento di seguito calcola la risposta e stampa esplicitamente tutte le combinazioni accettate (sono rare, poco più di <span class="math inline">\(3\)</span> su <span class="math inline">\(1000\)</span>).</p>
+<div id="199a8f98" class="cell" data-execution_count="16">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> product</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> roll <span class="kw">in</span> product(<span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">7</span>), repeat<span class="op">=</span><span class="dv">5</span>):</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    N <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="bu">sum</span>(roll) <span class="op">==</span> <span class="dv">26</span> <span class="kw">and</span> roll.count(<span class="dv">6</span>) <span class="op">&gt;=</span> <span class="dv">2</span> <span class="kw">and</span> <span class="dv">4</span> <span class="kw">not</span> <span class="kw">in</span> roll:</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(roll)</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>        n <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"P = </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">/</span><span class="sc">{</span>N<span class="sc">}</span><span class="ss"> = </span><span class="sc">{</span>n <span class="op">/</span> N<span class="sc">:.5f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(2, 6, 6, 6, 6)
+(3, 5, 6, 6, 6)
+(3, 6, 5, 6, 6)
+(3, 6, 6, 5, 6)
+(3, 6, 6, 6, 5)
+(5, 3, 6, 6, 6)
+(5, 6, 3, 6, 6)
+(5, 6, 6, 3, 6)
+(5, 6, 6, 6, 3)
+(6, 2, 6, 6, 6)
+(6, 3, 5, 6, 6)
+(6, 3, 6, 5, 6)
+(6, 3, 6, 6, 5)
+(6, 5, 3, 6, 6)
+(6, 5, 6, 3, 6)
+(6, 5, 6, 6, 3)
+(6, 6, 2, 6, 6)
+(6, 6, 3, 5, 6)
+(6, 6, 3, 6, 5)
+(6, 6, 5, 3, 6)
+(6, 6, 5, 6, 3)
+(6, 6, 6, 2, 6)
+(6, 6, 6, 3, 5)
+(6, 6, 6, 5, 3)
+(6, 6, 6, 6, 2)
+P = 25/7776 = 0.00322</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Avrete notato che abbiamo gettato nel mix un po’ di Python appena più avanzato di quello cui siamo abituate. In particolare:</p>
+<ul>
+<li>la funzione <a href="https://docs.python.org/3/library/itertools.html#itertools.product"><code>product</code></a> del modulo <a href="https://docs.python.org/3/library/itertools.html"><code>itertools</code></a> della libreria standard fornisce il prodotto cartesiano degli iterabili che passiamo come argomento, e ci evita si scrivere esplicitamente <span class="math inline">\(5\)</span> loop annidiati (ma potete farlo per esercizio e verificare che il risultato sia lo stesso);</li>
+<li>il builtin <a href="https://docs.python.org/3/library/functions.html#sum"><code>sum</code></a> fa esattamente quello che il nome suggerisce—ovvero, la somma dell’iterabile che passiamo come argomento;</li>
+<li>il metodo <code>count</code> della tupla restituisce il numero di occorrenze del valore che passiamo come argomento nella tupla stessa;</li>
+<li>la presenza di un elemento in un iterabile si può testare con la keyword <code>in</code>.</li>
+</ul>
+<p>Sperimentate con questo piccolo frammento prima di andare avanti—è istruttivo!</p>
+</div>
+</div>
+<p>A onor del vero dobbiamo dire che questo problema era attaccabile direttamente con un minimo di intelligenza. Vogliamo almeno due <span class="math inline">\(6\)</span>, il che vuol dire che il problema è capire in quanti modi possiamo realizzare <span class="math inline">\(26 - 12 = 14\)</span> senza avere un <span class="math inline">\(4\)</span>—ce ne sono solo due, <span class="math inline">\((6, 6, 2)\)</span> e <span class="math inline">\((6, 5, 3)\)</span>. Quindi, modulo permutazioni, abbiamo due combinazioni possibili</p>
+<ol type="1">
+<li><span class="math inline">\((6, 6, 6, 6, 2)\)</span></li>
+<li><span class="math inline">\((6, 6, 6, 5, 3)\)</span></li>
+</ol>
+<p>Quelle del primo tipo sono esattamente <span class="math inline">\(5\)</span> (posso mettere il <span class="math inline">\(2\)</span> dove voglio); quelle del secondo tipo posso contarle calcolando il numero di combinazioni di <span class="math inline">\(2\)</span> elementi in un insieme di <span class="math inline">\(4\)</span> elementi, per cui <span class="math display">\[
+n = 5 + \binom{5}{3} = 5 + 20 = 25
+\]</span> Ma capite bene che la prima soluzione—quella che usa la forze bruta—si generalizza senza sforzo a qualsiasi situazione (modulo il fatto che il problema scala esponenzialmente con il numero di dadi, per cui se volete provare con <span class="math inline">\(100\)</span> potreste dovere aspettare un pochino…)</p>
+</section>
+<section id="un-problema-più-fisico" class="level3" data-number="6.3.3">
+<h3 data-number="6.3.3" class="anchored" data-anchor-id="un-problema-più-fisico"><span class="header-section-number">6.3.3</span> Un problema più fisico</h3>
+<p>Concludiamo questa sezione con un piccolo problema con il quale avremo l’occasione di confrontarci direttamente durante l’anno—quello della simulazione di un semplice <em>random walk</em> in due dimensioni. Ci limitiamo al programma in Python senza farne l’esegesi—ormai siete grandi.</p>
+<div id="68bc122d" class="cell" data-execution_count="17">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-4"><a href="#cb37-4" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> random_walk(step<span class="op">=</span><span class="fl">0.02</span>, max_radius<span class="op">=</span><span class="fl">1.</span>):</span>
+<span id="cb37-5"><a href="#cb37-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> [<span class="fl">0.</span>]</span>
+<span id="cb37-6"><a href="#cb37-6" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> [<span class="fl">0.</span>]</span>
+<span id="cb37-7"><a href="#cb37-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> np.hypot(x[<span class="op">-</span><span class="dv">1</span>], y[<span class="op">-</span><span class="dv">1</span>]) <span class="op">&lt;=</span> max_radius:</span>
+<span id="cb37-8"><a href="#cb37-8" aria-hidden="true" tabindex="-1"></a>        phi <span class="op">=</span> np.random.uniform(<span class="fl">0.</span>, <span class="fl">2.</span> <span class="op">*</span> np.pi)</span>
+<span id="cb37-9"><a href="#cb37-9" aria-hidden="true" tabindex="-1"></a>        dx <span class="op">=</span> step <span class="op">*</span> np.cos(phi)</span>
+<span id="cb37-10"><a href="#cb37-10" aria-hidden="true" tabindex="-1"></a>        dy <span class="op">=</span> step <span class="op">*</span> np.sin(phi)</span>
+<span id="cb37-11"><a href="#cb37-11" aria-hidden="true" tabindex="-1"></a>        x.append(x[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> dx)</span>
+<span id="cb37-12"><a href="#cb37-12" aria-hidden="true" tabindex="-1"></a>        y.append(y[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> dy)</span>
+<span id="cb37-13"><a href="#cb37-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> x, y</span>
+<span id="cb37-14"><a href="#cb37-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-15"><a href="#cb37-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">3</span>):</span>
+<span id="cb37-16"><a href="#cb37-16" aria-hidden="true" tabindex="-1"></a>    x, y <span class="op">=</span> random_walk()</span>
+<span id="cb37-17"><a href="#cb37-17" aria-hidden="true" tabindex="-1"></a>    plt.plot(x, y)</span>
+<span id="cb37-18"><a href="#cb37-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-19"><a href="#cb37-19" aria-hidden="true" tabindex="-1"></a>circle <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), <span class="dv">1</span>, fill<span class="op">=</span><span class="va">False</span>, ls<span class="op">=</span><span class="st">"dashed"</span>)</span>
+<span id="cb37-20"><a href="#cb37-20" aria-hidden="true" tabindex="-1"></a>plt.gca().add_patch(circle)</span>
+<span id="cb37-21"><a href="#cb37-21" aria-hidden="true" tabindex="-1"></a>plt.axis([<span class="op">-</span><span class="fl">1.05</span>, <span class="fl">1.05</span>, <span class="op">-</span><span class="fl">1.05</span>, <span class="fl">1.05</span>])</span>
+<span id="cb37-22"><a href="#cb37-22" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"x [a. u.]"</span>)</span>
+<span id="cb37-23"><a href="#cb37-23" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"y [a. u.]"</span>)</span>
+<span id="cb37-24"><a href="#cb37-24" aria-hidden="true" tabindex="-1"></a>plt.gca().set_aspect(<span class="st">"equal"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="flow_files/figure-html/cell-18-output-1.svg" class="img-fluid figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Cogliamo anche l’occasione per anticipare che questa non è la fine della storia. Nel capitolo <a href="vec.html" class="quarto-xref"><span>Capitolo 13</span></a> esploreremo brevemente un punto di vista (diverso ma equivalente) sul controllo del flusso che è utilissimo in molte applicazioni pratiche.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -760,12 +1313,12 @@ window.Quarto = {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../chapters/functions.html" class="pagination-link" aria-label="Funzioni">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Funzioni</span></span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Funzioni</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../chapters/count.html" class="pagination-link" aria-label="Contare in base 2">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Contare in base 2</span></span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Contare in base 2</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
