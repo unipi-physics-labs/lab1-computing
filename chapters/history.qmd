@@ -1,5 +1,10 @@
 # Cronologia delle versioni {#sec-history}
 
+* Prima versione completa del capitolo sul controllo del flusso.
+* Prima versione completa del glossario.
+* Piccoli cambiamenti quà e là.
+
+
 ### Versione 0.4.5 (2026-08-22) {.unnumbered}
 
 * Bug fix nell'import dei moduli JS.

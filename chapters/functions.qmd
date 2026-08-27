@@ -107,6 +107,13 @@ numpy;
 * il valore `m` del coefficiente angolare della retta;
 * il valore `q` dell'intercetta.
 
+::: {.callout-warning}
+L'indentazione (tipicamente corrispondente a $4$ spazi) non è casuale: ha la funzione
+strutturale di definire il *corpo* della  funzione. Python è un linguaggio peculiare in
+questo senso, e nel seguiro vedremo un certo numero di altri contesti in cui
+l'indentazione è importante.
+:::
+
 La funzione, come si vede, restituisce il valore che la retta assume sull'asse delle
 ordinate per un particolare insieme di valori delle ascisse, fissati coefficiente
 angolare ed intercetta.

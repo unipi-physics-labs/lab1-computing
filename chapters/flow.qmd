@@ -2,26 +2,108 @@
 
 Riflettiamo un attimo sulle frasi seguenti, prese dal mio libro di cucina preferito:
 
+* *se il sugo risulta amaro, aggiungere un cucchiaino di zucchero*.
 * *fate lievitare girando l'impasto per 2 o 3 volte a intervalli qualche minuto*;
 * *mescolare fino ad ottenere un impasto uniforme e senza grumi*;
-* *se il sugo risulta amaro, aggiungere un cucchiaino di zucchero*.
 
 Cosa c'entra tutto questo con la programmazione? Beh, per cominciare queste semplici
 frasi ci dicono che una ricetta non è necessariamente una semplice sequenza di
-istruzioni da eseguire una dopo l'altra. Ci sono casi in cui la nozione di
+istruzioni da eseguire una dopo l'altra. Ci sono casi in cui il da farsi dipende dal
+*verificarsi o meno di una condizione*. E altri in cui la nozione di
 *ripetere un'operazione* (per un certo numero di volte, o fino a che non succeda
-qualcosa) è indispensabile. E altri in cui il da farsi dipende dal
-*verificarsi o meno di una condizione*. E siccome abbiamo detto che una ricetta è la
-nostra analogia archetipica per un programma, una cosa simile varrà anche in
-quest'ultimo caso.
+qualcosa) è utile. E siccome abbiamo detto che una ricetta è la nostra analogia
+archetipica per un programma, una cosa simile varrà anche in quest'ultimo caso.
 
-Spoiler alert: è proprio così. Prendete nota delle espressioni *per $n$ volte*,
-*fino a che* e *se* (nel senso condizionale, senza l'accento acuto) perché ogni
+Spoiler alert: è proprio così. Prendete nota delle espressioni *se* (nel senso
+condizionale, senza l'accento acuto), *per $n$ volte* e *fino a che*, perché ogni
 linguaggio di programmazione che si rispetti fornisce parole chiave per esprimere
 esattamente questi costrutti. Python non fa eccezione.
 
 
 ## Prendere decisioni
+
+Come potremmo scrivere una piccola funzione per capire se un numero intero è pari o
+dispari? Si tratta del classico problema che è facile a dirsi, ma a una seconda occhiata
+non è immediatamente ovvio da matematizzare.
+
+Cosa vuol dire che un numero è *pari*? Facile: è divisibile per $2$. Ovverosia: il
+resto della divisione intera (ovvero il *modulo*) per $2$ è zero. La fortuna ci viene in
+aiuto, perché Python fornice, disponibile in stock, un operatore binario che fa
+esattamente il modulo---si scrive `%`. Allora guardate un attimo:
+```{python}
+def is_even(value):
+    if value % 2 == 0:
+        return True
+    else:
+        return False
+
+print(is_even(22))
+print(is_even(33))
+```
+
+Congratulazioni: avete appena scritto il vostro primo programma con un'espressione
+condizionale. L'esempio è più o meno auto-esplicativo e non ha bisogno di particolari
+commenti, se non il fatto che, come nella definizione delle funzioni, l'indentazione
+qui ha carattere strutturate perché delimita l'estensione della logica incluse nelle
+due clausole if ed else.
+
+::: {.callout-note}
+Andando avanti imparerete che, in casi come questi, in cui una clausola condizionale
+termina con un `return`, l'else non è strettamente necessario. La forma più compatta
+```{python}
+def is_even(value):
+    if value % 2 == 0:
+        return True
+    return False
+
+print(is_even(22))
+print(is_even(33))
+```
+è esattamente equivalente. (E, in generale, preferita). Ma per cominciare cerchiamo
+di mettere enfasi sulla chiarezza e sulla logica.
+:::
+
+### A quale gruppo appartengo?
+
+Narra le leggenda che un'università non meglio precisata usi dividere in gruppi le
+matricole secondo l'arcano criterio:
+
+* gruppo A: matricole pari
+    * sotto-gruppo A1: pari divisibile per 4
+    * sotto-gruppo A2: pari non divisibile per 4
+* gruppo B: matricole dispari
+    * sotto-gruppo B1: dispari con resto 1 se diviso per 4
+    * sotto-gruppo B2: dispari con resto 3 se diviso per 4
+
+Possiamo tradurre tutto questo in Python e scrivere una semplice funzione che
+restituisca il gruppo, dato il numero di matricola? Senza dubbio---e il segreto è di
+nuovo il modulo che abbiamo visto all'inizio di questa sezione.
+```{python}
+def group(identifier):
+    mod = identifier % 4
+    if mod == 0:
+        return "A1"
+    elif mod == 1:
+        return "B1"
+    elif mod == 2:
+        return "A2"
+    else:
+        return "B2"
+
+print(group(194729))
+```
+Mi raccomando: non avete più scuse per presentarvi nel gruppo sbagliato il primo giorno
+di laboratorio.
+
+E, siccome c'è sempre un modo più compatto ed intelligente di fare le cose, il frammento
+che segue è esattamente equivalente
+```{python}
+def group(identifier):
+    return ("A1", "B1", "A2", "B2")[identifier % 4]
+
+print(group(194729))
+```
+Siete capaci di spiegare esattamente perché la cosa funziona?
 
 
 ## Ripetere
@@ -198,12 +280,7 @@ for name in ["Giulia", "Luca"]:
     print(f"Hello, {name}!")
 ```
 
-::: {.callout-warning}
-L'indentazione non è casuale, ed ha in Python la funzione strutturale di separare
-le istruzioni da eseguire all'interno del ciclo da quelle che, viceversa vivono
-al di fuori. Tutti i linguaggi di programmazione offrono il ciclo for in una qualche
-forma, ma il ruolo dell'indentazione (tipicamente $4$ spazi) è peculiare a Python.
-:::
+(Notate che anche qui---ma ormai ci siete abituate---l'indentazione non è casuale.)
 
 Torniamo al nostro esempio iniziale.
 [`range()`](https://docs.python.org/3/library/functions.html#func-range)
@@ -344,6 +421,9 @@ proficienti in entrambi.
 Adesso che siamo maestre del controllo del flusso, e sappiamo *loopare* ed eseguire
 istruzioni condizionali, cosa ci facciamo?
 
+
+### Non reinventare la ruota
+
 La prima tentazione ovvia è quella di dire: ogni volta che vedete il simbolo di
 sommatoria, lì avete spazio per tradurre il problema in un ciclo. E, da fisiche,
 di sommatorie ne vedete (e ne vedrete) comunemente. La media campione, ad esempio, è
@@ -392,6 +472,88 @@ capitolo per imparare una cosa che nella vita non userete mai, voglio rassicurav
 if, for e while sono costrutti che chiunque si avvicini, anche casualmente, alla
 programmazione deve saper maneggiare.
 
+
+### Un semplice problema con i dadi
+
+Supponete per un attimo di dover risolver il seguente problema: *si lancino 10 dadi a
+6 facce; qual è la probabilità che la somma delle uscite sia esattamente di 26,
+almeno due uscite siano 6 e non ci siano 4?* Si tratta di un problema che non ha nessuna
+difficoltà concettuale---dobbiamo semplicemente enumerare tutte le possibili
+combinazioni delle uscite e contare, tra queste, quante soddisfano alle condizioni.
+Il problema è che queste combinazioni sono
+$$
+N = 6^5 = 7776
+$$
+per cui l'esercizio, posto in questi termini, è più utile per ammazzare il tempo
+(ammesso che ne abbiate bisogno) più che per imparare qualcosa. Volete sapere una cosa
+bella? La cosa si può formalizzare in non più di 6 righe di Python, che coinvolgono,
+guarda caso, un if ed un for---il frammento di seguito calcola la risposta e stampa
+esplicitamente tutte le combinazioni accettate (sono rare, poco più di $3$ su $1000$).
+
+```{python}
+from itertools import product
+
+n = 0
+N = 0
+
+for roll in product(range(1, 7), repeat=5):
+    N += 1
+    if sum(roll) == 26 and roll.count(6) >= 2 and 4 not in roll:
+        print(roll)
+        n += 1
+
+print(f"P = {n}/{N} = {n / N:.5f}")
+```
+
+::: {.callout-note}
+Avrete notato che abbiamo gettato nel mix un po' di Python appena più avanzato di
+quello cui siamo abituate. In particolare:
+
+* la funzione
+[`product`](https://docs.python.org/3/library/itertools.html#itertools.product)
+del modulo
+[`itertools`](https://docs.python.org/3/library/itertools.html) della libreria standard
+fornisce il prodotto cartesiano degli iterabili che passiamo come argomento, e ci
+evita si scrivere esplicitamente $5$ loop annidiati (ma potete farlo per esercizio
+e verificare che il risultato sia lo stesso);
+* il builtin [`sum`](https://docs.python.org/3/library/functions.html#sum)
+fa esattamente quello che il nome suggerisce---ovvero, la somma dell'iterabile
+che passiamo come argomento;
+* il metodo `count` della tupla restituisce il numero di occorrenze del valore che
+passiamo come argomento nella tupla stessa;
+* la presenza di un elemento in un iterabile si può testare con la keyword `in`.
+
+Sperimentate con questo piccolo frammento prima di andare avanti---è istruttivo!
+:::
+
+A onor del vero dobbiamo dire che questo problema era attaccabile direttamente con un
+minimo di intelligenza. Vogliamo almeno due $6$, il che vuol dire che il problema è
+capire in quanti modi possiamo realizzare $26 - 12 = 14$ senza avere un $4$---ce ne sono
+solo due, $(6, 6, 2)$ e $(6, 5, 3)$. Quindi, modulo permutazioni, abbiamo due
+combinazioni possibili
+
+1. $(6, 6, 6, 6, 2)$
+2. $(6, 6, 6, 5, 3)$
+
+Quelle del primo tipo sono esattamente $5$ (posso mettere il $2$ dove voglio); quelle
+del secondo tipo posso contarle calcolando il numero di combinazioni di $2$ elementi in
+un insieme di $4$ elementi, per cui
+$$
+n = 5 + \binom{5}{3} = 5 + 20 = 25
+$$
+Ma capite bene che la prima soluzione---quella che usa la forze bruta---si generalizza
+senza sforzo a qualsiasi situazione (modulo il fatto che il problema scala
+esponenzialmente con il numero di dadi, per cui se volete provare con $100$ potreste
+dovere aspettare un pochino...)
+
+
+### Un problema più fisico
+
+Concludiamo questa sezione con un piccolo problema con il quale avremo l'occasione di
+confrontarci direttamente durante l'anno---quello della simulazione di un semplice
+*random walk* in due dimensioni. Ci limitiamo al programma in Python senza farne
+l'esegesi---ormai siete grandi.
+
 ```{python}
 import numpy as np
 from matplotlib import pyplot as plt
@@ -418,3 +580,7 @@ plt.xlabel("x [a. u.]")
 plt.ylabel("y [a. u.]")
 plt.gca().set_aspect("equal")
 ```
+
+Cogliamo anche l'occasione per anticipare che questa non è la fine della storia.
+Nel capitolo @{sec-vec} esploreremo brevemente un punto di vista (diverso ma
+equivalente) sul controllo del flusso che è utilissimo in molte applicazioni pratiche.
