@@ -20,4 +20,4 @@ lint:
 	python -m ruff check src tests examples scripts
 
 figures:
-	python scripts/generate-figures.py
+	python figures/scripts/run.py
