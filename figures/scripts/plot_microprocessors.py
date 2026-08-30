@@ -21,11 +21,9 @@ See https://github.com/karlrupp/microprocessor-trend-data
 
 import numpy as np
 from aptapy.models import Exponential
-from aptapy.plotting import apply_stylesheet, plt, setup_gca
+from aptapy.plotting import plt, setup_gca
 
 from common import DATA_DIR, savefigs
-
-apply_stylesheet("aptapy-xkcd")
 
 
 def plot_transistors():
