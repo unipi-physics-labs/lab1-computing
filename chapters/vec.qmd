@@ -1,1 +1,8 @@
 # Vettorizzazione {#sec-vec}
+
+Guardiamo per un attimo il frammento di codice che segue:
+
+```{python}
+import numpy as np
+
+```
