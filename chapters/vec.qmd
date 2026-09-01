@@ -194,14 +194,14 @@ Python, ed in particolare la funzione
 [time.time()](https://docs.python.org/3/library/time.html#time.time), che restituisce
 il numero di secondi trascorsi dal 1 gennaio, 1970, alle 00:00. (L'origine dei tempi
 è irrilevante, perché le *differenze* di tempo sono invarianti per traslazione.)
-Allora proviamo a sommare un milione di numeri interi, e vediamo quanto ci impieghiamo,
-nella versione semplice ed in quella vettorizzata.
+Allora proviamo a sommare i numeri interi da uno a un milione, e vediamo quanto ci
+impieghiamo, nella versione semplice ed in quella vettorizzata.
 
 ```{python}
 import time
 import numpy as np
 
-values = np.arange(1000001)
+values = np.arange(1, 1000001)
 
 # Sum all the values in the array with a for loop.
 t0 = time.time()
@@ -268,7 +268,7 @@ variazione sul tema:
 import time
 import numpy as np
 
-values = np.arange(1000001)
+values = np.arange(1, 1000001)
 
 # "Fake" vectorization---use Python builtin sum.
 t0 = time.time()
@@ -345,7 +345,7 @@ Più chiaro? La sequenza degli eventi è:
    (ed ecco che le variabili booleane che abbiamo visto nel capitolo @{sec-types} ci
    tornano improvvisamente utili);
 3. questa maschera si può utilizzare, e qui viene il bello, per *filtrare* gli
-e  lementi dell'array di partenza.
+   elementi dell'array di partenza.
 </details>
 
 Ecco che abbiamo riguadagnato la capacità di fare logica vettorizzata!
