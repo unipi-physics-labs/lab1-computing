@@ -61,9 +61,12 @@ chi2 = np.sum((obs - exp)**2. / exp)
 print(f"Chisquare = {chi2} / 5 dof")
 ```
 
-Sembrerebbe quasi (ed in effetti la cosa non è molto lontana dal vero) che
-*ogni volta che facciamo un ciclo for in Python ci sia un'opportuna combinazione
-di operazioni di numpy che ci permette di fare esattamente la stessa cosa*.
+(Ne abbiamo approfittato per gettare nel mix la funzione builtin
+[zip()](https://docs.python.org/3/library/functions.html#zip)---può essere utile,
+vale la pena dare un'occhiata.)
+
+Sembrerebbe quasi che *ogni volta che facciamo un ciclo for in Python ci sia un'opportuna
+combinazione di operazioni di numpy che ci permette di fare esattamente la stessa cosa*.
 Più specificamente queste *operazioni* possono prendere la forma di
 
 * operazioni aritmetiche elementari (e.g., `+`, `-`, `*`, `/`, `**`) tra array;
