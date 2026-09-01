@@ -18,7 +18,7 @@ values = np.arange(1, 1001)
 # Sum the values in the array with a good, old for loop.
 s = 0
 for i in values:
-    s+= i
+    s += i
 print(s)
 
 # Remix: use numpy vectorization facilities.
@@ -33,10 +33,10 @@ Il risultato è invariato per cui, evidentemente, abbiamo fatto la stessa operaz
 matematica---ma quale dei due approcci è consigliabile usare nella vita reale?
 
 Facciamo un altro esempio. Supponiamo di lanciare un dado $N$ volte ottenendo le
-occorrenze $o_i~(i = 1 \ldots N)$ e di voler fare un test del chi quadro per verificare
+occorrenze $o_i~(i = 1 \ldots 6)$ e di voler fare un test del chi quadro per verificare
 se abbiamo evidenza che il dado non sia equo
 $$
-\chi^2 = \sum_{i=1}^{N} \frac{(o_i - e_i)^2}{e_i}
+\chi^2 = \sum_{i=1}^{6} \frac{(o_i - e_i)^2}{e_i}
 \quad\text{con}\quad
 e_i = \frac{N}{6}.
 $$
@@ -221,6 +221,9 @@ print(f"Sum: {s}. Elapsed time: {dt:.5f} s")
 Il risultato specifico, ovviamente, dipende da molte cose, tra le quali il computer che
 state usando, ma il messaggio è chiaro: quando si tratta di processare numeri
 *non è raro che numpy batta Python di due ordini di grandezza in velocità*.
+Fermatevi un attimo a pensare---passare da $1$ ms a $10~\mu$s non è particolarmente
+eccitante, ma se diciamo che un programma che prima impiegava un'ora adesso impiega
+$40$ secondi, questa è una notizia!
 
 ::: {.callout-note}
 Abbiamo semplificato troppo, anche se il risultato è ragionevole. In generale
@@ -299,7 +302,7 @@ numeri pari", diventano improvvisamente impossibili? Perché, se così fosse, al
 forse non abbiamo fatto proprio un buon affare...
 
 La risposta, se ci pensate un attimo, sta nel fatto che i contenitori si possono
-*indirizzare*, e numpy ha messo una certa quantità di ingengno nei modi in cui ci permette
+*indirizzare*, e numpy ha messo una certa quantità di ingegno nei modi in cui ci permette
 di farlo. Vogliamo un array con i numeri pari minori di $40$? Niente di più semplice!
 
 ```{python}
@@ -336,13 +339,13 @@ Più chiaro? La sequenza degli eventi è:
 
 1. creiamo un array con *tutti* i numeri interi fino al massimo desiderato;
 2. quando calcoliamo un'espressione logica su un array, il risultato è un array
-della stessa dimensione di quello di partenza in cui ogni singolo elemento ci dice se
-l'elemento corrispondente dell'array di partenza soddisfa o meno la condizione---questo
-secondo array lo chiamiamo comunemente una *maschera*, o *mask* in inglese
-(ed ecco che le variabili booleante che abbiamo visto nel capitolo @{sec-types} ci
-tornano improvvisamente utili);
+   della stessa dimensione di quello di partenza in cui ogni singolo elemento ci dice se
+   l'elemento corrispondente dell'array di partenza soddisfa o meno la condizione---questo
+   secondo array lo chiamiamo comunemente una *maschera*, o *mask* in inglese
+   (ed ecco che le variabili booleane che abbiamo visto nel capitolo @{sec-types} ci
+   tornano improvvisamente utili);
 3. questa maschera si può utilizzare, e qui viene il bello, per *filtrare* gli
-elementi dell'array di partenza.
+e  lementi dell'array di partenza.
 </details>
 
 Ecco che abbiamo riguadagnato la capacità di fare logica vettorizzata!
@@ -379,8 +382,8 @@ banalmente ad essere vettorizzato utilizzando array, e le espressioni condiziona
 flusso del programma si possono implementare nella forma di maschere.
 
 Quindi da qui in avanti dobbiamo vettorizzare tutto? Non è detto! Se il numero di
-elementi su cui iteriamo è molto piccolo, l'overhead per importate numpy potrebbe essere
-maggiore del tempo che risparmiamo. Alcuni costrutti non si prestanto banalmente ad
+elementi su cui iteriamo è molto piccolo, l'overhead per importare numpy potrebbe essere
+maggiore del tempo che risparmiamo. Alcuni costrutti non si prestano banalmente ad
 essere vettorizzati---il ciclo while è un esempio tipico, perché se non so in anticipo
 quante volte debbo ripetere un'operazione, come faccio ad allocare un array delle
 dimensioni opportune? In alcuni casi, infine, un ciclo esplicito risulta semplicemente
