@@ -12,7 +12,7 @@ in due modi diversi) i numeri interi da $1$ a $1000$.
 ```{python}
 import numpy as np
 
-# Create an array with all the integer values from 0 to 1000 (included)
+# Create an array with all the integer values from 1 to 1000 (included)
 values = np.arange(1, 1001)
 
 # Sum the values in the array with a good, old for loop.
@@ -48,17 +48,17 @@ import numpy as np
 
 N = 100
 obs = np.array([18, 15, 12, 19, 15, 21])
-exp = np.full_like(obs, N / 6.)
+exp = np.full(obs.shape, N / 6.)
 
 # for loop...
 chi2 = 0.
 for oi, ei in zip(obs, exp):
     chi2 += (oi - ei)**2. / ei
-print(f"Chisquare = {chi2} / 5 dof")
+print(f"Chisquare = {chi2:.3f} / 5 dof")
 
 # ...and vectorized version
 chi2 = np.sum((obs - exp)**2. / exp)
-print(f"Chisquare = {chi2} / 5 dof")
+print(f"Chisquare = {chi2:.3f} / 5 dof")
 ```
 
 (Ne abbiamo approfittato per gettare nel mix la funzione builtin
@@ -77,7 +77,7 @@ Più specificamente queste *operazioni* possono prendere la forma di
 [np.log()](https://numpy.org/doc/stable/reference/generated/numpy.log.html);
 * funzioni statistiche più avanzate, come
 [np.mean()](https://numpy.org/doc/stable/reference/generated/numpy.mean.html) e
-[np.stdev()](https://numpy.org/doc/stable/reference/generated/numpy.stdev.html).
+[np.std()](https://numpy.org/doc/stable/reference/generated/numpy.std.html).
 
 Questa tecnica va genericamente sotto il nome di *vettorizzazione*.
 La domanda, anche in questo caso, è quella che ci siamo fatti prima: quali sono le
@@ -295,7 +295,7 @@ le espressioni condizionali, nel capitolo @{sec-flow}. Arrivati qui, questo ci f
 un piccolo brivido: non è per caso che, vettorizzando, abbiamo perso la possibilità
 di mettere if statement nel flusso del nostro programma? Non è che, adesso che abbiamo
 imparato ad andare velocissimi, cose semplici dentro un ciclo for tipo "prendiamo solo i
-numeri pari", diventanto improvvisamente impossibili? Perché, se così fosse, allora
+numeri pari", diventano improvvisamente impossibili? Perché, se così fosse, allora
 forse non abbiamo fatto proprio un buon affare...
 
 La risposta, se ci pensate un attimo, sta nel fatto che i contenitori si possono
