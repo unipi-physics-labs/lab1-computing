@@ -71,50 +71,68 @@ Python aggiuntiva, ad esempio utilizzando [pyenv](https://github.com/pyenv/pyenv
 :::
 
 
-### Windows
-
-Se utilizzate Windows (e non avete Python installato sul vostro sistema), scaricate
-l'installer dalla pagina web dei [downloads](https://www.python.org/downloads/>) ed
-eseguitelo.
-
-::: {.callout-note}
-Quando lanciate l'installer di Windows potete selezionare l'installazione standard,
-`assicurandovi di spuntare la check box che aggiunge l'eseguibile ``Python.exe``
-alla variabile d'ambiente ``PATH``` (dovrebbe essere in basso nella finestrella
-di avvio). Questo vi permetterà di lanciare l'interprete da terminale.
-:::
-
-Per il momento questo non vi dice molto, ma è importante, e ci torneremo tra un attimo.
-
-
 ### Mac-OS
+
+Come nel caso di GNU/Linux, se usate Mac-OS è garantito che abbiate Python istallato.
+Valgono le stesse considerazioni sulla versione.
 
 ::: {.callout-warning title="TODO"}
 Dobbiamo aggiungere qualche breve nota sull'istallazione su MacOS?
 :::
 
 
+### Windows
+
+Se utilizzate Windows (e non avete Python installato sul vostro sistema), scaricate
+l'installer dalla pagina web dei [downloads](https://www.python.org/downloads/>) ed
+eseguitelo.
+
+Quando lanciate l'installer di Windows potete selezionare l'installazione standard,
+`assicurandovi di spuntare la check box che aggiunge l'eseguibile ``Python.exe``
+alla variabile d'ambiente ``PATH`` (dovrebbe essere in basso nella finestrella
+di avvio). Questo vi permetterà di lanciare l'interprete da terminale.
+Per il momento questo non vi dice molto, ma è importante, e ci torneremo tra un attimo.
+
+
 ## Tre modi di utilizzare Python
 
-Se digitate `python` nel vostro terminale, e assumendo che tutto sia istallato
-correttamente, vi trovate immediatamente catapultati nell'interprete, e dovreste
-vedere qualcosa di vagamente rassomigliante a
+Come si capisce se l'istallazione di Python è andata a buon fine? Facile, ma per prima
+cosa dovete *aprire un terminale*.
 
+::: {.callout-note}
+Nei tempi antichi, prima dell'avvento di smartphone e tablet, si parlava con i computer
+digitando su una tastiera comandi che apparivano sullo schermo, attraverso un'applicazione
+che andava sotto il nome di terminale (*terminal*, o *shell*, in inglese).
+Ebbene---udite, udite---il terminale (anzi: i terminali, perché ne esistono di diversi
+tipi e per tutti i gusti) esiste ancora, anche se nei sistemi operativi moderni è sepolto
+sotto svariati layer grafici.
+
+La prima cosa che dovete fare, allora è imparare a resuscitarlo, perché ci servirà.
+I dettagli logistici dell'operazione dipendono molto dal sistema operativo che
+utilizzate, ma per farla breve state cercando nella vostra barra delle applicazioni
+o nel vostro menù di avvio qualcosa che si chiama, appunto, "terminale", "terminal",
+"prompt dei comandi", "command prompt", "prompt di DOS", "DOS prompt", o variazioni sul
+tema. Andando avanti imparerete, se non lo sapete già, che la maggior parte delle
+operazioni che siete abituate a fare a colpi di mouse (e.g., copiare e rinominare file)
+si possono fare da linea di comando---e, anzi, questa modalità si presta più naturalmente
+ad essere automatizzata, che è una cosa che vi servirà nel vostro lavoro.
+:::
+
+Ma torniamo a noi. Se digitate ``python`` nel *terminale* dovreste trovarvi immediatamente catapultate nell'interprete---cioè dovreste vedere qualcosa di vagamente rassomigliante a
 ```{bash}
 lbaldini@nblbaldini:~$ python
-Python 3.13.13 (main, Apr  8 2026, 00:00:00) [GCC 15.2.1 20260123 (Red Hat 15.2.1-7)] on linux
+Python 3.13.13 (main, Apr  8 2026, 00:00:00) [GCC 15.2.1 20260123] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
-
 I tre simboli `>>>` nell'ultima riga stanno ad indicare che l'interprete è pronto ad
 accettare comandi: potete cominciare a scrivere, e l'interprete vi *risponderà*
 con il valore dell'ultima espressione ogni volta che premete invio, in quello che
-in gergo tecnico prende il nome di REPL (Read-Eval-Print Loop). Questo modo di
-utilizzare l'interprete si dice *interattivo*; è utile se volte usare Python
+in gergo tecnico prende il nome di REPL (Read-Eval-Print Loop).
+
+Questo modo di utilizzare l'interprete si dice *interattivo*; è utile se volte usare Python
 come una sorta di calcolatore tascabile, se volete provare velocemente un costrutto o,
 più in generale, se quello che dovete fare è molto semplice.
-
 ```{bash}
 >>> 3 + 17
 20
