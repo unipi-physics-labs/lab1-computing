@@ -1,5 +1,9 @@
 # Cronologia delle versioni {#sec-history}
 
+* Alcuni typo corretti
+  ([PR 14](https://github.com/unipi-physics-labs/lab1-computing/pull/14))
+
+
 ### Versione 0.6.0 (2026-09-02) {.unnumbered}
 
 * Primo draft del capitolo sui formati grafici
