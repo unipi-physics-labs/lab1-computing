@@ -24,7 +24,7 @@ Non ho modo di recuperarlo.*
 **Luca**: *Capito. Allora facciamo così: faccio un piccolo archivio con il file Python
 e ti mando il file zippato come allegato. Appena ho inviato ti mando anche un messaggio
 separato per dirti che ti ho inviato il file zip, così tu puoi controllare che il
-tuo mailserver non abbia gettato anche quello e mi da conferma di aver ricevuto. Ok?*
+tuo mailserver non abbia gettato anche quello e mi dai conferma di aver ricevuto. Ok?*
 
 **Giulia**: *Ottima idea, procedi!*
 
