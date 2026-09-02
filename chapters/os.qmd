@@ -39,7 +39,7 @@ trovare il loro spazio sul mercato. Lo sviluppo di interfacce grafiche (Graphica
 Interface, o GUI) sempre più  sofisticate e di dispositivi hardware totalmente nuovi di
 interazione (mouse e touch screen) il nostro modo di interagire con il computer è
 cambiato totalmente negli ultimi $30$anni. Eppure, ancora adesso, potete essere sicuri
-che, indipendente dal sistema operativo installato, la vostra workstation (assumendo che
+che, indipendentemente dal sistema operativo installato, la vostra workstation (assumendo che
 esistano ancora) ed il vostro  portatile hanno un qualche tipo di shell (e, anzi, molto
 probabilmente più di un tipo) disponibile e pronta all'uso. Persino sul vostro smartphone
 non è troppo complicato installare un emulatore di shell---anche se, in questo caso,
