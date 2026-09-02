@@ -118,6 +118,9 @@ si possono fare da linea di comando---e, anzi, questa modalità si presta più n
 ad essere automatizzata, che è una cosa che vi servirà nel vostro lavoro.
 :::
 
+
+### Python da terminale
+
 Ma torniamo a noi. Se digitate ``python`` nel *terminale* dovreste trovarvi immediatamente catapultate nell'interprete---cioè dovreste vedere qualcosa di vagamente rassomigliante a
 ```{bash}
 lbaldini@nblbaldini:~$ python
@@ -129,6 +132,15 @@ I tre simboli `>>>` nell'ultima riga stanno ad indicare che l'interprete è pron
 accettare comandi: potete cominciare a scrivere, e l'interprete vi *risponderà*
 con il valore dell'ultima espressione ogni volta che premete invio, in quello che
 in gergo tecnico prende il nome di REPL (Read-Eval-Print Loop).
+Se così non fosse, fate un respiro profondo e cercate di capire se e cosa è andato storto,
+perché altrimenti è impossibile procedere con i prossimi passi.
+
+::: {.callout-warning}
+A seconda del sistema operativo (e.g., con versioni recenti di Mac OS) è possibile che
+il comando per lanciare l'interprete Python non si chiami ``python`` ma ``python3``.
+Si tratta di accidente storico che, nel 2026, è estremamente poco interessante, ma se uno
+non funzione provate l'altro prima di arrendervi.
+:::
 
 Questo modo di utilizzare l'interprete si dice *interattivo*; è utile se volte usare Python
 come una sorta di calcolatore tascabile, se volete provare velocemente un costrutto o,
@@ -139,16 +151,25 @@ più in generale, se quello che dovete fare è molto semplice.
 >>>
 ```
 
+::: {.callout-note}
+Non vi sembrerà la cosa più eccitante del mondo, ma prendetevi 5 minuti per sperimentare
+con l'interprete Python nel terminale, perché avete appena raggiunto ufficialmente la
+vostra prima milestone, ed è bene dare il giusto rilievo alla cosa.
+:::
+
+
+### Python con editor di testo e terminale
+
 Non passerà molto tempo prima che vi rendiate conto che l'uso interattivo di Python
 è molto limitante. Quando uscite dall'interprete ripetere una serie di operazioni
-una seconda volta richiede banalmente di dover digitare tutto da capo, che diventa
+una seconda volta richiede banalmente di dover digitare tutto da capo---il che diventa
 estremamente tedioso molto velocemente. Per tutti i task di complessità non nulla
-è molto più conveniente scrivere tutti i comandi, uno dopo l'altro, in un file
-di testo (convenzionalmente con estensione `.py`), ed invocare l'interprete
-passando il percorso al file come argomento. Questo richiede un minimo di padronanza
-della shell e del filesystem, ma dopo il primo successo avete ufficialmente aggiunto
-un nuovo strumento (ed uno molto potente) alla vostra scatola degli attrezzi: avete
-appena scritto il vostro primo *programma*.
+è molto più conveniente scrivere tutti i comandi, uno dopo l'altro, in un *file di testo*
+(convenzionalmente con estensione `.py`), ed invocare l'interprete passando il percorso
+al file come argomento. Questo richiede un minimo di padronanza della shell e del
+filesystem, ma dopo il primo successo avete ufficialmente aggiunto un nuovo
+strumento---ed uno molto potente---alla vostra cassetta degli attrezzi: *avete appena
+scritto il vostro primo programma*.
 
 ::: {.callout-tip}
 Può darsi che nel capoverso precedente si siano alcune parole (e.g., percorso,
@@ -159,137 +180,89 @@ incontrate qualche problema a questo stadio, perché vi assicuro che non è quel
 in cui volete lavorare. Chiedete aiuto immediatamente se ne avete bisogno!
 :::
 
-Esistono infine sul mercato vari Intregrated Development Environment (IDE) che uniscono
+Quale editor di testo usare, vi chiedete? Beh, oggigiorno usano tutti
+[Visual Studio Code](https://code.visualstudio.com/), che tecnicamente è più di un
+editor, ma leggete la prossima sezione prima di decidere.
+
+
+### Python da IDE
+
+Esistono infine sul mercato vari Integrated Development Environment (IDE) che uniscono
 in un'unica interfaccia grafica l'editor di testo, l'interprete Python e tutta una
 serie di altre cose (e.g., un browser del filesystem), e che sono la scelta tipica
-per chi programma professionalmente. (O almeno lo erano fino all'avvento degli agenti
-AI.)
+per chi programma professionalmente---o almeno lo erano fino all'avvento degli agenti
+AI.
+
+Più o meno tutto il mondo usa [Visual Studio Code](https://code.visualstudio.com/).
+Curiosamente VS Code è pubblicizzato dalla Microsoft, che ne è proprietaria, come
+*The open source AI code editor*. Quando andate a leggere le scritte in piccolo vi
+accorgete però che, nonostante il codice sorgente sia pubblicamente disponibile, il
+programma è rilasciato sotto [una licenza non libera](https://code.visualstudio.com/license)
+e contiene elementi di tracciamento che non possono essere disabilitati
+(come spiegato nella sezione 2 della licenza stessa)---in altre parole, Microsoft può
+legittimamente raccogliere informazioni su di voi ed il vostro computer mentre usate
+VS Code. Quali? Non è dato saperlo.
+
+Il clone libero [VS Codium](https://vscodium.com/) nasce proprio per ovviare a questo
+problema: l'eseguibile è rilasciato sotto una licenza *libera* ed il tracciamento è
+disabilitato. Avete il meglio dei due mondi. A voi la scelta.
 
 
-## Istallazione dei pacchetti aggiuntivi
+## I pacchetti aggiuntivi
 
+Una volta installato Python siete a buon punto, ma non ancora alla fine: oltre al
+linguaggio, avrete bisogno almeno di tre pacchetti esterni aggiuntivi, da installare
+separatamente:
 
-
-Arrivati al termine dell'installazione, ed indipendentemente dal sistema operativo,
-assicuratevi di poter lanciare correttamente l'interprete Python dal vostro terminale, i.e.,
-digitando ``pyton`` e premendo INVIO dovreste vedere qualcosa di simile a
-
-.. code-block::
-
-    python
-    Python 3.13.7 (main, Aug 14 2025, 00:00:00) [GCC 15.2.1 20250808 (Red Hat 15.2.1-1)] on linux
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>>
-
-Se vedete apparire i tre caratteri ``>>>`` siete a cavallo---potete iniziare ad eseguire
-comandi Python interattivamente. In caso contrario fate un respiro profondo e cercate di
-capire se e cosa non è andato secondo i piani, perché con ogni probabilità non avrete fortuna
-con la prossima sezione.
-
-.. warning::
-
-    A seconda del sistema operativo (e.g., con versioni recenti di Mac OS) è possibile che
-    il comando per lanciare l'interprete Python non si chiami ``python`` ma ``python3``.
-    Si tratta di accidente storico che, nel 2025, è estremamente poco interessante; il
-    messaggio è: se non funziona il prima provate il secondo prima di gettare la spugna.
-
-
-
-
-Pacchetti aggiuntivi
---------------------
-
-Una volta installato Python siete a buon punto, ma non ancora alla fine: oltre al linguaggio,
-avrete bisogno almeno di tre pacchetti esterni aggiuntivi, da installare a parte:
-
-* `numpy <https://numpy.org/>`_ per l'algebra lineare;
-* `scipy <https://scipy.org/>`_ per il fitting (tra le altre cose);
-* `matplotlib <https://matplotlib.org/>`_ per fare grafici.
+* [numpy](https://numpy.org/) per l'algebra lineare;
+* [scipy](https://scipy.org/) per il fitting (tra le altre cose);
+* [matplotlib](https://matplotlib.org/) per fare grafici.
 
 La buona notizia è che, se potete lanciare l'interprete Python da terminale, con ogni
-probabilità potete anche lanciare il `package installer`, ``pip``:
+probabilità potete anche lanciare l'installer di pacchetti ``pip``, digitando
+*nel terminale* (mi raccomando, non nell'interprete Python):
 
-.. code-block:: shell
+```{bash}
+pip install numpy scipy matplotlib
+```
 
-    pip install numpy scipy matplotlib
+::: {.callout-warning}
+Se siete su uno di quei sistemi (e.g., Mac OS) in cui l'interprete Python si chiama
+``python3`` e non ``python``, allora con ogni probabilità il package manager si chiama
+``pip3`` e non ``pip``. In questo caso provate
+```{bash}
+pip3 install numpy scipy matplotlib
+```
+:::
 
 Se tutto è andato come doveva, a questo punto dovreste essere in grado di lanciare
-l'inteprete Python ed importare i pacchetti
+l'interprete Python ed *importare* i pacchetti (scopriremo nel prossimo capitolo cosa
+vuol dire, ma per il momento fidatevi):
+```{bash}
+python
+Python 3.13.13 (main, Apr  8 2026, 00:00:00) [GCC 15.2.1 20260123] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import numpy
+>>> import scipy
+>>> import matplotlib
+>>>
+```
 
-.. code-block::
-
-    python
-    Python 3.13.7 (main, Aug 14 2025, 00:00:00) [GCC 15.2.1 20250808 (Red Hat 15.2.1-1)] on linux
-    Type "help", "copyright", "credits" or "license" for more information.
-    >>> import numpy
-    >>> import scipy
-    >>> import matplotlib
-    >>>
-
-Se tutti e tre i comandi di import arrivano a completamento senza messaggi d'errore,
-congratulazione: siete quasi pronti! Se invece vedete qualcosa di simile a
-
-.. code-block::
-
-    >>> import numpy
-    Traceback (most recent call last):
-      File "<python-input-0>", line 1, in <module>
-        import numpy
-    ModuleNotFoundError: No module named 'numpy'
-    >>>
-
-allora, purtroppo, qualcosa è andato storto.
-
-.. warning::
-
-    Se siete su uno di quei sistemi (e.g., Mac OS) in cui l'inteprete Python si chiama
-    ``python3`` e non ``python``, allora con ogni probabilità il `package manager` si chiama
-    ``pip3`` e non ``pip``. Vale quanto detto prima: in questo caso provate
-
-    .. code-block:: shell
-
-        pip3 install numpy scipy matplotlib
+Se tutti e tre gli import arrivano a completamento senza messaggi d'errore...
+congratulazioni: siete quasi pronte! Se invece vedete qualcosa di simile a
+```{bash}
+>>> import numpy
+Traceback (most recent call last):
+    File "<python-input-0>", line 1, in <module>
+    import numpy
+ModuleNotFoundError: No module named 'numpy'
+>>>
+```
+allora, purtroppo, qualcosa è andato storto. Tristemente, è di nuovo il momento di cercare
+aiuto, e cercarlo subito, perché è inutile andare avanti altrimenti.
 
 
+## Funziona tutto?
 
-Altre cose?
------------
-
-Si. Come minimo avrete bisogno di un `editor di testo`. In realtà è molto
-probabile che, una volta che avete iniziato a programmare, vi convinciate
-di aver bisogno di un `ambiente intergrato di sviluppo` (`integrated
-development environment`, o IDE, in inglese).
-
-Se volete replicare il setup utilizzato in laboratorio, installate
-`Visual Studio Code <https://code.visualstudio.com/>`_.
-
-
-
-Funziona tutto?
----------------
-
-Prova a copiare ed incollare il codice qui sotto nel tuo editor preferito e ad eseguirlo.
-Se appare un grafico con dei punti ed una retta dovresti essere `up and running`!
-
-
-.. code-block:: python
-
-    import numpy as np
-    from matplotlib import pyplot as plt
-    from scipy.optimize import curve_fit
-
-    def fit_model(x, m, q):
-        return m * x + q
-
-    t = np.array([1., 2., 3., 4., 5., 6., 7., 8., 9., 10.])
-    z = np.array([2.4, 4.3, 5.2, 8.55, 9.38, 12.2, 14.5, 16.2, 17.3, 19.5])
-    sigma_z = 0.5
-
-    popt, pcov = curve_fit(fit_model, t, z, sigma=sigma_z)
-
-    plt.errorbar(t, z, sigma_z, fmt='o')
-    plt.plot(t, fit_model(t, *popt))
-    plt.xlabel('Tempo [s]')
-    plt.ylabel('Spazio percorso [cm]')
-
-    plt.show()
+Se siete arrivate fino a qui probabilmente si. Non c'è altro modo per scoprirlo che
+passare al @{sec-crash}.
