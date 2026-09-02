@@ -64,9 +64,9 @@ dovete fare nulla.
 ::: {.callout-note}
 Vale la pena controllare che versione di Python sul vostro sistema non sia *troppo*
 vecchia (e.g., più vecchia della 3.7), perché, in caso contrario, potreste avere qualche
-problema di compatibilità con gli esempi di queste note. In generate aggiornare
-il Python di sistema senza aggiornare il sistema intero non è operazione facile
-(né raccomandabile), me potete valutare la possibilità di istallare una versione di
+problema di compatibilità con gli esempi di queste note. In generale aggiornare
+la versione di Python di sistema senza aggiornare il sistema intero non è operazione facile
+(né raccomandabile), ma potete valutare la possibilità di istallare una versione di
 Python aggiuntiva, ad esempio utilizzando [pyenv](https://github.com/pyenv/pyenv).
 :::
 
@@ -77,18 +77,18 @@ Come nel caso di GNU/Linux, se usate Mac-OS è garantito che abbiate Python ista
 Valgono le stesse considerazioni sulla versione.
 
 ::: {.callout-warning title="TODO"}
-Dobbiamo aggiungere qualche breve nota sull'istallazione su MacOS?
+Dobbiamo aggiungere qualche breve nota sull'istallazione su Mac-OS?
 :::
 
 
 ### Windows
 
 Se utilizzate Windows (e non avete Python installato sul vostro sistema), scaricate
-l'installer dalla pagina web dei [downloads](https://www.python.org/downloads/>) ed
+l'installer dalla pagina web dei [downloads](https://www.python.org/downloads/) ed
 eseguitelo.
 
 Quando lanciate l'installer di Windows potete selezionare l'installazione standard,
-`assicurandovi di spuntare la check box che aggiunge l'eseguibile ``Python.exe``
+assicurandovi di spuntare la check box che aggiunge l'eseguibile ``Python.exe``
 alla variabile d'ambiente ``PATH`` (dovrebbe essere in basso nella finestrella
 di avvio). Questo vi permetterà di lanciare l'interprete da terminale.
 Per il momento questo non vi dice molto, ma è importante, e ci torneremo tra un attimo.
@@ -139,10 +139,10 @@ perché altrimenti è impossibile procedere con i prossimi passi.
 A seconda del sistema operativo (e.g., con versioni recenti di Mac OS) è possibile che
 il comando per lanciare l'interprete Python non si chiami ``python`` ma ``python3``.
 Si tratta di accidente storico che, nel 2026, è estremamente poco interessante, ma se uno
-non funzione provate l'altro prima di arrendervi.
+non funziona provate l'altro prima di arrendervi.
 :::
 
-Questo modo di utilizzare l'interprete si dice *interattivo*; è utile se volte usare Python
+Questo modo di utilizzare l'interprete si dice *interattivo*; è utile se volete usare Python
 come una sorta di calcolatore tascabile, se volete provare velocemente un costrutto o,
 più in generale, se quello che dovete fare è molto semplice.
 ```{bash}
@@ -223,15 +223,14 @@ probabilità potete anche lanciare l'installer di pacchetti ``pip``, digitando
 *nel terminale* (mi raccomando, non nell'interprete Python):
 
 ```{bash}
-pip install numpy scipy matplotlib
+python -m pip install numpy scipy matplotlib
 ```
 
 ::: {.callout-warning}
 Se siete su uno di quei sistemi (e.g., Mac OS) in cui l'interprete Python si chiama
-``python3`` e non ``python``, allora con ogni probabilità il package manager si chiama
-``pip3`` e non ``pip``. In questo caso provate
+``python3`` e non ``python``, allora ovviamente il comando è
 ```{bash}
-pip3 install numpy scipy matplotlib
+python3 -m pip install numpy scipy matplotlib
 ```
 :::
 
