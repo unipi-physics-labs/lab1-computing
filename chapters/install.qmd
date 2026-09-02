@@ -3,7 +3,7 @@
 Che cosa serve per cominciare? Buona domanda. Avrete bisogno essenzialmente di tre cose:
 
 1. un calcolatore;
-2. una installazione funzionante di Python (e di parte dell'ecosistema scientifico
+2. un'installazione funzionante di Python (e di parte dell'ecosistema scientifico
    associato);
 3. un *editor* di testo.
 
