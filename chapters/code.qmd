@@ -73,8 +73,8 @@ ma per un uso sporadico questa non è una grossa limitazione.)
 
 ## Sviluppare codice strutturato
 
-Per qualsiasi cose che abbia un tempo di vita di più di tre giorni, il posto giusto
-è un repositorio [git](https://git-scm.com/). Non è probabilmente al numero uno nella
+Per qualsiasi cosa che abbia un tempo di vita superiore a tre giorni, il posto giusto
+è un repository [git](https://git-scm.com/). Non è probabilmente al numero uno nella
 lista delle cose da imparare, ma posso garantirvi che se mai programmerete in modo meno
 che casuale ad un certo punto dovrete farlo. Va da sé, git è software libero.
 
