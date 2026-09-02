@@ -3,7 +3,7 @@
 Che cosa serve per cominciare? Buona domanda. Avrete bisogno essenzialmente di tre cose:
 
 1. un calcolatore;
-2. una istallazione funzionante di Python (e di parte dell'ecosistema scientifico
+2. un'installazione funzionante di Python (e di parte dell'ecosistema scientifico
    associato);
 3. un *editor* di testo.
 
@@ -66,18 +66,18 @@ Vale la pena controllare che versione di Python sul vostro sistema non sia *trop
 vecchia (e.g., più vecchia della 3.7), perché, in caso contrario, potreste avere qualche
 problema di compatibilità con gli esempi di queste note. In generale aggiornare
 la versione di Python di sistema senza aggiornare il sistema intero non è operazione facile
-(né raccomandabile), ma potete valutare la possibilità di istallare una versione di
+(né raccomandabile), ma potete valutare la possibilità di installare una versione di
 Python aggiuntiva, ad esempio utilizzando [pyenv](https://github.com/pyenv/pyenv).
 :::
 
 
 ### Mac-OS
 
-Come nel caso di GNU/Linux, se usate Mac-OS è garantito che abbiate Python istallato.
+Come nel caso di GNU/Linux, se usate Mac-OS è garantito che abbiate Python installato.
 Valgono le stesse considerazioni sulla versione.
 
 ::: {.callout-warning title="TODO"}
-Dobbiamo aggiungere qualche breve nota sull'istallazione su Mac-OS?
+Dobbiamo aggiungere qualche breve nota sull'installazione su Mac-OS?
 :::
 
 
@@ -96,7 +96,7 @@ Per il momento questo non vi dice molto, ma è importante, e ci torneremo tra un
 
 ## Tre modi di utilizzare Python
 
-Come si capisce se l'istallazione di Python è andata a buon fine? Facile, ma per prima
+Come si capisce se l'installazione di Python è andata a buon fine? Facile, ma per prima
 cosa dovete *aprire un terminale*.
 
 ::: {.callout-note}
