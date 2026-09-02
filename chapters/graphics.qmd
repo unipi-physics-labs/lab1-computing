@@ -77,7 +77,7 @@ di elementi geometrici, e il loro rendering è demandato all'applicazione che fa
 display dell'immagine. Potete ingrandire quanto volete, senza limite, e l'immagine rimane
 sempre perfettamente a fuoco. (Tutte le figure in queste note contengono immagini in
 formato vettoriale, con l'unica eccezione della @{fig-raster_dpi}, che ha il compito
-preciso di illustrate proprio questo.)
+preciso di illustrare proprio questo.)
 
 
 ### Dimensioni del file
@@ -90,12 +90,12 @@ numero di livelli di colore per pixel, la dimensione del file immagine sia essen
 fissata. Nella vita reale questo non è del tutto vero, perché le immagini possono contenere
 metadati (e.g., luogo e tempo in cui è stata scattata la foto), ma soprattutto perché,
 come abbiamo notato prima, molti formati raster permettono di applicare una compressione
-per ridurre la dimensione. Nonostante questo, *la dimensione di una immagine raster, sotto
+per ridurre la dimensione. Nonostante questo, *la dimensione di un'immagine raster, sotto
 ipotesi ragionevoli, non dipende troppo da quello che c'è nell'immagine*---solo dal numero
 totale di pixel. Potete quindi controllare la dimensione del file selezionando la
 risoluzione (in dpi), ma non importa cosa mettete dentro l'immagine.
 
-Per i formati vettoriale è esattamente l'opposto: le dimensioni del file immagine
+Per i formati vettoriali è esattamente l'opposto: le dimensioni del file immagine
 dipendono in modo critico da quello che ci mettete dentro. Uno scatter plot con $100,000$
 punti, ove salvato in formato vettoriale, richiederà $1000$ volte più spazio di uno con
 $100$ punti. E in questo caso non avete la risoluzione con cui giocare.
@@ -107,7 +107,7 @@ a qualsiasi livello di ingrandimento.
 
 ### Suggerimenti tentativi
 
-Quindi? Qual'è il verdetto? Beh, al solito dipende tutto da quel che dovete fare.
+Quindi? Qual è il verdetto? Beh, al solito dipende tutto da quel che dovete fare.
 
 Se l'immagine è una foto (e.g., del vostro apparato sperimentale) allora non ci sono
 dubbi: usate un formato raster, come png o jpeg. (Entrambi sono compressi, ma la

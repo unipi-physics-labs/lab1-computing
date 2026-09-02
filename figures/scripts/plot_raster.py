@@ -18,9 +18,9 @@
 """
 
 import numpy as np
-from aptapy.plotting import plt, setup_gca
+from aptapy.plotting import plt
 
-from common import DATA_DIR, savefigs
+from common import savefigs
 
 
 def plot_raster():
