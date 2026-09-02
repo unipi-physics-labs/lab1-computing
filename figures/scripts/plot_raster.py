@@ -14,13 +14,32 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-"""Run all the scripts generating the figures.
+"""Illustrate why rastered formats suck for plots.
 """
 
-import plot_microprocessors
-import plot_raster
+import numpy as np
+from aptapy.plotting import plt
+
+from common import savefigs
+
+
+def plot_raster():
+    """Plot a rastered image of a sine function.
+    """
+    x = np.linspace(0, 2 * np.pi, 100)
+    y = np.sin(x)
+    plt.figure()
+    plt.plot(x, y)
+    plt.gca().grid(True, linestyle="--", linewidth=0.6)
+    for dpi in (30, 300):
+        savefigs(f"raster_sine_{dpi}dpi", formats=("png",), dpi=dpi)
+
+
+def run():
+    plot_raster()
+
 
 
 if __name__ == "__main__":
-    plot_microprocessors.run()
-    plot_raster.run()
+    run()
+    plt.show()
