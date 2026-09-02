@@ -125,8 +125,8 @@ Arrivate a questo punto potreste avere l'impressione (sbagliata) che `matplotlib
 parte delle libreria standard di Python---mentre invece si tratta di un pacchetto
 separato che è disponibile, insieme a quasi un milione di altri pacchetti, sul
 [Python package index](https://pypi.org/). Qual è la differenza? Semplice: la libreria
-standard viene istallata automaticamente quando istallate Python. Tutto il resto va
-istallato a mano, ad esempio con `pip`. (Ma se siete arrivate a questo punto dovreste
+standard viene installata automaticamente quando installate Python. Tutto il resto va
+installato a mano, ad esempio con `pip`. (Ma se siete arrivate a questo punto dovreste
 esserci già passate.) Da questo punto in poi, non ci sono altre differenze---i moduli
 si importano esattamente allo stesso modo.
 

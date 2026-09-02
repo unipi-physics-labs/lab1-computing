@@ -4,7 +4,7 @@
 
 * Primo draft del capitolo sui formati grafici
   ([PR 9](https://github.com/unipi-physics-labs/lab1-computing/pull/9))
-* Revisione completa del capitolo sull'istallazione di Python e dell'ecosistema
+* Revisione completa del capitolo sull'installazione di Python e dell'ecosistema
   ([PR 8](https://github.com/unipi-physics-labs/lab1-computing/pull/8))
 * Primo draft del capitolo sulla vettorizzazione
   ([PR 7](https://github.com/unipi-physics-labs/lab1-computing/pull/7))
@@ -65,7 +65,7 @@
 
 ### Versione 0.3.1 (2026-08-21) {.unnumbered}
 
-* Tweak di pyproject.toml per l'istallazione del pacchetto per la pubblicazione.
+* Tweak di pyproject.toml per l'installazione del pacchetto per la pubblicazione.
 * Non ci sono cambiamenti al testo delle note.
 
 

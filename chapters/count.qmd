@@ -194,7 +194,7 @@ $$
   (24)_{16} \triangleq 0x24 = 2 \times 16 + 4 = 36.
 $$
 (Notiamo per inciso, il prefisso $0x$, che svolge esattamente la stessa funzione che
-$0b$ svolge per il sistema binario. Tenetelo a mente, perché si tratta di una ù
+$0b$ svolge per il sistema binario. Tenetelo a mente, perché si tratta di una
 convenzione molto utilizzata in letteratura e nella documentazione tecnica.)
 
 L'unico dettaglio da mettere a fuoco è che adesso ci servono $16$ cifre, e non più

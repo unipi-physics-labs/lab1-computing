@@ -42,14 +42,14 @@ il sorgente viene processato un un programma apposito (`pdflatex`, ad esempio,
 produce un file pdf).
 
 
-## Istallare LaTeX?
+## installare LaTeX?
 
 Oppure no? Fino a una decina di anni fa non ci sarebbe stato nessun dubbio---la risposta
 sarebbe stata affermativa.
 Questo era prima che [Overleaf](https://www.overleaf.com/learn) conquistasse il mondo,
 per cui oggi probabilmente la risposta è: a meno che non vogliate diventare delle
 professioniste di LaTeX, e assumendo che abbiate a disposizione un browser e l'accesso
-alla rete, potete cavarvela senza istallare niente.
+alla rete, potete cavarvela senza installare niente.
 
 ::: {.callout-note}
 Se siete studenti dell'Università di Pisa avete accesso con le credenziali di ateneo
@@ -70,7 +70,7 @@ La compilazione è triggerata da un apposito tasto. Niente di più semplice.
 
 Se, andando avanti, doveste sentire l'esigenza di passare ad un workflow *locale*
 (ad esempio se avete bisogno di lavorare su LaTeX in aereo, senza accesso alla rete)
-il modo più semplice di istallare tutto quello che serve è con la distribuzione
+il modo più semplice di installare tutto quello che serve è con la distribuzione
 [TeX Live](https://www.tug.org/texlive/).
 
 
