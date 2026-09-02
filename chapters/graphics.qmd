@@ -5,8 +5,7 @@ un grafico che avete fatto con matplotlib---per inserirlo in una relazione, in u
 articolo scientifico, in una pagina web, o per inviarlo alla vostra compagna di gruppo.
 La funzione
 [savefig()](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html)
-di matplotlib vi permette di farlo in una miriade di formati diversi
-
+di matplotlib vi permette di farlo in una miriade di formati diversi:
 ```{python}
 from matplotlib import pyplot as plt
 
@@ -40,7 +39,7 @@ in termini di *primitive geometriche*---punti, linee, cerchi, lettere---ciascuna
 determinate caratteristiche (posizione, dimensioni, colore). Ora, se pensate un attimo,
 è abbastanza chiaro che la maggior parte delle cose che interessa a noi come Fisiche
 (e.g., grafici, diagrammi, costruzioni geometriche) si presta più o meno naturalmente
-ad essere rappresentato in questo modo. Ci torniamo tra un attimo.
+ad essere rappresentata in questo modo. Ci torniamo tra un attimo.
 
 
 ### Ingrandimento e risoluzione
