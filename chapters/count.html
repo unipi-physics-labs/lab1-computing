@@ -366,7 +366,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">27 agosto 2026</p>
+      <p class="date">2 settembre 2026</p>
     </div>
   </div>
   
@@ -412,7 +412,7 @@ Importante
   1 \times 2^3 + 1 \times 2^2 + 1 \times 1 = 13.
 \]</span> (Ricordate le nostre convenzioni: quando scriviamo <span class="math inline">\(13\)</span> senza indicare la base intendiamo <span class="math inline">\((13)_{10}\)</span>. Abbiamo anche introdotto il prefisso <span class="math inline">\(0b\)</span>, che troverete usato in letteratura per indicare un numero nella sua rappresentazione in base 2.)</p>
 <p>Convertire un numero intero dal sistema decimale a quello binario (e viceversa) è banale, seguendo l’<a href="#eq-notazione_posizionale" class="quarto-xref">Equazione&nbsp;<span>7.1</span></a>. Qualsiasi linguaggio di programmazione degno di questo nome, inoltre, fornisce funzioni di conversione nei due sensi, e.g.,</p>
-<div id="67e640ac" class="cell" data-execution_count="1">
+<div id="f412c7cb" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Binary representation of a decimal number...</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bin</span>(<span class="dv">11</span>))</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bin</span>(<span class="dv">999</span>))</span>
@@ -437,7 +437,7 @@ Nota
 </div>
 <div class="callout-body-container callout-body">
 <p>Ricordatevi cosa abbiamo detto a proposito della differenza tra numeri e loro rappresentazione, e non lasciatevi confondere dalle apparenze. <a href="https://docs.python.org/3/library/functions.html#bin">bin()</a> è una funzione built-in di Python che restituisce la rappresentazione binaria di un numero intero nella forma di una stringa preceduta da <code>0b</code>; <code>0b11111111</code>, d’altra parte, non è nient’altro che un modo diverso, ma perfettamente equivalente, di scrivere il numero intero <span class="math inline">\(255\)</span>. L’interprete Python non fa nessuna differenza tra <code>0b11111111</code> e <code>255</code>.</p>
-<div id="0d1f181a" class="cell" data-execution_count="2">
+<div id="22d005f2" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bn">0b11111111</span> <span class="op">==</span> <span class="dv">255</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bin</span>(<span class="dv">255</span>) <span class="op">==</span> <span class="bn">0b11111111</span>)</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">bin</span>(<span class="dv">255</span>) <span class="op">==</span> <span class="st">"0b11111111"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
@@ -497,7 +497,7 @@ new BaseConverter(
 <p>Questo è tanto vero che Python (come molti linguaggi di programmazione, del resto) offre due operatori binari dedicati per eseguire <em>bit shift</em> nelle due direzioni <span class="math display">\[
   \texttt{n &lt;&lt; m} \quad\text{e}\quad \texttt{n &gt;&gt; m}
 \]</span> che corrispondono, rispettivamente, alla moltiplicazione per <span class="math inline">\(2^m\)</span> ed alla divisione (intera) per <span class="math inline">\(2^m\)</span>. Così</p>
-<div id="f56677bb" class="cell" data-execution_count="3">
+<div id="213499df" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">7</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(n <span class="op">&lt;&lt;</span> <span class="dv">1</span>) <span class="co"># Multiply by 2</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(n <span class="op">&lt;&lt;</span> <span class="dv">2</span>) <span class="co"># Multiply by 4</span></span>
@@ -516,7 +516,7 @@ new BaseConverter(
   (24)_{16} \triangleq 0x24 = 2 \times 16 + 4 = 36.
 \]</span> (Notiamo per inciso, il prefisso <span class="math inline">\(0x\)</span>, che svolge esattamente la stessa funzione che <span class="math inline">\(0b\)</span> svolge per il sistema binario. Tenetelo a mente, perché si tratta di una ù convenzione molto utilizzata in letteratura e nella documentazione tecnica.)</p>
 <p>L’unico dettaglio da mettere a fuoco è che adesso ci servono <span class="math inline">\(16\)</span> cifre, e non più <span class="math inline">\(10\)</span> (i.e., <span class="math inline">\(0\)</span>–<span class="math inline">\(9\)</span>) come nel sistema decimale. La convenzione standard è di aggiungere <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, <span class="math inline">\(c\)</span>, <span class="math inline">\(d\)</span>, <span class="math inline">\(e\)</span> ed <span class="math inline">\(f\)</span> (maiuscole o minuscole, non fa differenza) dopo il <span class="math inline">\(9\)</span>, per indicare i <em>numeri</em> <span class="math inline">\(11 \ldots 15\)</span>. Con questo abbiamo una prescrizione completa, e analogamente a prima</p>
-<div id="4df4274d" class="cell" data-execution_count="4">
+<div id="a9ccb7b1" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Hexadecimal representation of a decimal nmber...</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">hex</span>(<span class="dv">11</span>))</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">hex</span>(<span class="dv">999</span>))</span>
@@ -583,94 +583,94 @@ Tabella&nbsp;7.1: rappresentazione dei primi <span class="math inline">\(16\)</s
 <style type="text/css">
 </style>
 
-<table id="T_fe5a2" class="cell caption-top table table-sm table-striped small">
+<table id="T_63cb4" class="cell caption-top table table-sm table-striped small">
 <thead>
 <tr class="header">
-<th id="T_fe5a2_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Decimale</th>
-<th id="T_fe5a2_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Binario</th>
-<th id="T_fe5a2_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Esadecimale</th>
+<th id="T_63cb4_level0_col0" class="col_heading level0 col0" data-quarto-table-cell-role="th">Decimale</th>
+<th id="T_63cb4_level0_col1" class="col_heading level0 col1" data-quarto-table-cell-role="th">Binario</th>
+<th id="T_63cb4_level0_col2" class="col_heading level0 col2" data-quarto-table-cell-role="th">Esadecimale</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td id="T_fe5a2_row0_col0" class="data row0 col0">0</td>
-<td id="T_fe5a2_row0_col1" class="data row0 col1">0000</td>
-<td id="T_fe5a2_row0_col2" class="data row0 col2">0</td>
+<td id="T_63cb4_row0_col0" class="data row0 col0">0</td>
+<td id="T_63cb4_row0_col1" class="data row0 col1">0000</td>
+<td id="T_63cb4_row0_col2" class="data row0 col2">0</td>
 </tr>
 <tr class="even">
-<td id="T_fe5a2_row1_col0" class="data row1 col0">1</td>
-<td id="T_fe5a2_row1_col1" class="data row1 col1">0001</td>
-<td id="T_fe5a2_row1_col2" class="data row1 col2">1</td>
+<td id="T_63cb4_row1_col0" class="data row1 col0">1</td>
+<td id="T_63cb4_row1_col1" class="data row1 col1">0001</td>
+<td id="T_63cb4_row1_col2" class="data row1 col2">1</td>
 </tr>
 <tr class="odd">
-<td id="T_fe5a2_row2_col0" class="data row2 col0">2</td>
-<td id="T_fe5a2_row2_col1" class="data row2 col1">0010</td>
-<td id="T_fe5a2_row2_col2" class="data row2 col2">2</td>
+<td id="T_63cb4_row2_col0" class="data row2 col0">2</td>
+<td id="T_63cb4_row2_col1" class="data row2 col1">0010</td>
+<td id="T_63cb4_row2_col2" class="data row2 col2">2</td>
 </tr>
 <tr class="even">
-<td id="T_fe5a2_row3_col0" class="data row3 col0">3</td>
-<td id="T_fe5a2_row3_col1" class="data row3 col1">0011</td>
-<td id="T_fe5a2_row3_col2" class="data row3 col2">3</td>
+<td id="T_63cb4_row3_col0" class="data row3 col0">3</td>
+<td id="T_63cb4_row3_col1" class="data row3 col1">0011</td>
+<td id="T_63cb4_row3_col2" class="data row3 col2">3</td>
 </tr>
 <tr class="odd">
-<td id="T_fe5a2_row4_col0" class="data row4 col0">4</td>
-<td id="T_fe5a2_row4_col1" class="data row4 col1">0100</td>
-<td id="T_fe5a2_row4_col2" class="data row4 col2">4</td>
+<td id="T_63cb4_row4_col0" class="data row4 col0">4</td>
+<td id="T_63cb4_row4_col1" class="data row4 col1">0100</td>
+<td id="T_63cb4_row4_col2" class="data row4 col2">4</td>
 </tr>
 <tr class="even">
-<td id="T_fe5a2_row5_col0" class="data row5 col0">5</td>
-<td id="T_fe5a2_row5_col1" class="data row5 col1">0101</td>
-<td id="T_fe5a2_row5_col2" class="data row5 col2">5</td>
+<td id="T_63cb4_row5_col0" class="data row5 col0">5</td>
+<td id="T_63cb4_row5_col1" class="data row5 col1">0101</td>
+<td id="T_63cb4_row5_col2" class="data row5 col2">5</td>
 </tr>
 <tr class="odd">
-<td id="T_fe5a2_row6_col0" class="data row6 col0">6</td>
-<td id="T_fe5a2_row6_col1" class="data row6 col1">0110</td>
-<td id="T_fe5a2_row6_col2" class="data row6 col2">6</td>
+<td id="T_63cb4_row6_col0" class="data row6 col0">6</td>
+<td id="T_63cb4_row6_col1" class="data row6 col1">0110</td>
+<td id="T_63cb4_row6_col2" class="data row6 col2">6</td>
 </tr>
 <tr class="even">
-<td id="T_fe5a2_row7_col0" class="data row7 col0">7</td>
-<td id="T_fe5a2_row7_col1" class="data row7 col1">0111</td>
-<td id="T_fe5a2_row7_col2" class="data row7 col2">7</td>
+<td id="T_63cb4_row7_col0" class="data row7 col0">7</td>
+<td id="T_63cb4_row7_col1" class="data row7 col1">0111</td>
+<td id="T_63cb4_row7_col2" class="data row7 col2">7</td>
 </tr>
 <tr class="odd">
-<td id="T_fe5a2_row8_col0" class="data row8 col0">8</td>
-<td id="T_fe5a2_row8_col1" class="data row8 col1">1000</td>
-<td id="T_fe5a2_row8_col2" class="data row8 col2">8</td>
+<td id="T_63cb4_row8_col0" class="data row8 col0">8</td>
+<td id="T_63cb4_row8_col1" class="data row8 col1">1000</td>
+<td id="T_63cb4_row8_col2" class="data row8 col2">8</td>
 </tr>
 <tr class="even">
-<td id="T_fe5a2_row9_col0" class="data row9 col0">9</td>
-<td id="T_fe5a2_row9_col1" class="data row9 col1">1001</td>
-<td id="T_fe5a2_row9_col2" class="data row9 col2">9</td>
+<td id="T_63cb4_row9_col0" class="data row9 col0">9</td>
+<td id="T_63cb4_row9_col1" class="data row9 col1">1001</td>
+<td id="T_63cb4_row9_col2" class="data row9 col2">9</td>
 </tr>
 <tr class="odd">
-<td id="T_fe5a2_row10_col0" class="data row10 col0">10</td>
-<td id="T_fe5a2_row10_col1" class="data row10 col1">1010</td>
-<td id="T_fe5a2_row10_col2" class="data row10 col2">a</td>
+<td id="T_63cb4_row10_col0" class="data row10 col0">10</td>
+<td id="T_63cb4_row10_col1" class="data row10 col1">1010</td>
+<td id="T_63cb4_row10_col2" class="data row10 col2">a</td>
 </tr>
 <tr class="even">
-<td id="T_fe5a2_row11_col0" class="data row11 col0">11</td>
-<td id="T_fe5a2_row11_col1" class="data row11 col1">1011</td>
-<td id="T_fe5a2_row11_col2" class="data row11 col2">b</td>
+<td id="T_63cb4_row11_col0" class="data row11 col0">11</td>
+<td id="T_63cb4_row11_col1" class="data row11 col1">1011</td>
+<td id="T_63cb4_row11_col2" class="data row11 col2">b</td>
 </tr>
 <tr class="odd">
-<td id="T_fe5a2_row12_col0" class="data row12 col0">12</td>
-<td id="T_fe5a2_row12_col1" class="data row12 col1">1100</td>
-<td id="T_fe5a2_row12_col2" class="data row12 col2">c</td>
+<td id="T_63cb4_row12_col0" class="data row12 col0">12</td>
+<td id="T_63cb4_row12_col1" class="data row12 col1">1100</td>
+<td id="T_63cb4_row12_col2" class="data row12 col2">c</td>
 </tr>
 <tr class="even">
-<td id="T_fe5a2_row13_col0" class="data row13 col0">13</td>
-<td id="T_fe5a2_row13_col1" class="data row13 col1">1101</td>
-<td id="T_fe5a2_row13_col2" class="data row13 col2">d</td>
+<td id="T_63cb4_row13_col0" class="data row13 col0">13</td>
+<td id="T_63cb4_row13_col1" class="data row13 col1">1101</td>
+<td id="T_63cb4_row13_col2" class="data row13 col2">d</td>
 </tr>
 <tr class="odd">
-<td id="T_fe5a2_row14_col0" class="data row14 col0">14</td>
-<td id="T_fe5a2_row14_col1" class="data row14 col1">1110</td>
-<td id="T_fe5a2_row14_col2" class="data row14 col2">e</td>
+<td id="T_63cb4_row14_col0" class="data row14 col0">14</td>
+<td id="T_63cb4_row14_col1" class="data row14 col1">1110</td>
+<td id="T_63cb4_row14_col2" class="data row14 col2">e</td>
 </tr>
 <tr class="even">
-<td id="T_fe5a2_row15_col0" class="data row15 col0">15</td>
-<td id="T_fe5a2_row15_col1" class="data row15 col1">1111</td>
-<td id="T_fe5a2_row15_col2" class="data row15 col2">f</td>
+<td id="T_63cb4_row15_col0" class="data row15 col0">15</td>
+<td id="T_63cb4_row15_col1" class="data row15 col1">1111</td>
+<td id="T_63cb4_row15_col2" class="data row15 col2">f</td>
 </tr>
 </tbody>
 </table>

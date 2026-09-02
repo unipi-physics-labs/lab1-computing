@@ -26,6 +26,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -76,6 +111,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-chtml.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -268,8 +332,19 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Indice</h2>
+   
+  <ul>
+  <li><a href="#formati-raster-e-formati-vettoriali" id="toc-formati-raster-e-formati-vettoriali" class="nav-link active" data-scroll-target="#formati-raster-e-formati-vettoriali"><span class="header-section-number">B.1</span> Formati raster e formati vettoriali</a>
+  <ul class="collapse">
+  <li><a href="#ingrandimento-e-risoluzione" id="toc-ingrandimento-e-risoluzione" class="nav-link" data-scroll-target="#ingrandimento-e-risoluzione"><span class="header-section-number">B.1.1</span> Ingrandimento e risoluzione</a></li>
+  <li><a href="#dimensioni-del-file" id="toc-dimensioni-del-file" class="nav-link" data-scroll-target="#dimensioni-del-file"><span class="header-section-number">B.1.2</span> Dimensioni del file</a></li>
+  <li><a href="#suggerimenti-tentativi" id="toc-suggerimenti-tentativi" class="nav-link" data-scroll-target="#suggerimenti-tentativi"><span class="header-section-number">B.1.3</span> Suggerimenti tentativi</a></li>
+  </ul></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/graphics.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -287,7 +362,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">27 agosto 2026</p>
+      <p class="date">2 settembre 2026</p>
     </div>
   </div>
   
@@ -299,8 +374,114 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<p>Prima o poi (e, più probabilmente, prima che poi) vi troverete a <em>salvare</em> su file un grafico che avete fatto con matplotlib—per inserirlo in una relazione, in un articolo scientifico, in una pagina web, o per inviarlo alla vostra compagna di gruppo. La funzione <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html">savefig()</a> di matplotlib vi permette di farlo in una miriade di formati diversi:</p>
+<div id="0f9eb254" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>plt.gcf().canvas.get_supported_filetypes()</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>{'eps': 'Encapsulated Postscript',
+ 'gif': 'Graphics Interchange Format',
+ 'jpg': 'Joint Photographic Experts Group',
+ 'jpeg': 'Joint Photographic Experts Group',
+ 'pdf': 'Portable Document Format',
+ 'pgf': 'PGF code for LaTeX',
+ 'png': 'Portable Network Graphics',
+ 'ps': 'Postscript',
+ 'raw': 'Raw RGBA bitmap',
+ 'rgba': 'Raw RGBA bitmap',
+ 'svg': 'Scalable Vector Graphics',
+ 'svgz': 'Scalable Vector Graphics',
+ 'tif': 'Tagged Image File Format',
+ 'tiff': 'Tagged Image File Format',
+ 'webp': 'WebP Image Format',
+ 'avif': 'AV1 Image File Format'}</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<pre><code>&lt;Figure size 672x480 with 0 Axes&gt;</code></pre>
+</div>
+</div>
+<p>La domanda ovvia è: qual è quello giusto?</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tecnicamente il ventaglio dei formati grafici che avete a disposizione dipende dal <em>backend</em> di matplotlib che utilizzate, ma dato che i formati più popolari sono supportati da tutti i backend, lo consideriamo un dettaglio tecnico.</p>
+</div>
+</div>
+<section id="formati-raster-e-formati-vettoriali" class="level2" data-number="B.1">
+<h2 data-number="B.1" class="anchored" data-anchor-id="formati-raster-e-formati-vettoriali"><span class="header-section-number">B.1</span> Formati raster e formati vettoriali</h2>
+<p>La prima distinzione fondamentale che è utile fare è tra i formati di tipo raster (come png e jpg) e quelli vettoriali (come pdf e svg).</p>
+<p>Un’immagine <em>raster</em>, o <em>bitmap</em> è essenzialmente una matrice rettangolare di quadratini (o <em>pixel</em>) ciascuno dei quali è definito da un colore. Se pensate a come funziona la macchina fotografica del vostro smartphone, la cosa ha perfettamente senso: l’immagine è acquisita attraverso un sensore pixelizzato in cui ciascun pixel opera indipendentemente per cui salvare un’immagine in formato raster è più che naturale. (La cosa è leggermente più complicata di così, perché nella maggior parte dei casi le immagini sono compresse per salvare spazio, ma questo è un dettaglio che va oltre i nostri scopi.)</p>
+<p>Un formato vettoriale, al contrario, implementa una descrizione del contenuto dell’immagine in termini di <em>primitive geometriche</em>—punti, linee, cerchi, lettere—ciascuna con determinate caratteristiche (posizione, dimensioni, colore). Ora, se pensate un attimo, è abbastanza chiaro che la maggior parte delle cose che interessa a noi come Fisiche (e.g., grafici, diagrammi, costruzioni geometriche) si presta più o meno naturalmente ad essere rappresentata in questo modo. Ci torniamo tra un attimo.</p>
+<section id="ingrandimento-e-risoluzione" class="level3" data-number="B.1.1">
+<h3 data-number="B.1.1" class="anchored" data-anchor-id="ingrandimento-e-risoluzione"><span class="header-section-number">B.1.1</span> Ingrandimento e risoluzione</h3>
+<p>Questa differenza fondamentale di impostazione tra formati raster e formati vettoriali diviene plasticamente ovvia quando proviamo ad <em>ingrandire</em> una figura. Nel caso dei formati raster la dimensione minima delle cose che possiamo rappresentare è fissata e se ingrandiamo abbastanza ci scontriamo inevitabilmente con la dimensione dei pixel—la figura diviene sgranata. Se guardate la <a href="#fig-raster_dpi" class="quarto-xref">Figura&nbsp;<span>B.1</span></a> si capisce immediatamente. E questo succede <em>sempre</em>, prima o poi, indipendentemente da quanto finemente decidete di rasterizzare la figura, i.e., da quanto piccolo decidete di fare il pixel.</p>
+<div id="fig-raster_dpi" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-raster_dpi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/generated/raster_sine_30dpi.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>30 dpi</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../figures/generated/raster_sine_300dpi.png" class="img-fluid figure-img" style="width:100.0%"></p>
+<figcaption>300 dpi</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-raster_dpi-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figura&nbsp;B.1: Esempio di una canvas di matplotlib rasterizzata (in formato png) con due risoluzioni diverse—30 e 300 dpi (dots per inch).
+</figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La <em>risoluzione</em> di una figura in formato raster è tipicamente misurata in dots per inch, o punti per pollice. matplotlib permette di specificare la risoluzione attraverso l’argomento <code>dpi</code> della funzione <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.savefig.html">savefig()</a>. Va da sé: più alta è la risoluzione, più grande è la dimensione del file su disco.</p>
+</div>
+</div>
+<p>Nel caso di una immagine in formato vettoriale la situazione è completamente diversa. Non c’è nessun concetto di pixel, perché, come detto, il file contiene solo la definizione di elementi geometrici, e il loro rendering è demandato all’applicazione che fa il display dell’immagine. Potete ingrandire quanto volete, senza limite, e l’immagine rimane sempre perfettamente a fuoco. (Tutte le figure in queste note contengono immagini in formato vettoriale, con l’unica eccezione della <a href="#fig-raster_dpi" class="quarto-xref">Figura&nbsp;<span>B.1</span></a>, che ha il compito preciso di illustrare proprio questo.)</p>
+</section>
+<section id="dimensioni-del-file" class="level3" data-number="B.1.2">
+<h3 data-number="B.1.2" class="anchored" data-anchor-id="dimensioni-del-file"><span class="header-section-number">B.1.2</span> Dimensioni del file</h3>
+<p>I formati raster e vettoriali si comportano in modo fondamentalmente diverso anche in relazione alla dimensione dei file su disco.</p>
+<p>Per i formati raster potete immaginare che, una volta fissato il numero di pixel ed il numero di livelli di colore per pixel, la dimensione del file immagine sia essenzialmente fissata. Nella vita reale questo non è del tutto vero, perché le immagini possono contenere metadati (e.g., luogo e tempo in cui è stata scattata la foto), ma soprattutto perché, come abbiamo notato prima, molti formati raster permettono di applicare una compressione per ridurre la dimensione. Nonostante questo, <em>la dimensione di un’immagine raster, sotto ipotesi ragionevoli, non dipende troppo da quello che c’è nell’immagine</em>—solo dal numero totale di pixel. Potete quindi controllare la dimensione del file selezionando la risoluzione (in dpi), ma non importa cosa mettete dentro l’immagine.</p>
+<p>Per i formati vettoriali è esattamente l’opposto: le dimensioni del file immagine dipendono in modo critico da quello che ci mettete dentro. Uno scatter plot con <span class="math inline">\(100,000\)</span> punti, ove salvato in formato vettoriale, richiederà <span class="math inline">\(1000\)</span> volte più spazio di uno con <span class="math inline">\(100\)</span> punti. E in questo caso non avete la risoluzione con cui giocare.</p>
+<p>In generale, se è un grafico quello di cui stiamo parlando, i formati vettoriali tendono a richiedere meno spazio, ed hanno il vantaggio di preservare la nitidezza dell’immagine a qualsiasi livello di ingrandimento.</p>
+</section>
+<section id="suggerimenti-tentativi" class="level3" data-number="B.1.3">
+<h3 data-number="B.1.3" class="anchored" data-anchor-id="suggerimenti-tentativi"><span class="header-section-number">B.1.3</span> Suggerimenti tentativi</h3>
+<p>Quindi? Qual è il verdetto? Beh, al solito dipende tutto da quel che dovete fare.</p>
+<p>Se l’immagine è una foto (e.g., del vostro apparato sperimentale) allora non ci sono dubbi: usate un formato raster, come png o jpeg. (Entrambi sono compressi, ma la compressione è <em>lossless</em> nel caso del png e <em>lossy</em> nel caso del jpeg, per cui il primo formato tende a risultare in file di dimensioni più grandi.)</p>
+<p>Se l’immagine è un grafico o un diagramma, allora cercate ove possibile di usare un formato vettoriale—i motivi li abbiamo già detto. Se state scrivendo un documento LaTeX non c’è ragione di non salvare la vostra canvas di matplotlib in pdf. Se dovete mettere l’immagine su web (e.g., se state preparando un documento simile a queste note) usate il formato svg.</p>
+<p>Facile, no?</p>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -723,7 +904,7 @@ ul.task-list li input[type="checkbox"] {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/graphics.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/graphics.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></div>
     <div class="nav-footer-right">
       &nbsp;
     </div>

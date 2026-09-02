@@ -276,12 +276,18 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#il-calcolatore" id="toc-il-calcolatore" class="nav-link active" data-scroll-target="#il-calcolatore"><span class="header-section-number">2.1</span> Il calcolatore</a></li>
   <li><a href="#il-linguaggio-di-programmazione-python" id="toc-il-linguaggio-di-programmazione-python" class="nav-link" data-scroll-target="#il-linguaggio-di-programmazione-python"><span class="header-section-number">2.2</span> Il linguaggio di programmazione: Python</a>
   <ul class="collapse">
-  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="header-section-number">2.2.1</span> Windows</a></li>
+  <li><a href="#gnulinux" id="toc-gnulinux" class="nav-link" data-scroll-target="#gnulinux"><span class="header-section-number">2.2.1</span> GNU/Linux</a></li>
   <li><a href="#mac-os" id="toc-mac-os" class="nav-link" data-scroll-target="#mac-os"><span class="header-section-number">2.2.2</span> Mac-OS</a></li>
-  <li><a href="#gnulinux" id="toc-gnulinux" class="nav-link" data-scroll-target="#gnulinux"><span class="header-section-number">2.2.3</span> GNU/Linux</a></li>
+  <li><a href="#windows" id="toc-windows" class="nav-link" data-scroll-target="#windows"><span class="header-section-number">2.2.3</span> Windows</a></li>
   </ul></li>
-  <li><a href="#tre-modi-di-utilizzare-python" id="toc-tre-modi-di-utilizzare-python" class="nav-link" data-scroll-target="#tre-modi-di-utilizzare-python"><span class="header-section-number">2.3</span> Tre modi di utilizzare Python</a></li>
-  <li><a href="#istallazione-dei-pacchetti-aggiuntivi" id="toc-istallazione-dei-pacchetti-aggiuntivi" class="nav-link" data-scroll-target="#istallazione-dei-pacchetti-aggiuntivi"><span class="header-section-number">2.4</span> Istallazione dei pacchetti aggiuntivi</a></li>
+  <li><a href="#tre-modi-di-utilizzare-python" id="toc-tre-modi-di-utilizzare-python" class="nav-link" data-scroll-target="#tre-modi-di-utilizzare-python"><span class="header-section-number">2.3</span> Tre modi di utilizzare Python</a>
+  <ul class="collapse">
+  <li><a href="#python-da-terminale" id="toc-python-da-terminale" class="nav-link" data-scroll-target="#python-da-terminale"><span class="header-section-number">2.3.1</span> Python da terminale</a></li>
+  <li><a href="#python-con-editor-di-testo-e-terminale" id="toc-python-con-editor-di-testo-e-terminale" class="nav-link" data-scroll-target="#python-con-editor-di-testo-e-terminale"><span class="header-section-number">2.3.2</span> Python con editor di testo e terminale</a></li>
+  <li><a href="#python-da-ide" id="toc-python-da-ide" class="nav-link" data-scroll-target="#python-da-ide"><span class="header-section-number">2.3.3</span> Python da IDE</a></li>
+  </ul></li>
+  <li><a href="#i-pacchetti-aggiuntivi" id="toc-i-pacchetti-aggiuntivi" class="nav-link" data-scroll-target="#i-pacchetti-aggiuntivi"><span class="header-section-number">2.4</span> I pacchetti aggiuntivi</a></li>
+  <li><a href="#funziona-tutto" id="toc-funziona-tutto" class="nav-link" data-scroll-target="#funziona-tutto"><span class="header-section-number">2.5</span> Funziona tutto?</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/install.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
     </div>
@@ -301,7 +307,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">27 agosto 2026</p>
+      <p class="date">2 settembre 2026</p>
     </div>
   </div>
   
@@ -333,38 +339,115 @@ Avviso
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Se volete (o avete necessità di) utilizzare un tablet per il corso di laboratorio, qui non troverete istruzioni utili, almeno per il momento. (Ma se riuscite ad identificare un <em>setup</em> funzionante e riproducibile potreste rendere il mondo un posto migliore contribuendo voi stesse a queste note.)</p>
+<p>Se volete (o avete necessità di) utilizzare un tablet per il corso di laboratorio, parliamone! Allo stato delle cose qui non troverete istruzioni utili, ma se riuscite ad identificare un <em>setup</em> funzionante e riproducibile potreste rendere il mondo un posto migliore documentandolo e contribuendo voi stesse a queste note.</p>
 </div>
 </div>
 <p>Da un punto di vista <em>hardware</em> non abbiamo grosse pretese. Se avete un calcolatore che vi permette di navigare su web e guardare film in streaming andrà benissimo anche per il corso di laboratorio.</p>
-<p>Anche per quel che riguarda il sistema operativo va bene più o meno tutto. Gli strumenti che utilizzeremo sono tutti intrinsecamente multi-piattaforma e, a meno che non usiate un sistema particolarmente <em>esotico</em> è improbabile che non interagisca bene con il laboratorio di Fisica. In particolare non dovreste avere particolari problemi (ma, come sempre in questi casi il condizionale è d’obbligo) se utilizzare Windows, Mac-OS, o GNU/Linux.</p>
+<p>Anche per quel che riguarda il sistema operativo va bene più o meno tutto. Gli strumenti che utilizzeremo sono tutti intrinsecamente multi-piattaforma e, a meno che non usiate un sistema particolarmente <em>esotico</em>, è improbabile che non interagisca bene con il laboratorio di Fisica. In particolare non dovreste avere particolari problemi (ma, come sempre in questi casi il condizionale è d’obbligo) se utilizzare Windows, Mac-OS, o GNU/Linux.</p>
 </section>
 <section id="il-linguaggio-di-programmazione-python" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="il-linguaggio-di-programmazione-python"><span class="header-section-number">2.2</span> Il linguaggio di programmazione: Python</h2>
 <p>Il linguaggio di programmazione che abbiamo scelto per il corso si chiama Python. Non perché sia, in assoluto, il migliore linguaggio del mondo (qualsiasi cosa questo voglia dire), ma perché ha molte caratteristiche che lo rendono adatto ai nostri scopi: è software libero, la sua sintassi è progettata esplicitamente per la massima espressività e facilità d’uso, ha una vasta libreria standard ed un enorme ecosistema associato di estensioni attivamente sviluppate, ed è uno dei linguaggi più utilizzati per il calcolo scientifico.</p>
 <p>La pagina principale di <a href="https://www.python.org/">Python</a> è il punto di ingresso fondamentale per tutte le questioni legate al linguaggio, comprese l’installazione e la documentazione. Se non avete particolari esigenze (o, come più probabile, non sapete cosa vuol dire avere particolari esigenze) potete prendere l’ultima versione stabile (e.g., 3.14.6 a luglio 2026). Il tab <em>Downloads</em> in alto nella pagina web dovrebbe indirizzarvi di default all’ultima versione stabile per il vostro sistema operativo.</p>
-<section id="windows" class="level3" data-number="2.2.1">
-<h3 data-number="2.2.1" class="anchored" data-anchor-id="windows"><span class="header-section-number">2.2.1</span> Windows</h3>
+<section id="gnulinux" class="level3" data-number="2.2.1">
+<h3 data-number="2.2.1" class="anchored" data-anchor-id="gnulinux"><span class="header-section-number">2.2.1</span> GNU/Linux</h3>
+<p>Se usate GNU/Linux è tecnicamente garantito che abbiate già una versione di sistema di Python—e, con ogni probabilità—questa va bene. Siete pronte per procedere, e non dovete fare nulla.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vale la pena controllare che versione di Python sul vostro sistema non sia <em>troppo</em> vecchia (e.g., più vecchia della 3.7), perché, in caso contrario, potreste avere qualche problema di compatibilità con gli esempi di queste note. In generale aggiornare la versione di Python di sistema senza aggiornare il sistema intero non è operazione facile (né raccomandabile), ma potete valutare la possibilità di istallare una versione di Python aggiuntiva, ad esempio utilizzando <a href="https://github.com/pyenv/pyenv">pyenv</a>.</p>
+</div>
+</div>
 </section>
 <section id="mac-os" class="level3" data-number="2.2.2">
 <h3 data-number="2.2.2" class="anchored" data-anchor-id="mac-os"><span class="header-section-number">2.2.2</span> Mac-OS</h3>
+<p>Come nel caso di GNU/Linux, se usate Mac-OS è garantito che abbiate Python istallato. Valgono le stesse considerazioni sulla versione.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="TODO">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Avviso</span>TODO
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Dobbiamo aggiungere qualche breve nota sull’istallazione su Mac-OS?</p>
+</div>
+</div>
 </section>
-<section id="gnulinux" class="level3" data-number="2.2.3">
-<h3 data-number="2.2.3" class="anchored" data-anchor-id="gnulinux"><span class="header-section-number">2.2.3</span> GNU/Linux</h3>
+<section id="windows" class="level3" data-number="2.2.3">
+<h3 data-number="2.2.3" class="anchored" data-anchor-id="windows"><span class="header-section-number">2.2.3</span> Windows</h3>
+<p>Se utilizzate Windows (e non avete Python installato sul vostro sistema), scaricate l’installer dalla pagina web dei <a href="https://www.python.org/downloads/">downloads</a> ed eseguitelo.</p>
+<p>Quando lanciate l’installer di Windows potete selezionare l’installazione standard, assicurandovi di spuntare la check box che aggiunge l’eseguibile <code>Python.exe</code> alla variabile d’ambiente <code>PATH</code> (dovrebbe essere in basso nella finestrella di avvio). Questo vi permetterà di lanciare l’interprete da terminale. Per il momento questo non vi dice molto, ma è importante, e ci torneremo tra un attimo.</p>
 </section>
 </section>
 <section id="tre-modi-di-utilizzare-python" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="tre-modi-di-utilizzare-python"><span class="header-section-number">2.3</span> Tre modi di utilizzare Python</h2>
-<p>Se digitate <code>python</code> nel vostro terminale, e assumendo che tutto sia istallato correttamente, vi trovate immediatamente catapultati nell’interprete, e dovreste vedere qualcosa di vagamente rassomigliante a</p>
+<p>Come si capisce se l’istallazione di Python è andata a buon fine? Facile, ma per prima cosa dovete <em>aprire un terminale</em>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nei tempi antichi, prima dell’avvento di smartphone e tablet, si parlava con i computer digitando su una tastiera comandi che apparivano sullo schermo, attraverso un’applicazione che andava sotto il nome di terminale (<em>terminal</em>, o <em>shell</em>, in inglese). Ebbene—udite, udite—il terminale (anzi: i terminali, perché ne esistono di diversi tipi e per tutti i gusti) esiste ancora, anche se nei sistemi operativi moderni è sepolto sotto svariati layer grafici.</p>
+<p>La prima cosa che dovete fare, allora è imparare a resuscitarlo, perché ci servirà. I dettagli logistici dell’operazione dipendono molto dal sistema operativo che utilizzate, ma per farla breve state cercando nella vostra barra delle applicazioni o nel vostro menù di avvio qualcosa che si chiama, appunto, “terminale”, “terminal”, “prompt dei comandi”, “command prompt”, “prompt di DOS”, “DOS prompt”, o variazioni sul tema. Andando avanti imparerete, se non lo sapete già, che la maggior parte delle operazioni che siete abituate a fare a colpi di mouse (e.g., copiare e rinominare file) si possono fare da linea di comando—e, anzi, questa modalità si presta più naturalmente ad essere automatizzata, che è una cosa che vi servirà nel vostro lavoro.</p>
+</div>
+</div>
+<section id="python-da-terminale" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="python-da-terminale"><span class="header-section-number">2.3.1</span> Python da terminale</h3>
+<p>Ma torniamo a noi. Se digitate <code>python</code> nel <em>terminale</em> dovreste trovarvi immediatamente catapultate nell’interprete—cioè dovreste vedere qualcosa di vagamente rassomigliante a</p>
 <pre class="{bash}"><code>lbaldini@nblbaldini:~$ python
-Python 3.13.13 (main, Apr  8 2026, 00:00:00) [GCC 15.2.1 20260123 (Red Hat 15.2.1-7)] on linux
+Python 3.13.13 (main, Apr  8 2026, 00:00:00) [GCC 15.2.1 20260123] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 &gt;&gt;&gt;</code></pre>
-<p>I tre simboli <code>&gt;&gt;&gt;</code> nell’ultima riga stanno ad indicare che l’interprete è pronto ad accettare comandi: potete cominciare a scrivere, e l’interprete vi <em>risponderà</em> con il valore dell’ultima espressione ogni volta che premete invio, in quello che in gergo tecnico prende il nome di REPL (Read-Eval-Print Loop). Questo modo di utilizzare l’interprete si dice <em>interattivo</em>; è utile se volte usare Python come una sorta di calcolatore tascabile, se volete provare velocemente un costrutto o, più in generale, se quello che dovete fare è molto semplice.</p>
+<p>I tre simboli <code>&gt;&gt;&gt;</code> nell’ultima riga stanno ad indicare che l’interprete è pronto ad accettare comandi: potete cominciare a scrivere, e l’interprete vi <em>risponderà</em> con il valore dell’ultima espressione ogni volta che premete invio, in quello che in gergo tecnico prende il nome di REPL (Read-Eval-Print Loop). Se così non fosse, fate un respiro profondo e cercate di capire se e cosa è andato storto, perché altrimenti è impossibile procedere con i prossimi passi.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Avviso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A seconda del sistema operativo (e.g., con versioni recenti di Mac OS) è possibile che il comando per lanciare l’interprete Python non si chiami <code>python</code> ma <code>python3</code>. Si tratta di accidente storico che, nel 2026, è estremamente poco interessante, ma se uno non funziona provate l’altro prima di arrendervi.</p>
+</div>
+</div>
+<p>Questo modo di utilizzare l’interprete si dice <em>interattivo</em>; è utile se volete usare Python come una sorta di calcolatore tascabile, se volete provare velocemente un costrutto o, più in generale, se quello che dovete fare è molto semplice.</p>
 <pre class="{bash}"><code>&gt;&gt;&gt; 3 + 17
 20
 &gt;&gt;&gt;</code></pre>
-<p>Non passerà molto tempo prima che vi rendiate conto che l’uso interattivo di Python è molto limitante. Quando uscite dall’interprete ripetere una serie di operazioni una seconda volta richiede banalmente di dover digitare tutto da capo, che diventa estremamente tedioso molto velocemente. Per tutti i task di complessità non nulla è molto più conveniente scrivere tutti i comandi, uno dopo l’altro, in un file di testo (convenzionalmente con estensione <code>.py</code>), ed invocare l’interprete passando il percorso al file come argomento. Questo richiede un minimo di padronanza della shell e del filesystem, ma dopo il primo successo avete ufficialmente aggiunto un nuovo strumento (ed uno molto potente) alla vostra scatola degli attrezzi: avete appena scritto il vostro primo <em>programma</em>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Non vi sembrerà la cosa più eccitante del mondo, ma prendetevi 5 minuti per sperimentare con l’interprete Python nel terminale, perché avete appena raggiunto ufficialmente la vostra prima milestone, ed è bene dare il giusto rilievo alla cosa.</p>
+</div>
+</div>
+</section>
+<section id="python-con-editor-di-testo-e-terminale" class="level3" data-number="2.3.2">
+<h3 data-number="2.3.2" class="anchored" data-anchor-id="python-con-editor-di-testo-e-terminale"><span class="header-section-number">2.3.2</span> Python con editor di testo e terminale</h3>
+<p>Non passerà molto tempo prima che vi rendiate conto che l’uso interattivo di Python è molto limitante. Quando uscite dall’interprete ripetere una serie di operazioni una seconda volta richiede banalmente di dover digitare tutto da capo—il che diventa estremamente tedioso molto velocemente. Per tutti i task di complessità non nulla è molto più conveniente scrivere tutti i comandi, uno dopo l’altro, in un <em>file di testo</em> (convenzionalmente con estensione <code>.py</code>), ed invocare l’interprete passando il percorso al file come argomento. Questo richiede un minimo di padronanza della shell e del filesystem, ma dopo il primo successo avete ufficialmente aggiunto un nuovo strumento—ed uno molto potente—alla vostra cassetta degli attrezzi: <em>avete appena scritto il vostro primo programma</em>.</p>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -378,10 +461,59 @@ Consiglio
 <p>Può darsi che nel capoverso precedente si siano alcune parole (e.g., percorso, filesystem, file di testo) di cui ignorate il significato. Nel parleremo più diffusamente nel <a href="os.html" class="quarto-xref"><span>Capitolo 9</span></a>, e potete fare un veloce salto in avanti se ne avete bisogno. Ma non lasciatevi tentare dall’utilizzare Python in modo interattivo nemmeno se incontrate qualche problema a questo stadio, perché vi assicuro che non è quello il modo in cui volete lavorare. Chiedete aiuto immediatamente se ne avete bisogno!</p>
 </div>
 </div>
-<p>Esistono infine sul mercato vari Intregrated Development Environment (IDE) che uniscono in un’unica interfaccia grafica l’editor di testo, l’interprete Python e tutta una serie di altre cose (e.g., un browser del filesystem), e che sono la scelta tipica per chi programma professionalmente. (O almeno lo erano fino all’avvento degli agenti AI.)</p>
+<p>Quale editor di testo usare, vi chiedete? Beh, oggigiorno usano tutti <a href="https://code.visualstudio.com/">Visual Studio Code</a>, che tecnicamente è più di un editor, ma leggete la prossima sezione prima di decidere.</p>
 </section>
-<section id="istallazione-dei-pacchetti-aggiuntivi" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="istallazione-dei-pacchetti-aggiuntivi"><span class="header-section-number">2.4</span> Istallazione dei pacchetti aggiuntivi</h2>
+<section id="python-da-ide" class="level3" data-number="2.3.3">
+<h3 data-number="2.3.3" class="anchored" data-anchor-id="python-da-ide"><span class="header-section-number">2.3.3</span> Python da IDE</h3>
+<p>Esistono infine sul mercato vari Integrated Development Environment (IDE) che uniscono in un’unica interfaccia grafica l’editor di testo, l’interprete Python e tutta una serie di altre cose (e.g., un browser del filesystem), e che sono la scelta tipica per chi programma professionalmente—o almeno lo erano fino all’avvento degli agenti AI.</p>
+<p>Più o meno tutto il mondo usa <a href="https://code.visualstudio.com/">Visual Studio Code</a>. Curiosamente VS Code è pubblicizzato dalla Microsoft, che ne è proprietaria, come <em>The open source AI code editor</em>. Quando andate a leggere le scritte in piccolo vi accorgete però che, nonostante il codice sorgente sia pubblicamente disponibile, il programma è rilasciato sotto <a href="https://code.visualstudio.com/license">una licenza non libera</a> e contiene elementi di tracciamento che non possono essere disabilitati (come spiegato nella sezione 2 della licenza stessa)—in altre parole, Microsoft può legittimamente raccogliere informazioni su di voi ed il vostro computer mentre usate VS Code. Quali? Non è dato saperlo.</p>
+<p>Il clone libero <a href="https://vscodium.com/">VS Codium</a> nasce proprio per ovviare a questo problema: l’eseguibile è rilasciato sotto una licenza <em>libera</em> ed il tracciamento è disabilitato. Avete il meglio dei due mondi. A voi la scelta.</p>
+</section>
+</section>
+<section id="i-pacchetti-aggiuntivi" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="i-pacchetti-aggiuntivi"><span class="header-section-number">2.4</span> I pacchetti aggiuntivi</h2>
+<p>Una volta installato Python siete a buon punto, ma non ancora alla fine: oltre al linguaggio, avrete bisogno almeno di tre pacchetti esterni aggiuntivi, da installare separatamente:</p>
+<ul>
+<li><a href="https://numpy.org/">numpy</a> per l’algebra lineare;</li>
+<li><a href="https://scipy.org/">scipy</a> per il fitting (tra le altre cose);</li>
+<li><a href="https://matplotlib.org/">matplotlib</a> per fare grafici.</li>
+</ul>
+<p>La buona notizia è che, se potete lanciare l’interprete Python da terminale, con ogni probabilità potete anche lanciare l’installer di pacchetti <code>pip</code>, digitando <em>nel terminale</em> (mi raccomando, non nell’interprete Python):</p>
+<pre class="{bash}"><code>python -m pip install numpy scipy matplotlib</code></pre>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Avviso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se siete su uno di quei sistemi (e.g., Mac OS) in cui l’interprete Python si chiama <code>python3</code> e non <code>python</code>, allora ovviamente il comando è</p>
+<pre class="{bash}"><code>python3 -m pip install numpy scipy matplotlib</code></pre>
+</div>
+</div>
+<p>Se tutto è andato come doveva, a questo punto dovreste essere in grado di lanciare l’interprete Python ed <em>importare</em> i pacchetti (scopriremo nel prossimo capitolo cosa vuol dire, ma per il momento fidatevi):</p>
+<pre class="{bash}"><code>python
+Python 3.13.13 (main, Apr  8 2026, 00:00:00) [GCC 15.2.1 20260123] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+&gt;&gt;&gt; import numpy
+&gt;&gt;&gt; import scipy
+&gt;&gt;&gt; import matplotlib
+&gt;&gt;&gt;</code></pre>
+<p>Se tutti e tre gli import arrivano a completamento senza messaggi d’errore… congratulazioni: siete quasi pronte! Se invece vedete qualcosa di simile a</p>
+<pre class="{bash}"><code>&gt;&gt;&gt; import numpy
+Traceback (most recent call last):
+    File "&lt;python-input-0&gt;", line 1, in &lt;module&gt;
+    import numpy
+ModuleNotFoundError: No module named 'numpy'
+&gt;&gt;&gt;</code></pre>
+<p>allora, purtroppo, qualcosa è andato storto. Tristemente, è di nuovo il momento di cercare aiuto, e cercarlo subito, perché è inutile andare avanti altrimenti.</p>
+</section>
+<section id="funziona-tutto" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="funziona-tutto"><span class="header-section-number">2.5</span> Funziona tutto?</h2>
+<p>Se siete arrivate fino a qui probabilmente si. Non c’è altro modo per scoprirlo che passare al <a href="crash.html" class="quarto-xref"><span>Capitolo 3</span></a>.</p>
 
 
 </section>
