@@ -1,5 +1,7 @@
 # Cronologia delle versioni {#sec-history}
 
+* Nuova appendice sulla logistica per condividere codice
+  ([PR 16](https://github.com/unipi-physics-labs/lab1-computing/pull/16))
 * Alcuni typo corretti
   ([PR 14](https://github.com/unipi-physics-labs/lab1-computing/pull/14))
 
