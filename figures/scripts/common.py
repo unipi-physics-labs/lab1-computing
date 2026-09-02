@@ -26,7 +26,7 @@ OUTPUT_DIR = ROOT / "generated"
 
 
 
-def savefigs(file_name: str, formats: tuple[str] = ("svg", "pdf"), **kwargs) -> None:
+def savefigs(file_name: str, formats: tuple[str, ...] = ("svg", "pdf"), **kwargs) -> None:
     """Save the current figure in the specified formats.
     """
     for fmt in formats:
