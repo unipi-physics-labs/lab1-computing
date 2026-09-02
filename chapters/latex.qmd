@@ -38,11 +38,11 @@ Da questo punto di vista LaTeX assomiglia più ad un linguaggio di programmazion
 cui il codice sorgente è un misto di testo e comandi, questi ultimi con funzione di
 tipo *strutturale* (e.g., "questo è un titolo", "questa è una figura"), ma senza alcuna
 indicazione sull'impaginazione. Quest'ultima avviene in un secondo momento, quando
-il sorgente viene processato un un programma apposito (`pdflatex`, ad esempio,
+il sorgente viene processato da un programma apposito (`pdflatex`, ad esempio,
 produce un file pdf).
 
 
-## installare LaTeX?
+## Installare LaTeX?
 
 Oppure no? Fino a una decina di anni fa non ci sarebbe stato nessun dubbio---la risposta
 sarebbe stata affermativa.
