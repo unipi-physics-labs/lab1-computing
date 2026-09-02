@@ -14,20 +14,32 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+"""Illustrate why rastered formats suck for plots.
+"""
 
-from pathlib import Path
+import numpy as np
+from aptapy.plotting import plt, setup_gca
 
-import matplotlib.pyplot as plt
-
-ROOT = Path(__file__).parent.parent
-
-DATA_DIR = ROOT / "data"
-OUTPUT_DIR = ROOT / "generated"
+from common import DATA_DIR, savefigs
 
 
-
-def savefigs(file_name: str, formats: tuple[str] = ("svg", "pdf"), **kwargs) -> None:
-    """Save the current figure in the specified formats.
+def plot_raster():
+    """Plot a rastered image of a sine function.
     """
-    for fmt in formats:
-        plt.savefig(OUTPUT_DIR / f"{file_name}.{fmt}", **kwargs)
+    x = np.linspace(0, 2 * np.pi, 100)
+    y = np.sin(x)
+    plt.figure()
+    plt.plot(x, y)
+    plt.gca().grid(True, linestyle="--", linewidth=0.6)
+    for dpi in (30, 300):
+        savefigs(f"raster_sine_{dpi}dpi", formats=("png",), dpi=dpi)
+
+
+def run():
+    plot_raster()
+
+
+
+if __name__ == "__main__":
+    run()
+    plt.show()
