@@ -18,7 +18,7 @@
 """
 
 import plot_microprocessors
-import plort_raster
+import plot_raster
 
 
 if __name__ == "__main__":
