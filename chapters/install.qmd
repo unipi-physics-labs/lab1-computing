@@ -19,9 +19,9 @@ letteralmente qualsiasi cosa purché abbia una tastiera.
 
 ::: {.callout-warning}
 Se volete (o avete necessità di) utilizzare un tablet per il corso di laboratorio,
-qui non troverete istruzioni utili, almeno per il momento.
-(Ma se riuscite ad identificare un *setup* funzionante e riproducibile potreste
-rendere il mondo un posto migliore contribuendo voi stesse a queste note.)
+parliamone! Allo stato delle cose qui non troverete istruzioni utili, ma se riuscite ad
+identificare un *setup* funzionante e riproducibile potreste rendere il mondo un posto
+migliore documentandolo e contribuendo voi stesse a queste note.
 :::
 
 Da un punto di vista *hardware* non abbiamo grosse pretese. Se avete un calcolatore
@@ -30,7 +30,7 @@ per il corso di laboratorio.
 
 Anche per quel che riguarda il sistema operativo va bene più o meno tutto. Gli strumenti
 che utilizzeremo sono tutti intrinsecamente multi-piattaforma e, a meno che non usiate
-un sistema particolarmente *esotico* è improbabile che non interagisca bene con
+un sistema particolarmente *esotico*, è improbabile che non interagisca bene con
 il laboratorio di Fisica. In particolare non dovreste avere particolari problemi (ma,
 come sempre in questi casi il condizionale è d'obbligo) se  utilizzare Windows,
 Mac-OS, o GNU/Linux.
@@ -55,52 +55,121 @@ dovrebbe indirizzarvi di default all’ultima versione stabile per il vostro sis
 operativo.
 
 
-### Windows
+### GNU/Linux
+
+Se usate GNU/Linux è tecnicamente garantito che abbiate già una versione di sistema di
+Python---e, con ogni probabilità---questa va bene. Siete pronte per procedere, e non
+dovete fare nulla.
+
+::: {.callout-note}
+Vale la pena controllare che versione di Python sul vostro sistema non sia *troppo*
+vecchia (e.g., più vecchia della 3.7), perché, in caso contrario, potreste avere qualche
+problema di compatibilità con gli esempi di queste note. In generale aggiornare
+la versione di Python di sistema senza aggiornare il sistema intero non è operazione facile
+(né raccomandabile), ma potete valutare la possibilità di istallare una versione di
+Python aggiuntiva, ad esempio utilizzando [pyenv](https://github.com/pyenv/pyenv).
+:::
 
 
 ### Mac-OS
 
+Come nel caso di GNU/Linux, se usate Mac-OS è garantito che abbiate Python istallato.
+Valgono le stesse considerazioni sulla versione.
 
-### GNU/Linux
+::: {.callout-warning title="TODO"}
+Dobbiamo aggiungere qualche breve nota sull'istallazione su Mac-OS?
+:::
+
+
+### Windows
+
+Se utilizzate Windows (e non avete Python installato sul vostro sistema), scaricate
+l'installer dalla pagina web dei [downloads](https://www.python.org/downloads/) ed
+eseguitelo.
+
+Quando lanciate l'installer di Windows potete selezionare l'installazione standard,
+assicurandovi di spuntare la check box che aggiunge l'eseguibile ``Python.exe``
+alla variabile d'ambiente ``PATH`` (dovrebbe essere in basso nella finestrella
+di avvio). Questo vi permetterà di lanciare l'interprete da terminale.
+Per il momento questo non vi dice molto, ma è importante, e ci torneremo tra un attimo.
 
 
 ## Tre modi di utilizzare Python
 
-Se digitate `python` nel vostro terminale, e assumendo che tutto sia istallato
-correttamente, vi trovate immediatamente catapultati nell'interprete, e dovreste
-vedere qualcosa di vagamente rassomigliante a
+Come si capisce se l'istallazione di Python è andata a buon fine? Facile, ma per prima
+cosa dovete *aprire un terminale*.
 
+::: {.callout-note}
+Nei tempi antichi, prima dell'avvento di smartphone e tablet, si parlava con i computer
+digitando su una tastiera comandi che apparivano sullo schermo, attraverso un'applicazione
+che andava sotto il nome di terminale (*terminal*, o *shell*, in inglese).
+Ebbene---udite, udite---il terminale (anzi: i terminali, perché ne esistono di diversi
+tipi e per tutti i gusti) esiste ancora, anche se nei sistemi operativi moderni è sepolto
+sotto svariati layer grafici.
+
+La prima cosa che dovete fare, allora è imparare a resuscitarlo, perché ci servirà.
+I dettagli logistici dell'operazione dipendono molto dal sistema operativo che
+utilizzate, ma per farla breve state cercando nella vostra barra delle applicazioni
+o nel vostro menù di avvio qualcosa che si chiama, appunto, "terminale", "terminal",
+"prompt dei comandi", "command prompt", "prompt di DOS", "DOS prompt", o variazioni sul
+tema. Andando avanti imparerete, se non lo sapete già, che la maggior parte delle
+operazioni che siete abituate a fare a colpi di mouse (e.g., copiare e rinominare file)
+si possono fare da linea di comando---e, anzi, questa modalità si presta più naturalmente
+ad essere automatizzata, che è una cosa che vi servirà nel vostro lavoro.
+:::
+
+
+### Python da terminale
+
+Ma torniamo a noi. Se digitate ``python`` nel *terminale* dovreste trovarvi immediatamente catapultate nell'interprete---cioè dovreste vedere qualcosa di vagamente rassomigliante a
 ```{bash}
 lbaldini@nblbaldini:~$ python
-Python 3.13.13 (main, Apr  8 2026, 00:00:00) [GCC 15.2.1 20260123 (Red Hat 15.2.1-7)] on linux
+Python 3.13.13 (main, Apr  8 2026, 00:00:00) [GCC 15.2.1 20260123] on linux
 Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
-
 I tre simboli `>>>` nell'ultima riga stanno ad indicare che l'interprete è pronto ad
 accettare comandi: potete cominciare a scrivere, e l'interprete vi *risponderà*
 con il valore dell'ultima espressione ogni volta che premete invio, in quello che
-in gergo tecnico prende il nome di REPL (Read-Eval-Print Loop). Questo modo di
-utilizzare l'interprete si dice *interattivo*; è utile se volte usare Python
+in gergo tecnico prende il nome di REPL (Read-Eval-Print Loop).
+Se così non fosse, fate un respiro profondo e cercate di capire se e cosa è andato storto,
+perché altrimenti è impossibile procedere con i prossimi passi.
+
+::: {.callout-warning}
+A seconda del sistema operativo (e.g., con versioni recenti di Mac OS) è possibile che
+il comando per lanciare l'interprete Python non si chiami ``python`` ma ``python3``.
+Si tratta di accidente storico che, nel 2026, è estremamente poco interessante, ma se uno
+non funziona provate l'altro prima di arrendervi.
+:::
+
+Questo modo di utilizzare l'interprete si dice *interattivo*; è utile se volete usare Python
 come una sorta di calcolatore tascabile, se volete provare velocemente un costrutto o,
 più in generale, se quello che dovete fare è molto semplice.
-
 ```{bash}
 >>> 3 + 17
 20
 >>>
 ```
 
+::: {.callout-note}
+Non vi sembrerà la cosa più eccitante del mondo, ma prendetevi 5 minuti per sperimentare
+con l'interprete Python nel terminale, perché avete appena raggiunto ufficialmente la
+vostra prima milestone, ed è bene dare il giusto rilievo alla cosa.
+:::
+
+
+### Python con editor di testo e terminale
+
 Non passerà molto tempo prima che vi rendiate conto che l'uso interattivo di Python
 è molto limitante. Quando uscite dall'interprete ripetere una serie di operazioni
-una seconda volta richiede banalmente di dover digitare tutto da capo, che diventa
+una seconda volta richiede banalmente di dover digitare tutto da capo---il che diventa
 estremamente tedioso molto velocemente. Per tutti i task di complessità non nulla
-è molto più conveniente scrivere tutti i comandi, uno dopo l'altro, in un file
-di testo (convenzionalmente con estensione `.py`), ed invocare l'interprete
-passando il percorso al file come argomento. Questo richiede un minimo di padronanza
-della shell e del filesystem, ma dopo il primo successo avete ufficialmente aggiunto
-un nuovo strumento (ed uno molto potente) alla vostra scatola degli attrezzi: avete
-appena scritto il vostro primo *programma*.
+è molto più conveniente scrivere tutti i comandi, uno dopo l'altro, in un *file di testo*
+(convenzionalmente con estensione `.py`), ed invocare l'interprete passando il percorso
+al file come argomento. Questo richiede un minimo di padronanza della shell e del
+filesystem, ma dopo il primo successo avete ufficialmente aggiunto un nuovo
+strumento---ed uno molto potente---alla vostra cassetta degli attrezzi: *avete appena
+scritto il vostro primo programma*.
 
 ::: {.callout-tip}
 Può darsi che nel capoverso precedente si siano alcune parole (e.g., percorso,
@@ -111,11 +180,88 @@ incontrate qualche problema a questo stadio, perché vi assicuro che non è quel
 in cui volete lavorare. Chiedete aiuto immediatamente se ne avete bisogno!
 :::
 
-Esistono infine sul mercato vari Intregrated Development Environment (IDE) che uniscono
+Quale editor di testo usare, vi chiedete? Beh, oggigiorno usano tutti
+[Visual Studio Code](https://code.visualstudio.com/), che tecnicamente è più di un
+editor, ma leggete la prossima sezione prima di decidere.
+
+
+### Python da IDE
+
+Esistono infine sul mercato vari Integrated Development Environment (IDE) che uniscono
 in un'unica interfaccia grafica l'editor di testo, l'interprete Python e tutta una
 serie di altre cose (e.g., un browser del filesystem), e che sono la scelta tipica
-per chi programma professionalmente. (O almeno lo erano fino all'avvento degli agenti
-AI.)
+per chi programma professionalmente---o almeno lo erano fino all'avvento degli agenti
+AI.
+
+Più o meno tutto il mondo usa [Visual Studio Code](https://code.visualstudio.com/).
+Curiosamente VS Code è pubblicizzato dalla Microsoft, che ne è proprietaria, come
+*The open source AI code editor*. Quando andate a leggere le scritte in piccolo vi
+accorgete però che, nonostante il codice sorgente sia pubblicamente disponibile, il
+programma è rilasciato sotto [una licenza non libera](https://code.visualstudio.com/license)
+e contiene elementi di tracciamento che non possono essere disabilitati
+(come spiegato nella sezione 2 della licenza stessa)---in altre parole, Microsoft può
+legittimamente raccogliere informazioni su di voi ed il vostro computer mentre usate
+VS Code. Quali? Non è dato saperlo.
+
+Il clone libero [VS Codium](https://vscodium.com/) nasce proprio per ovviare a questo
+problema: l'eseguibile è rilasciato sotto una licenza *libera* ed il tracciamento è
+disabilitato. Avete il meglio dei due mondi. A voi la scelta.
 
 
-## Istallazione dei pacchetti aggiuntivi
+## I pacchetti aggiuntivi
+
+Una volta installato Python siete a buon punto, ma non ancora alla fine: oltre al
+linguaggio, avrete bisogno almeno di tre pacchetti esterni aggiuntivi, da installare
+separatamente:
+
+* [numpy](https://numpy.org/) per l'algebra lineare;
+* [scipy](https://scipy.org/) per il fitting (tra le altre cose);
+* [matplotlib](https://matplotlib.org/) per fare grafici.
+
+La buona notizia è che, se potete lanciare l'interprete Python da terminale, con ogni
+probabilità potete anche lanciare l'installer di pacchetti ``pip``, digitando
+*nel terminale* (mi raccomando, non nell'interprete Python):
+
+```{bash}
+python -m pip install numpy scipy matplotlib
+```
+
+::: {.callout-warning}
+Se siete su uno di quei sistemi (e.g., Mac OS) in cui l'interprete Python si chiama
+``python3`` e non ``python``, allora ovviamente il comando è
+```{bash}
+python3 -m pip install numpy scipy matplotlib
+```
+:::
+
+Se tutto è andato come doveva, a questo punto dovreste essere in grado di lanciare
+l'interprete Python ed *importare* i pacchetti (scopriremo nel prossimo capitolo cosa
+vuol dire, ma per il momento fidatevi):
+```{bash}
+python
+Python 3.13.13 (main, Apr  8 2026, 00:00:00) [GCC 15.2.1 20260123] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import numpy
+>>> import scipy
+>>> import matplotlib
+>>>
+```
+
+Se tutti e tre gli import arrivano a completamento senza messaggi d'errore...
+congratulazioni: siete quasi pronte! Se invece vedete qualcosa di simile a
+```{bash}
+>>> import numpy
+Traceback (most recent call last):
+    File "<python-input-0>", line 1, in <module>
+    import numpy
+ModuleNotFoundError: No module named 'numpy'
+>>>
+```
+allora, purtroppo, qualcosa è andato storto. Tristemente, è di nuovo il momento di cercare
+aiuto, e cercarlo subito, perché è inutile andare avanti altrimenti.
+
+
+## Funziona tutto?
+
+Se siete arrivate fino a qui probabilmente si. Non c'è altro modo per scoprirlo che
+passare al @{sec-crash}.
