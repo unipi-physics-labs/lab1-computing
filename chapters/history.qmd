@@ -1,10 +1,11 @@
 # Cronologia delle versioni {#sec-history}
 
 * Figure rigenerate disabilitando il tema xkcd
-([PR 6](https://github.com/unipi-physics-labs/lab1-computing/pull/6))
+  ([PR 6](https://github.com/unipi-physics-labs/lab1-computing/pull/6))
 * Primo draft del capitolo sulla vettorizzazione
-([PR 7](https://github.com/unipi-physics-labs/lab1-computing/pull/7))
-
+  ([PR 7](https://github.com/unipi-physics-labs/lab1-computing/pull/7))
+* Revisione completa del capitolo sull'istallazione di Python e dell'ecosistema
+  ([PR 8](https://github.com/unipi-physics-labs/lab1-computing/pull/8))
 
 ### Versione 0.5.0 (2026-08-27) {.unnumbered}
 
@@ -53,7 +54,7 @@
 ### Versione 0.3.2 (2026-08-21) {.unnumbered}
 
 * Creazione del pdf compilato temporaneamente disabilitata per cercare di avere
-l'html statico su github pages.
+  l'html statico su github pages.
 * Non ci sono cambiamenti al testo delle note.
 
 
@@ -78,5 +79,5 @@ l'html statico su github pages.
 ### Versione 0.1.0 {.unnumbered}
 
 * Versione iniziale, con tutto il materiale delle vecchie note in LaTeX, ed un
-certo numero di aggiunte.
+  certo numero di aggiunte.
 * Ancora un work in progress, con intere sezioni incomplete.
