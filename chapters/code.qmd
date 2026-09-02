@@ -1,0 +1,95 @@
+# Condividere codice {#sec-code}
+
+Piccolo aneddoto realmente accaduto---i nomi sono di fantasia, ma il contenuto è
+accurato, ve lo assicuro. (Il dialogo è avvenuto per email, tra i due lati dell'Oceano
+Atlantico, per cui dovete immaginare che il tempo totale trascorso dall'inizio alla fine
+sia di un paio di giorni.)
+
+**Luca**: *buongiorno Giulia, hai visto il codice che ti ho inviato per email?*
+
+**Giulia**: *No---quando me l'hai mandato?*
+
+**Luca**: *Ieri pomeriggio, verso le quattro.*
+
+**Giulia**: *No: ho controllato la posta; non ho niente nel mio inbox.*
+
+**Luca**: *Strano, perché io vedo il messaggio nella mia posta in uscita. Sono sicuro che
+sia partito...*
+
+**Giulia**: *Aspetta! Mi sono appena ricordata che il mail server del mio istituto
+cestina direttamente i messaggi che hanno un file .py in attach. No question asked.
+Non mi avverte nemmeno di averlo fatto, perché assume automaticamente che sia spam.
+Non ho modo di recuperarlo.*
+
+**Luca**: *Capito. Allora facciamo così: faccio un piccolo archivio con il file Python
+e ti mando il file zippato come allegato. Appena ho inviato ti mando anche un messaggio
+separato per dirti che ti ho inviato il file zip, così tu puoi controllare che il
+tuo mailserver non abbia gettato anche quello e mi da conferma di aver ricevuto. Ok?*
+
+**Giulia**: *Ottima idea, procedi!*
+
+
+## Condividere programmi brevi
+
+Ci sono mille motivi, oltre al simpatico aneddoto che ho appena condiviso, per cui
+inviare codice per email è una pessima idea. Se lo mettete nel corpo del messaggio
+è probabile che il vostro client alteri la formattazione, per cui il copia ed incolla
+non è più ovvio, e comunque non avete l'highlight della sintassi che è così utile
+nell'editor di testo. Se lo mettete in attach---ammesso che sopravviva al vostro server
+di posta---costringere la persona che riceve il messaggio a scaricarlo, aprire il file e,
+se necessario, copiare il contenuto. In ogni caso una discussione informata è difficoltosa
+perché chi invia e chi riceve *non stanno guardando lo stesso oggetto fisico*.
+Insomma: si tratta di un *big no no* come indossare la camicia a quadretti con i
+pantaloni a righe, gridare al cinema durante il film, o guardare lo smartphone al
+primo appuntamento---non si fa.
+
+Quindi come procediamo? Beh, la cosa più semplice, che non richiede di installare
+niente né di creare un account all'ennesima piattaforma, è usare uno dei numerosi
+servizi per condividere testo con un link. Se possibile, un servizio che
+utilizzi software libero e sia rispettoso della privacy.
+
+Per programmi molto brevi, ad esempio, potete utilizzare
+[nopaste](https://nopaste.boris.sh/), che è implementato in modo
+interessante: se andate sulla pagina web, potete incollare il codice che volete
+condividere, e quando premete il bottone "Generate link" il codice stesso è *compresso
+all'interno del link stesso*, che potete mandare direttamente alla vostra compagna
+di gruppo o alla vostra esercitatrice. Quando la persona ricevente apre il link,
+il server lo decomprime e lo mostra sul browser. Non ci sono dati salvati da nessuna
+parte. Se fate click su
+[qui](https://nopaste.boris.sh/?l=py#XQAAAQAVAAAAAAAAAAA4HIlWjAuZYADXMRSLZc9gb76kLsQFPlMCf//thYAA),
+ad esempio, dovreste vedere il nostro "Hello world!" in Python con highlight della
+sintassi e tutto. Il codice sorgente della app è disponibile
+[qui](https://github.com/bokub/nopaste) sotto una licenza libera.
+
+Comprimere il codice all'interno del link è un'idea ingegnosa, ma ha il difetto che la
+lunghezza del link cresce proporzionalmente alla lunghezza del programma---probabilmente
+se dovete condividere più di poche righe dovete cambiare approccio.
+[privatebin](https://privatebin.net/) è un altro servizio che non richiede account,
+è basato su software libero
+(il codice sorgente è [qui](https://github.com/PrivateBin/PrivateBin)) e vi permette
+di convertire un programma in un link. (La validità del link è al massimo $3$ giorni,
+ma per un uso sporadico questa non è una grossa limitazione.)
+
+
+## Sviluppare codice strutturato
+
+Per qualsiasi cose che abbia un tempo di vita di più di tre giorni, il posto giusto
+è un repositorio [git](https://git-scm.com/). Non è probabilmente al numero uno nella
+lista delle cose da imparare, ma posso garantirvi che se mai programmerete in modo meno
+che casuale ad un certo punto dovrete farlo. Va da sé, git è software libero.
+
+Tutte le persone alla moda usano git attraverso [github](https://github.com/).
+[Python](https://github.com/python/cpython),
+[numpy](https://github.com/numpy/numpy) e
+[scipy](https://github.com/scipy/scipy) sono su github.
+Tutti i pacchetti menzionati in queste note sono su github.
+Per quel che conta,
+[queste note](https://github.com/unipi-physics-labs/lab1-computing) sono su github.
+Se avete un account su github, potete ignorare la sezione precedente e condividere
+frammenti di codice con [github gist](https://gist.github.com/).
+
+Tristemente, github come servizio è basato su software proprietario---di Microsoft,
+per la precisione. Se prendete la libertà seriamente, potete considerare la possibilità
+di usare servizi alternativi come [codeberg](https://codeberg.org/).
+
+Ma, qualsiasi cosa facciate, vi supplico: non mandate codice per email...
