@@ -1,5 +1,7 @@
 # Cronologia delle versioni {#sec-history}
 
+### Versione 0.6.0 (2026-09-02) {.unnumbered}
+
 * Primo draft del capitolo sui formati grafici
   ([PR 9](https://github.com/unipi-physics-labs/lab1-computing/pull/9))
 * Revisione completa del capitolo sull'istallazione di Python e dell'ecosistema
