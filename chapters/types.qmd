@@ -335,7 +335,7 @@ print(type(z))
 
 La differenza fondamentale tra numeri interi e numeri in virgola mobile è che,
 mentre l'aritmetica intera è *esatta*, quella in virgola mobile è intrinsecamente
-*inesatta*. Ci torneremo in dettaglio nel @{sec-floating}, ma anticipiamo che
+*inesatta*. Ci torneremo in dettaglio nel @{sec-float}, ma anticipiamo che
 l'importanza di questo elemento non può essere enfatizzata abbastanza. Tenetelo in mente.
 
 Da un punto di vista logistico, quello che distingue un numero intero da uno in
