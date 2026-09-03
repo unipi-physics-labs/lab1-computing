@@ -496,7 +496,7 @@ che succede è un *rollover* a zero.
 
 Non vi lasciate spaventare più dello stretto necessario: nella vita reale non è una cosa
 che succede tutti i giorni. Quello che dovete tenere in mente, però, è che
-l'artimetica intera a precisione infinita offerta da Python è un *lusso*, e non una
+l'aritmetica intera a precisione infinita offerta da Python è un *lusso*, e non una
 cosa che dovete aspettarvi in generale.
 
 
