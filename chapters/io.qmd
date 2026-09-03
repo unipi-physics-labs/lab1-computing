@@ -195,7 +195,7 @@ $$
 Le più attente tra voi avranno notato che la tabella ASCII non comprende, tra le altre
 cose, le lettere accentate---che pure sono, per ovvi motivi, rilevanti per chi parla
 (e scrive in) italiano. Se questo vi preoccupa, mettetevi per un attimo nei panni di
-una programmatrice che vive in un paese in cui noi si usa l'alfabeto latino---diciamo
+una programmatrice che vive in un paese in cui non si usa l'alfabeto latino---diciamo
 in Giappone. Come dovrebbe sentirsi lei?
 
 Inutile dirlo, si tratta di un problema che è difficile da ignorare. Anche accettando
