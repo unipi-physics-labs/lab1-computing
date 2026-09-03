@@ -1,16 +1,32 @@
-# Input/output
+# Input e output
 
-Abbiamo detto che all'interno di un calcolatore digitale qualsiasi cosa viene
-rappresentata come una sequenza di $0$ e $1$. Benissimo: quando scriviamo o leggiamo un
-file, come è rappresentata, allora, la lettera `a`? E i numero `7` e `7.0`? E una
-stringa arbitraria di testo? Se non vedete l'ora di saperlo, siete nel posto giusto.
+In tutti i programmi che abbiamo esaminato fino a questo momento abbiamo messo insieme
+dati in ingresso e codice di analisi. Nel nostro primo programma di fit, ad esempio,
+le coordinate dei punti da fittare e le incertezze associate erano fisicamente scritte
+nel file python. Questo va bene per cose molto semplici, ma questo paradigma banalmente
+si rompe oltre un certo livello di complessità---dovrete imparare molto presto a
+separare i dati (che andranno in un file a se stante di qualche tipo) dal codice che li
+processa. In molti casi i dati vi saranno forniti all'origine nella forma di un file,
+magari scritto da un sistema di acquisizione dedicato.
 
-::: {.callout-note}
-Il contenuto di questo capitolo è focalizzato sulla rappresentazione dei dati nella
-memoria persistente, e.g., sul disco. Stringhe e numeri intesi come tipi nativi di
-Python sono oggetti complessi e il loro layout nella memoria volatile durante
-l'esecuzione del programma sono tutt'altra cosa.
-:::
+Tutto questo ci mette immediatamente davanti ad una classe di problemi che non abbiamo
+ancora affrontato: *come possiamo usare Python per scrivere dati su disco e,
+soprattutto, leggerli indietro?*
+
+Se non sapete rispondere a questa domanda, siete nel posto giusto, perché questo
+capitolo è dedicato proprio a questo. Cercheremo di rispondere affrontando non solo
+gli aspetti logistici (come faccio in pratica a leggere un file di testo con dati
+in colonna e fare un grafico in Python?), ma anche il problema più profondo di come
+diversi tipi di oggetti sono *rappresentati* all'interno di un calcolatore digitale.
+Sappiamo già più o meno che tutto è una sequenza di $0$ e $1$---ma quale sequenza
+rappresenta ``a``? E il numero intero ``7`` e ``7.0``?
+
+La cosa ha implicazioni profonde perché, anche se il modello di dati di Python è
+largamente non standard, per cui una variabile di tipo ``int`` all'interno
+dell'interprete è un oggetto significativamente più complesso che non un numero
+intero su disco, il modo in cui rappresentiamo le cose determina in parte le operazioni
+che possiamo fare sulle cose stesse. Lo vedremo in qualche dettaglio quando parleremo
+dell'aritmetica in virgola mobile, nel @{sec-float}.
 
 
 ## Rappresentazione del testo
@@ -174,22 +190,172 @@ $$
 $$
 
 
-### Altri encoding
-
-<!-- TODO: write this section -->
+### Lo standard unicode
 
 Le più attente tra voi avranno notato che la tabella ASCII non comprende, tra le altre
 cose, le lettere accentate---che pure sono, per ovvi motivi, rilevanti per chi parla
-(e scrive in) italiano.
+(e scrive in) italiano. Se questo vi preoccupa, mettetevi per un attimo nei panni di
+una programmatrice che vive in un paese in cui non si usa l'alfabeto latino---diciamo
+in Giappone. Come dovrebbe sentirsi lei?
 
+Inutile dirlo, si tratta di un problema che è difficile da ignorare. Anche accettando
+l'inglese come la lingua universale dell'informatica, immaginate tutte le interfacce
+grafiche e le pagine web prodotte nelle circa $8000$ lingue che sono correntemente
+usate sul pianeta. Non ci soffermiamo troppo sulla questione, ma per riassumere una
+storia lunga in una frase possiamo dire: la confusione è stata pressoché totale fino
+all'avvento dello standard [unicode](https://home.unicode.org/). Chiunque abbia più di
+40 anni ricorda perfettamente quanto comune fosse negli anni '90 imbattersi una pagina
+web o in un'email in cui tutti o un sottoinsieme dei caratteri (e.g., le lettere
+accentate) erano rappresentati con strani segni incomprensibili.
+
+La cosa curiosa è che il problema che stiamo cercando di risolvere è semplice: dobbiamo
+mappare un insieme di caratteri in un insieme di numeri interi. La cosa difficile è
+mettersi d'accordo su *quali* caratteri e su come stabilire la corrispondenza. E per
+molti decenni organizzazioni e compagnie diverse hanno semplicemente deciso di procedere
+in ordine sparso ed in modo non mutuamente compatibile---al di là, ovviamente, della
+tabella ASCII, su cui l'accordo è stato trovato più o meno subito.
+
+Ma veniamo a unicode. Senza entrare nel dettaglio si tratta di uno *standard* che
+definisce un certo numero di *encoding*, ovvero di corrispondenze che associano un
+numero intero (o *code point*) ad ogni carattere in un insieme predefinito. I due
+encoding principali si chiamano UTF-8 e UTF-16. (Senza entrare nell'annosa questione
+su quale sia superiore, UTF-8 ha la buona proprietà di essere retro-compatibile con la
+tabella ASCII.) Per darvi un'idea della varietà di caratteri supportata da unicode,
+basti pensare che lo standard copre, tra le molte altre cose, il
+[cuneiforme sumero-accadico](https://en.wikipedia.org/wiki/Cuneiform_Numbers_and_Punctuation), e che ci sono proposte per includere il
+[Klingon](https://www.evertype.com/standards/csur/klingon.html). Va da sé, non potevano
+mancare gli emoji---che, anzi, storicamente sono stati uno dei fattori fondamentali
+per l'adozione dello standard.
+
+In Python potete usare emoji, lo sapevate?
 ```{python}
 print("\U0001F600")
 ```
 
-### Input/output in formato testo
+Ok, abbiamo divagato abbastanza. Cosa dovete ricordare di tutto questo? Semplicemente
+che un encoding è un modo per associare un numero intero ad un carattere; quando
+scriviamo un carattere su disco la sequenza di $0$ ed $1$ che usiamo è semplicemente
+il code point del carattere, e quando leggiamo da disco facciamo l'operazione inversa,
+passando dal code point al carattere. Se volete rileggere esattamente quello che avete
+scritto dovete fare attenzione ad usare lo stesso encoding. Se avete dubbi, usate UTF-8.
 
 
-## Rappresentazione dei numeri
+### Scrivere e leggere file di testo
+
+In Python i file di testo si leggono e si scrivono utilizzando il builtin
+[open()](https://docs.python.org/3/library/functions.html#open). Date un'occhiata
+veloce alla documentazione, perché è garantito che, prima o poi, dobbiate usarlo.
+Per un motivo tecnico in cui non abbiamo tempo di addentrarci, è una buona pratica
+mettere la funzione ``open()`` all'interno di uno statement
+[with](https://docs.python.org/3/reference/compound_stmts.html#the-with-statement)---è
+un pattern che vedrete spessissimo, per cui vale la pena fare le cose nel modo
+più Pythonico possibile sin dall'inizio. In sintesi:
+
+```python
+# Write text to file...
+with open("path/to/the/file.txt", "w", encoding="utf-8") as output_file:
+    output_file.write("Hello world!\n")
+# Note the file is automatically closed when you exit from the with block.
+
+# Read text from file, all at once...
+with open("path/to/the/file.txt", "r", econding="utf-8") as input_file:
+    text = input_file.read()
+print(text)
+
+# Read text from file, line by line...
+with open("path/to/the/file.txt", "r", econding="utf-8") as input_file:
+    for line in input_file:
+        print(line)
+```
+
+Le regole sono semplici: sapete cosa è il percorso ad un file, perché lo abbiamo
+visto nel @{sec-os}, e, oltre al percorso, alla funzione ``open()`` dovete passare
+due cose:
+
+* la modalità di apertura---``w`` (write) per scrivere e ``r`` (read) per leggere;
+* l'encoding da utilizzare---e ormai siamo ferrate sull'argomento.
+
+Una cosa fondamentale da mettere a fuoco---che può confondere all'inizio chi, come noi,
+lavora prevalentemente con numeri---è il fatto che i file di testo si chiamano *di
+testo* per una ragione. Se scriviamo ``2`` in un file di testo, intendiamo il carattere
+con code point $50$, o $0x32$ della tabella ASCII, e *non* il numero intero $2$.
+Quando lo rileggiamo indietro in Python otteniamo un oggetto di tipo
+``<str>``, non ``<int>``. Se volete un numero, dovete fare la conversione
+esplicitamente:
+```{python}
+text = "2"
+num = int(text)
+print(text, type(text), num, type(num))
+
+text = "2."
+num = float(text)
+print(text, type(text), num, type(num))
+```
+(Ma aspettate di leggere la prossima sezione prima di disperare.)
+
+La cosa è rilevante non solo dal punto di vista logistico (dobbiamo stare attente a
+convertire stringhe in numeri ove necessario), ma anche da un punto di vista più
+profondo: forse il testo non è il modo più efficiente di scrivere numeri in un file?
+Ci torniamo tra un attimo, nella @{sec-repr_numbers}.
+
+
+### Leggere dati tabulari
+
+Per il caso d'uso piuttosto comune di un file che contiene dati in forma tabulare,
+ovverosia righe consecutive, ciascuna delle quali contiene un numero fissato di valori,
+separati da un carattere opportuno (uno spazio, un TAB, o una virgola), di solito
+non è necessario riscrivere ogni volta un programma dedicato per la lettura:
+numpy ci viene in soccorso con la  funzione
+[loadtxt()](https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html).
+
+Come sempre, la documentazione è il riferimento ultimo che descrive gli argomenti
+della funzione, ma assumendo di avere un file di dati con tre colonne
+(spoiler alert: non sono prese a caso)
+```
+# Time [s], Period [s], Transit time [s]
+2.629304, 2.167903, 0.008696
+3.713143, 2.167476, 0.008726
+4.796780, 2.167056, 0.008756
+5.880199, 2.166631, 0.008786
+...
+```
+possiamo leggerlo, spacchettando le colonne in array di numpy che possono essere
+immediatamente utilizzate, con una linea di codice:
+```python
+import numpy as np
+
+t, period, transit = np.loadtxt("path/to/file.txt", delimiter=",", unpack=True)
+```
+
+
+## Rappresentazione dei numeri {#sec-repr_numbers}
+
+Riprendiamo il filo della discussione, e torniamo alla rappresentazione dei dati.
+Dato che lavoriamo principalmente con i numeri, questi ci interessano in modo
+particolare, e possiamo chiederci se non ci sia un modo più intelligente di scriverli
+su disco (e rappresentarli in memoria) che non come sequenza di caratteri.
+
+Partiamo dall'inizio. Quando scriviamo un file in formato testo ogni carattere
+della prima pagina della tabella ASCII costa esattamente un byte, il che vuol
+dire che quando scriviamo un numero di $n$ cifre ci servono esattamente $n$ byte,
+più eventualmente un byte extra per il punto decimale ``.`` se il numero è in
+virgola mobile. Non molto efficiente: con un byte in formato testo posso scrivere una
+cifra (i.e., i numeri interi da $1$ a $9$), mentre in linea di principio sappiamo
+già bene che $8$ bit corrispondono a $2^8 = 256$ possibilità. In un certo senso potremmo
+dire che stiamo usando $10 / 256$, ovverosia meno del 4% della *capacità* del nostro
+byte. Non molto impressionante.
+
+In questa sezione ci occupiamo proprio della rappresentazione standard dei numeri
+interi ed in virgola mobile.
+
+::: {.callout-note}
+Per rimanere aderenti al titolo di questo capitolo, che è "input ed output", questo
+è il momento di notare che la rappresentazione di numeri che discutiamo di seguito
+è quella utilizzata quando chiamiamo la funzione
+[open()](https://docs.python.org/3/library/functions.html#open)
+in modalità binaria, i.e. ``rb`` o ``wb`` anziché testo. Con ogni probabilità all'inizio
+non dovrete scrivere o leggere molti dati in formato binario, ma siete avvertite.
+:::
 
 
 ### Numeri interi
@@ -268,10 +434,70 @@ scriviamo.
 : Intervalli rappresentabili con interi binari a lunghezza fissa. {#tbl-integer-ranges}
 
 
-<!-- TODO: qui dobbiamo chiarire cosa vuol dire scrivere su disco in Python -->
+### Digressione: numpy e tipi di intero
 
-<!-- TODO: manca anche una sezione sui tipi in numpy -->
+Arrivati a questo punto non possiamo fare a meno di addentrarci per un attimo in una
+piccola stranezza di Python che, se non compresa appieno, potrebbe prima o poi
+venirvi a cercare.
 
+Come abbiamo detto nel capitolo @{sec-types}, il tipo intero nativo di Python è questa
+sorta di miracolo della natura che offre precisione infinita (fino ad esaurimento della
+memoria), tenendo automaticamente traccia di quanti bit servono allo scopo.
+Contrariamente alla rappresentazione *standard* degli interi che abbiamo appena
+descritto, non ci sono limiti a quanto grande può essere un intero.
+
+Le cose sono radicalmente diverse quando usiamo array di numpy. Fino ad ora non abbiamo
+avuto occasione di notarlo, ma quando creiamo un array di numpy, questo array
+nasce e muore con un *tipo* ben preciso attaccato.
+
+```{python}
+import numpy as np
+
+a = np.array([1, 2, 3])
+
+print(a, a.dtype)
+```
+
+Oh oh: ``int64`` assomiglia pericolosamente ad un intero con segno a $64$ bit come
+quello nella @{tbl-integer-ranges}. In effetti possiamo anche *controllare* il tipo
+nel momento in cui creiamo l'array---possiamo decidere di usare, e.g., interi senza
+segno a $8$ bit (quelli che si estendono da $0$ a $255$):
+```{python}
+import numpy as np
+
+a = np.array([1, 2, 3], dtype="uint8")
+
+print(a, a.dtype)
+```
+
+::: {.callout-note}
+C'è un'ottima ragione per questo. Gli array di numpy sono allocati in modo continuo
+nella memoria, ed il fatto che ogni elemento occupi uno spazio noto a priori è
+cruciale per ragioni di performance al momento dell'accesso.
+:::
+
+Questo porta a volte a situazioni che possono apparire paradossali. Guardate per un
+attimo questo breve programma:
+```{python}
+import numpy as np
+
+a = np.arange(17, dtype="uint8")
+
+print(a)
+print(a**2)
+```
+Vedete niente di strano? *L'ultimo elemento dell'array dei quadrati è zero!*
+Come è possibile? Non dovrebbe essere $256$?
+
+Mi fermo un attimo per lasciarvi il tempo di pensare.
+
+Si: dovrebbe essere $256$, ma $256$ non si può rappresentare in $8$ bit, per cui quello
+che succede è un *rollover* a zero.
+
+Non vi lasciate spaventare più dello stretto necessario: nella vita reale non è una cosa
+che succede tutti i giorni. Quello che dovete tenere in mente, però, è che
+l'aritmetica intera a precisione infinita offerta da Python è un *lusso*, e non una
+cosa che dovete aspettarvi in generale.
 
 
 ### Numeri in virgola mobile
@@ -350,7 +576,6 @@ Se invece il file è un file binario, allora dovremo leggerlo con la modalità
 opportuna, e dobbiamo sapere esattamente qual è il layout dei dati all'interno
 per poterli spacchettare nel modo opportuno.
 
-
 Abbiamo imparato una lezione fondamentale, ovvero la distinzione tra il contenuto
 di una porzione di memoria (sia essa volatile o su disco) ed il significato che
 noi diamo a quella particolare sequenza di $0$ ed $1$ all'interno del nostro programma.
@@ -358,21 +583,15 @@ Ed abbiamo capito che lo stesso bit pattern in memoria può essere interpretato
 in più modi, che che dobbiamo fare attenzione ad essere consistenti nelle fasi di
 lettura e di scrittura.
 
-Prima di chiudere vale la pena di parlare un attimo della scrittura su disco. Senza
-entrare in discorsi troppo complicati, il caso d'uso tipico per il corso di laboratorio
-è quello in cui scriviamo, manualmente o programmaticamente, un numero (limitato)
-di valori in un file di testo, e poi rileggiamo questi valori con `numpy` per
-analizzarli.
-Questo va benissmo, e funziona come uno si aspetterebbe, ma non dobbiamo dimenticare
-che, mentre un numero in virgola mobile costa su disco $32$ o $64$ bit, un numero
-scritto in un file di testo costa $8$ bit per ciascun carattere---incluse le cifre
-numeriche, il separatore decimale se presenti, e la potenza di $10$ se scriviamo in
-notazione ingegneristica. Tanto per fissare le idee, scrivere `9.1093837139e-31`
-(la massa dell'elettrone in kg) in un file di testo costa esattamente $128$ bit,
-mentre con la metà dello spazio potremmo confortevolmente raggiungere lo stesso
-risultato se scrivessimo un file binario.
 
+### Formato testo o binario?
 
-## Leggere tabelle di numeri
+Nel caso d'uso tipico per il corso di laboratorio---quello in cui scriviamo, manualmente
+o programmaticamente, un numero (limitato) di valori in un file di testo, per poi
+rileggerli con `numpy`---salvare i dati in formato testo va benissimo. Il
+footprint in memoria è irrilevante in entrambi i casi, ed abbiamo il vantaggio che
+un file di testo si può aprire con un editor e *leggere* direttamente.
 
-Spiegare numpy.loadtxt.
+Ma se doveste un giorno trovarvi a realizzare un sistema di acquisizione
+professionalmente preparatevi a dominare i file binari, perché una delle cose che
+dovrete fare sarà cercare di comprimere il volume di dati fino all'ultimo bit!
