@@ -1,5 +1,7 @@
 # Cronologia delle versioni {#sec-history}
 
+* Capitolo su input/output completamente rivisto
+  ([PR 17](https://github.com/unipi-physics-labs/lab1-computing/pull/17))
 * Nuova appendice sulla logistica per condividere codice
   ([PR 16](https://github.com/unipi-physics-labs/lab1-computing/pull/16))
 * Alcuni typo corretti
