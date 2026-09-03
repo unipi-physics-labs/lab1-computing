@@ -253,7 +253,7 @@ più Pythonico possibile sin dall'inizio. In sintesi:
 
 ```python
 # Write text to file...
-with open("path/to/the/file.txt", "w", econding="utf-8") as output_file:
+with open("path/to/the/file.txt", "w", encoding="utf-8") as output_file:
     output_file.write("Hello world!\n")
 # Note the file is automatically closed when you exit from the with block.
 
