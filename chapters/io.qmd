@@ -320,7 +320,7 @@ della funzione, ma assumendo di avere un file di dati con tre colonne
 ...
 ```
 possiamo leggerlo, spacchettando le colonne in array di numpy che possono essere
-immediatemente utilizzate, con una linea di codice:
+immediatamente utilizzate, con una linea di codice:
 ```python
 import numpy as np
 
