@@ -15,8 +15,8 @@ Tra le altre cose, il sistema operativo:
 
 Esistono letteralmente dozzine di sistemi operativi---da quelli mainstream fino a
 quelli di nicchia che operano su sistemi embedded specializzati. Con ogni probabilità
-avrete sentito parlare (e forse utilizzate) Windows, Mac-OS e GNU-Linux; Andoid, che
-è utilizza il kernel Linux, e iOS sono pure sistemi operativi, in questo caso dedicati
+avrete sentito parlare (e forse utilizzate) Windows, Mac-OS e GNU-Linux; Android, che
+utilizza il kernel Linux, e iOS sono pure sistemi operativi, in questo caso dedicati
 ai dispositivi mobili.
 
 Questo sarà un capitolo molto breve, in cui elencheremo alcuni semplici fatti a
