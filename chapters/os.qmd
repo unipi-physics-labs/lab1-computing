@@ -77,7 +77,7 @@ Cominciamo, al solito, da un po' di nomenclatura.
 ***File**: unità fondamentale di archiviazione dei dati.*
 
 ***Percorso** o **path**: stringa che identifica univocamente un file all'interno della
-gerarchia del filestem.*
+gerarchia del filesystem.*
 
 Da un punto di vista strettamente funzionale il filesystem fornisce accesso ai file
 presenti su un dispositivo di archiviazione di massa.
@@ -126,9 +126,9 @@ percorsi è il *backslash* `\`. Ma facciamo ordine.
 vari elementi del percorso ad un file o una cartella. GNU/Linux e Mac-OS usano
 il carattere `/` (slash) come separatore, Windows usa il carattere `\` (backslash).*
 
-***Estensione**: combinazione ti caratteri (tipicamente tre o quattro) che indica il
+***Estensione**: combinazione di caratteri (tipicamente tre o quattro) che indica il
 tipo di file, ed è separata dal nome del file vero e proprio da un carattere
-`\` (punto)*.
+`.` (punto)*.
 
 Potremmo spendere letteralmente giorni a parlare di filesystem in astratto e delle
 differenze tra i particolari filesystem usati dai vari sistemi operativi---ad esempio,
@@ -200,7 +200,7 @@ Una cosa di cui vi accorgerete immediatamente se cominciate ad utilizzare il ter
 ad esempio, è che gli spazi nei nomi dei file sono estremamente fastidiosi, perché
 quando digitiamo comandi siamo costretti ad aggiungere caratteri aggiuntivi per
 raggruppare i vari pezzi. Ci sono tanti modi per emulare la funzione logica di
-separazione per cui usiamo tipicamente gli spazio, i più usati trai quali sono
+separazione per cui usiamo tipicamente gli spazi, i più usati tra i quali sono
 la convenzione *snake case*
 ```{bash}
 relazione_densità.pdf
@@ -285,7 +285,7 @@ Tornando al problema originale forse la scelta della Microsoft di utilizzare il
 backslash come separatore delle directory non è stata proprio delle più felici, che
 dite? Ma a parte questo---inutile cercare di dare colpe a distanza di più di
 quarant'anni---se all'interno di una stringa un backslash fa qualcosa di magico con i
-caretteri che seguono, come faccio a scrivere un backslash all'interno di una stringa?
+caratteri che seguono, come faccio a scrivere un backslash all'interno di una stringa?
 
 Una possibilità ce la fornisce la prima riga della @{tbl-sequenze-escape}:
 possiamo usare un backslash per fare l'escape di se stesso, il che vuol dire che la
