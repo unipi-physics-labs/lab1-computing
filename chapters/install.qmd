@@ -1,4 +1,4 @@
-# Prima di cominciare
+# Prima di cominciare {#sec-install}
 
 Che cosa serve per cominciare? Buona domanda. Avrete bisogno essenzialmente di tre cose:
 
@@ -97,7 +97,8 @@ Per il momento questo non vi dice molto, ma è importante, e ci torneremo tra un
 ## Tre modi di utilizzare Python
 
 Come si capisce se l'installazione di Python è andata a buon fine? Facile, ma per prima
-cosa dovete *aprire un terminale*.
+cosa dovete *aprire un terminale*. (Ci torneremo brevemente sopra nel @{sec-os}, ma
+per il momento portate pazienza e provate a seguire le indicazioni.)
 
 ::: {.callout-note}
 Nei tempi antichi, prima dell'avvento di smartphone e tablet, si parlava con i computer

@@ -1,22 +1,28 @@
 # Il sistema operativo {#sec-os}
 
-Prima di andare oltre nella descrizione di cosa è e come si scrive un programma
-è utile spendere qualche parola sul *sistema operativo* (o OS, per operating system)
-che per alcuni versi è il programma più importante di tutti---quello che gestisce
-tutte le risorse all'interno del computer in modo che gli utenti e le loro applicazioni
-possano utilizzarle.
+La prima cosa che viene immediatamente dopo l'hardware è il *sistema operativo*
+(o OS, per operating system), che per alcuni versi è il programma più importante di
+tutti---quello che gestisce tutte le risorse all'interno del computer in modo che gli
+utenti e le loro applicazioni possano utilizzarle.
 
-Tra le altre cose, il sistema operativo: (i) alloca le risorse della macchina decidendo
-quando una data applicazione deve avere accesso alla CPU ed alla memoria; (ii) fornisce
-un livello di astrazione alle risorse hardware ed alle periferiche; (iii) implementa
-i servizi di utilità generali che sono alla base del funzionamento del computer.
+Tra le altre cose, il sistema operativo:
 
-La varietà di sistemi operativi presenti sul mercato è enorme. Con ogni probabilità
-avrete sentito parlare (o già utilizzate) Windows, Mac-OS e GNU-Linux, oltre ad
-Android, che è uno spin-off di quest'ultimo, ed iOS---questi ultimi sono destinati
-ai dispositivi mobili. In questa sezione cercheremo di illustrare brevemente alcuni
-degli aspetti generali dei sistemi operativi, mettendo in evidenza, ove necessario,
-le differenze tra quelli più usati.
+* alloca le risorse della macchina decidendo quando una data applicazione deve avere
+  accesso alla CPU ed alla memoria;
+* fornisce un livello di astrazione alle risorse hardware ed alle periferiche;
+* implementa i servizi di utilità generali che sono alla base del funzionamento del
+  computer.
+
+Esistono letteralmente dozzine di sistemi operativi---da quelli mainstream fino a
+quelli di nicchia che operano su sistemi embedded specializzati. Con ogni probabilità
+avrete sentito parlare (e forse utilizzate) Windows, Mac-OS e GNU-Linux; Andoid, che
+è utilizza il kernel Linux, e iOS sono pure sistemi operativi, in questo caso dedicati
+ai dispositivi mobili.
+
+Questo sarà un capitolo molto breve, in cui elencheremo alcuni semplici fatti a
+proposito di due aspetti specifici: il terminale (o shell), che abbiamo già
+incontrato nel @{sec-install} ed il *filesystem*, che è l'infrastruttura alla base
+dell'archiviazione dei file.
 
 
 ## La shell
