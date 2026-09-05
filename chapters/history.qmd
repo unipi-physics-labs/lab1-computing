@@ -1,5 +1,7 @@
 # Cronologia delle versioni {#sec-history}
 
+### Versione 1.0.0 (2026-09-05) {.unnumbered}
+
 * Capitolo sugli algoritmi completamente rivisto
   ([PR 19](https://github.com/unipi-physics-labs/lab1-computing/pull/19))
 * Capitolo sul sistema operativo completamente rivisto
