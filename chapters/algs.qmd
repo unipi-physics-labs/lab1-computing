@@ -1,66 +1,54 @@
 # Algoritmi {#sec-algs}
 
-Non vi è dubbio che la parola *algoritmo* sia salita alla ribalta delle scene
-come una delle parole più (ab)usate del periodo storico in cui viviamo. In questa
-sezione cerchiamo di chiarire il concetto, liberandolo da alcuni miti che lo hanno
-via via avvolto.
-
-Un algoritmo è banalmente una procedura per ricavare un risultato (output)
+Abbiamo già introdotto sommariamente la parola *algoritmo* nel @{sec-glossary}.
+Un algoritmo è sostanzialmente una procedura per ricavare un risultato (output)
 a partire da un determinato insieme di dati in ingresso (input) che possegga due
-proprietà importanti: (i) deve arrivare a conclusione in un numero finito di passi;
-(ii) ogni passo deve essere completamente specificato, senza che vi siano ambiguità.
-Senza perdere troppo tempo nella semantica delle parole, diciamo subito che un algoritmo
-inteso come un metodo generale per risolvere un problema è una cosa concettualmente
-diversa da un *programma*, che, come chiariremo meglio, può essere visto semmai come
-un'implementazione specifica, in un linguaggio di programmazione specifico, di un
-algoritmo.
+proprietà importanti:
 
-Ogni volta che si parla di algoritmi a livello introduttivo è difficile resistere
-alla tentazione di fare l'analogia con una ricetta di cucina. Un ricetta sembra avere
-tutti gli elementi che abbiamo appena elencato: si tratta di una descrizione passo
-per passo di come ottenere un output (in questo caso il nostro piatto pronto da
-consumare) a partire da una serie di input (in questo caso gli ingredienti). Ogni
-libro di ricette che si rispetti indica una stima del tempo necessario per portare
-a termine una ricetta, che pare sposarsi bene con l'idea che il tempo di esecuzione
-di un algoritmo debba essere finito. Certo, è indubbio che le ricette contengano
-spesso elementi di ambiguità (cosa vuol dire esattamente "aggiungere un pizzico di
-sale"?), che nella vita reale vengono risolti dall'intelligenza (o dal senso comune)
-di chi cucina. Eppure quella della ricetta è una buona analogia, e ci torneremo in
-seguito più volte per cercare di chiarire il discorso.
+1. deve arrivare a conclusione in un numero finito di passi;
+2. ogni passo deve essere completamente specificato, senza che vi siano ambiguità.
+
+(Abbiamo anche detto che un algoritmo, inteso come un metodo generale per risolvere un
+problema è una cosa concettualmente diversa da un *programma*, e che un programma può
+essere visto semmai come un'implementazione specifica, in un linguaggio di
+programmazione specifico, di un algoritmo.)
+
+È arrivato il momento di andare più a fondo nella questione, e lo facciamo partendo
+da un esempio concreto.
 
 
-## Un esempio archetipico: l'algoritmo di Euclide
+## L'algoritmo di Euclide
 
-Analizziamo in dettaglio quello che probabilmente è il più celebre tra gli algoritmi
-classici, ovverosia l'algoritmo di Euclide per il calcolo del massimo comun divisore,
-seguendo fedelmente le presentazione in @taocp1.
+L'algoritmo di Euclide per il calcolo del massimo comun divisore è senza dubbio il più
+celebre tra gli algoritmi *classici*, ed uno dei pochi tra quelli descritti
+nell'antichità a rivestire ancora un ruolo significativo nella computazione.
 
-Dati due numeri interi positivi $m$ ed $n$ il massimo comun divisore (MCD) si pu ò
+Dati due numeri interi positivi $n$ ed $m$ il massimo comun divisore (MCD) si può
 trovare attraverso la seguente procedura:
 
 ::: {.algorithm-list}
-1. calcoliamo il resto $r$ della divisione tra $m$ ed $n$, ovverosia $r = m \mod n$;
-2. se $r = 0$, allora il MCD tra i due numeri è $n$, e l'algoritmo termina;
-3. poniamo $m \leftarrow n$, $n \leftarrow r$ e ritorniamo a A1.
+1. calcoliamo il resto $r$ della divisione tra $n$ ed $m$, ovverosia $r = n \mod m$;
+2. se $r = 0$, allora il MCD tra i due numeri è $m$, e l'algoritmo termina;
+3. poniamo $n \leftarrow m$, $m \leftarrow r$ e ritorniamo a A1.
 :::
 
 Questi tre passi, ripetuti opportunamente, costituiscono una prescrizione non ambigua
-per il nostro problema, e dovrebbero essere autoesplicativi, modulo l'operatore di
-assegnazione $m \leftarrow n$ che significa essenzialmente *rimpiazziamo il valore
-di $m$ con il valore corrente di $n$*. Rappresentazioni alternative del flusso di
-un algoritmo sono i diagrammi a blocchi e lo pseudo-codice, ma per i nostri scopi
-non è necessario andare più a fondo di così.
+per il nostro problema, e dovrebbero essere autoesplicativi---a parte, forse,
+l'operatore di assegnazione $n \leftarrow m$ che significa essenzialmente:
+*rimpiazziamo il valore di $n$ con il valore corrente di $m$*.
 
 Non è difficile convincersi della correttezza della nostra procedura. Dopo il
-primo passo $m = qn + r$ per qualche valore intero di $q$, e si danno due casi:
-se $r = 0$, allora $m$ è multiplo di $n$, ed $n$ è proprio il MCD tra i due;
-in caso contrario, qualsiasi numero che divida sia $m$ che $n$ deve dividere anche
-$r = m - qn$, e qualsiasi numero che divida sia $n$ che $r$ deve dividere anche
-$m = qn + r$---in altre parole, i divisori comuni di $m$ ed $n$ sono anche i divisori
-comuni di $n$ ed $r$, il che ci autorizza a fare la sostituzione descritta in P3
-senza cambiare la risposta al quesito originario. Il nocciolo della questione è
-che ad ogni passo abbiamo coppie di numeri più piccole, ed il processo converge
-fino a che il resto della divisione non è zero.
+primo passo $n = qm + r$ per qualche valore intero di $q$, e si danno due casi:
+
+1. se $r = 0$, allora $n$ è multiplo di $m$, ed $m$ è proprio il MCD tra i due;
+2. in caso contrario, qualsiasi numero che divida sia $n$ che $m$ deve dividere anche
+   $r = n - qm$, e qualsiasi numero che divida sia $m$ che $r$ deve dividere anche
+   $n = qm + r$; in altre parole, i divisori comuni di $n$ ed $m$ sono anche i divisori
+   comuni di $m$ ed $r$, il che ci autorizza a fare la sostituzione descritta in A3
+   senza cambiare la risposta al quesito originario.
+
+Il nocciolo della questione è che ad ogni passo abbiamo coppie di numeri via via più
+piccole, ed il processo converge fino a che il resto della divisione non è zero.
 
 Ora, nella maggior parte delle situazioni che vi troverete ad affrontare nella vita,
 dimostrare la correttezza formale di un algoritmo pu ò essere significativamente
@@ -68,115 +56,239 @@ più complicato, e spesso non è semplice capire cosa sta succedendo semplicemen
 leggendo i passi dal primo all'ultimo. Vedere un algoritmo in opera in un caso concreto,
 viceversa, è di solito un aiuto enorme alla comprensione, per cui proviamo
 senz'altro a calcolare il MCD, e.g., tra $49$ e $21$. (Sappiamo già la risposta:
-$49 = 7 \times 7$ e $21 = 7 \times 3$, per cui il MCD è $7$.) I nostri dati iniziali
-sono $m = 49$ e $n = 21$; dopo A1 si ha $r = 49 \mod 21 = 7$ che, essendo diverso da
-zero, ci costringe ad applicare A3, ponendo $m - 21$ e $n = 7$. A questo punto vediamo
-subito che $m$ è divisibile per $n$, e quest'ultimo è il MCD cercato. Più
-sinteticamente potremmo scrivere
+$49 = 7 \times 7$ e $21 = 7 \times 3$, per cui il MCD è $7$.)
 
-| Iterazione | $m$ | $n$ | $r$ |
+I nostri dati iniziali sono $n = 49$ e $m = 21$; dopo A1 si ha $r = 49 \mod 21 = 7$ che,
+essendo diverso da zero, ci costringe ad applicare A3, ponendo $n = 21$ e $m = 7$.
+A questo punto vediamo subito che $n$ è divisibile per $m$, e quest'ultimo è il MCD
+cercato.
+
+Più sinteticamente potremmo scrivere il processo nella forma di una semplice tabella
+
+| Iterazione | $n$ | $m$ | $r$ |
 |-----------:|----:|----:|----:|
 | 1 | $49$ | $21$ | $7$ |
 | 2 | $21$ | $7$ | $0$ |
 
-e, in questo caso l'algoritmo converge al valore corretto in due passi. Per inciso,
-è anche interessante notare come l'algoritmo avrebbe funzionato anche scambiando
-$m$ ed $n$, ovverosia partendo da $m = 21$ e $n = 49$: in questo caso il primo ciclo
-A1 A3 avrebbe semplicemente scambiato tra di loro i due input, e da lì in poi
-niente sarebbe cambiato.
+Notiamo che in questo caso l'algoritmo converge al valore corretto in due passi.
+
+::: {.callout-note}
+Per inciso, è anche interessante notare come l'algoritmo avrebbe funzionato anche
+scambiando $n$ ed $m$, ovverosia partendo da $n = 21$ e $m = 49$: in questo caso la
+prima iterazione avrebbe semplicemente scambiato tra di loro i due numeri, e da lì in
+poi niente sarebbe cambiato.
+:::
+
+
+### Una semplice implementazione
+
+Non è difficile scrivere una semplice implementazione dell'algoritmo in Python:
+```{python}
+n = 49
+m = 21
+r = n % m
+print(f"n = {n}, m = {m}, r = {r}")
+while r != 0:
+    n = m
+    m = r
+    r = n % m
+    print(f"n = {n}, m = {m}, r = {r}")
+print(f"MCD: {m}")
+```
+
+Come vedete, in questo caso un ciclo while è quello che fa al caso nostro e non
+ci sono difficoltà di rilievo.
 
 
 ## Algoritmi e complessità
 
-Nel caso particolare che abbiamo considerato ($m = 49$ e $n = 21$) abbiamo visto
+Nel caso particolare che abbiamo considerato ($n = 49$ e $m = 21$) abbiamo visto
 che il passo A1 dell'algoritmo di Euclide viene eseguito esattamente $2$ volte prima
-che l'algoritmo stesso arrivi al termine. E, se fissiamo due valori arbitrari in
+che l'algoritmo stesso arrivi al termine. Se fissiamo due valori arbitrari in
 ingresso possiamo semplicemente eseguire l'algoritmo per calcolare quante iterazioni
-richiede per convergere. Se ci chiediamo adesso come varia il numero
-di iterazione al variare di $m$ ed $n$, è chiaro che questa domanda è
-interessante---è legata in modo ovvio al tempo che l'algoritmo impiega a
-convergere---ma è altresì chiaro che la risposta non è ovvia. Ci possiamo
-aspettare intuitivamente che al crescere di $m$ ed $n$ il numero di iterazioni
-necessarie cresca, ma ovviamente questo dipende in modo cruciale dalla scelta dei
-numeri: il MCD tra $m$ e $2$, ad esempio, è banale da calcolare indipendentemente
-da quanto è grande $m$. Se vogliamo caratterizzare la *complessità* dell'algoritmo
-al crescere di $n$ dobbiamo prima trovare una domanda ben posta.
+richiede per convergere.
 
-La prima cosa da notare (di nuovo) è che se $n > m$ il passo A1 dell'algoritmo di
-Euclide consiste semplicemente nello scambio tra $n$ ed $m$. Allora una domanda ben posta
-che potremmo farci è: se fissiamo $n$ qual è il valor medio di volte in cui
-il pass A1 è eseguito, quando $0 \leq m \leq n$? Potremmo anche chiederci qual
-è il valore minimo di iterazioni che possono servire (best case). Oppure il numero
-massimo (worst case).
+Se ci chiediamo invece qualitativamente *come varia il numero di iterazioni al variare
+di $n$ ed $m$*, è chiaro che, per quanto la domanda sia interessante, la risposta non è
+ovvia. Ci possiamo aspettare intuitivamente che al crescere di $n$ ed $m$ il numero di
+iterazioni necessarie cresca, ma ovviamente questo dipende in modo cruciale dalla
+scelta particolare dei numeri: il MCD tra $n$ e $2$, ad esempio, è banale da calcolare
+indipendentemente da quanto è grande $n$. Se vogliamo caratterizzare la *complessità*
+dell'algoritmo al crescere di $n$ dobbiamo prima trovare una domanda ben posta.
 
-La prima domanda costituisce un problema estremamente complicato che non ha ancora
-una soluzione completa, ma si pu ò dimostrare che per $n$ grandi vale lo sviluppo
-asintotico
+Mettiamoci, per cominciare, nell'ipotesi che $n \ge m$. (Sappiamo già che se questo non
+è il caso il primo passo dell'algoritmo sistema la situazione per cui non perdiamo di
+generalità se facciamo questa assunzione.) Allora una domanda ben posta che potremmo
+farci è: se fissiamo $n$ e lasciamo variare $1 \leq m \leq n$, qual è il valor medio del
+numero di iterazioni necessarie perché il nostro algoritmo converga? Oppure quali sono i
+valori minimo (best case) e massimo (worst case)?
+
+Intendiamoci bene: queste sono domande *difficili*. Possiamo sicuramente scrivere
+un piccolo programmino in Python che, dato un $n$ fissato, calcoli il numero di
+iterazioni necessarie per la convergenza nei casi medio, migliore e peggiore.
+Basta modificare leggermente il nostro programma e scrivere una piccola funzione che,
+oltre a calcolare il massimo comun divisore, tenga anche traccia del numero di
+iterazioni necessarie per convergere.
+```{python}
+def calculate_mcd(n, m):
+    r = n % m
+    k = 1
+    while r != 0:
+        n = m
+        m = r
+        r = n % m
+        k += 1
+    return m, k
+
+n = 10
+for m in range(1, n + 1):
+    mcd, iterations = calculate_mcd(n, m)
+    print(f"MCD({n}, {m}) = {mcd} ({iterations} iterations)")
+```
+Per $n = 10$, come vedete, il numero medio di iterazioni è $1.8$, il numero minimo è $1$
+ed il numero massimo è $3$. Ma come facciamo a calcolare queste quantità
+*come funzioni di $n$*?
+
+Ebbene, il calcolo del valor medio è un problema estremamente complicato che non ha
+ancora una soluzione completa, ma si può dimostrare che per $n$ grandi tende
+asintoticamente a
 $$
-  T_n \approx \frac{12 \ln 2}{\pi^2} \ln n;
+  \frac{12 \ln 2}{\pi^2} \ln n.
 $$
-la risposta alla seconda domanda è banale perché nel caso migliore (quando
-$n$ è divisibile per $m$) un passaggio è sufficiente; la terza domanda ha una
-difficoltà intermedia, e si pu ò dimostrare che il caso peggiore è quello in
-cui $n$ ed $m$ sono due numeri di Fibonacci consecutivi---caso in cui il numero
-di iterazione è di nuovo proporzionale a $\log n$.
+Il caso migliore è banale, perché quando $n$ è divisibile per $m$ è sufficiente un solo
+passaggio. Il caso peggiore ha una difficoltà intermedia, ma si può dimostrare che
+corrisponde alla situazione in cui $n$ ed $m$ sono due numeri di Fibonacci
+consecutivi, ed è di nuovo proporzionale a $\log n$.
 
-Quanto appena detto va generalmente sotto il nome di *analisi degli algoritmi*.
-La legge di scala con la grandezza dell'input del numero medio di iterazioni necessarie
-perché l'algoritmo termini prende il nome di *complessità*, e corrisponde
-con il termine dominante dello sviluppo in $n$. Così diciamo che l'algoritmo di
-Euclide ha una complessità $O(\log n)$ o "ordine $\log n$".
+
+### Analisi degli algoritmi
+
+La breve discussione che abbiamo appena fatto è un esempio particolare di quello che
+va generalmente sotto il nome di *analisi degli algoritmi*.
+
+La *complessità* di un algoritmo può essere definita come la legge di scala che lega
+il numero di iterazioni (medio, minimo o massimo) necessarie per la convergenza
+alle dimensioni $n$ dell'input, considerando solo il termine dominante in $n$ e
+trascurando le costanti moltiplicative. Così diciamo che la complessità dell'algoritmo
+di Euclide è $O(\log n)$ o "ordine $\log n$" nel caso medio.
+
+Ora calcolare la complessità di un algoritmo dai principi primi può essere banale o
+complicato a seconda dei casi. Trovare il massimo di una lista di numeri, ad esempio,
+richiede visitare tutti gli elementi uno ad uno, per cui il numero di iterazioni è
+esattamente $n$, e la complessità dell'algoritmo che abbiamo appena (implicitamente)
+descritto è $O(n)$.
+
+Se abbiamo un programma che implementi concretamente un algoritmo, la complessità si
+può, almeno nei casi più semplici, legare direttamente alla struttura del programma.
+Se abbiamo un semplice loop for, come nel caso della ricerca del massimo, la complessità
+è $O(n)$. Se abbiamo due loop for uno dopo l'altro la complessità è ancora
+$O(n)$---ricordatevi che buttiamo via le costanti moltiplicative. Se abbiamo
+due cicli for annidati (i.e., uno dentro l'altro) la complessità è $O(n^2)$.
+
+Nel caso generale la cosa non è così semplice. L'ordinamento (o *sorting*) di una lista
+è un problema classico che può essere risolto con una varietà di algoritmi nessuno dei
+quali è consistentemente il migliore in tutti i casi, ma si può dimostrare che
+un qualsiasi algoritmo *ragionevole* ha complessità $O(n \log n)$.
+
+::: {.callout-note}
+Quello del sorting è un problema estremamente affascinante. Se avete un attimo da
+perdere vale senza dubbio dare un'occhiata alla
+[pagina wikipedia](https://en.wikipedia.org/wiki/Sorting_algorithm),
+nonché le dimostrazioni in
+[danza tradizionale ungherese](https://flowingdata.com/2011/04/14/sorting-algorithms-demonstrated-with-hungarian-folk-dance/)
+disponibili su [youtube](https://www.youtube.com/user/AlgoRythmics).
+
+Ah: quando andate su youtube ricordate sempre che si tratta di una piattaforma di
+sorveglianza---lo facciamo tutte ma cerchiamo di non assuefarci 🙂
+:::
 
 
 ## La ricerca binaria
 
-Inquadriamo il problema da un punto di vista differente. Supponiamo di avere
-un elenco telefonico con $N$ elementi ordinati alfabeticamente e di essere
-interessati al numero di telefono di una persona specifica---quale strategia
-useremmo?
+Chiudiamo questo capitolo con un problema relativamente semplice, ma estremamente
+rilevante dal punto di vista pratico: quello del *searching*, ovvero della ricerca
+di un elemento all'interno di una lista data.
 
-Potremmo partire dall'inizio, scorrere nome per nome l'elenco e fermarci quando
-arriviamo alla persona desiderata---operare, cioè, una *ricerca sequenziale*.
-Così facendo dovremo controllare in media $N/2$ numeri, ed $N$ nel caso più
-sfavorevole (quello cioè in cui la persona cercata è l'ultima nell'elenco).
+Supponiamo, ad esempio, di avere una lista di numeri interi e di voler scrivere una
+piccola funzione che mi dica se un determinato valore (e.g., il $3$) è nella lista
+oppure no. Non dite nulla, so già cosa state pensando:
 
-Oppure possiamo partire da metà dell'elenco e vedere se il nome cercato
-è prima o dopo nella lista: in un passo eliminiamo metà dell'elenco, e
-possiamo ripetere la procedura bisecando ogni volta la parte rimanente, che in
-questo modo si dimezza ad ogni passo. Non è difficile convincersi che il
-processo converge in un numero di passi minore o uguale a $log_2 N$.
-(E per $N$ grande, $\log_2 N$ o $N$ fa un'enorme differenza.) L'algoritmo
-che abbiamo appena delineato si dice *ricerca binaria* ed è ottimale
-per la ricerca di un elemento in una lista ordinata.
+```{python}
+def contains(input_list, value):
+    for item in input_list:
+        if item == value:
+            return True
+    return False
 
-<!--
-\begin{figure}[htb!]
-  \autohstack{
-    \input{figures/ricerca_binaria}
-  }{
-    \caption{Illustrazione di due strategie di ricerca delle iniziali
-      "MA" in una lista di 11 iniziali (fittizie) ordinate alfabeticamente.
-      La ricerca sequenziale termina in 8 passi, quella binaria in 4 (o
-      3, a seconda di come definiamo l'algoritmo di bisezione). I cerchi
-      neri indicano i punti di inizio e fine della ricerca.}
-    \label{fig:ricerca_binaria}
-  }
-\end{figure}
+l = [1, 4, 2, 6, 3, 12, 44]
 
-\begin{examplebox}
-  \begin{example}
-    In un elenco telefonico con $11$ persone una ricerca sequenziale richiede
-    al massimo $11$ passi ed una ricerca binaria $4$. (Un esempio specifico
-    è mostrato in figura \ref{fig:ricerca_binaria}, in cui per brevità
-    si è usato iniziali fittizie al posto dei nomi completi.) In questo caso
-    la differenza non è impressionante, ma con un elenco di $10\,000\,000$
-    di persone una ricerca sequenziale richiede al massimo $10\,000\,000$ di
-    passi, mentre una ricerca binaria ne richiede al massimo
-    $\log_2{10\,000\,000} < 24$.
-  \end{example}
-\end{examplebox}
--->
+print(contains(l, 3))
+print(contains(l, 5))
+```
 
+*Analizziamo* questo programma---o meglio, l'algoritmo che ne è alla base. In questo
+caso la dimensione dell'input è rappresentata dal numero $n$ di elementi nella lista.
+Quanti passi fa il nostro programma? Un numero qualsiasi da $1$ a $n$, a seconda di
+dove è (se c'è) l'elemento cercato---in media $n/2$. A questo punto buttiamo via la
+costante moltiplicativa $1/2$ ed abbiamo finito: la complessità di questa ricerca è
+$O(n)$. In effetti lo sapevamo già, perché si tratta di un semplice loop for.
+
+E se adesso cambiamo leggermente le regole del gioco, ed assumiamo che la lista
+in ingresso sia *ordinata* (nel senso che i numeri appaiono strettamente in ordine,
+dal più piccolo al più grande), cambia qualcosa? Beh, il principio di minima azione ci
+direbbe: ho un algoritmo che funziona su una lista qualsiasi, per cui funzionerà a
+maggior ragione su una lista ordinata. Quindi non devo fare niente.
+
+Eppure, se ci pensate un attimo, la situazione è più complessa di così. Proviamo a
+ri-frasare il nostro problema astratto con un esempio concreto: vi viene dato un libro
+di $500$ pagine e l'esercizio è trovare il più velocemente possibile la prima lettera
+a pagina $127$. La vincitrice guadagna $2$ punti di bonus all'esame di Laboratorio 1
+con elementi di computazione. (Giusto per chiarezza: quest'ultima parte serve solo per
+la suspense, e non va presa letteralmente.)
+
+Alzi la mano chi scorrerebbe il libro pazientemente pagina per pagina, partendo da
+pagina $1$, fino a che non trova pagina $127$... Nessuno eh? Nemmeno io. Quello che,
+con ogni probabilità, farebbe una persona ragionevole sarebbe invece: aprire il libro
+più o meno a metà, vedere se abbiamo già passato la pagina cercata, concentrarsi sulla
+metà che la contiene, ed iterare questa procedura fino a che non abbiamo trovato
+la pagina. (Fermatevi un attimo, prendete un libro, e provate a farlo davvero, senza
+pensarci. Poi provate a descrivere a parole dove vi ha portato il vostro istinto.)
+
+Quello che abbiamo appena delineato in modo vago si può formalizzare precisamente, e
+va sotto il nome di *ricerca binaria*. Proviamo a farlo nella forma che conosciamo.
+
+::: {.algorithm-list}
+1. consideriamo l'elemento al centro della lista in ingresso, e chiamiamo $k$ il suo
+   valore;
+2. se $k$ è proprio il valore cercato $m$ abbiamo finito e l'algoritmo termina;
+3. se $k < m$, allora restringiamo la ricerca alla parte *destra* della lista e torniamo
+   ad A1;
+4. se $k > m$, allora restringiamo la ricerca alla parte *sinistra* della lista e
+   torniamo ad A1;
+:::
+
+::: {.callout-warning}
+Non dimenticate mai che la ricerca binaria funziona solo se la lista in ingresso è
+già ordinata---non è un caso che i dizionari siano ordinati alfabeticamente!
+:::
+
+Come analizziamo la complessità di questo algoritmo? Siamo fortunate, perché è più
+semplice di quanto sembri: ad ogni passo riduciamo di un fattore $2$ la lunghezza della
+sotto-lista in cui restringiamo la ricerca, per cui dopo $p$ passi questa lunghezza
+sarà pari a
+$$
+  \frac{n}{2^p},
+$$
+e quando questa quantità diventa $1$ significa che ci siamo ristretti ad un solo
+elemento, ovverosia abbiamo finito. La condizione è quindi
+$$
+  \frac{n}{2^p} = 1
+  \quad\text{o}\quad
+  p = \log_{2} n.
+$$
+Nel nostro nuovo linguaggio, la ricerca binaria ha complessità $O(\log n)$, esattamente
+come l'algoritmo di Euclide. Il piccolo widget qui sotto mostra la ricerca binaria in
+azione in un semplice esempio; giocateci, perché è istruttivo.
 
 ```{ojs}
 //| echo: false
@@ -269,3 +381,13 @@ html`
 </div>
 `
 ```
+
+Ora, quando $n$ è molto grande, avere una complessità $O(n)$ o $O(\log n)$ può
+fare una differenza *enorme*. Può letteralmente far passare un problema da
+intrattabile a banale.
+
+Tanto per fare un esempio, in un ipotetico dizionario di $10$ parole una ricerca
+sequenziale richiede al massimo $10$ passi, e una ricerca binaria al massimo $4$.
+Ma con un ipotetico dizionario di $10\,000\,000$ parole, una ricerca sequenziale
+richiede al massimo $10\,000\,000$ di passi, mentre una ricerca binaria ne richiede
+al massimo $\log_2{10\,000\,000} < 24$. Capite la differenza?
