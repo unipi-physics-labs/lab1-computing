@@ -1,6 +1,6 @@
 # Algoritmi {#sec-algs}
 
-Abbiamo già introdotto sommariamente la parola *algoritmo* nel @{sec-algs}.
+Abbiamo già introdotto sommariamente la parola *algoritmo* nel @{sec-glossary}.
 Un algoritmo è sostanzialmente una procedura per ricavare un risultato (output)
 a partire da un determinato insieme di dati in ingresso (input) che possegga due
 proprietà importanti:
@@ -127,7 +127,7 @@ Intendiamoci bene: queste sono domande *difficili*. Possiamo sicuramente scriver
 un piccolo programmino in Python che, dato un $n$ fissato, calcoli il numero di
 iterazioni necessarie per la convergenza nei casi medio, migliore e peggiore.
 Basta modificare leggermente il nostro programma e scrivere una piccola funzione che,
-oltre a calcolate il massimo comun divisore, tenga anche traccia del numero di
+oltre a calcolare il massimo comun divisore, tenga anche traccia del numero di
 iterazioni necessarie per convergere.
 ```{python}
 def calculate_mcd(n, m):
@@ -383,11 +383,11 @@ html`
 ```
 
 Ora, quando $n$ è molto grande, avere una complessità $O(n)$ o $O(\log n)$ può
-fare un *enorme* differenza. Può letteralmente far passare un problema da
+fare una differenza *enorme*. Può letteralmente far passare un problema da
 intrattabile a banale.
 
 Tanto per fare un esempio, in un ipotetico dizionario di $10$ parole una ricerca
 sequenziale richiede al massimo $10$ passi, e una ricerca binaria al massimo $4$.
 Ma con un ipotetico dizionario di $10\,000\,000$ parole, una ricerca sequenziale
 richiede al massimo $10\,000\,000$ di passi, mentre una ricerca binaria ne richiede
-al massimo $\log_2{10\,000\,000} < 24$. Capito la differenza?
+al massimo $\log_2{10\,000\,000} < 24$. Capite la differenza?
