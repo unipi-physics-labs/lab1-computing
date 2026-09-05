@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-eb1bc3aaadf2658264f2b941ac69fc6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-657fbe6dd800e9f7466c133ef441839c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -275,7 +275,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/io.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Input/output</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Input e output</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -321,8 +321,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Condividere codice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
   </div>
 </li>
       </ul>
@@ -371,7 +377,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2 settembre 2026</p>
+      <p class="date">5 settembre 2026</p>
     </div>
   </div>
   
@@ -395,7 +401,7 @@ window.Quarto = {
 <h2 data-number="6.1" class="anchored" data-anchor-id="prendere-decisioni"><span class="header-section-number">6.1</span> Prendere decisioni</h2>
 <p>Come potremmo scrivere una piccola funzione per capire se un numero intero è pari o dispari? Si tratta del classico problema che è facile a dirsi, ma a una seconda occhiata non è immediatamente ovvio da matematizzare.</p>
 <p>Cosa vuol dire che un numero è <em>pari</em>? Facile: è divisibile per <span class="math inline">\(2\)</span>. Ovverosia: il resto della divisione intera (ovvero il <em>modulo</em>) per <span class="math inline">\(2\)</span> è zero. La fortuna ci viene in aiuto, perché Python fornice, disponibile in stock, un operatore binario che fa esattamente il modulo—si scrive <code>%</code>. Allora guardate un attimo:</p>
-<div id="8cbd10b0" class="cell" data-execution_count="1">
+<div id="ff75bc7d" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> is_even(value):</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span>
@@ -421,7 +427,7 @@ Nota
 </div>
 <div class="callout-body-container callout-body">
 <p>Andando avanti imparerete che, in casi come questi, in cui una clausola condizionale termina con un <code>return</code>, l’else non è strettamente necessario. La forma più compatta</p>
-<div id="909c8b06" class="cell" data-execution_count="2">
+<div id="0c395658" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> is_even(value):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> value <span class="op">%</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">0</span>:</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="va">True</span></span>
@@ -453,7 +459,7 @@ False</code></pre>
 </ul></li>
 </ul>
 <p>Possiamo tradurre tutto questo in Python e scrivere una semplice funzione che restituisca il gruppo, dato il numero di matricola? Senza dubbio—e il segreto è di nuovo il modulo che abbiamo visto all’inizio di questa sezione.</p>
-<div id="6df202ca" class="cell" data-execution_count="3">
+<div id="9f5e8dc1" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> group(identifier):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    mod <span class="op">=</span> identifier <span class="op">%</span> <span class="dv">4</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> mod <span class="op">==</span> <span class="dv">0</span>:</span>
@@ -472,7 +478,7 @@ False</code></pre>
 </div>
 <p>Mi raccomando: non avete più scuse per presentarvi nel gruppo sbagliato il primo giorno di laboratorio.</p>
 <p>E, siccome c’è sempre un modo più compatto ed intelligente di fare le cose, il frammento che segue è esattamente equivalente</p>
-<div id="eab141c4" class="cell" data-execution_count="4">
+<div id="ea888b34" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> group(identifier):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="st">"A1"</span>, <span class="st">"B1"</span>, <span class="st">"A2"</span>, <span class="st">"B2"</span>)[identifier <span class="op">%</span> <span class="dv">4</span>]</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -488,7 +494,7 @@ False</code></pre>
 <h2 data-number="6.2" class="anchored" data-anchor-id="ripetere"><span class="header-section-number">6.2</span> Ripetere</h2>
 <p><em>Provando e riprovando</em> è il motto della <a href="https://www.sif.it/chi">Società Italiana di Fisica</a>; e non a caso. Ripetere, o <em>iterare</em>, un’operazione è letteralmente una delle componenti fondamentali del metodo scientifico.</p>
 <p>Supponiamo per un attimo che una persona vi chieda di sommare i primi <span class="math inline">\(1000\)</span> numeri interi positivi. Potete aiutarvi con un calcolatore, e siete incoraggiate ad utilizzare tutte le cose che abbiamo imparato fino a questo momento. Facile, no?</p>
-<div id="19f6a8c2" class="cell" data-execution_count="5">
+<div id="b0d0275c" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span> <span class="op">+</span> <span class="dv">1</span> <span class="op">+</span> <span class="dv">2</span> <span class="op">+</span> <span class="dv">3</span> <span class="op">+</span> <span class="dv">4</span> <span class="op">+</span> <span class="dv">5</span> <span class="op">+</span> <span class="dv">6</span> <span class="op">+</span> <span class="dv">7</span> <span class="op">+</span> <span class="dv">8</span> <span class="op">+</span> <span class="dv">9</span> <span class="op">+</span> <span class="dv">10</span> <span class="op">+</span> <span class="dv">11</span> <span class="op">+</span> <span class="dv">12</span> <span class="op">+</span> <span class="dv">13</span> <span class="op">+</span> <span class="dv">14</span> <span class="op">+</span> <span class="dv">15</span> <span class="op">+</span> <span class="dv">16</span> <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dv">17</span> <span class="op">+</span> <span class="dv">18</span> <span class="op">+</span> <span class="dv">19</span> <span class="op">+</span> <span class="dv">20</span> <span class="op">+</span> <span class="dv">21</span> <span class="op">+</span> <span class="dv">22</span> <span class="op">+</span> <span class="dv">23</span> <span class="op">+</span> <span class="dv">24</span> <span class="op">+</span> <span class="dv">25</span> <span class="op">+</span> <span class="dv">26</span> <span class="op">+</span> <span class="dv">27</span> <span class="op">+</span> <span class="dv">28</span> <span class="op">+</span> <span class="dv">29</span> <span class="op">+</span> <span class="dv">30</span> <span class="op">+</span> <span class="dv">31</span> <span class="op">+</span> <span class="dv">32</span> <span class="op">+</span> <span class="op">\</span></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="dv">33</span> <span class="op">+</span> <span class="dv">34</span> <span class="op">+</span> <span class="dv">35</span> <span class="op">+</span> <span class="dv">36</span> <span class="op">+</span> <span class="dv">37</span> <span class="op">+</span> <span class="dv">38</span> <span class="op">+</span> <span class="dv">39</span> <span class="op">+</span> <span class="dv">40</span> <span class="op">+</span> <span class="dv">41</span> <span class="op">+</span> <span class="dv">42</span> <span class="op">+</span> <span class="dv">43</span> <span class="op">+</span> <span class="dv">44</span> <span class="op">+</span> <span class="dv">45</span> <span class="op">+</span> <span class="dv">46</span> <span class="op">+</span> <span class="dv">47</span> <span class="op">+</span> <span class="dv">48</span> <span class="op">+</span> <span class="op">\</span></span>
@@ -571,7 +577,7 @@ False</code></pre>
 <pre><code>500500</code></pre>
 </div>
 </div>
-<p>Cosa ne pensate? Non siete tentate di chiedervi se non ci sia una via più semplice? E, a una seconda occhiata, secondo voi come ho fatto a scrivere questo frammento di codice? A mano, pazientemente? O magari con qualche trucco? (Bonus track: il carattere <code>\</code>, o <em>backslash</em>, è quello che in Python permette di spezzare una riga troppo lunga ove necessario—nella sezione <a href="os.html#sec-backslash" class="quarto-xref"><span>Sezione 9.2.2</span></a> impareremo un certo numero di altri usi di questo meraviglioso carattere.)</p>
+<p>Cosa ne pensate? Non siete tentate di chiedervi se non ci sia una via più semplice? E, a una seconda occhiata, secondo voi come ho fatto a scrivere questo frammento di codice? A mano, pazientemente? O magari con qualche trucco? (Bonus track: il carattere <code>\</code>, o <em>backslash</em>, è quello che in Python permette di spezzare una riga troppo lunga ove necessario—nella sezione <a href="os.html#sec-backslash" class="quarto-xref"><span>Sezione 9.2.4</span></a> impareremo un certo numero di altri usi di questo meraviglioso carattere.)</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -583,7 +589,7 @@ Nota
 </div>
 <div class="callout-body-container callout-body">
 <p>Nel caso conosceste un minimo di teoria dei numeri dal corso di analisi, o aveste un’intelligenza maggiore o uguale a quella del piccolo Gauss, vi metto subito il cuore in pace: potremmo fare</p>
-<div id="11cc60fb" class="cell" data-execution_count="6">
+<div id="f4a65ef4" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1000</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> n <span class="op">*</span> (n <span class="op">+</span> <span class="dv">1</span>) <span class="op">//</span> <span class="dv">2</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -599,7 +605,7 @@ Nota
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="cicli-for"><span class="header-section-number">6.2.1</span> Cicli <code>for</code></h3>
 <p>Ma torniamo a noi. Se in questo momento state pensando <em>“deve esserci un altro modo”</em>, complimenti: siete persone di buon gusto e non volete programmare come barbari—il vostro istinto vi sta suggerendo la cosa giusta.</p>
 <p>Non sarebbe bello se Python offrisse un costrutto esplicito per esprimere in modo formale quello che colloquialmente potremmo esprimere come: <em>vorrei partire dal numero <span class="math inline">\(n = 1\)</span> (o <span class="math inline">\(n = 0\)</span>, il che è indifferente) ed incrementare <span class="math inline">\(n\)</span> di una unità per <span class="math inline">\(999\)</span> (o <span class="math inline">\(1000\)</span>) volte, sommando ogni volta il valore ottenuto alla somma parziale precedente</em>? Lo so, detto così sembra più difficile di quanto non sia in realtà, ma il punto è che questo costrutto esiste e si chiama <em>ciclo for</em>.</p>
-<div id="dac9a389" class="cell" data-execution_count="7">
+<div id="5cee131b" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1</span>, <span class="dv">1001</span>):</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    s <span class="op">+=</span> i</span>
@@ -610,7 +616,7 @@ Nota
 </div>
 </div>
 <p>Wow! Il risultato è giusto, per cui dobbiamo aver fatto qualcosa di buono. Ma fermiamoci un attimo per cercare di convincerci di aver capito tutto nei minimi dettagli. Andiamo per ordine: l’esempio più semplice possibile di ciclo for è</p>
-<div id="f2304c44" class="cell" data-execution_count="8">
+<div id="fe37e695" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> [<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>]:</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(i)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -620,7 +626,7 @@ Nota
 </div>
 </div>
 <p>che è funzionalmente equivalente a</p>
-<div id="cd653c00" class="cell" data-execution_count="9">
+<div id="f6e10774" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(i)</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>i <span class="op">=</span> <span class="dv">2</span></span>
@@ -643,7 +649,7 @@ Nota
 <li>fare qualcosa con la variabile ausiliaria.</li>
 </ul>
 <p>Altro semplice esempio per chiarire il concetto:</p>
-<div id="3753c057" class="cell" data-execution_count="10">
+<div id="4941f182" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> name <span class="kw">in</span> [<span class="st">"Giulia"</span>, <span class="st">"Luca"</span>]:</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello, </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -657,7 +663,7 @@ Hello, Luca!</code></pre>
 <p>in cui <code>start</code> è <em>incluso</em> e <code>stop</code> è <em>escluso</em>, ma accetta anche la versione abbreviata</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="bu">range</span>(stop)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>in cui si assume <code>start = 0</code> e <code>step = 1</code>. Sperimentate cambiando i valori degli argomenti ed assicuratevi di capire cosa succede. Non dovreste essere sorprese di vedere che la nostra somma si può scrivere in modo equivalente come</p>
-<div id="d4ca0b0a" class="cell" data-execution_count="11">
+<div id="05e7edfe" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">1001</span>):</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    s <span class="op">+=</span> i</span>
@@ -709,7 +715,7 @@ x = \frac{-1 + \sqrt{8001}}{2} \approx \sqrt(2000) \approx 44.7
 \sum_{i=1}^{45} i = \frac{45 \times 46}{2} = 1035.
 \]</span> La risposta è <span class="math inline">\(44\)</span>. Ma, sulla base di quanto detto fino a questo momento non è ovvio come tradurre la cosa in termini di un ciclo for…</p>
 <p>Ed è qui che Python ci viene in aiuto con un secondo costrutto per iterare: il <em>ciclo while</em>. Il ciclo while è una costrutto disegnato per interrompere l’iterazione quando una particolare condizione è soddisfatta—nel nostro caso:</p>
-<div id="6b37a7f4" class="cell" data-execution_count="12">
+<div id="ba5a0068" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> s <span class="op">+</span> (n <span class="op">+</span> <span class="dv">1</span>) <span class="op">&lt;=</span> <span class="dv">1000</span>:</span>
@@ -723,7 +729,7 @@ x = \frac{-1 + \sqrt{8001}}{2} \approx \sqrt(2000) \approx 44.7
 </div>
 <p>Fate attenzione alla logica: qui <code>s</code> rappresenta la somma parziale, e <code>n</code> <em>l’ultimo numero aggiunto</em>. Il prossimo numero da aggiungere è <code>n + 1</code> e, all’interno del loop, prima si incrementa <code>n</code> e poi si aggiunge <code>n</code> ad <code>s</code>. (A queste condizioni, <code>n</code> parte da <span class="math inline">\(0\)</span> e all’uscita del loop, rappresenta il numero cercato.)</p>
 <p>Se avete l’impressione che mettere insieme un ciclo while ben congegnato sia logicamente più delicato che fare un ciclo for, sono simpatetico con il sentimento. In questo caso, ad esempio, avremmo potuto prendere <code>n</code> come <em>il prossimo numero da aggiungere</em>, facendolo partire da <span class="math inline">\(1\)</span> e incrementandolo dentro il ciclo while <em>dopo</em> (e non prima) averlo aggiunto ad <code>s</code>. Così facendo il valore all’uscita dal loop non è il numero cercato, ma il successivo</p>
-<div id="2914347f" class="cell" data-execution_count="13">
+<div id="eb9ff2b8" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">1</span></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="cf">while</span> s <span class="op">+</span> n <span class="op">&lt;=</span> <span class="dv">1000</span>:</span>
@@ -757,7 +763,7 @@ Nota
 <section id="non-reinventare-la-ruota" class="level3" data-number="6.3.1">
 <h3 data-number="6.3.1" class="anchored" data-anchor-id="non-reinventare-la-ruota"><span class="header-section-number">6.3.1</span> Non reinventare la ruota</h3>
 <p>La prima tentazione ovvia è quella di dire: ogni volta che vedete il simbolo di sommatoria, lì avete spazio per tradurre il problema in un ciclo. E, da fisiche, di sommatorie ne vedete (e ne vedrete) comunemente. La media campione, ad esempio, è sostanzialmente una somma, e non c’è niente di male nel calcolarla con un loop.</p>
-<div id="c64ba16e" class="cell" data-execution_count="14">
+<div id="662cff0e" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> mean(sample):</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> value <span class="kw">in</span> sample:</span>
@@ -773,7 +779,7 @@ Nota
 </div>
 <p>La varianza e la deviazione standard del campione sono pure somme, e allora potremmo andare avanti e vedere come implementarle sulla stessa linea.</p>
 <p>Arrivati a questo punto, però, è probabilmente più istruttivo un invito a non <em>reinventare la ruota ogni volta</em>. Il pacchetto <code>numpy</code> fornisce tutte le funzioni statistiche di cui potreste mai aver bisogno, inclusa la media, la varianza e la deviazione standard. Nella vostra vita professionale la via maestra al calcolo delle proprietà di un campione sarà</p>
-<div id="16ad75f6" class="cell" data-execution_count="15">
+<div id="ccd68f2f" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>sample <span class="op">=</span> [<span class="fl">1.2</span>, <span class="fl">1.34</span>, <span class="fl">2.1</span>, <span class="fl">1.85</span>, <span class="fl">1.44</span>]</span>
@@ -796,7 +802,7 @@ Nota
 <p>Supponete per un attimo di dover risolver il seguente problema: <em>si lancino 10 dadi a 6 facce; qual è la probabilità che la somma delle uscite sia esattamente di 26, almeno due uscite siano 6 e non ci siano 4?</em> Si tratta di un problema che non ha nessuna difficoltà concettuale—dobbiamo semplicemente enumerare tutte le possibili combinazioni delle uscite e contare, tra queste, quante soddisfano alle condizioni. Il problema è che queste combinazioni sono <span class="math display">\[
 N = 6^5 = 7776
 \]</span> per cui l’esercizio, posto in questi termini, è più utile per ammazzare il tempo (ammesso che ne abbiate bisogno) più che per imparare qualcosa. Volete sapere una cosa bella? La cosa si può formalizzare in non più di 6 righe di Python, che coinvolgono, guarda caso, un if ed un for—il frammento di seguito calcola la risposta e stampa esplicitamente tutte le combinazioni accettate (sono rare, poco più di <span class="math inline">\(3\)</span> su <span class="math inline">\(1000\)</span>).</p>
-<div id="54ca5ba2" class="cell" data-execution_count="16">
+<div id="5c143db0" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> itertools <span class="im">import</span> product</span>
 <span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">0</span></span>
@@ -870,7 +876,7 @@ n = 5 + \binom{5}{3} = 5 + 20 = 25
 <section id="un-problema-più-fisico" class="level3" data-number="6.3.3">
 <h3 data-number="6.3.3" class="anchored" data-anchor-id="un-problema-più-fisico"><span class="header-section-number">6.3.3</span> Un problema più fisico</h3>
 <p>Concludiamo questa sezione con un piccolo problema con il quale avremo l’occasione di confrontarci direttamente durante l’anno—quello della simulazione di un semplice <em>random walk</em> in due dimensioni. Ci limitiamo al programma in Python senza farne l’esegesi—ormai siete grandi.</p>
-<div id="b9655595" class="cell" data-execution_count="17">
+<div id="53057557" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a></span>

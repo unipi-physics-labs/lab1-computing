@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-eb1bc3aaadf2658264f2b941ac69fc6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-657fbe6dd800e9f7466c133ef441839c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -275,7 +275,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/io.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Input/output</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Input e output</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -321,8 +321,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Condividere codice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
   </div>
 </li>
       </ul>
@@ -361,7 +367,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2 settembre 2026</p>
+      <p class="date">5 settembre 2026</p>
     </div>
   </div>
   
@@ -387,7 +393,7 @@ Avviso
 </div>
 </div>
 <p>Guardiamo per un attimo il frammento di codice che segue, in cui sommiamo (di nuovo, e in due modi diversi) i numeri interi da <span class="math inline">\(1\)</span> a <span class="math inline">\(1000\)</span>.</p>
-<div id="575f1f23" class="cell" data-execution_count="1">
+<div id="eee6709e" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Create an array with all the integer values from 1 to 1000 (included)</span></span>
@@ -413,7 +419,7 @@ Avviso
 \quad\text{con}\quad
 e_i = \frac{N}{6}.
 \]</span> Anche in questo caso possiamo procedere in (almeno) due modi diversi (e anche in questo caso, va da sé, il risultato è lo stesso).</p>
-<div id="db1aff23" class="cell" data-execution_count="2">
+<div id="878ffd09" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span></span>
@@ -466,7 +472,7 @@ Avviso
 <p>Supponiamo di voler verificare numericamente la corretta normalizzazione della distribuzione binomiale <span class="math display">\[
     \sum_{k=0}^{n} \binom{n}{k} p^{k} (1 - p)^{n - k} = 1
 \]</span> per una coppia fissata di valori di <span class="math inline">\(n\)</span> e <span class="math inline">\(p\)</span>. Se torniamo per un attimo ad un mondo in cui non esistono numpy e scipy (che, abbiamo capito, sono gli strumenti naturali di vettorizzazione in Python) la cosa più semplice che potremmo fare sarebbe qualcosa del tipo</p>
-<div id="a2c21ddf" class="cell" data-execution_count="3">
+<div id="df3c7d25" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100</span></span>
@@ -493,7 +499,7 @@ Avviso
 </div>
 <p>(Notate che, come raccomandato nel capitolo <a href="float.html" class="quarto-xref"><span>Capitolo 11</span></a>, siamo passati ai logaritmi nel ciclo per evitare possibili errori numerici nel calcolo di fattoriali e potenze. Anche così facendo il risultato è corretto <em>solo</em> nelle prime 13 cifre significative.)</p>
 <p>Fermatevi un attimo a guardare il nostro programma. Anche spezzando il calcolo in termini di operazioni elementari, e commentando le linee di codice una per una, la cosa è ancora abbastanza indigesta, vero? E se invece ci ricordiamo di tutto quello che abbiamo imparato su numpy e scipy?</p>
-<div id="7f3fdb98" class="cell" data-execution_count="4">
+<div id="7b928e88" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> binom</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -528,7 +534,7 @@ Nota
 <h2 data-number="13.3" class="anchored" data-anchor-id="vettorizzare-è-veloce"><span class="header-section-number">13.3</span> Vettorizzare è veloce</h2>
 <p>C’è una cosa importante che non ci siamo mai detti, ed è arrivato il momento di fare ammenda per questa mancanza: <em>i loop in Python sono orrendamente lenti</em>. Mandatelo a memoria e non dimenticatelo, perché prima o poi, vi assicuro, vi tornerà utile.</p>
 <p>Questo ci porta naturalmente a farci una domanda che non ci eravamo ancora chieste: <em>come faccio a misurare il tempo necessario per eseguire un’istruzione o un programma</em>? Ci viene in aiuto il modulo <a href="https://docs.python.org/3/library/time.html">time</a> di Python, ed in particolare la funzione <a href="https://docs.python.org/3/library/time.html#time.time">time.time()</a>, che restituisce il numero di secondi trascorsi dal 1 gennaio, 1970, alle 00:00. (L’origine dei tempi è irrilevante, perché le <em>differenze</em> di tempo sono invarianti per traslazione.) Allora proviamo a sommare i numeri interi da uno a un milione, e vediamo quanto ci impieghiamo, nella versione semplice ed in quella vettorizzata.</p>
-<div id="28eaac35" class="cell" data-execution_count="5">
+<div id="cfb87592" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -548,8 +554,8 @@ Nota
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> time.time() <span class="op">-</span> t0</span>
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sum: </span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">. Elapsed time: </span><span class="sc">{</span>dt<span class="sc">:.5f}</span><span class="ss"> s"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Sum: 500000500000. Elapsed time: 0.10889 s
-Sum: 500000500000. Elapsed time: 0.00038 s</code></pre>
+<pre><code>Sum: 500000500000. Elapsed time: 0.10943 s
+Sum: 500000500000. Elapsed time: 0.00046 s</code></pre>
 </div>
 </div>
 <p>Il risultato specifico, ovviamente, dipende da molte cose, tra le quali il computer che state usando, ma il messaggio è chiaro: quando si tratta di processare numeri <em>non è raro che numpy batta Python di due ordini di grandezza in velocità</em>. Fermatevi un attimo a pensare—passare da <span class="math inline">\(1\)</span> ms a <span class="math inline">\(10~\mu\)</span>s non è particolarmente eccitante, ma se diciamo che un programma che prima impiegava un’ora adesso impiega <span class="math inline">\(40\)</span> secondi, questa è una notizia!</p>
@@ -570,7 +576,7 @@ Nota
 <p>Tristemente, stiamo toccando con mano il fatto che niente è gratis: tutte le comodità che Python ci offre off the shelf (il fatto di non dover dichiarare le variabili e di poter cambiare il tipo a runtime, la facilità nel fare container eterogenei) le paghiamo (e talvolta caramente) in alcune aree, e.g., la velocità dei cicli. In C l’elasticità del linguaggio è molto più bassa, ed il compilatore può sfruttare tutti i vincoli aggiuntivi per prendere decisioni ed ottimizzare il programma compilato.</p>
 <p>Questo vuol dire che Python è inutile? Assolutamente no, perché se il vostro programma arriva al termine in un batter d’occhio, non vi interessa se questo batter d’occhio è <span class="math inline">\(1\)</span> ms o <span class="math inline">\(1~\mu\)</span>s—quando premete invio vedete istantaneamente il risultato e questo è quello che conta. Nei casi in cui questo non succede, ed è vantaggioso ottimizzare, gli array di numpy offrono una strada (non l’unica) percorribile praticamente con minimo sforzo.</p>
 <p>Questa breve discussione mette in luce anche un’altra questione fondamentale: il guadagno in velocità che otteniamo vettorizzando <em>non è dovuto al fatto che abbiamo scritto meno righe di codice</em>. Il modo più semplice per convincersene è guardare questa leggera variazione sul tema:</p>
-<div id="109d4504" class="cell" data-execution_count="6">
+<div id="3aa1b2a7" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-label="1"></a><span class="im">import</span> time</span>
 <span id="cb11-2"><a href="#cb11-2" aria-label="2"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-3"><a href="#cb11-3" aria-label="3"></a></span>
@@ -588,8 +594,8 @@ Nota
 <span id="cb11-15"><a href="#cb11-15" aria-label="15"></a>dt <span class="op">=</span> time.time() <span class="op">-</span> t0</span>
 <span id="cb11-16"><a href="#cb11-16" aria-label="16"></a><span class="bu">print</span>(<span class="ss">f"Sum: </span><span class="sc">{</span>s<span class="sc">}</span><span class="ss">. Elapsed time: </span><span class="sc">{</span>dt<span class="sc">:.5f}</span><span class="ss"> s"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Sum: 500000500000. Elapsed time: 0.05866 s
-Sum: 500000500000. Elapsed time: 0.00033 s</code></pre>
+<pre><code>Sum: 500000500000. Elapsed time: 0.05923 s
+Sum: 500000500000. Elapsed time: 0.00044 s</code></pre>
 </div>
 </div>
 <p>Qui la differenza è talmente sottile che abbiamo messo i numeri di linea per evidenziarla: confrontate le righe <span class="math inline">\(8\)</span> e <span class="math inline">\(14\)</span>: il builtin <a href="https://docs.python.org/3/library/functions.html#sum">sum</a> di Python è circa due volte più veloce di un ciclo for esplicito (per motivi che non abbiamo il tempo di spiegare) ma ancora due ordini di grandezza più lento che non la funzione corrispondente in numpy. Entrambe le chiamate sono esattamente una riga di codice.</p>
@@ -598,7 +604,7 @@ Sum: 500000500000. Elapsed time: 0.00033 s</code></pre>
 <h2 data-number="13.4" class="anchored" data-anchor-id="vettorizzare-condizionatamente"><span class="header-section-number">13.4</span> Vettorizzare condizionatamente?</h2>
 <p>Se ricordate, originariamente abbiamo introdotto i cicli for e while subito dopo le espressioni condizionali, nel capitolo <a href="flow.html" class="quarto-xref"><span>Capitolo 6</span></a>. Arrivati qui, questo ci fa venire un piccolo brivido: non è per caso che, vettorizzando, abbiamo perso la possibilità di mettere if statement nel flusso del nostro programma? Non è che, adesso che abbiamo imparato ad andare velocissimi, cose semplici dentro un ciclo for tipo “prendiamo solo i numeri pari”, diventano improvvisamente impossibili? Perché, se così fosse, allora forse non abbiamo fatto proprio un buon affare…</p>
 <p>La risposta, se ci pensate un attimo, sta nel fatto che i contenitori si possono <em>indirizzare</em>, e numpy ha messo una certa quantità di ingegno nei modi in cui ci permette di farlo. Vogliamo un array con i numeri pari minori di <span class="math inline">\(40\)</span>? Niente di più semplice!</p>
-<div id="6dc94dc7" class="cell" data-execution_count="7">
+<div id="47ed4885" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.arange(<span class="dv">40</span>)</span>
@@ -615,7 +621,7 @@ Sum: 500000500000. Elapsed time: 0.00033 s</code></pre>
 <strong>Soluzione</strong>
 </summary>
 <p>Il modo più semplice per capire cosa sta succedendo è farci stampare sullo schermo passo passo il valore delle nostre variabili.</p>
-<div id="5a111842" class="cell" data-execution_count="8">
+<div id="866b9d7d" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>values <span class="op">=</span> np.arange(<span class="dv">40</span>)</span>
@@ -644,7 +650,7 @@ Array after masking: [ 0  2  4  6  8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 3
 </ol>
 </details>
 <p>Ecco che abbiamo riguadagnato la capacità di fare logica vettorizzata! Vediamo la cosa in opera in un contesto più familiare—come potremmo sfruttare la cosa a nostro vantaggio per fittare un sottoinsieme dei punti in un array di dati?</p>
-<div id="bbeaa9a4" class="cell" data-execution_count="9">
+<div id="19b971ef" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span>

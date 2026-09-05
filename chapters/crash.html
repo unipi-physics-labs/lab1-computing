@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-eb1bc3aaadf2658264f2b941ac69fc6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-657fbe6dd800e9f7466c133ef441839c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -275,7 +275,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/io.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Input/output</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Input e output</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -321,8 +321,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Condividere codice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
   </div>
 </li>
       </ul>
@@ -364,7 +370,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2 settembre 2026</p>
+      <p class="date">5 settembre 2026</p>
     </div>
   </div>
   
@@ -377,7 +383,7 @@ window.Quarto = {
 
 
 <p>Siamo pronti per partire con il nostro primo grafico. Leggete attentamente il frammento di codice che segue. (Notate che abbiamo aggiunto i numeri di linea all’inizio per poter commentare puntualmente, ma ovviamente questi non fanno parte del programma.)</p>
-<div id="63f06884" class="cell" data-execution_count="1">
+<div id="af45d410" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-label="2"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="co"># Define the input data.</span></span>
@@ -411,7 +417,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Quando lanciate l’interprete Python in modalità interattiva, l’insieme di cose che avete a disposizione è estremamente limitata—essenzialmente la sintassi del linguaggio ed un numero limitato di <a href="https://docs.python.org/3/library/functions.html">funzioni built-in</a>. (Prendetevi un secondo per seguire il link e dare un’occhiata sommaria alla pagine, in modo da avere un’idea grossolana di cosa stiamo parlando—sono un centinaio di funzioni con nomi che vi sembreranno, per la maggio parte esotici.)</p>
 <p>Se volete arrotondare un numero reale all’intero più vicino, ad esempio, non vi serve altro che il built-in <code>round()</code>:</p>
-<div id="224158c3" class="cell" data-execution_count="2">
+<div id="76299789" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(<span class="fl">2.25</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(<span class="fl">2.75</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -421,7 +427,7 @@ window.Quarto = {
 </div>
 <p>Oltre alle funzioni built-in, Python fornisce una <a href="https://docs.python.org/3/library/index.html">libreria standard</a> onnicomprensiva che, con ogni probabilità, copre una buona parte delle esigenze che avrete mai nella vostra carriera di fisiche. (Anche qui: prendetevi un attimo per seguire il link e dare una rapida occhiata alla documentazione della libreria standard: si tratta letteralmente di centinaia di moduli, ciascuno dei quali offre un numero variabile—spesso molte decine—di funzioni e strutture dati.)</p>
 <p>Avete bisogno di funzioni trigonometriche, logaritmi ed esponenziali? Non ci sono problemi:</p>
-<div id="85b954db" class="cell" data-execution_count="3">
+<div id="6d7c7c36" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.log(<span class="dv">10</span>))</span>
@@ -436,7 +442,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Equivalentemente (lo troverete spesso in giro, per cui tanto vale ingoiare subito la pillola) potete arrivare allo stesso risultato per una strada leggermente diversa</p>
-<div id="6963f66b" class="cell" data-execution_count="4">
+<div id="93eed81e" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> log, log10, exp, cos</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(log(<span class="dv">10</span>))</span>
@@ -453,7 +459,7 @@ window.Quarto = {
 <p>La cosa fondamentale è che, in un caso o nell’altro, dovete <em>importare</em> la libreria <code>math</code>, o le funzioni al suo interno che volete utilizzare.</p>
 <p>La parola speciale <code>import</code> di Python è quella che vi permette di importare moduli (o parti di moduli) che non sono disponibili all’avvio. Il sistema di import di Python è estremamente flessibile, e non è questo il momento di addentrarci nei meandri del suo funzionamento. Quando ne avrete bisogno, la <a href="https://docs.python.org/3/reference/import.html">documentazione</a> è il posto giusto in cui guardare.</p>
 <p>Se vi state chiedendo il perché di questa necessità apparentemente bizantina di importare le cose prima di poterle utilizzare (ma non avrebbe senso avere tutto a disposizione sin dall’inizio?), la risposta è semplice: importare un modulo costa tempo e, soprattutto, memoria. Sarebbe semplicemente folle importare l’intera libreria standard all’avvio di ogni sessione di Python, per poi lasciare inutilizzata la quasi totalità del suo contenuto—molto meglio un approccio di tipo <em>opt in</em>. D’altra parte in cucina non avete in ogni momento tutti gli ingredienti per tutte le ricette del mondo no? Magari avete sempre sale, pepe, farina, latte (i vostri built-in, in un certo senso), ma per tutto il resto lo prendete al supermercato all’occorrenza.</p>
-<p>Arrivate a questo punto potreste avere l’impressione (sbagliata) che <code>matplotlib</code> sia parte delle libreria standard di Python—mentre invece si tratta di un pacchetto separato che è disponibile, insieme a quasi un milione di altri pacchetti, sul <a href="https://pypi.org/">Python package index</a>. Qual è la differenza? Semplice: la libreria standard viene istallata automaticamente quando istallate Python. Tutto il resto va istallato a mano, ad esempio con <code>pip</code>. (Ma se siete arrivate a questo punto dovreste esserci già passate.) Da questo punto in poi, non ci sono altre differenze—i moduli si importano esattamente allo stesso modo.</p>
+<p>Arrivate a questo punto potreste avere l’impressione (sbagliata) che <code>matplotlib</code> sia parte delle libreria standard di Python—mentre invece si tratta di un pacchetto separato che è disponibile, insieme a quasi un milione di altri pacchetti, sul <a href="https://pypi.org/">Python package index</a>. Qual è la differenza? Semplice: la libreria standard viene installata automaticamente quando installate Python. Tutto il resto va installato a mano, ad esempio con <code>pip</code>. (Ma se siete arrivate a questo punto dovreste esserci già passate.) Da questo punto in poi, non ci sono altre differenze—i moduli si importano esattamente allo stesso modo.</p>
 </section>
 <section id="commenti" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="commenti"><span class="header-section-number">3.1.2</span> Commenti</h3>

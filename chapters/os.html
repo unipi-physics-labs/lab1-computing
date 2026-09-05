@@ -82,7 +82,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-64a204ab8560d761af7679ceaba22944.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-eb1bc3aaadf2658264f2b941ac69fc6b.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-657fbe6dd800e9f7466c133ef441839c.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -275,7 +275,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../chapters/io.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Input/output</span></span></a>
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Input e output</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -321,8 +321,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/code.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Condividere codice</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">C</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
   </div>
 </li>
       </ul>
@@ -337,11 +343,13 @@ window.Quarto = {
     <h2 id="toc-title">Indice</h2>
    
   <ul>
-  <li><a href="#la-shell" id="toc-la-shell" class="nav-link active" data-scroll-target="#la-shell"><span class="header-section-number">9.1</span> La shell</a></li>
+  <li><a href="#il-terminale" id="toc-il-terminale" class="nav-link active" data-scroll-target="#il-terminale"><span class="header-section-number">9.1</span> Il terminale</a></li>
   <li><a href="#il-filesystem" id="toc-il-filesystem" class="nav-link" data-scroll-target="#il-filesystem"><span class="header-section-number">9.2</span> Il filesystem</a>
   <ul class="collapse">
-  <li><a href="#denominare-i-file-insidie-e-buone-norme" id="toc-denominare-i-file-insidie-e-buone-norme" class="nav-link" data-scroll-target="#denominare-i-file-insidie-e-buone-norme"><span class="header-section-number">9.2.1</span> Denominare i file: insidie e buone norme</a></li>
-  <li><a href="#sec-backslash" id="toc-sec-backslash" class="nav-link" data-scroll-target="#sec-backslash"><span class="header-section-number">9.2.2</span> Imparare ad amare il <em>backslash</em></a></li>
+  <li><a href="#percorsi" id="toc-percorsi" class="nav-link" data-scroll-target="#percorsi"><span class="header-section-number">9.2.1</span> Percorsi</a></li>
+  <li><a href="#directory-di-lavoro-e-percorsi-relativi" id="toc-directory-di-lavoro-e-percorsi-relativi" class="nav-link" data-scroll-target="#directory-di-lavoro-e-percorsi-relativi"><span class="header-section-number">9.2.2</span> Directory di lavoro e percorsi relativi</a></li>
+  <li><a href="#nominare-i-file-insidie-e-buone-norme" id="toc-nominare-i-file-insidie-e-buone-norme" class="nav-link" data-scroll-target="#nominare-i-file-insidie-e-buone-norme"><span class="header-section-number">9.2.3</span> Nominare i file: insidie e buone norme</a></li>
+  <li><a href="#sec-backslash" id="toc-sec-backslash" class="nav-link" data-scroll-target="#sec-backslash"><span class="header-section-number">9.2.4</span> Imparare ad amare il <em>backslash</em></a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/unipi-physics-labs/lab1-computing/edit/main/chapters/os.qmd" class="toc-action"><i class="bi bi-github"></i>Modifica questa pagina</a></li><li><a href="https://github.com/unipi-physics-labs/lab1-computing/issues/new" class="toc-action"><i class="bi empty"></i>Segnala un problema</a></li></ul></div></nav>
@@ -362,7 +370,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2 settembre 2026</p>
+      <p class="date">5 settembre 2026</p>
     </div>
   </div>
   
@@ -374,47 +382,132 @@ window.Quarto = {
 </header>
 
 
-<p>Prima di andare oltre nella descrizione di cosa è e come si scrive un programma è utile spendere qualche parola sul <em>sistema operativo</em> (o OS, per operating system) che per alcuni versi è il programma più importante di tutti—quello che gestisce tutte le risorse all’interno del computer in modo che gli utenti e le loro applicazioni possano utilizzarle.</p>
-<p>Tra le altre cose, il sistema operativo: (i) alloca le risorse della macchina decidendo quando una data applicazione deve avere accesso alla CPU ed alla memoria; (ii) fornisce un livello di astrazione alle risorse hardware ed alle periferiche; (iii) implementa i servizi di utilità generali che sono alla base del funzionamento del computer.</p>
-<p>La varietà di sistemi operativi presenti sul mercato è enorme. Con ogni probabilità avrete sentito parlare (o già utilizzate) Windows, Mac-OS e GNU-Linux, oltre ad Android, che è uno spin-off di quest’ultimo, ed iOS—questi ultimi sono destinati ai dispositivi mobili. In questa sezione cercheremo di illustrare brevemente alcuni degli aspetti generali dei sistemi operativi, mettendo in evidenza, ove necessario, le differenze tra quelli più usati.</p>
-<section id="la-shell" class="level2" data-number="9.1">
-<h2 data-number="9.1" class="anchored" data-anchor-id="la-shell"><span class="header-section-number">9.1</span> La shell</h2>
-<p>Il programma che in un computer espone all’utente i servizi forniti dal sistema operativo (e.g., gestione di file e processi, esecuzione di programmi, controllo e configurazione della macchina) prende generalmente il nome di shell* o, a seconda del contesto, terminale o prompt dei comandi. La shell è un interprete testuale da linea di comando deputata al processamento e all’esecuzione dei comandi inseriti dall’utente. In un mondo dominato da smartphone e tablet la shell pu`o apparire come una curiosità storica più adatta ad un corso di archeologia che altro, ma in realtà si tratta di una risorsa essenziale che risponde ad una necessità che, come Fisici, abbiamo spesso—quella di <em>automatizzare task ripetitivi</em>. è per questo che cominciamo il nostro breve percorso proprio da qui.</p>
-<p>Fino alla metà degli anni ’80 del 900 la shell ha costituito il meccanismo di gran lunga più comune per interagire con il computer, sia nei grandi sistemi in time-sharing (da cui il nome terminale) che nei personal computer che in quegli anni iniziavano a trovare il loro spazio sul mercato. Lo sviluppo di interfacce grafiche (Graphical User Interface, o GUI) sempre più sofisticate e di dispositivi hardware totalmente nuovi di interazione (mouse e touch screen) il nostro modo di interagire con il computer è cambiato totalmente negli ultimi <span class="math inline">\(30\)</span>anni. Eppure, ancora adesso, potete essere sicuri che, indipendente dal sistema operativo istallato, la vostra workstation (assumendo che esistano ancora) ed il vostro portatile hanno un qualche tipo di shell (e, anzi, molto probabilmente più di un tipo) disponibile e pronta all’uso. Persino sul vostro smartphone non è troppo complicato istallare un emulatore di shell—anche se, in questo caso, l’uso è più ludico che altro.</p>
-<p>Come primo esercizio di esplorazione di questo mondo complesso che è il calcolatore, aprite una shell e cercate di recuperare le informazioni di base del vostro sistema.</p>
-<pre class="{bash}"><code>lbaldini@nblbaldini:~$ uname -a
-Linux nblbaldini 6.19.14-108.fc42.x86_64 #1 SMP PREEMPT_DYNAMIC Thu May 21 18:06:59 UTC 2026 x86_64 GNU/Linux
-lbaldini@nblbaldini:~$</code></pre>
-<p>Ok, questo non è sicuramente la cosa più entusiasmante che si possa fare con la shell, ma una volta iniziato la strada è in discesa. La possibilità di combinare comandi semplici in task arbitrariamente complicati che la shell offre permette di fare cose che divengono immediatamente più complicate e tediose nell’ecosistema prevalentemente grafico in cui la maggior parte di noi è abituata ad operare. Supponiamo di voler rinominare una serie di file secondo un pattern preciso (ad esempio aggiungendo la data di creazione nel nome del file) e di volerli suddividere in cartelle sulla base della loro dimensione su disco: questo è il tipo di task che è estremamente facile da fare dalla shell e, potenzialmente, incredibilmente sconveniente con il mouse. Nel seguito non utilizzeremo molto il terminale—non perché non sia importante ma perché Python permette di fare tutto quello che potremmo fare con il terminale (e molto altro) per di più in modo <em>cross-platform</em> (nascondendo, cioè, dietro un ulteriore layer di astrazione molte delle differenze tra i diversi sistemi operativi).</p>
+<p>La prima cosa che viene immediatamente dopo l’hardware è il <em>sistema operativo</em> (o OS, per operating system), che per alcuni versi è il programma più importante di tutti—quello che gestisce tutte le risorse all’interno del computer in modo che gli utenti e le loro applicazioni possano utilizzarle.</p>
+<p>Tra le altre cose, il sistema operativo:</p>
+<ul>
+<li>alloca le risorse della macchina decidendo quando una data applicazione deve avere accesso alla CPU ed alla memoria;</li>
+<li>fornisce un livello di astrazione alle risorse hardware ed alle periferiche;</li>
+<li>implementa i servizi di utilità generali che sono alla base del funzionamento del computer.</li>
+</ul>
+<p>Esistono letteralmente dozzine di sistemi operativi—da quelli mainstream fino a quelli di nicchia che operano su sistemi embedded specializzati. Con ogni probabilità avrete sentito parlare (e forse utilizzate) Windows, Mac-OS e GNU-Linux; Android, che utilizza il kernel Linux, e iOS sono pure sistemi operativi, in questo caso dedicati ai dispositivi mobili.</p>
+<p>Questo sarà un capitolo molto breve, in cui elencheremo alcuni semplici fatti a proposito di due aspetti specifici: il terminale (o shell), che abbiamo già incontrato nel <a href="install.html" class="quarto-xref"><span>Capitolo 2</span></a>, ed il <em>filesystem</em>, che è l’infrastruttura alla base dell’archiviazione dei file.</p>
+<section id="il-terminale" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="il-terminale"><span class="header-section-number">9.1</span> Il terminale</h2>
+<p>Il programma che in un computer espone all’utente i servizi forniti dal sistema operativo (e.g., gestione di file e processi, esecuzione di programmi, controllo e configurazione della macchina) prende generalmente il nome di <em>shell</em> o, a seconda del contesto, terminale o prompt dei comandi. La shell è un interprete testuale da linea di comando deputata al processamento e all’esecuzione dei comandi inseriti dall’utente.</p>
+<p>In un mondo in cui smartphone e tablet hanno ormai preso il sopravvento, la shell può apparire come una curiosità storica più adatta ad un corso di archeologia che ad uno di computazione. Le interfacce grafiche, che un tempo erano percepite come un layer interattivo al di sopra del terminale, sono ormai essenzialmente l’unico modo in cui la maggior parte di noi interagisce con i computer; e l’introduzione dei touch screen, se da una parte ha permesso di implementare modalità di interazione nuove ed estremamente efficaci, dall’altra ci ha allontanato ancora di più dalla realizzazione di questo semplice fatto: <em>ogni volta che fate qualcosa su un computer, uno smartphone, o un tablet, questo qualcosa può essere espresso a basso livello come una serie di comandi</em>. E se non aveste un touch screen o un’interfaccia grafica, questi comandi li digitereste nel terminale.</p>
+<p>La domanda è allora: il terminale è ancora rilevante ai tempi degli smartphone? E la risposta, per noi, è sicuramente si, almeno per il momento. Ed il motivo è molto semplice: quando analizzate dati—e specialmente grandi quantità di dati—vi troverete spesso a fare operazioni <em>complesse e ripetitive</em>. Ora, se ci pensate un secondo, questa è una pessima combinazione di cose sia per il mouse che per il touch screen. Il terminale, invece, si presta naturalmente ad <em>automatizzare</em> i task.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Avviso
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In un mondo in cui i cambiamenti indotti a tutti i livelli dalla cosiddetta <em>intelligenza artificiale</em>, che procedono ad una velocità incommensurabile alle dinamiche umane, è difficile prevedere se la risposta sarà la stessa tra <span class="math inline">\(5\)</span> o <span class="math inline">\(10\)</span> anni. Per quel che conta, è difficile prevedere cosa di queste note sarà ancora rilevante tra <span class="math inline">\(5\)</span> o <span class="math inline">\(10\)</span> anni. Sarà mia cura rimuovere questa sezione quando l’AI prenderà il controllo del mondo e le persone non avranno più la necessità di utilizzare la tastiera.</p>
+</div>
+</div>
 </section>
 <section id="il-filesystem" class="level2" data-number="9.2">
 <h2 data-number="9.2" class="anchored" data-anchor-id="il-filesystem"><span class="header-section-number">9.2</span> Il filesystem</h2>
-<p>Nato come termine per indicare i sistemi di archiviazione di documenti cartacei, dopo l’avvento dei calcolatori elettronici la parola filesystem è stata estesa anche a questi ultimi. Il filesystem è una delle astrazioni fondamentali che il sistema operativo mette a disposizione dell’utente. (Provate per un attimo a immaginare come sarebbe la vita se, per leggere da/scrivere su disco una foto dovessimo fisicamente indirizzare ogni bit di memoria scrivendo il contenuto di ciascun pixel, e dovessimo oltretutto farlo tenendo esplicitamente in conto le differenze hardware tra i vari modelli di disco presenti sul mercato.)</p>
-<p>Cominciamo da un po’ di nomenclatura. Un <em>file</em> è l’unità fondamentale di archiviazione dei dati, identificato univocamente da un <em>percorso</em>, o <em>path</em>. Da un punto di vista strettamente funzionale il filesystem fornisce accesso ai file presenti su un dispositivo di archiviazione di massa. (Per fissare le idee in questa sezione faremo riferimento alla situazione tipica di un disco rigido <em>locale</em>, cioè fisicamente presente all’interno del computer, anche se il discorso sarebbe potenzialmente più generale.) La quasi totalità dei filesystem moderni supporta l’organizzazione di file all’interno di cartelle (anche note come directory, o folder) ed ha una natura <em>gerarchica</em>, nel senso che prevede la possibilità per ciascuna cartella di contenere altre cartelle. Oltre ai dati, il filesystem è tipicamente responsabile della gestione dei metadati ad essi associati, e.g., la dimensione su disco, le date di creazione e/o ultimo accesso, i permessi.</p>
-<section id="denominare-i-file-insidie-e-buone-norme" class="level3" data-number="9.2.1">
-<h3 data-number="9.2.1" class="anchored" data-anchor-id="denominare-i-file-insidie-e-buone-norme"><span class="header-section-number">9.2.1</span> Denominare i file: insidie e buone norme</h3>
-<p>Ai vecchi tempi di DOS la convenzione “8.3” (fino a <span class="math inline">\(8\)</span> caratteri per il nome del file, più un’estensione opzionale lunga al massimo <span class="math inline">\(3\)</span> caratteri, separata dal nome con un punto) era molto usata. Se da una parte questo aveva un senso in sistemi con memoria limitata (questo assicurava di poter contenere il nome in <span class="math inline">\(3\)</span> parole da <span class="math inline">\(32\)</span> bit), rendeva estremamente difficile assegnare nomi espressivi ai file ed evitare conflitti.</p>
-<p>La maggior parte sei sistemi moderni permette di usare un’ampia gamma di caratteri dalla tabella Unicode nei nomi dei file. Questo, va da sé, non implica che in generale sia una buona regola essere particolarmente spregiudicati. Lo spazio è un buon esempio di carattere che, essendo usato come separatore nei comandi sul terminale, sarebbe buona abitudine non utilizzare nei nomi dei file—magari sostituendolo con un underscore (<code>_</code>).</p>
+<p>Il <em>filesystem</em> è l’infrastruttura deputata all’organizzazione di file e cartelle, e costituisce una delle astrazioni fondamentali che il sistema operativo mette a disposizione dell’utente—provate per un attimo a immaginare come sarebbe la vita se, per leggere da/scrivere su disco una foto dovessimo fisicamente indirizzare ogni bit di memoria scrivendo il contenuto di ciascun pixel, e dovessimo oltretutto farlo tenendo esplicitamente in conto le specificità dell’hardware nel nostro calcolatore.</p>
+<p>Cominciamo, al solito, da un po’ di nomenclatura.</p>
+<p><em><strong>File</strong>: unità fondamentale di archiviazione dei dati.</em></p>
+<p><em><strong>Percorso</strong> o <strong>path</strong>: stringa che identifica univocamente un file all’interno della gerarchia del filesystem.</em></p>
+<p>Da un punto di vista strettamente funzionale il filesystem fornisce accesso ai file presenti su un dispositivo di archiviazione di massa. Oltre ai dati, il filesystem è tipicamente responsabile della gestione dei metadati ad essi associati, e.g., la dimensione su disco, le date di creazione e/o ultimo accesso, i permessi.</p>
+<section id="percorsi" class="level3" data-number="9.2.1">
+<h3 data-number="9.2.1" class="anchored" data-anchor-id="percorsi"><span class="header-section-number">9.2.1</span> Percorsi</h3>
+<p>La quasi totalità dei filesystem moderni supporta l’organizzazione di file all’interno di cartelle (anche note come directory, o folder) ed ha una natura <em>gerarchica</em>, nel senso che prevede la possibilità per ciascuna cartella di contenere altre cartelle. Da un punto di vista logico la posizione di un file può essere vista come una foglia in un albero, in cui le cartelle rappresentano rami via via più piccoli a partire da una <em>radice</em>. Il percorso, allora non è altro che la stringa che, a partire da questa radice, identifica tutte le cartelle intermedie fino a quella che contiene il file.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Curiosamente, questo è vero anche per il vostro smartphone ed il vostro tablet, anche se l’ecosistema tipico di un sistema mobile sembra fare di tutto per nasconderlo: le interfacce utente dei sistemi moderni sono così <em>lontane</em> dal filesystem, che la semplice domanda “dove è questo file?” è diventata sorprendentemente complicata per i più. Cosa vuol dire “dove”? So scorrere le foto con il dito nella galleria, e questa è l’unica cosa che importa, no?</p>
+</div>
+</div>
+<p>Per esempio, sotto GNU/Linux, la stringa</p>
+<pre class="{bash}"><code>/home/lbaldini/Documents/presentazione.pdf</code></pre>
+<p>indica un possibile percorso ad un file pdf in cui</p>
+<ul>
+<li><code>/</code> è la radice, o <em>root</em>, del filesystem;</li>
+<li><code>presentazione.pdf</code> è il nome del file (e, tecnicamente, <code>pdf</code> è l’estensione);</li>
+<li>tutti gli elementi intermedi sono cartelle, contenuta l’una nell’altra da sinistra a destra: la radice contiene una cartella chiamata <code>home</code>, la quale contiene una cartella chiamata <code>lbaldini</code>, e così via.</li>
+</ul>
+<p>Il carattere <code>/</code> riveste un ruolo speciale sotto GNU/Linux e Mac-OS, perché è utilizzato come <em>separatore</em>. E siccome il mondo sarebbe troppo semplice se tutte usassimo le stesse convenzioni, sotto Windows il carattere che riveste il ruolo di separatore nei percorsi è il <em>backslash</em> <code>\</code>. Ma facciamo ordine.</p>
+<p><em><strong>Separatore</strong>: carattere speciale utilizzato dal sistema operativo per separare i vari elementi del percorso ad un file o una cartella. GNU/Linux e Mac-OS usano il carattere <code>/</code> (slash) come separatore, Windows usa il carattere <code>\</code> (backslash).</em></p>
+<p><em><strong>Estensione</strong>: combinazione di caratteri (tipicamente tre o quattro) che indica il tipo di file, ed è separata dal nome del file vero e proprio da un carattere <code>.</code> (punto)</em>.</p>
+<p>Potremmo spendere letteralmente giorni a parlare di filesystem in astratto e delle differenze tra i particolari filesystem usati dai vari sistemi operativi—ad esempio, mentre in GNU/Linux il filesystem ha una sola radice, Windows ha il concetto di <em>device</em>, o <em>dispositivi</em> multipli, che tipicamente sono chiamati con una lettera, e.g., <code>C:\</code>, <code>D:\</code> e così via.</p>
+<p>Ma la cosa che ci interessa veramente è molto più prosaica, ovvero: dove trovo <em>il percorso</em> al file di dati che voglio analizzare, ad esempio per aprire il file stesso nel mio programma Python? Beh: se siete pratiche con il terminale è facile, perché la shell vi permette di <em>navigare</em> il filesystem. Se invece siete più abituate al mouse che alla tastiera, aprite il <em>file browser</em> del vostro sistema, localizzate il file, e tra le varie cose che vi offre il tasto destro dovrebbe essercene una che si chiama “Proprietà” o “Properties” che, tra le varie cose, dovrebbe fornire la stringa del percorso da copiare ed incollare.</p>
 </section>
-<section id="sec-backslash" class="level3" data-number="9.2.2">
-<h3 data-number="9.2.2" class="anchored" data-anchor-id="sec-backslash"><span class="header-section-number">9.2.2</span> Imparare ad amare il <em>backslash</em></h3>
+<section id="directory-di-lavoro-e-percorsi-relativi" class="level3" data-number="9.2.2">
+<h3 data-number="9.2.2" class="anchored" data-anchor-id="directory-di-lavoro-e-percorsi-relativi"><span class="header-section-number">9.2.2</span> Directory di lavoro e percorsi relativi</h3>
+<p>Il percorso che abbiamo visto nella sezione precedente</p>
+<pre class="{bash}"><code>/home/lbaldini/Documents/presentazione.pdf</code></pre>
+<p>si chiama percorso <em>assoluto</em> perché parte dalla radice del filesystem.</p>
+<p>Ora: una cosa interessante in cui non abbiamo ancora avuto l’occasione di imbatterci è che ogni volta che digitiamo un comando nel terminale, e ogni volta che eseguiamo un programma in Python, implicitamente questo non avviene nel vuoto, ma da un punto preciso del filesystem. Questo punto si chiama <em>present working directory</em> o pwd per brevità. Potete usare il comando <code>pwd</code> nel terminale per vedere dove siete: Il percorso che abbiamo visto nella sezione precedente</p>
+<pre class="{bash}"><code>$ pwd
+/home/lbaldini/teaching/unipi-physics-lab/lab1-computing</code></pre>
+<p>(Per quel che conta, potete anche cambiare la pwd, ma la cosa, in questo momento, è irrilevante.)</p>
+<p>Perché diciamo questo? Perché oltre ai percorsi assoluti esistono anche i percorsi <em>relativi</em>, ovvero quelli che sono riferiti alla present working directory anziché alla radice del filesystem. Così, se la pwd è <code>/home/lbaldini/</code>, i due percorsi</p>
+<pre class="{bash}"><code>/home/lbaldini/Documents/presentazione.pdf
+Documents/presentazione.pdf</code></pre>
+<p>sono equivalenti—il primo è assoluto, il secondo è relativo.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Nota
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Se siete incerte sul da farsi la scelta di minima azione è usare sempre percorsi assoluti: dovrete digitare più caratteri, ma il significato non dipende da dove siete nel filesystem, per cui avete effettivamente eliminato un elemento di potenziale confusione.</p>
+</div>
+</div>
+</section>
+<section id="nominare-i-file-insidie-e-buone-norme" class="level3" data-number="9.2.3">
+<h3 data-number="9.2.3" class="anchored" data-anchor-id="nominare-i-file-insidie-e-buone-norme"><span class="header-section-number">9.2.3</span> Nominare i file: insidie e buone norme</h3>
+<p>Ci sono regole e buone pratiche in termini di come nominare file e cartelle, a parte le ovvietà come cercare di dare nomi espressivi e che riflettano l’intento del contenuto?</p>
+<p>Mentre qualche decennio fa i sistemi operativi tendevano a dare poca flessibilità in termini di numero e tipo di caratteri—DOS, ad esempio utilizzava la convenzione <span class="math inline">\(8.3\)</span>, ovvero <span class="math inline">\(8\)</span> caratteri per il nome propriamente detto e <span class="math inline">\(3\)</span> per l’estensione—sui sistemi moderni siete libere di fare più o meno quello che volete. Questo, va da sé, non vuol dire che questa libertà dobbiate usarla tutta e in tutte le occasioni 🙂</p>
+<p>Una cosa di cui vi accorgerete immediatamente se cominciate ad utilizzare il terminale, ad esempio, è che gli spazi nei nomi dei file sono estremamente fastidiosi, perché quando digitiamo comandi siamo costretti ad aggiungere caratteri aggiuntivi per raggruppare i vari pezzi. Ci sono tanti modi per emulare la funzione logica di separazione per cui usiamo tipicamente gli spazi, i più usati tra i quali sono la convenzione <em>snake case</em></p>
+<pre class="{bash}"><code>relazione_densità.pdf</code></pre>
+<p>o quella <em>camel case</em>, nelle sue due varianti</p>
+<pre class="{bash}"><code>relazioneDensità.pdf
+RelazioneDensità.pdf</code></pre>
+<p>Usate pure una a caso tra le due—entrambe sono meglio di</p>
+<pre class="{bash}"><code>relazione densità.pdf</code></pre>
+</section>
+<section id="sec-backslash" class="level3" data-number="9.2.4">
+<h3 data-number="9.2.4" class="anchored" data-anchor-id="sec-backslash"><span class="header-section-number">9.2.4</span> Imparare ad amare il <em>backslash</em></h3>
 <!-- https://lerner.co.il/2018/07/24/avoiding-windows-backslash-problems-with-pythons-raw-strings/ -->
-<p>Se state cercando di leggere un file sotto Windows (diciamo, per fissare le idee <code>c:\abc\def\ghi.txt</code>) e Python si ostina a dire che il file non esiste, nonostante voi lo vediate con i vostri occhi, non preoccupatevi—non siete sole nella vostra confusione.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">"c:</span><span class="ch">\a</span><span class="st">bc</span><span class="er">\</span><span class="st">def</span><span class="er">\</span><span class="st">ghi.txt"</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_path)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="0cd6103c" class="cell" data-execution_count="1">
+<p>Supponiamo di voler analizzare dei dati sotto Windows, e supponiamo che il percorso assoluto al file che contiene questi dati sia</p>
+<pre class="{bash}"><code>c:\abc\def\ghi.txt</code></pre>
+<p>(Non vi preoccupate della “c” minuscola, tra le molte fantastiche cose che offre Windows c’è anche il fatto che è case insensitive, ovvero non distingue maiuscole e minuscole.) Vi posso garantire che vi troverete prima o poi nella situazione in cui vorreste letteralmente sbattere la testa nel muro perché Python si ostina a dire che il file non esiste, nonostante voi <em>sappiate</em> in cuor vostro che il percorso è giusto—lo avete copiato dalla finestrella delle proprietà. (Per la precisione: leggere attentamente questa sezione è un modo possibile per non trovarsi in questa situazione.) Ebbene, non preoccupatevi: non siete sole nella vostra confusione.</p>
+<p>Ma facciamo un passo indietro e diamo un’occhiata a questo snippet:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">"c:</span><span class="ch">\a</span><span class="st">bc</span><span class="er">\</span><span class="st">def</span><span class="er">\</span><span class="st">ghi.txt"</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_path)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<div id="fcbded45" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>c:bc\def\ghi.txt</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:1: SyntaxWarning: invalid escape sequence '\d'
 &lt;&gt;:1: SyntaxWarning: invalid escape sequence '\d'
-/tmp/ipykernel_3003/4099420625.py:1: SyntaxWarning: invalid escape sequence '\d'
+/tmp/ipykernel_3163/4099420625.py:1: SyntaxWarning: invalid escape sequence '\d'
   file_path = "c:\abc\def\ghi.txt"</code></pre>
 </div>
 </div>
-<p>Mhh… qualcosa chiaramente non va: nella stringa di testo stampata abbiamo una lettara <code>a</code> ed un <em>backslash</em> (lo strano carattere <code>\</code>) mancanti all’appello dopo i due punti.</p>
-<p>La questione è che il backslash ha un significato particolare in molti linguaggi di programmazione, incluso Python: conferisce un significato differente dal solito al carattere (o alla serie di caratteri) che lo segue, in quello che tecnicamente si chiama una <em>sequenza di escape</em>, e che tipicamente si usa per rappresentare i caratteri di controllo della tabella ASCII (codici <span class="math inline">\(0\)</span>–<span class="math inline">\(31\)</span>). L’esempio forse più noto è quello dell’andata a capo, o <em>line feed</em>, che corrisponde al codice di controllo <span class="math inline">\(10\)</span> della tabella ASCII, e che nella quasi totalità dei linguaggi di programmazione si rappresenta come <code>\n</code>. Python, come il C, riconosce, tra le altre, le queste sequenze di escape:</p>
+<p>Oh ho. Ci sono esattamente un <em>backslash</em> ed una lettera <code>a</code> che mancano all’appello subito dopo i due punti!</p>
+<p>La questione è che il backslash ha un significato particolare in molti linguaggi di programmazione, incluso Python: conferisce un significato differente dal solito al carattere (o alla serie di caratteri) che lo segue, in quello che tecnicamente si chiama una <em>sequenza di escape</em>, e che tipicamente si usa per rappresentare i caratteri di controllo della tabella ASCII (codici <span class="math inline">\(0\)</span>–<span class="math inline">\(31\)</span>). L’esempio forse più noto è quello dell’andata a capo, o <em>line feed</em>, che corrisponde al code point <span class="math inline">\(10\)</span> della tabella ASCII, e che nella quasi totalità dei linguaggi di programmazione si rappresenta come <code>\n</code>. Python, come il C, riconosce, tra le altre, le queste sequenze di escape:</p>
 <div id="tbl-sequenze-escape" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-sequenze-escape-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -486,58 +579,19 @@ Tabella&nbsp;9.1: Sequenze di escape riconosciute da Python.
 </figure>
 </div>
 <p>Cominciamo capire cosa sta succedendo. Nel frammento sopra i due caratteri <code>\a</code> sono interpretati (correttamente) come la sequenza di escape corrispondente al codice di controllo <span class="math inline">\(7\)</span> nella tabella ASCII, vale a dire <code>BEL</code>, ovverosia la campanella del terminale—se eseguite il frammento interattivamente nel prompt di Python e non avete disabilitato la campanella del terminale, dovreste sentire un suono!</p>
-<p>Tornando al problema originale del percorso al nostro file di dati, l’altro aspetto rilevante della questione è la scelta degli sviluppatori della versione 2.0 del DOS di scegliere il backslash come separatore delle directory nel filesystem, scelta che si è propagata a Windows ed è arrivata fino ai nostri giorni.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>I sistemi Unix e Unix-like, incluso GNU-Linux e Mac-OS, utilizzano uno <code>/</code> (slash) come carattere per la separazione delle directory nel filesystem, e questo problema, molto semplicemente, non si pone.</p>
-</div>
-</div>
-<p>Solo che in una stringa di Python (e, per quel che conta, lo stesso vale per la maggior parte dei linguaggi di programmazione e dei terminali) il backslash ha un significato speciale, e non è trattato come tutti gli altri caratteri. Allora la domanda è: come faccio a scrivere un backslash in una stringa?</p>
-<p>Una prima risposta corretta ce la fornisce la prima riga della <a href="#tbl-sequenze-escape" class="quarto-xref">Tabella&nbsp;<span>9.1</span></a>: possiamo usare un backslash per fare l’escape di se stesso, il che vuol dire che la sequenza di escape <code>\\</code> si traduce in un <code>\</code> semplice. Questo funziona come una si aspetta nella maggior parte delle situazioni.</p>
-<p>In alternativa, Python fornisce la possibilità di aggiungere una lettera <code>r</code> o <code>R</code> prima della virgoletta iniziale della stringa: così facendo si crea quella che si chiama una stringa grezza (<em>raw string</em>), in cui il backslash è trattato alla pari di un qualsiasi altro carattere.</p>
-<div id="83151c47" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">"c:</span><span class="ch">\\</span><span class="st">abc</span><span class="ch">\\</span><span class="st">def</span><span class="ch">\\</span><span class="st">ghi.txt"</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_path)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="vs">r"c:</span><span class="ch">\a</span><span class="vs">bc</span><span class="dv">\d</span><span class="vs">ef</span><span class="er">\</span><span class="vs">ghi</span><span class="dv">.</span><span class="vs">txt"</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_path)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Tornando al problema originale forse la scelta della Microsoft di utilizzare il backslash come separatore delle directory non è stata proprio delle più felici, che dite? Ma a parte questo—inutile cercare di dare colpe a distanza di più di quarant’anni—se all’interno di una stringa un backslash fa qualcosa di magico con i caratteri che seguono, come faccio a scrivere un backslash all’interno di una stringa?</p>
+<p>Una possibilità ce la fornisce la prima riga della <a href="#tbl-sequenze-escape" class="quarto-xref">Tabella&nbsp;<span>9.1</span></a>: possiamo usare un backslash per fare l’escape di se stesso, il che vuol dire che la sequenza di escape <code>\\</code> si traduce in un <code>\</code> semplice. Questo funziona come una si aspetta nella maggior parte delle situazioni. In alternativa, Python fornisce la possibilità di aggiungere una lettera <code>r</code> o <code>R</code> prima della virgoletta iniziale della stringa: così facendo si crea quella che si chiama una stringa grezza (<em>raw string</em>), in cui il backslash è trattato alla pari di un qualsiasi altro carattere.</p>
+<div id="c914c912" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">"c:</span><span class="ch">\\</span><span class="st">abc</span><span class="ch">\\</span><span class="st">def</span><span class="ch">\\</span><span class="st">ghi.txt"</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_path)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="vs">r"c:</span><span class="ch">\a</span><span class="vs">bc</span><span class="dv">\d</span><span class="vs">ef</span><span class="er">\</span><span class="vs">ghi</span><span class="dv">.</span><span class="vs">txt"</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_path)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>c:\abc\def\ghi.txt
 c:\abc\def\ghi.txt</code></pre>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Nota
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>C’è un ultimo, piccolo colpo di scena nella storia, ovvero il fatto che, come vederemo nel <a href="latex.html" class="quarto-xref"><span>Appendice A</span></a>, il backslash è utilizzato in LaTeX per identificare i comandi all’interno di un documento. Un carattere per tutte le stagioni…</p>
-</div>
-</div>
-<!--
-
-### Le variabili d'ambiente
-
-
-\subsection{Processi e thread}
-
-Necessario oppure no?
-
-
-\subsection{File di testo ed editor di testo}
--->
+<p>E se pensate che il divertimento con il backslash finisca qui, aspettate di leggere l’<a href="latex.html" class="quarto-xref"><span>Appendice A</span></a>!</p>
 
 
 </section>
@@ -951,8 +1005,8 @@ Necessario oppure no?
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../chapters/io.html" class="pagination-link" aria-label="Input/output">
-        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Input/output</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../chapters/io.html" class="pagination-link" aria-label="Input e output">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Input e output</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
