@@ -370,7 +370,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">5 settembre 2026</p>
+      <p class="date">7 settembre 2026</p>
     </div>
   </div>
   
@@ -495,14 +495,14 @@ RelazioneDensità.pdf</code></pre>
 <p>Ma facciamo un passo indietro e diamo un’occhiata a questo snippet:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">"c:</span><span class="ch">\a</span><span class="st">bc</span><span class="er">\</span><span class="st">def</span><span class="er">\</span><span class="st">ghi.txt"</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_path)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="fcbded45" class="cell" data-execution_count="1">
+<div id="faddbdc2" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>c:bc\def\ghi.txt</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:1: SyntaxWarning: invalid escape sequence '\d'
 &lt;&gt;:1: SyntaxWarning: invalid escape sequence '\d'
-/tmp/ipykernel_3163/4099420625.py:1: SyntaxWarning: invalid escape sequence '\d'
+/tmp/ipykernel_3009/4099420625.py:1: SyntaxWarning: invalid escape sequence '\d'
   file_path = "c:\abc\def\ghi.txt"</code></pre>
 </div>
 </div>
@@ -581,7 +581,7 @@ Tabella&nbsp;9.1: Sequenze di escape riconosciute da Python.
 <p>Cominciamo capire cosa sta succedendo. Nel frammento sopra i due caratteri <code>\a</code> sono interpretati (correttamente) come la sequenza di escape corrispondente al codice di controllo <span class="math inline">\(7\)</span> nella tabella ASCII, vale a dire <code>BEL</code>, ovverosia la campanella del terminale—se eseguite il frammento interattivamente nel prompt di Python e non avete disabilitato la campanella del terminale, dovreste sentire un suono!</p>
 <p>Tornando al problema originale forse la scelta della Microsoft di utilizzare il backslash come separatore delle directory non è stata proprio delle più felici, che dite? Ma a parte questo—inutile cercare di dare colpe a distanza di più di quarant’anni—se all’interno di una stringa un backslash fa qualcosa di magico con i caratteri che seguono, come faccio a scrivere un backslash all’interno di una stringa?</p>
 <p>Una possibilità ce la fornisce la prima riga della <a href="#tbl-sequenze-escape" class="quarto-xref">Tabella&nbsp;<span>9.1</span></a>: possiamo usare un backslash per fare l’escape di se stesso, il che vuol dire che la sequenza di escape <code>\\</code> si traduce in un <code>\</code> semplice. Questo funziona come una si aspetta nella maggior parte delle situazioni. In alternativa, Python fornisce la possibilità di aggiungere una lettera <code>r</code> o <code>R</code> prima della virgoletta iniziale della stringa: così facendo si crea quella che si chiama una stringa grezza (<em>raw string</em>), in cui il backslash è trattato alla pari di un qualsiasi altro carattere.</p>
-<div id="c914c912" class="cell" data-execution_count="2">
+<div id="c6f1576e" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">"c:</span><span class="ch">\\</span><span class="st">abc</span><span class="ch">\\</span><span class="st">def</span><span class="ch">\\</span><span class="st">ghi.txt"</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_path)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="vs">r"c:</span><span class="ch">\a</span><span class="vs">bc</span><span class="dv">\d</span><span class="vs">ef</span><span class="er">\</span><span class="vs">ghi</span><span class="dv">.</span><span class="vs">txt"</span></span>
