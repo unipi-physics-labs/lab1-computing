@@ -1,5 +1,9 @@
 # Cronologia delle versioni {#sec-history}
 
+* Aggiunte istruzioni di installazione per Mac-OS
+  ([PR 20](https://github.com/unipi-physics-labs/lab1-computing/pull/20))
+
+
 ### Versione 1.0.0 (2026-09-05) {.unnumbered}
 
 * Capitolo sugli algoritmi completamente rivisto
