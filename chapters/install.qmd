@@ -73,13 +73,7 @@ Python aggiuntiva, ad esempio utilizzando [pyenv](https://github.com/pyenv/pyenv
 
 ### Mac-OS
 
-Come nel caso di GNU/Linux, se usate Mac-OS è garantito che abbiate Python installato.
-Valgono le stesse considerazioni sulla versione.
-
-::: {.callout-warning title="TODO"}
-Dobbiamo aggiungere qualche breve nota sull'installazione su Mac-OS?
-:::
-
+Se usate Mac-OS, molto probabilmente dovrete installare Python. Potete scaricare l'installer dalla pagina web dei [downloads/macos](https://www.python.org/downloads/macos/) ed eseguirlo. Conviene ovviamente scaricare la "Stable Release" più recente.
 
 ### Windows
 
