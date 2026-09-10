@@ -1,5 +1,9 @@
 # Cronologia delle versioni {#sec-history}
 
+* Corretti alcuni typo
+  ([PR 22](https://github.com/unipi-physics-labs/lab1-computing/pull/22))
+
+
 ### Versione 1.0.1 (2026-09-07) {.unnumbered}
 
 * Aggiunte istruzioni di installazione per Mac-OS
