@@ -1,6 +1,6 @@
 # Cronologia delle versioni {#sec-history}
 
-* Corretti alcuni typo
+* Corretti alcuni typo ed aggiunti i ringraziamenti in appendice
   ([PR 22](https://github.com/unipi-physics-labs/lab1-computing/pull/22))
 
 
