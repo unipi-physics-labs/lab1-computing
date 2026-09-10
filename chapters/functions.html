@@ -327,8 +327,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/acknowledgments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Ringraziamenti</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
   </div>
 </li>
       </ul>
@@ -372,7 +378,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">7 settembre 2026</p>
+      <p class="date">10 settembre 2026</p>
     </div>
   </div>
   
@@ -409,7 +415,7 @@ Nota
 <p>Lo studierete in tutto il dettaglio nella parte di statistica del corso di Laboratorio, ma fare un fit ad una serie di dati significa trovare la funzione che più si adatta ai dati, all’interno di una famiglia di funzioni dipendente da uno o più parametri (il <em>modello</em>). Più precisamente: si tratta di trovare i valori dei parametri del modello (e le incertezze associate) per cui l’accordo con i dati è, in un qualche senso da precisare, massimo. Nel caso del fit con una retta cercheremo il coefficiente angolare e l’intercetta della retta nel piano che meglio descrive la nostra serie di punti.</p>
 </div>
 </div>
-<div id="3871ffc4" class="cell" data-execution_count="1">
+<div id="df53cbde" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-label="2"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> curve_fit</span>
@@ -478,11 +484,11 @@ Avviso
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>L’indentazione (tipicamente corrispondente a <span class="math inline">\(4\)</span> spazi) non è casuale: ha la funzione strutturale di definire il <em>corpo</em> della funzione. Python è un linguaggio peculiare in questo senso, e nel seguiro vedremo un certo numero di altri contesti in cui l’indentazione è importante.</p>
+<p>L’indentazione (tipicamente corrispondente a <span class="math inline">\(4\)</span> spazi) non è casuale: ha la funzione strutturale di definire il <em>corpo</em> della funzione. Python è un linguaggio peculiare in questo senso, e nel seguito vedremo un certo numero di altri contesti in cui l’indentazione è importante.</p>
 </div>
 </div>
 <p>La funzione, come si vede, restituisce il valore che la retta assume sull’asse delle ordinate per un particolare insieme di valori delle ascisse, fissati coefficiente angolare ed intercetta.</p>
-<div id="417377f5" class="cell" data-execution_count="2">
+<div id="a828dabd" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> line(x, m, q):</span>
@@ -504,7 +510,7 @@ f(x; m, q) = mx + q
 <p>In effetti, se ci pensiamo bene, non è poi così strano che questo nuovo oggetto che stiamo gradualmente introducendo si chiami così. Come una funzione matematica, una funzione di Python può accettare argomenti; e come una funzione matematica, una funzione di Python può restituire un (o più di un) valore. Eppure le due cose sono fondamentalmente diverse.</p>
 <p>Una funzione matematica, strettamente parlando, <em>calcola un valore</em>. Una funzione in un qualsiasi linguaggio di programmazione fa una cosa più generale, ovvero <em>esegue un compito specifico</em>. A volte questo compito è calcolare un valore, a volte no: una funzione potrebbe, ad esempio, scrivere dei dati in un file su disco; aprire una finestra grafica sullo schermo; configurare un router—non c’è limite alla fantasia.</p>
 <p>Non è nemmeno detto che una funzione in questo nuovo senso debba per forza restituire un valore—ci sono funzioni legittime che non restituiscono niente!</p>
-<div id="09a95cd1" class="cell" data-execution_count="3">
+<div id="883f42b9" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -524,7 +530,7 @@ Nota
 </div>
 <div class="callout-body-container callout-body">
 <p>Questo non è del tutto corretto, almeno in Python: una funzione restituisce sempre qualcosa, e se non mettiamo un’istruzione <code>return</code> nel corpo della funzione, questo qualcosa è <code>None</code>.</p>
-<div id="e6a7c728" class="cell" data-execution_count="4">
+<div id="013dfd06" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -579,7 +585,7 @@ None</code></pre>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>ha una segnatura semplicissima: si chiama <code>greet</code>, ed accetta un solo parametro, che si chiama <code>name</code>. Il modo più semplice per chiamare una funzione è fornire i valori di tutti gli argomenti, <em>nell’ordine in cui sono definiti nella segnatura</em>, ma Python permette anche di fare una cosa diversa: chiamare gli argomenti per nome. Così, tornando alla nostra semplice funzione di esempio, abbiamo due possibilità distinte, ma equivalenti:</p>
-<div id="c0946ca7" class="cell" data-execution_count="5">
+<div id="5aee8e29" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name):</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -592,7 +598,7 @@ Hello Giulia!</code></pre>
 </div>
 <p>In questo caso non ha molto senso usare la seconda forma, che è più verbosa. Anche se, ad un’occhiata più approfondita, specificare il nome dell’argomento nella chiamata ci dà informazione di contesto utile: la stringa <code>"Giulia"</code>, che passiamo alla funzione, rappresenta il <em>nome</em> della persona che vogliamo salutare. Potete immaginare che nei casi più complessi, in cui magari abbiamo una dozzina di argomenti, chiamare le cose per nome aiuti a non dover ricordare a memoria il loro ordine nella segnatura. Ma ci arriveremo per gradi.</p>
 <p>Quando definiamo una funzione in Python, possiamo assegnare ad ogni singolo argomento un <em>valore di default</em> nella forma <code>nome_argomento=valore_di_default</code> direttamente nella definizione della funzione. Quando un argomento ha un valore di default, possiamo omettere di specificarlo nelle chiamate alle funzioni stesse.</p>
-<div id="5512ec49" class="cell" data-execution_count="6">
+<div id="33ae0878" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greet(name<span class="op">=</span><span class="st">"Giulia"</span>):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Hello </span><span class="sc">{</span>name<span class="sc">}</span><span class="ss">!"</span>)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -696,11 +702,11 @@ Consiglio
 <li>le incertezze <code>yerr</code> su <code>y</code> (nota bene: non su <code>x</code>!);</li>
 <li>le incertezze <code>xerr</code> su <code>x</code>.</li>
 </ul>
-<p>Vedete qualcosa di strano? Se passiamo <code>x</code> prima di <code>y</code>, non avrebbe senso passare <code>xerr</code> prima di <code>yerr</code>? Da un punto di vista di mera simmetria può darsi, ma da un punto di vista pratico la segnatura della funzione è assolutamnete ragionevole, perché <em>mentre è comune avere un grafico di dispersione con incertezze sulla <span class="math inline">\(y\)</span> ma non sulla <span class="math inline">\(x\)</span>, il contrario non avviene praticamente mai</em>! Allora il modo in cui gli sviluppatori hanno definito la funzione permette di coprire tutti i casi d’uso più frequenti <em>senza mai chiamare gli argomenti per nome</em>:</p>
+<p>Vedete qualcosa di strano? Se passiamo <code>x</code> prima di <code>y</code>, non avrebbe senso passare <code>xerr</code> prima di <code>yerr</code>? Da un punto di vista di mera simmetria può darsi, ma da un punto di vista pratico la segnatura della funzione è assolutamente ragionevole, perché <em>mentre è comune avere un grafico di dispersione con incertezze sulla <span class="math inline">\(y\)</span> ma non sulla <span class="math inline">\(x\)</span>, il contrario non avviene praticamente mai</em>! Allora il modo in cui gli sviluppatori hanno definito la funzione permette di coprire tutti i casi d’uso più frequenti <em>senza mai chiamare gli argomenti per nome</em>:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>errorbar(x, y) <span class="co"># Scatter plot senza incertezze</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>errorbar(x, y, dy) <span class="co"># Incertezze sulla y ma non sulla x</span></span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>errorbar(x, y, dy, dx) <span class="co"># Incertezze sia sulla x che sulla y</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Certo: se fossimo proprio adamantine nel voler fare uno scatter plot con incertezze sulla <span class="math inline">\(x\)</span> ma non sulla <span class="math inline">\(y\)</span>, la sintassi sarebbe leggermente più involuta, perché siamo limitati alle due possibilità</p>
+<p>Certo: se fossimo proprio adamantine nel voler fare uno scatter plot con incertezze sulla <span class="math inline">\(x\)</span> ma non sulla <span class="math inline">\(y\)</span>, la sintassi sarebbe leggermente più involuta, perché siamo limitate alle due possibilità</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>errorbar(x, y, <span class="va">None</span>, dx)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>errorbar(x, y, xerr<span class="op">=</span>dx)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>ma la cosa è irrilevante perché questo, vi assicuro, non succede quasi mai.</p>

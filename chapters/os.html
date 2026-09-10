@@ -327,8 +327,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/acknowledgments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Ringraziamenti</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
   </div>
 </li>
       </ul>
@@ -370,7 +376,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">7 settembre 2026</p>
+      <p class="date">10 settembre 2026</p>
     </div>
   </div>
   
@@ -395,7 +401,7 @@ window.Quarto = {
 <h2 data-number="9.1" class="anchored" data-anchor-id="il-terminale"><span class="header-section-number">9.1</span> Il terminale</h2>
 <p>Il programma che in un computer espone all’utente i servizi forniti dal sistema operativo (e.g., gestione di file e processi, esecuzione di programmi, controllo e configurazione della macchina) prende generalmente il nome di <em>shell</em> o, a seconda del contesto, terminale o prompt dei comandi. La shell è un interprete testuale da linea di comando deputata al processamento e all’esecuzione dei comandi inseriti dall’utente.</p>
 <p>In un mondo in cui smartphone e tablet hanno ormai preso il sopravvento, la shell può apparire come una curiosità storica più adatta ad un corso di archeologia che ad uno di computazione. Le interfacce grafiche, che un tempo erano percepite come un layer interattivo al di sopra del terminale, sono ormai essenzialmente l’unico modo in cui la maggior parte di noi interagisce con i computer; e l’introduzione dei touch screen, se da una parte ha permesso di implementare modalità di interazione nuove ed estremamente efficaci, dall’altra ci ha allontanato ancora di più dalla realizzazione di questo semplice fatto: <em>ogni volta che fate qualcosa su un computer, uno smartphone, o un tablet, questo qualcosa può essere espresso a basso livello come una serie di comandi</em>. E se non aveste un touch screen o un’interfaccia grafica, questi comandi li digitereste nel terminale.</p>
-<p>La domanda è allora: il terminale è ancora rilevante ai tempi degli smartphone? E la risposta, per noi, è sicuramente si, almeno per il momento. Ed il motivo è molto semplice: quando analizzate dati—e specialmente grandi quantità di dati—vi troverete spesso a fare operazioni <em>complesse e ripetitive</em>. Ora, se ci pensate un secondo, questa è una pessima combinazione di cose sia per il mouse che per il touch screen. Il terminale, invece, si presta naturalmente ad <em>automatizzare</em> i task.</p>
+<p>La domanda è allora: il terminale è ancora rilevante ai tempi degli smartphone? E la risposta, per noi, è sicuramente sì, almeno per il momento. Ed il motivo è molto semplice: quando analizzate dati—e specialmente grandi quantità di dati—vi troverete spesso a fare operazioni <em>complesse e ripetitive</em>. Ora, se ci pensate un secondo, questa è una pessima combinazione di cose sia per il mouse che per il touch screen. Il terminale, invece, si presta naturalmente ad <em>automatizzare</em> i task.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -495,14 +501,14 @@ RelazioneDensità.pdf</code></pre>
 <p>Ma facciamo un passo indietro e diamo un’occhiata a questo snippet:</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">"c:</span><span class="ch">\a</span><span class="st">bc</span><span class="er">\</span><span class="st">def</span><span class="er">\</span><span class="st">ghi.txt"</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_path)</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="faddbdc2" class="cell" data-execution_count="1">
+<div id="1ede4786" class="cell" data-execution_count="1">
 <div class="cell-output cell-output-stdout">
 <pre><code>c:bc\def\ghi.txt</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
 <pre><code>&lt;&gt;:1: SyntaxWarning: invalid escape sequence '\d'
 &lt;&gt;:1: SyntaxWarning: invalid escape sequence '\d'
-/tmp/ipykernel_3009/4099420625.py:1: SyntaxWarning: invalid escape sequence '\d'
+/tmp/ipykernel_3003/4099420625.py:1: SyntaxWarning: invalid escape sequence '\d'
   file_path = "c:\abc\def\ghi.txt"</code></pre>
 </div>
 </div>
@@ -581,7 +587,7 @@ Tabella&nbsp;9.1: Sequenze di escape riconosciute da Python.
 <p>Cominciamo capire cosa sta succedendo. Nel frammento sopra i due caratteri <code>\a</code> sono interpretati (correttamente) come la sequenza di escape corrispondente al codice di controllo <span class="math inline">\(7\)</span> nella tabella ASCII, vale a dire <code>BEL</code>, ovverosia la campanella del terminale—se eseguite il frammento interattivamente nel prompt di Python e non avete disabilitato la campanella del terminale, dovreste sentire un suono!</p>
 <p>Tornando al problema originale forse la scelta della Microsoft di utilizzare il backslash come separatore delle directory non è stata proprio delle più felici, che dite? Ma a parte questo—inutile cercare di dare colpe a distanza di più di quarant’anni—se all’interno di una stringa un backslash fa qualcosa di magico con i caratteri che seguono, come faccio a scrivere un backslash all’interno di una stringa?</p>
 <p>Una possibilità ce la fornisce la prima riga della <a href="#tbl-sequenze-escape" class="quarto-xref">Tabella&nbsp;<span>9.1</span></a>: possiamo usare un backslash per fare l’escape di se stesso, il che vuol dire che la sequenza di escape <code>\\</code> si traduce in un <code>\</code> semplice. Questo funziona come una si aspetta nella maggior parte delle situazioni. In alternativa, Python fornisce la possibilità di aggiungere una lettera <code>r</code> o <code>R</code> prima della virgoletta iniziale della stringa: così facendo si crea quella che si chiama una stringa grezza (<em>raw string</em>), in cui il backslash è trattato alla pari di un qualsiasi altro carattere.</p>
-<div id="c6f1576e" class="cell" data-execution_count="2">
+<div id="08a8d8ed" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="st">"c:</span><span class="ch">\\</span><span class="st">abc</span><span class="ch">\\</span><span class="st">def</span><span class="ch">\\</span><span class="st">ghi.txt"</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(file_path)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>file_path <span class="op">=</span> <span class="vs">r"c:</span><span class="ch">\a</span><span class="vs">bc</span><span class="dv">\d</span><span class="vs">ef</span><span class="er">\</span><span class="vs">ghi</span><span class="dv">.</span><span class="vs">txt"</span></span>

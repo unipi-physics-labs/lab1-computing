@@ -327,8 +327,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/acknowledgments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Ringraziamenti</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
   </div>
 </li>
       </ul>
@@ -370,7 +376,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">7 settembre 2026</p>
+      <p class="date">10 settembre 2026</p>
     </div>
   </div>
   
@@ -383,7 +389,7 @@ window.Quarto = {
 
 
 <p>Siamo pronti per partire con il nostro primo grafico. Leggete attentamente il frammento di codice che segue. (Notate che abbiamo aggiunto i numeri di linea all’inizio per poter commentare puntualmente, ma ovviamente questi non fanno parte del programma.)</p>
-<div id="e96e38c3" class="cell" data-execution_count="1">
+<div id="4a5207af" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span>
 <span id="cb1-2"><a href="#cb1-2" aria-label="2"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-label="3"></a><span class="co"># Define the input data.</span></span>
@@ -417,7 +423,7 @@ window.Quarto = {
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib <span class="im">import</span> pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Quando lanciate l’interprete Python in modalità interattiva, l’insieme di cose che avete a disposizione è estremamente limitata—essenzialmente la sintassi del linguaggio ed un numero limitato di <a href="https://docs.python.org/3/library/functions.html">funzioni built-in</a>. (Prendetevi un secondo per seguire il link e dare un’occhiata sommaria alla pagine, in modo da avere un’idea grossolana di cosa stiamo parlando—sono un centinaio di funzioni con nomi che vi sembreranno, per la maggio parte esotici.)</p>
 <p>Se volete arrotondare un numero reale all’intero più vicino, ad esempio, non vi serve altro che il built-in <code>round()</code>:</p>
-<div id="67f6a022" class="cell" data-execution_count="2">
+<div id="71f38661" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(<span class="fl">2.25</span>))</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">round</span>(<span class="fl">2.75</span>))</span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
@@ -427,7 +433,7 @@ window.Quarto = {
 </div>
 <p>Oltre alle funzioni built-in, Python fornisce una <a href="https://docs.python.org/3/library/index.html">libreria standard</a> onnicomprensiva che, con ogni probabilità, copre una buona parte delle esigenze che avrete mai nella vostra carriera di fisiche. (Anche qui: prendetevi un attimo per seguire il link e dare una rapida occhiata alla documentazione della libreria standard: si tratta letteralmente di centinaia di moduli, ciascuno dei quali offre un numero variabile—spesso molte decine—di funzioni e strutture dati.)</p>
 <p>Avete bisogno di funzioni trigonometriche, logaritmi ed esponenziali? Non ci sono problemi:</p>
-<div id="187a605d" class="cell" data-execution_count="3">
+<div id="d6475727" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> math</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(math.log(<span class="dv">10</span>))</span>
@@ -442,7 +448,7 @@ window.Quarto = {
 </div>
 </div>
 <p>Equivalentemente (lo troverete spesso in giro, per cui tanto vale ingoiare subito la pillola) potete arrivare allo stesso risultato per una strada leggermente diversa</p>
-<div id="d111d96b" class="cell" data-execution_count="4">
+<div id="f325fe56" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> math <span class="im">import</span> log, log10, exp, cos</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(log(<span class="dv">10</span>))</span>
@@ -464,10 +470,10 @@ window.Quarto = {
 <section id="commenti" class="level3" data-number="3.1.2">
 <h3 data-number="3.1.2" class="anchored" data-anchor-id="commenti"><span class="header-section-number">3.1.2</span> Commenti</h3>
 <p>Tempo di andare avanti. La linea 2 è stata lanciata intenzionalmente vuota, e non c’è molto da dire a proposito, a parte il fatto che potete lasciare tutte le linee vuote che volete. Sono semplicemente ignorate dall’interprete e non hanno nessun effetto, se non quello di aumentare la leggibilità del programma, se utilizzate opportunamente. Potete usarle, ad esempio, per separare tra loro sezioni di codice che sono logicamente distinte.</p>
-<p>Siamo arrivati alla linea 3.</p>
+<p>Siamo arrivate alla linea 3.</p>
 <div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the input data.</span></span></code></pre></div><button title="Copia negli appunti" class="code-copy-button"><i class="bi"></i></button></div>
 <p>Una linea preceduta da un carattere <code>#</code> si chiama <em>commento</em> (almeno in Python). Da un punto di vista del flusso del programma una linea di commento è identica ad una linea vuota, nel senso che è ignorata dall’interprete. Potete togliere tutti i commenti e, funzionalmente, il vostro programma rimane invariato.</p>
-<p>A cosa serve un commento, allora? Beh, potete utilizzarlo per inserire nel programma qualsiasi informazione ancillare utile per fornire contesto o dare indicazioni sul programma stesso. Potete scrivere, ad esempio, a cosa serve la linea che segue il commento. O perché avete deciso di implementare un calcolo in un certo modo piuttosto che in un altro. Potete mettere un link alla pagina web in cui avete trovato il trucco che utilizzate due righe sotto per ottimizzare un passaggio. Oppure annotare le i valori delle misure che avete preso con la descrizione del setup di laboratorio. Siate creative—se dovesse capitarvi di rileggere il programma tra due mesi sarete grati a voi stesse per qualsiasi commento ragionevole.</p>
+<p>A cosa serve un commento, allora? Beh, potete utilizzarlo per inserire nel programma qualsiasi informazione ancillare utile per fornire contesto o dare indicazioni sul programma stesso. Potete scrivere, ad esempio, a cosa serve la linea che segue il commento. O perché avete deciso di implementare un calcolo in un certo modo piuttosto che in un altro. Potete mettere un link alla pagina web in cui avete trovato il trucco che utilizzate due righe sotto per ottimizzare un passaggio. Oppure annotare le i valori delle misure che avete preso con la descrizione del setup di laboratorio. Siate creative—se dovesse capitarvi di rileggere il programma tra due mesi sarete grate a voi stesse per qualsiasi commento ragionevole.</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -538,7 +544,7 @@ Nota
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Con ogni probabilità c’è un certo numero di domande che ci state facendo. Cosa sono tutte queste cose che metto tra parentesi tonde dopo il nome della funzione? Come faccio a sapere che che a <code>figure</code> devo passare l’identificatore della figura, mentre <code>errorbar</code> vuole coordinate dei punti ed errori? (Questo è facile documentazione.) L’ordine con cui metto le cose conta? (Spoiler alert: dipende.) Che cosa vuol dire questa strana scrittura <code>fmt="o"</code>? Ottime domande, e abbiamo un briciolo di pazienza, perché ci torneremo tra pochissimo.</p>
+<p>Con ogni probabilità c’è un certo numero di domande che ci state facendo. Cosa sono tutte queste cose che metto tra parentesi tonde dopo il nome della funzione? Come faccio a sapere che a <code>figure</code> devo passare l’identificatore della figura, mentre <code>errorbar</code> vuole coordinate dei punti ed errori? (Questo è facile documentazione.) L’ordine con cui metto le cose conta? (Spoiler alert: dipende.) Che cosa vuol dire questa strana scrittura <code>fmt="o"</code>? Ottime domande, e abbiamo un briciolo di pazienza, perché ci torneremo tra pochissimo.</p>
 </div>
 </div>
 <p>Siamo ormai giunti al termine, ma c’è un ultimo elemento di suspence nella storia, perché senza la linea 13</p>
@@ -569,7 +575,7 @@ Nota
 <li>leggete le note in <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html#matplotlib.pyplot.plot">questa pagina</a> e sbizzarritevi con tutte le opzioni disponibili per <code>fmt</code>;</li>
 <li>provate ad aggiungere delle etichette di testo con nome della quantità ed unità di misura sui due assi (suggerimento: usate <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xlabel.html">xlabel</a> e <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.ylabel.html">ylabel</a>).</li>
 </ul>
-<p>E, sopratutto: non ponetevi limiti se non la vostra fantasia. Pensate a come vorreste far apparire il vostro grafico ed esplorate la documentazione di <code>matplotlib</code> per tradurre la vostra visione in pratica.</p>
+<p>E, soprattutto: non ponetevi limiti se non la vostra fantasia. Pensate a come vorreste far apparire il vostro grafico ed esplorate la documentazione di <code>matplotlib</code> per tradurre la vostra visione in pratica.</p>
 
 
 </section>

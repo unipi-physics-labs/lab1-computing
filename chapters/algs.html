@@ -329,8 +329,14 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../chapters/acknowledgments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Ringraziamenti</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../chapters/history.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">D</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
+ <span class="menu-text"><span class="chapter-number">E</span>&nbsp; <span class="chapter-title">Cronologia delle versioni</span></span></a>
   </div>
 </li>
       </ul>
@@ -373,7 +379,7 @@ window.Quarto = {
     <div>
     <div class="quarto-title-meta-heading">Data di Pubblicazione</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">7 settembre 2026</p>
+      <p class="date">10 settembre 2026</p>
     </div>
   </div>
   
@@ -410,7 +416,7 @@ window.Quarto = {
 <li>in caso contrario, qualsiasi numero che divida sia <span class="math inline">\(n\)</span> che <span class="math inline">\(m\)</span> deve dividere anche <span class="math inline">\(r = n - qm\)</span>, e qualsiasi numero che divida sia <span class="math inline">\(m\)</span> che <span class="math inline">\(r\)</span> deve dividere anche <span class="math inline">\(n = qm + r\)</span>; in altre parole, i divisori comuni di <span class="math inline">\(n\)</span> ed <span class="math inline">\(m\)</span> sono anche i divisori comuni di <span class="math inline">\(m\)</span> ed <span class="math inline">\(r\)</span>, il che ci autorizza a fare la sostituzione descritta in A3 senza cambiare la risposta al quesito originario.</li>
 </ol>
 <p>Il nocciolo della questione è che ad ogni passo abbiamo coppie di numeri via via più piccole, ed il processo converge fino a che il resto della divisione non è zero.</p>
-<p>Ora, nella maggior parte delle situazioni che vi troverete ad affrontare nella vita, dimostrare la correttezza formale di un algoritmo pu ò essere significativamente più complicato, e spesso non è semplice capire cosa sta succedendo semplicemente leggendo i passi dal primo all’ultimo. Vedere un algoritmo in opera in un caso concreto, viceversa, è di solito un aiuto enorme alla comprensione, per cui proviamo senz’altro a calcolare il MCD, e.g., tra <span class="math inline">\(49\)</span> e <span class="math inline">\(21\)</span>. (Sappiamo già la risposta: <span class="math inline">\(49 = 7 \times 7\)</span> e <span class="math inline">\(21 = 7 \times 3\)</span>, per cui il MCD è <span class="math inline">\(7\)</span>.)</p>
+<p>Ora, nella maggior parte delle situazioni che vi troverete ad affrontare nella vita, dimostrare la correttezza formale di un algoritmo può essere significativamente più complicato, e spesso non è semplice capire cosa sta succedendo semplicemente leggendo i passi dal primo all’ultimo. Vedere un algoritmo in opera in un caso concreto, viceversa, è di solito un aiuto enorme alla comprensione, per cui proviamo senz’altro a calcolare il MCD, e.g., tra <span class="math inline">\(49\)</span> e <span class="math inline">\(21\)</span>. (Sappiamo già la risposta: <span class="math inline">\(49 = 7 \times 7\)</span> e <span class="math inline">\(21 = 7 \times 3\)</span>, per cui il MCD è <span class="math inline">\(7\)</span>.)</p>
 <p>I nostri dati iniziali sono <span class="math inline">\(n = 49\)</span> e <span class="math inline">\(m = 21\)</span>; dopo A1 si ha <span class="math inline">\(r = 49 \mod 21 = 7\)</span> che, essendo diverso da zero, ci costringe ad applicare A3, ponendo <span class="math inline">\(n = 21\)</span> e <span class="math inline">\(m = 7\)</span>. A questo punto vediamo subito che <span class="math inline">\(n\)</span> è divisibile per <span class="math inline">\(m\)</span>, e quest’ultimo è il MCD cercato.</p>
 <p>Più sinteticamente potremmo scrivere il processo nella forma di una semplice tabella</p>
 <table class="caption-top table">
@@ -454,7 +460,7 @@ Nota
 <section id="una-semplice-implementazione" class="level3" data-number="12.1.1">
 <h3 data-number="12.1.1" class="anchored" data-anchor-id="una-semplice-implementazione"><span class="header-section-number">12.1.1</span> Una semplice implementazione</h3>
 <p>Non è difficile scrivere una semplice implementazione dell’algoritmo in Python:</p>
-<div id="67e629f3" class="cell" data-execution_count="1">
+<div id="b1129de2" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">49</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> <span class="dv">21</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> n <span class="op">%</span> m</span>
@@ -480,7 +486,7 @@ MCD: 7</code></pre>
 <p>Se ci chiediamo invece qualitativamente <em>come varia il numero di iterazioni al variare di <span class="math inline">\(n\)</span> ed <span class="math inline">\(m\)</span></em>, è chiaro che, per quanto la domanda sia interessante, la risposta non è ovvia. Ci possiamo aspettare intuitivamente che al crescere di <span class="math inline">\(n\)</span> ed <span class="math inline">\(m\)</span> il numero di iterazioni necessarie cresca, ma ovviamente questo dipende in modo cruciale dalla scelta particolare dei numeri: il MCD tra <span class="math inline">\(n\)</span> e <span class="math inline">\(2\)</span>, ad esempio, è banale da calcolare indipendentemente da quanto è grande <span class="math inline">\(n\)</span>. Se vogliamo caratterizzare la <em>complessità</em> dell’algoritmo al crescere di <span class="math inline">\(n\)</span> dobbiamo prima trovare una domanda ben posta.</p>
 <p>Mettiamoci, per cominciare, nell’ipotesi che <span class="math inline">\(n \ge m\)</span>. (Sappiamo già che se questo non è il caso il primo passo dell’algoritmo sistema la situazione per cui non perdiamo di generalità se facciamo questa assunzione.) Allora una domanda ben posta che potremmo farci è: se fissiamo <span class="math inline">\(n\)</span> e lasciamo variare <span class="math inline">\(1 \leq m \leq n\)</span>, qual è il valor medio del numero di iterazioni necessarie perché il nostro algoritmo converga? Oppure quali sono i valori minimo (best case) e massimo (worst case)?</p>
 <p>Intendiamoci bene: queste sono domande <em>difficili</em>. Possiamo sicuramente scrivere un piccolo programmino in Python che, dato un <span class="math inline">\(n\)</span> fissato, calcoli il numero di iterazioni necessarie per la convergenza nei casi medio, migliore e peggiore. Basta modificare leggermente il nostro programma e scrivere una piccola funzione che, oltre a calcolare il massimo comun divisore, tenga anche traccia del numero di iterazioni necessarie per convergere.</p>
-<div id="283b7645" class="cell" data-execution_count="2">
+<div id="8d78f64f" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_mcd(n, m):</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>    r <span class="op">=</span> n <span class="op">%</span> m</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> <span class="dv">1</span></span>
@@ -539,7 +545,7 @@ Nota
 <h2 data-number="12.3" class="anchored" data-anchor-id="la-ricerca-binaria"><span class="header-section-number">12.3</span> La ricerca binaria</h2>
 <p>Chiudiamo questo capitolo con un problema relativamente semplice, ma estremamente rilevante dal punto di vista pratico: quello del <em>searching</em>, ovvero della ricerca di un elemento all’interno di una lista data.</p>
 <p>Supponiamo, ad esempio, di avere una lista di numeri interi e di voler scrivere una piccola funzione che mi dica se un determinato valore (e.g., il <span class="math inline">\(3\)</span>) è nella lista oppure no. Non dite nulla, so già cosa state pensando:</p>
-<div id="25bc475e" class="cell" data-execution_count="3">
+<div id="de8cdc78" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> contains(input_list, value):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> item <span class="kw">in</span> input_list:</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> item <span class="op">==</span> value:</span>
