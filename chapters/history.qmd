@@ -1,5 +1,7 @@
 # Cronologia delle versioni {#sec-history}
 
+* Proofreading completo
+  ([PR 24](https://github.com/unipi-physics-labs/lab1-computing/pull/24))
 * Corretti alcuni typo ed aggiunti i ringraziamenti in appendice
   ([PR 22](https://github.com/unipi-physics-labs/lab1-computing/pull/22))
 
@@ -40,7 +42,7 @@
 
 * Prima versione completa del capitolo sul controllo del flusso.
 * Prima versione completa del glossario.
-* Piccoli cambiamenti quà e là.
+* Piccoli cambiamenti qua e là.
 
 
 ### Versione 0.4.5 (2026-08-22) {.unnumbered}

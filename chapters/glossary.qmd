@@ -117,7 +117,7 @@ dall'hardware, fornendo layer di *astrazione* sempre più avanzati grazie ai qua
 più necessaria una conoscenza approfondita della struttura interna della CPU o del layout
 della memoria, e lo stesso programma funziona in modo *trasparente* su un gran numero
 di calcolatori diversi, indipendentemente dai dettagli della loro struttura fisica.
-(Detto così sembra una una cosa perfettamente naturale, ma storicamente il processo è
+(Detto così sembra una cosa perfettamente naturale, ma storicamente il processo è
 stato lungo e complicato.)
 
 Alla luce di questo possiamo rivisitare la definizione di istruzione che abbiamo dato

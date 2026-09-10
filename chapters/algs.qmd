@@ -51,7 +51,7 @@ Il nocciolo della questione è che ad ogni passo abbiamo coppie di numeri via vi
 piccole, ed il processo converge fino a che il resto della divisione non è zero.
 
 Ora, nella maggior parte delle situazioni che vi troverete ad affrontare nella vita,
-dimostrare la correttezza formale di un algoritmo pu ò essere significativamente
+dimostrare la correttezza formale di un algoritmo può essere significativamente
 più complicato, e spesso non è semplice capire cosa sta succedendo semplicemente
 leggendo i passi dal primo all'ultimo. Vedere un algoritmo in opera in un caso concreto,
 viceversa, è di solito un aiuto enorme alla comprensione, per cui proviamo

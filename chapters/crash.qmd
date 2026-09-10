@@ -1,7 +1,7 @@
 # Il primo programma {#sec-crash}
 
 Siamo pronti per partire con il nostro primo grafico. Leggete attentamente il
-frammento di codice che segue. (Notate che abbiamo aggiunto i numeri di  linea
+frammento di codice che segue. (Notate che abbiamo aggiunto i numeri di linea
 all'inizio per poter commentare puntualmente, ma ovviamente questi non fanno parte
 del programma.)
 
@@ -140,7 +140,7 @@ quello di aumentare la leggibilità del programma, se utilizzate opportunamente.
 Potete usarle, ad esempio, per separare tra loro sezioni di codice che sono logicamente
 distinte.
 
-Siamo arrivati alla linea 3.
+Siamo arrivate alla linea 3.
 ```python
 # Define the input data.
 ```
@@ -272,7 +272,7 @@ Avevamo detto che ci sarebbero servite, ed eccoci qua a chiamarle per nome.
 ::: {.callout-note}
 Con ogni probabilità c'è un certo numero di domande che ci state facendo. Cosa sono
 tutte queste cose che metto tra parentesi tonde dopo il nome della funzione?
-Come faccio a sapere che che a `figure` devo passare l'identificatore della figura,
+Come faccio a sapere che a `figure` devo passare l'identificatore della figura,
 mentre `errorbar` vuole coordinate dei punti ed errori? (Questo è facile documentazione.)
 L'ordine con cui metto le cose conta? (Spoiler alert: dipende.) Che cosa vuol dire
 questa strana scrittura `fmt="o"`? Ottime domande, e abbiamo un briciolo di pazienza,
@@ -321,7 +321,6 @@ misura sui due assi (suggerimento: usate
 [xlabel](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.xlabel.html) e
 [ylabel](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.ylabel.html)).
 
-E, sopratutto: non ponetevi limiti se non la vostra fantasia. Pensate a come vorreste
+E, soprattutto: non ponetevi limiti se non la vostra fantasia. Pensate a come vorreste
 far apparire il vostro grafico ed esplorate la documentazione di `matplotlib`
 per tradurre la vostra visione in pratica.
-

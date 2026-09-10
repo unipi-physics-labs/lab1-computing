@@ -44,7 +44,7 @@ print(is_even(33))
 Congratulazioni: avete appena scritto il vostro primo programma con un'espressione
 condizionale. L'esempio è più o meno auto-esplicativo e non ha bisogno di particolari
 commenti, se non il fatto che, come nella definizione delle funzioni, l'indentazione
-qui ha carattere strutturate perché delimita l'estensione della logica incluse nelle
+qui ha carattere strutturale perché delimita l'estensione della logica inclusa nelle
 due clausole if ed else.
 
 ::: {.callout-note}

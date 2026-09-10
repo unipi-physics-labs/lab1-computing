@@ -84,7 +84,7 @@ $$
 $$
 hanno fornito una loro re-interpretazione in chiave binaria dei prefissi del sistema
 metrico internazionale. Così, tradizionalmente, l'unità kB è comunemente usata per
-indicare $1024$ B (anziché $1000$ B), il termine MB per indicare $10124^2 = 1,048,576$ B,
+indicare $1024$ B (anziché $1000$ B), il termine MB per indicare $1024^2 = 1,048,576$ B,
 e così via. (La cosa non è bislacca come potrebbe sembrare: lo schema di indirizzamento
 tipico della memoria ad accesso casuale fa sì che, in pratica, la capacità di
 quest'ultima espressa in B sia per definizione pari ad una potenza di $2$.
@@ -169,7 +169,7 @@ integrava circa $8500$ transistor, le CPU di ultima generazione (nel 2026) viagg
 intorno alla fantasmagorica cifra di $10^{11}$.
 Da fisiche quali siamo tutte, fermiamoci per un attimo a pensare cosa voglia dire
 integrare 100 miliardi di transistor su un'area di 1 cm$^2$: la superficie
-occupata dal singolo dispositivo è dell'ordine di $10^{-11}$ cm$^2$, in che significa
+occupata dal singolo dispositivo è dell'ordine di $10^{-11}$ cm$^2$, il che significa
 una dimensione lineare caratteristica di $3 \times 10^{-6}$ cm, o 30 nm. (Avete capito
 bene, 30 nanometri.) Dato che le dimensioni atomiche tipiche sono dell'ordine di 0.1 nm,
 questo significa che *un transistor di una moderna CPU è grande appena qualche centinaio
@@ -210,7 +210,7 @@ che qui la situazione è completamente diversa rispetto a prima. Se il nostro bu
 vecchio Zilog Z80 operava ad *appena* qualche MHz, le tipiche frequenze di clock
 non sono sostanzialmente aumentate negli ultimi 20, assestandosi intorno a $2$--$5$ GHz.
 Certo il progresso è stato sostanziale---un fattore $1000$---ma la domanda sorge
-spontanea: qual'è il motivo per cui si è arrestato all'inizio del ventunesimo secolo,
+spontanea: qual è il motivo per cui si è arrestato all'inizio del ventunesimo secolo,
 nonostante siamo diventate sempre più brave ad impacchettare transistor nei chip?
 
 Trascurando i fattori sottodominanti, la risposta è semplice, e si tratta di una
@@ -256,7 +256,7 @@ adesso 8 o 16 core sono la norma anche per un laptop di classe media, mentre i
 processori più avanzati per server possono integrare più di 200 core.
 (Chiaramente come usare in modo efficiente un gran numero di core è un argomento che
 meriterebbe un corso a se stante, e va decisamente oltre lo scopo di questa breve
-introduzione.) E con questo abbiamo abbiamo, sia pur sommariamente, chiarito un altro
+introduzione.) E con questo abbiamo, sia pur sommariamente, chiarito un altro
 dei numerini da cui siamo partiti. Non sappiamo ancora il significato di questa strana
 parola "cache", ma rimandiamo per un attimo la discussione alla prossima sezione.
 
@@ -404,11 +404,11 @@ di archeologia, provate a cercare su wikipedia due parole: walkman e VHS.)
 
 Per molti anni l'archiviazione di massa nei calcolatori digitali è avvenuta
 esclusivamente attraverso l'uso di HDD (*hard disk drive*), dispositivi elettromeccanici
-contententi uno o più dischi magnetici su cui è possibile leggere e scrivere attraverso
-una apposita testina. Gli HDD hanno alcune buone proprità: permettono di salvare i dati
+contenenti uno o più dischi magnetici su cui è possibile leggere e scrivere attraverso
+una apposita testina. Gli HDD hanno alcune buone proprietà: permettono di salvare i dati
 in modo persistente (i.e., i dati sono preservati anche quando il disco non è
 alimentato), in grande quantità e ad un prezzo relativamente contenuto. Ma il modo in
-cui permettono l'accesso ai dati non è diretto come ne caso della RAM---il tempo
+cui permettono l'accesso ai dati non è diretto come nel caso della RAM---il tempo
 necessario per arrivare ad una specifica cella di memoria dipende dalla posizione fisica
 di questa cella. La cosa non è sorprendente, perché, al contrario della RAM, l'accesso
 non avviene puramente attraverso segnali elettrici, ma richiede il movimento meccanico
@@ -447,7 +447,7 @@ Abbiamo più o meno tutti gli ingredienti per capire il punto da cui siamo parti
 
 ### La cache
 
-Siamo arrivati quasi alla fine di questa brevissima carrellata. Se torniamo alle
+Siamo arrivate quasi alla fine di questa brevissima carrellata. Se torniamo alle
 nostre specifiche di partenza, l'unica porzione che non abbiamo ancora sviscerato è
 quel criptico *1 MB L1 cache*, e adesso siamo pronti ad affrontare quest'ultima
 questione.
@@ -556,7 +556,7 @@ nel secondo caso. Ma andiamo per ordine.
 
 Se vogliamo iterare sui numeri interi (o su un loro sottoinsieme), da un punto di vista
 prettamente algoritmico non c'è nessun bisogno di precompilare una lista. Possiamo
-procedere per induzione, tenendo traccia del numero a cui siamo arrivati ed aggiungendo
+procedere per induzione, tenendo traccia del numero a cui siamo arrivate ed aggiungendo
 $1$ ogni volta. Il nostro piccolo programma si può riscrivere senza usare nessun
 built-in di Python nella forma equivalente
 

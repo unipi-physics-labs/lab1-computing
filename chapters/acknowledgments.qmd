@@ -8,7 +8,7 @@ il modo più semplice è aprire una issue nel nostro
 (Potete anche scrivere direttamente a
 [luca.baldini@pi.infn.it](mailto:luca.baldini@pi.infn.it),
 se questo vi fa sentire più tranquille, e.g., se avete riserve nell'interagire con
-github. Capisco perfettamente, ed ho come obbiettivo di lungo termine migrare tutto
+github. Capisco perfettamente, ed ho come obiettivo di lungo termine migrare tutto
 a [codeberg](https://codeberg.org/).)
 
 Il premio per ogni segnalazione ragionevole è una gloriosa apparizione in questa pagina!

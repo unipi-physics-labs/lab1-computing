@@ -1,4 +1,4 @@
-# Funzioni  {#sec-functions}
+# Funzioni {#sec-functions}
 
 Abbiamo incontrato i nostri primi esempi di *funzioni* (`plt.figure`, `plt.errorbar` e
 `plt.show`) nel capitolo @{sec-crash}. In quel contesto ce la siamo cavata senza
@@ -109,8 +109,8 @@ numpy;
 
 ::: {.callout-warning}
 L'indentazione (tipicamente corrispondente a $4$ spazi) non è casuale: ha la funzione
-strutturale di definire il *corpo* della  funzione. Python è un linguaggio peculiare in
-questo senso, e nel seguiro vedremo un certo numero di altri contesti in cui
+strutturale di definire il *corpo* della funzione. Python è un linguaggio peculiare in
+questo senso, e nel seguito vedremo un certo numero di altri contesti in cui
 l'indentazione è importante.
 :::
 
@@ -404,7 +404,7 @@ La funzione è definita in modo che dobbiamo passare in ordine:
 
 Vedete qualcosa di strano? Se passiamo `x` prima di `y`, non avrebbe senso
 passare `xerr` prima di `yerr`? Da un punto di vista di mera simmetria può darsi, ma
-da un punto di vista pratico la segnatura della funzione è assolutamnete ragionevole,
+da un punto di vista pratico la segnatura della funzione è assolutamente ragionevole,
 perché *mentre è comune avere un grafico di dispersione con incertezze sulla $y$ ma
 non sulla $x$, il contrario non avviene praticamente mai*! Allora il modo in cui
 gli sviluppatori hanno definito la funzione permette di coprire tutti i casi

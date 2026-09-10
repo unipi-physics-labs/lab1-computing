@@ -30,11 +30,11 @@ via via in evidenza i punti in cui la corrispondenza letterale viene meno---ma �
 tuttavia utile per comprendere alcuni concetti non banali in un ambito che
 tutti conosciamo.
 
-Faremo tutto questo non in astratto, ma utilizzano un linguaggio di programmazione
+Faremo tutto questo non in astratto, ma utilizzando un linguaggio di programmazione
 concreto: Python. Queste note però, è importante sottolinearlo, non sono un manuale
 di programmazione in Python---per questo ci sono infinite risorse in rete, e non
 si sente sicuramente il bisogno di aggiungerne altre. Il tentativo, piuttosto, è quello
-utilizzare la sintassi di Python per illustrare alcuni concetti fondamentali
+di utilizzare la sintassi di Python per illustrare alcuni concetti fondamentali
 (variabili, funzioni, controllo del flusso del programma, algoritmi) che è necessario
 saper maneggiare per poter affrontare in modo consapevole l'analisi dei dati. Lo
 faremo senza alcuna pretesa di organicità o di prospettiva storica.

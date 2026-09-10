@@ -62,7 +62,7 @@ una risoluzione angolare di $13^\circ$ è al limite per il sistema che sta per m
 piedi.
 * Mark conosce la rappresentazione esadecimale dei numeri---un momento: non è quella
 che abbiamo visto nella @{sec-hex}?
-* Ma sopratutto: Mark conosce la tabella ASCII, ed è proprio questo che ci porta
+* Ma soprattutto: Mark conosce la tabella ASCII, ed è proprio questo che ci porta
 all'argomento della prima sezione di questo capitolo. (Ci arriviamo tra un secondo.)
 
 In un certo senso potremmo dire che dopo il corso di laboratorio del primo anno
@@ -305,7 +305,7 @@ Per il caso d'uso piuttosto comune di un file che contiene dati in forma tabular
 ovverosia righe consecutive, ciascuna delle quali contiene un numero fissato di valori,
 separati da un carattere opportuno (uno spazio, un TAB, o una virgola), di solito
 non è necessario riscrivere ogni volta un programma dedicato per la lettura:
-numpy ci viene in soccorso con la  funzione
+numpy ci viene in soccorso con la funzione
 [loadtxt()](https://numpy.org/doc/stable/reference/generated/numpy.loadtxt.html).
 
 Come sempre, la documentazione è il riferimento ultimo che descrive gli argomenti
@@ -580,7 +580,7 @@ Abbiamo imparato una lezione fondamentale, ovvero la distinzione tra il contenut
 di una porzione di memoria (sia essa volatile o su disco) ed il significato che
 noi diamo a quella particolare sequenza di $0$ ed $1$ all'interno del nostro programma.
 Ed abbiamo capito che lo stesso bit pattern in memoria può essere interpretato
-in più modi, che che dobbiamo fare attenzione ad essere consistenti nelle fasi di
+in più modi, che dobbiamo fare attenzione ad essere consistenti nelle fasi di
 lettura e di scrittura.
 
 

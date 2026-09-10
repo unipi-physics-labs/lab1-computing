@@ -36,7 +36,7 @@ il che vuol dire che, se non siamo interessati solamente ai numeri interi, dobbi
 generalizzare la nostra definizione nell'equazione @{eq-notazione_posizionale} come
 \begin{align}
   (c_m\ldots c_2c_1c_0.c_{-1}c_{-2}\ldots)_b =
-  c_m \times b^m + \cdots + c_2 \times b^2 +  c_1 \times n + c_0 +
+  c_m \times b^m + \cdots + c_2 \times b^2 +  c_1 \times b + c_0 +
   c_{-1} b^{-1} +   c_{-2} b^{-2} \ldots
 \end{align}
 In questo schema possiamo scrivere il nostro $2.25$ nella rappresentazione in base 2 come
