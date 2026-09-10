@@ -132,7 +132,7 @@ laptop, oppure andate in un negozio di elettronica, nella scheda tecnica del pro
 troverete invariabilmente una serie di parole chiave: processore (o CPU), cache,
 RAM, disco rigido, complementate da una serie di caratteristiche (e.g., la frequenza
 di clock) ed eventualmente da riferimenti alle tecnologie costruttive (e.g., DDR e SSD).
-Supponiamo di essere interessati all'acquisto di un laptop con queste
+Supponiamo di essere interessate all'acquisto di un laptop con queste
 ipotetiche caratteristiche
 
 - Processore ACME X5-8400 (2.6 GHz, 8 core, 1 MB L1 cache)
@@ -263,7 +263,7 @@ parola "cache", ma rimandiamo per un attimo la discussione alla prossima sezione
 Prima di andare avanti, però, è utile notare che abbiamo messo insieme tutti gli
 ingredienti per definire il FLOP (floating point operations per second), che è una
 metrica di performance tipica per le applicazioni che richiedono la manipolazione
-di numeri in virgola mobile. (Si, siamo tutti chiamati in causa.) Se chiamiamo con
+di numeri in virgola mobile. (Si, siamo tutte chiamate in causa.) Se chiamiamo con
 $n_c$ il numero di core nel nostro processore, il numero teorico di operazioni in
 virgola mobile al secondo può essere calcolato semplicemente come
 $$

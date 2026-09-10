@@ -141,7 +141,7 @@ for k in range(n + 1):
 
 print(norm)
 ```
-(Notate che, come raccomandato nel capitolo @{sec-float}, siamo passati ai logaritmi
+(Notate che, come raccomandato nel capitolo @{sec-float}, siamo passate ai logaritmi
 nel ciclo per evitare possibili errori numerici nel calcolo di fattoriali e potenze.
 Anche così facendo il risultato è corretto *solo* nelle prime 13 cifre significative.)
 
@@ -294,7 +294,7 @@ corrispondente in numpy. Entrambe le chiamate sono esattamente una riga di codic
 ## Vettorizzare condizionatamente?
 
 Se ricordate, originariamente abbiamo introdotto i cicli for e while subito dopo
-le espressioni condizionali, nel capitolo @{sec-flow}. Arrivati qui, questo ci fa venire
+le espressioni condizionali, nel capitolo @{sec-flow}. Arrivate qui, questo ci fa venire
 un piccolo brivido: non è per caso che, vettorizzando, abbiamo perso la possibilità
 di mettere if statement nel flusso del nostro programma? Non è che, adesso che abbiamo
 imparato ad andare velocissimi, cose semplici dentro un ciclo for tipo "prendiamo solo i

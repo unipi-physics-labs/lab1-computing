@@ -416,7 +416,7 @@ errorbar(x, y, dy, dx) # Incertezze sia sulla x che sulla y
 ```
 Certo: se fossimo proprio adamantine nel voler fare uno scatter plot con incertezze
 sulla $x$ ma non sulla $y$, la sintassi sarebbe leggermente più involuta, perché
-siamo limitati alle due possibilità
+siamo limitate alle due possibilità
 ```python
 errorbar(x, y, None, dx)
 errorbar(x, y, xerr=dx)

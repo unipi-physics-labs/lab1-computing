@@ -32,7 +32,7 @@ Partiamo da un esempio semplice. Che cosa intendiamo quando scriviamo il numero 
 \begin{align*}
   2.25 = 2 + 2 \times 10^{-1} + 5 \times 10^{-2},
 \end{align*}
-il che vuol dire che, se non siamo interessati solamente ai numeri interi, dobbiamo
+il che vuol dire che, se non siamo interessate solamente ai numeri interi, dobbiamo
 generalizzare la nostra definizione nell'equazione @{eq-notazione_posizionale} come
 \begin{align}
   (c_m\ldots c_2c_1c_0.c_{-1}c_{-2}\ldots)_b =
@@ -188,7 +188,7 @@ $$
 $$
 (Notate la differenza sull'ultima cifra.)
 
-Giusto? Non proprio. Quando abbiamo fatto la somma ci siamo dimenticati che la
+Giusto? Non proprio. Quando abbiamo fatto la somma ci siamo dimenticate che la
 precisione con cui possiamo scrivere la mantissa è limitata a $53$ bit, per cui quando
 l'esponente è negativo, il numeratore della frazione ridotta che rappresenta il nostro
 numero in virgola mobile è limitata a $2^{53} - 1 = 9007199254740991$ che,

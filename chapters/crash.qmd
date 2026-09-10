@@ -157,7 +157,7 @@ che in un altro. Potete mettere un link alla pagina web in cui avete trovato il
 trucco che utilizzate due righe sotto per ottimizzare un passaggio. Oppure annotare le
 i valori delle misure che avete preso con la descrizione del setup di laboratorio.
 Siate creative---se dovesse capitarvi di rileggere il programma tra due mesi sarete
-grati a voi stesse per qualsiasi commento ragionevole.
+grate a voi stesse per qualsiasi commento ragionevole.
 
 ::: {.callout-note}
 Ogni linguaggio di programmazione ha il suo carattere (o insieme di caratteri) per

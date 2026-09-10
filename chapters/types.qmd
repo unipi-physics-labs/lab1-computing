@@ -81,7 +81,7 @@ si lamenta se provate a scrivere
 
 Questo è un buon momento per fermarsi un secondo a riflettere sulle differenze tra
 l'operatore di assegnamento che abbiamo appena visto e l'operatore di uguaglianza a cui
-siamo abituati dall'aritmetica elementare. Guardiamo per un attimo le due espressioni
+siamo abituate dall'aritmetica elementare. Guardiamo per un attimo le due espressioni
 $$
 x = 2x - 4 \quad\text{e}\quad 2x = 2
 $$
@@ -416,7 +416,7 @@ print(s, type(s))
 print(d, type(d))
 ```
 
-Ok, dire che siamo andati veloci sui container è un eufemismo. Ci torneremo sopra
+Ok, dire che siamo andate veloci sui container è un eufemismo. Ci torneremo sopra
 nel capitolo @{sec-flow}, quando parleremo del controllo del flusso del programma,
 ma i tipi non scalari di Python non sono esattamente il primo attrezzo nella nostra
 cassetta quando si tratta di processare numeri.

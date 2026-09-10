@@ -436,7 +436,7 @@ scriviamo.
 
 ### Digressione: numpy e tipi di intero
 
-Arrivati a questo punto non possiamo fare a meno di addentrarci per un attimo in una
+Arrivate a questo punto non possiamo fare a meno di addentrarci per un attimo in una
 piccola stranezza di Python che, se non compresa appieno, potrebbe prima o poi
 venirvi a cercare.
 
@@ -553,7 +553,7 @@ cui lo troveremmo nel disco rigido del nostro calcolatore!
 
 ## Stringhe, numeri e modalità di IO
 
-Arrivati a questo punto, se avete letto con attenzione, non potrete fare a meno di
+Arrivate a questo punto, se avete letto con attenzione, non potrete fare a meno di
 chiedervi: se io scrivo su disco un singolo byte, ad esempio `10101001`,
 che cosa ho fatto realmente? Dato che
 $$

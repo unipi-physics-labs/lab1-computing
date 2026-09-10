@@ -442,7 +442,7 @@ print(mean(sample))
 La varianza e la deviazione standard del campione sono pure somme, e allora potremmo
 andare avanti e vedere come implementarle sulla stessa linea.
 
-Arrivati a questo punto, però, è probabilmente più istruttivo un invito a non
+Arrivate a questo punto, però, è probabilmente più istruttivo un invito a non
 *reinventare la ruota ogni volta*. Il pacchetto `numpy` fornisce tutte le funzioni
 statistiche di cui potreste mai aver bisogno, inclusa la media, la varianza e la
 deviazione standard. Nella vostra vita professionale la via maestra al calcolo delle

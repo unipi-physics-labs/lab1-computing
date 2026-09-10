@@ -361,7 +361,7 @@ puramente ricreativo dovrebbe interrogarsi sulle implicazioni del fatto che
 l'utente non abbiamo modo di sapere esattamente cosa fa un programma. Potrebbe darsi il
 caso, ad esempio, che mentre navighiamo su web, o scriviamo una email, mandi
 informazioni sensibili, e completamente scorrelate da ciò che stiamo facendo, alla
-casa madre? Magari per essere profilati a scopi pubblicitari, o peggio?
+casa madre? Magari per essere profilate a scopi pubblicitari, o peggio?
 (No, non si tratta di complottismo. Gli esempi non si contano, e potete leggere
 [qui](https://privacyinternational.org/examples-abuse/1902/dutch-dpa-microsoft-breaches-data-protection-law-windows-10),
 [qui](https://www.cnil.fr/en/cookies-and-advertisements-inserted-between-emails-google-fined-325-million-euros-cnil),
