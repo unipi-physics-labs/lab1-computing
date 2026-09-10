@@ -1,6 +1,6 @@
 # Variabili e tipi {#sec-types}
 
-Passata l'euforia per il successo con il nostro primo programma, in questa sezioni
+Passata l'euforia per il successo con il nostro primo programma, in questa sezione
 cercheremo, in un certo senso, di ripartire da zero e riflettere più in profondità
 su un certo numero di cose che abbiamo lasciato in sospeso.
 
@@ -9,7 +9,7 @@ su un certo numero di cose che abbiamo lasciato in sospeso.
 
 Come abbiamo detto, le variabili in Python si creano con l'operatore di assegnamento
 `=`, ed alle variabili ci si può comodamente riferire per tutto il loro ciclo di vita
-con il nome che abbiamo usato  al momento dell'assegnamento, e.g.
+con il nome che abbiamo usato al momento dell'assegnamento, e.g.
 ```{python}
 x = 3
 print(x)
@@ -626,7 +626,7 @@ di aver capito.
 
 ### Operazioni matematiche
 
-Siamo arrivati al piatto forte: la lista sterminata di  [funzioni matematiche](https://numpy.org/doc/stable/reference/routines.math.html) supportata da numpy. Se queste
+Siamo arrivati al piatto forte: la lista sterminata di [funzioni matematiche](https://numpy.org/doc/stable/reference/routines.math.html) supportata da numpy. Se queste
 non bastassero, il modulo [scipy.special](https://docs.scipy.org/doc/scipy/reference/special.html#module-scipy.special) ne aggiunge molte altre decine.
 Ce n'è letteralmente per tutti i gusti, e non solo le solite sospette (funzioni
 trigonometriche, esponenziali, logaritmi), ma veramente tutte quelle che potete

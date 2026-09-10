@@ -46,7 +46,7 @@ comandi*. E se non aveste un touch screen o un'interfaccia grafica, questi coman
 digitereste nel terminale.
 
 La domanda è allora: il terminale è ancora rilevante ai tempi degli smartphone? E la
-risposta, per noi, è sicuramente si, almeno per il momento. Ed il motivo è molto
+risposta, per noi, è sicuramente sì, almeno per il momento. Ed il motivo è molto
 semplice: quando analizzate dati---e specialmente grandi quantità di dati---vi troverete
 spesso a fare operazioni *complesse e ripetitive*. Ora, se ci pensate un secondo,
 questa è una pessima combinazione di cose sia per il mouse che per il touch screen.

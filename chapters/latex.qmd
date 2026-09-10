@@ -204,7 +204,7 @@ Beh, tanto per cominciare se commentate per un attimo la linea 3 (a proposito: i
 il carattere per iniziare una linea di commento è `%`) vi accorgerete immediatamente che
 la data appare scritta in inglese anziché in italiano. Ha senso no?
 Ci sono poi le parole generate automaticamente---se generate un indice volete che si
-chiami  *Indice* o *Table of contents*? Volete che le didascalie delle figure comincino
+chiami *Indice* o *Table of contents*? Volete che le didascalie delle figure comincino
 con *Figura* o *Figure*? E quelle delle tabelle con *Tabella* o *Table*?
 Senza contare cose più sofisticate, come la divisione in sillabe nelle andate a capo,
 le legature e le altre convenzioni tipografiche legate al linguaggio; ma avete colto il
@@ -241,7 +241,7 @@ sotto-sezione, rispettivamente.
 Come promesso, LaTeX separa chiaramente la stesura dall'impaginazione. Tutto quello che
 la scrittrice deve comunicare è l'intento di cominciare una nuova sezione (o
 sotto-sezione), e ovviamente il titolo di quest'ultima. La tipografa (in questo caso
-`pdflatex`) si occupa poi in fase di compilazione di numerare sezioni e sottosezione,
+`pdflatex`) si occupa poi in fase di compilazione di numerare sezioni e sottosezioni,
 e formattare i titoli (e.g., in grassetto, e con un font leggermente più grande del
 testo ordinario.)
 
@@ -536,6 +536,5 @@ Il comando `\includegraphics` supporta tutti i formati grafici più popolari, in
 pdf, png e jpg. Prima decidere in che formato salvare il tuo prossimo grafico,
 dai un'occhiata all'@{sec-graphics}.
 :::
-
 
 
