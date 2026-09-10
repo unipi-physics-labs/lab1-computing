@@ -1,0 +1,19 @@
+# Ringraziamenti {#sec-acknowledgments}
+
+Queste note vogliono essere uno sforzo *collaborativo*. Se trovate errori, omissioni,
+cose poco chiare, o più semplicemente avete suggerimenti per migliorare il contenuto,
+il modo più semplice è aprire una issue nel nostro
+[tracker](https://github.com/unipi-physics-labs/lab1-computing/issues).
+
+(Potete anche scrivere direttamente a
+[luca.baldini@pi.infn.it](mailto:luca.baldini@pi.infn.it),
+se questo vi fa sentire più tranquille, e.g., se avete riserve nell'interagire con
+github. Capisco perfettamente, ed ho come obbiettivo di lungo termine migrare tutto
+a [codeberg](https://codeberg.org/).)
+
+Il premio per ogni segnalazione ragionevole è una gloriosa apparizione in questa pagina!
+
+Ringrazio dunque di cuore:
+
+* Giulia Casarosa
+* Giovanni Marcenaro
