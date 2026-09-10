@@ -626,7 +626,7 @@ di aver capito.
 
 ### Operazioni matematiche
 
-Siamo arrivati al piatto forte: la lista sterminata di [funzioni matematiche](https://numpy.org/doc/stable/reference/routines.math.html) supportata da numpy. Se queste
+Siamo arrivate al piatto forte: la lista sterminata di [funzioni matematiche](https://numpy.org/doc/stable/reference/routines.math.html) supportata da numpy. Se queste
 non bastassero, il modulo [scipy.special](https://docs.scipy.org/doc/scipy/reference/special.html#module-scipy.special) ne aggiunge molte altre decine.
 Ce n'è letteralmente per tutti i gusti, e non solo le solite sospette (funzioni
 trigonometriche, esponenziali, logaritmi), ma veramente tutte quelle che potete

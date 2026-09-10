@@ -447,7 +447,7 @@ Abbiamo più o meno tutti gli ingredienti per capire il punto da cui siamo parti
 
 ### La cache
 
-Siamo arrivati quasi alla fine di questa brevissima carrellata. Se torniamo alle
+Siamo arrivate quasi alla fine di questa brevissima carrellata. Se torniamo alle
 nostre specifiche di partenza, l'unica porzione che non abbiamo ancora sviscerato è
 quel criptico *1 MB L1 cache*, e adesso siamo pronti ad affrontare quest'ultima
 questione.
@@ -556,7 +556,7 @@ nel secondo caso. Ma andiamo per ordine.
 
 Se vogliamo iterare sui numeri interi (o su un loro sottoinsieme), da un punto di vista
 prettamente algoritmico non c'è nessun bisogno di precompilare una lista. Possiamo
-procedere per induzione, tenendo traccia del numero a cui siamo arrivati ed aggiungendo
+procedere per induzione, tenendo traccia del numero a cui siamo arrivate ed aggiungendo
 $1$ ogni volta. Il nostro piccolo programma si può riscrivere senza usare nessun
 built-in di Python nella forma equivalente
 

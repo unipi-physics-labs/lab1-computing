@@ -140,7 +140,7 @@ quello di aumentare la leggibilità del programma, se utilizzate opportunamente.
 Potete usarle, ad esempio, per separare tra loro sezioni di codice che sono logicamente
 distinte.
 
-Siamo arrivati alla linea 3.
+Siamo arrivate alla linea 3.
 ```python
 # Define the input data.
 ```
