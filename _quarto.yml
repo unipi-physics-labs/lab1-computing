@@ -60,6 +60,7 @@ book:
     - chapters/latex.qmd
     - chapters/graphics.qmd
     - chapters/code.qmd
+    - chapters/acknowledgments.qmd
     - chapters/history.qmd
 
 bibliography: references.bib

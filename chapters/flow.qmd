@@ -65,7 +65,7 @@ di mettere enfasi sulla chiarezza e sulla logica.
 
 ### A quale gruppo appartengo?
 
-Narra le leggenda che un'università non meglio precisata usi dividere in gruppi le
+Narra la leggenda che un'università non meglio precisata usi dividere in gruppi le
 matricole secondo l'arcano criterio:
 
 * gruppo A: matricole pari
@@ -475,7 +475,7 @@ programmazione deve saper maneggiare.
 
 ### Un semplice problema con i dadi
 
-Supponete per un attimo di dover risolver il seguente problema: *si lancino 10 dadi a
+Supponete per un attimo di dover risolvere il seguente problema: *si lancino 10 dadi a
 6 facce; qual è la probabilità che la somma delle uscite sia esattamente di 26,
 almeno due uscite siano 6 e non ci siano 4?* Si tratta di un problema che non ha nessuna
 difficoltà concettuale---dobbiamo semplicemente enumerare tutte le possibili
@@ -485,7 +485,7 @@ $$
 N = 6^5 = 7776
 $$
 per cui l'esercizio, posto in questi termini, è più utile per ammazzare il tempo
-(ammesso che ne abbiate bisogno) più che per imparare qualcosa. Volete sapere una cosa
+(ammesso che ne abbiate bisogno) che per imparare qualcosa. Volete sapere una cosa
 bella? La cosa si può formalizzare in non più di 6 righe di Python, che coinvolgono,
 guarda caso, un if ed un for---il frammento di seguito calcola la risposta e stampa
 esplicitamente tutte le combinazioni accettate (sono rare, poco più di $3$ su $1000$).

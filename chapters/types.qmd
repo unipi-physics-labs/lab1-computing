@@ -26,7 +26,7 @@ print(x)
 ```
 (Se ci pensate è banale. Programmare non sarebbe molto interessante se non potessimo
 cambiare i valori delle variabili.) La cosa non è da poco, perché significa che, quando
-calcoliamo un espressione che coinvolga una variabile, dobbiamo fare attenzione a
+calcoliamo un'espressione che coinvolga una variabile, dobbiamo fare attenzione a
 *quando* esattamente andiamo a valutare la variabile stessa.
 
 Da questo punto di vista le regole dell'assegnazione sono semplicissime:
@@ -46,7 +46,7 @@ print(x)
 x = 2 * x - 4
 print(x)
 ```
-Sorprese? Non dovreste, perché tutto a perfettamente senso, secondo le regole che
+Sorprese? Non dovreste, perché tutto ha perfettamente senso, secondo le regole che
 abbiamo detto. Passo per passo:
 
 * alla linea 1 diciamo che `x` vale 3;
