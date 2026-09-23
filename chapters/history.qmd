@@ -1,5 +1,9 @@
 # Cronologia delle versioni {#sec-history}
 
+* Ulteriore proofreading dei capitoli 1--3
+  ([PR 25](https://github.com/unipi-physics-labs/lab1-computing/pull/25))
+
+
 ### Versione 1.1.0 (2026-09-10) {.unnumbered}
 
 * Proofreading completo

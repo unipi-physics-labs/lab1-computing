@@ -5,8 +5,8 @@ Versione {{< meta tag >}} ([cronologia](#sec-history))
 
 I calcolatori sono letteralmente onnipresenti nella nostra vita quotidiana, nelle
 forme più disparate---dai microcontrollori che gestiscono i piccoli elettrodomestici di
-casa, fino ai grandi mainframe specializzati, passando per smartphone, tablet, laptop e workstation. Ormai anche le automobili, non più di pochi decenni fa orgoglio
-dell'ingegneria meccanica, assomigliano a grandi tablet più di ogni altra cosa.
+casa, fino ai cluster dei grandi data center, passando per smartphone, tablet, laptop e workstation. Ormai anche le automobili, non più di pochi decenni fa orgoglio
+dell'ingegneria meccanica, assomigliano un po' a grandi tablet su ruote.
 
 Queste note sono da intendere come una brevissima introduzione all'uso del calcolatore
 nel contesto del laboratorio di Fisica del primo anno, con enfasi sull'analisi dei dati.
@@ -31,7 +31,7 @@ tuttavia utile per comprendere alcuni concetti non banali in un ambito che
 tutti conosciamo.
 
 Faremo tutto questo non in astratto, ma utilizzando un linguaggio di programmazione
-concreto: Python. Queste note però, è importante sottolinearlo, non sono un manuale
+concreto: Python. Queste note però---è importante sottolinearlo---non sono un manuale
 di programmazione in Python---per questo ci sono infinite risorse in rete, e non
 si sente sicuramente il bisogno di aggiungerne altre. Il tentativo, piuttosto, è quello
 di utilizzare la sintassi di Python per illustrare alcuni concetti fondamentali
@@ -47,11 +47,11 @@ print("Hello world!")
 ```
 
 Virtualmente in ogni caso sono pensati perché possiate copiarli (con l'apposita iconcina
-sulla destra), incollarli nel vostro editor di testo preferito, ed eseguirli,
+in alto a destra), incollarli nel vostro editor di testo preferito, ed eseguirli,
 eventualmente modificandoli. Per vostra convenienza, quando rilevante, l'output del
 frammento è inserito automaticamente subito sotto il frammento stesso, in modo che
 possiate esaminarlo anche senza un interprete Python sotto mano.
 
-Ah: l'inglese è la lingua universale dell'informatica, per cui eviteremo di scrivere in
-corsivo i termini non italiani nel testo, e scriveremo direttamente in inglese tutti i
-frammenti di codice.
+Ah, dimenticavo: l'inglese è la lingua universale dell'informatica, per cui eviteremo
+di scrivere in corsivo i termini non italiani nel testo, e scriveremo direttamente in
+inglese tutti i frammenti di codice.

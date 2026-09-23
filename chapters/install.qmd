@@ -9,7 +9,7 @@ Che cosa serve per cominciare? Buona domanda. Avrete bisogno essenzialmente di t
 
 Se non siete sicure di avere tutto, non preoccupatevi: questo primo capitolo è
 pensato proprio per portarvi per mano all'esecuzione del vostro primo, glorioso
-programma di laboratorio. (*Spoiler alert*: faremo un grafico di dispersione.)
+programma.
 
 
 ## Il calcolatore
@@ -119,7 +119,7 @@ ad essere automatizzata, che è una cosa che vi servirà nel vostro lavoro.
 
 ### Python da terminale
 
-Ma torniamo a noi. Se digitate ``python`` nel *terminale* dovreste trovarvi immediatamente catapultate nell'interprete---cioè dovreste vedere qualcosa di vagamente rassomigliante a
+Ma torniamo a noi. Se digitate ``python`` nel terminale dovreste trovarvi immediatamente catapultate nell'interprete---cioè dovreste vedere qualcosa di vagamente rassomigliante a
 ```{bash}
 lbaldini@nblbaldini:~$ python
 Python 3.13.13 (main, Apr  8 2026, 00:00:00) [GCC 15.2.1 20260123] on linux
@@ -131,7 +131,7 @@ accettare comandi: potete cominciare a scrivere, e l'interprete vi *risponderà*
 con il valore dell'ultima espressione ogni volta che premete invio, in quello che
 in gergo tecnico prende il nome di REPL (Read-Eval-Print Loop).
 Se così non fosse, fate un respiro profondo e cercate di capire se e cosa è andato storto,
-perché altrimenti è impossibile procedere con i prossimi passi.
+perché altrimenti è inutile andare avanti.
 
 ::: {.callout-warning}
 A seconda del sistema operativo (e.g., con versioni recenti di Mac OS) è possibile che
