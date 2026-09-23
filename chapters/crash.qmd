@@ -122,7 +122,7 @@ mondo no? Magari avete sempre sale, pepe, farina, latte (i vostri built-in, in u
 senso), ma per tutto il resto lo prendete al supermercato all'occorrenza.
 
 Arrivate a questo punto potreste avere l'impressione (sbagliata) che `matplotlib` sia
-parte delle libreria standard di Python---si tratta invece di un pacchetto
+parte della libreria standard di Python---si tratta invece di un pacchetto
 separato che è disponibile, insieme a quasi un milione di altri pacchetti, sul
 [Python package index](https://pypi.org/). Qual è la differenza? Semplice: la libreria
 standard viene installata automaticamente quando installate Python. Tutto il resto va
