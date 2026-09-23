@@ -162,7 +162,7 @@ grado di eseguire direttamente*.
 In altre parole, siamo di fronte ad una dicotomia tra la rappresentazione del programma
 nella sue forma intesa per il consumo umano (codice sorgente) ed in quella intesa per
 l'utilizzo da parte della macchina (codice macchina). La prima è pensata per essere
-(scritta e) letta da persone; la seconda per essere eseguita da un calcolatore. Tenetelo
+scritta (e letta) da persone; la seconda per essere eseguita da un calcolatore. Tenetelo
 a mente, perché anche in un era in cui parte della scrittura dei programmi viene
 regolarmente demandata a LLM ed agenti, questa distinzione continua ad essere rilevante.
 
@@ -339,8 +339,8 @@ E, per completezza, il software aperto non è un concetto astratto di valore uni
 accademico---il mondo reale ne è letteralmente pieno. Date un'occhiata alla
 @{tbl-open-proprietary-software}.
 
-| Tipologia | Software libero / open source | Software proprietario |
-|:-----|:-------------------------------|:-----------------------|
+| Tipologia       | Software libero / open source | Software proprietario |
+|:----------------|:------------------------------|:----------------------|
 | Sistema operativo | [GNU/Linux](https://www.kernel.org/) | [Microsoft Windows](https://www.microsoft.com/windows/), [macOS](https://www.apple.com/os/macos/) |
 | Web browser | [Firefox](https://www.mozilla.org/firefox/) | [Google Chrome](https://www.google.com/chrome/) |
 | Calcolo scientifico | [Python](https://www.python.org/), [NumPy](https://numpy.org/), [SciPy](https://scipy.org/) | [MATLAB](https://www.mathworks.com/products/matlab.html) |
@@ -358,7 +358,7 @@ Ora vi chiederete: meglio usare software aperto o software proprietario?
 Questione di gusti, ma spero che prendiate spunto da questa sezione per riflettere
 seriamente sull'argomento. Anche una persona che utilizzi il computer in modo
 puramente ricreativo dovrebbe interrogarsi sulle implicazioni del fatto che
-l'utente non abbiamo modo di sapere esattamente cosa fa un programma. Potrebbe darsi il
+l'utente non abbia modo di sapere esattamente cosa fa un programma. Potrebbe darsi il
 caso, ad esempio, che mentre navighiamo su web, o scriviamo una email, mandi
 informazioni sensibili, e completamente scorrelate da ciò che stiamo facendo, alla
 casa madre? Magari per essere profilate a scopi pubblicitari, o peggio?
@@ -374,8 +374,8 @@ Ma anche mettendo da parte per un attimo le questioni di privacy che un sistema 
 verificabile, per sua natura, solleva, nella vostra vita professionale potreste
 trovarvi a processare tera- o peta-byte di dati per tirare fuori un singolo numero
 (e.g., la massa di una particella). Davvero attacchereste un problema di questa portata
-e mettereste il vostro nome sul risultato sulla base di software che non sapete
-esattamente cosa faccia?
+e mettereste il vostro nome nella lista degli autori dell'articolo finale, sulla base
+di software che non sapete esattamente cosa faccia?
 
 
 ### Software aperto, software libero, software gratuito

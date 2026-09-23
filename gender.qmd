@@ -8,7 +8,7 @@ esprimere in modo meno compatto scrivendo "care/i studentesse/studenti", o
 variazioni sul tema.
 
 Sono consapevole che questa scelta non sia condivisa dalla maggior parte delle
-linguiste[^1], e capisco pienamente le motivazioni. Si tratta di un problema complesso
+linguiste[^3], e capisco pienamente le motivazioni. Si tratta di un problema complesso
 che non ha una soluzione ovvia, e questa piccola iniziativa non ha nessuna pretesa di
 costituire un contributo originale alla discussione---è, molto più modestamente,
 un tentativo maldestro di fare *qualcosa*, nella convinzione che non fare niente sia
@@ -20,5 +20,5 @@ serva a far sì che l'ambiente in cui viviamo e lavoriamo diventi veramente un p
 in cui tutte (e tutti) si sentono benvenuti.
 
 
-[^1]: Consiglio a tutte la lettura di questo bell'[articolo](https://accademiadellacrusca.it/it/consulenza/mettiamo-tutto-e-tutti-al-femminile/30517)
+[^3]: Consiglio a tutte la lettura di questo bell'[articolo](https://accademiadellacrusca.it/it/consulenza/mettiamo-tutto-e-tutti-al-femminile/30517)
 dell'Accademia della Crusca.
